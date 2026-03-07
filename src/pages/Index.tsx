@@ -1,5 +1,5 @@
 import FloatingNav from "@/components/FloatingNav";
-import MobileBottomNav from "@/components/MobileBottomNav";
+
 import HeroSection from "@/components/HeroSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import StatsBar from "@/components/StatsBar";
@@ -29,7 +29,7 @@ const Index = () => {
       <ServicesSection />
       <ContactSection />
       <Footer />
-      <MobileBottomNav />
+      
     </div>
   );
 };
