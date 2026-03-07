@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ExternalLink, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toast } from "sonner";
+import TiltCard from "@/components/effects/TiltCard";
 
 interface Product {
   name: string;
@@ -24,6 +25,7 @@ const products: Product[] = [
 
 const ShopSection = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const copyCode = (code: string) => {
     navigator.clipboard.writeText(code);
@@ -33,69 +35,95 @@ const ShopSection = () => {
   };
 
   return (
-    <section id="shop" className="section-padding">
-      <div className="container-tight">
+    <section id="shop" className="section-padding relative overflow-hidden">
+      {/* Ambient background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/3 rounded-full blur-[200px]" />
+
+      <div className="container-tight relative z-10" ref={containerRef}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="mb-16"
         >
-          <p className="text-primary font-display text-sm tracking-[0.25em] uppercase mb-3">Shop</p>
-          <h2 className="font-display font-bold text-3xl sm:text-5xl mb-4">
-            Things I Actually Use.
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 80 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="h-px bg-primary mb-8"
+          />
+          <p className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4">[ 04 — Shop ]</p>
+          <h2 className="font-display font-bold text-4xl sm:text-6xl lg:text-7xl leading-[0.9] mb-6">
+            Things I
             <br />
-            <span className="text-muted-foreground">Not Just Promote.</span>
+            <span className="text-muted-foreground">Actually Use.</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Every product here is something I personally use, trust, and stand behind. 
+          <p className="text-muted-foreground max-w-lg text-lg">
+            Every product here is something I personally use and stand behind. 
             No paid placements — just real recommendations.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, i) => (
             <motion.div
               key={product.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="glass-card-hover overflow-hidden group"
+              transition={{ delay: i * 0.1, duration: 0.6 }}
             >
-              <div className="aspect-square overflow-hidden bg-secondary">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-5">
-                <span className="text-primary text-xs font-display font-medium tracking-wider uppercase">
-                  {product.category}
-                </span>
-                <h3 className="font-display font-semibold text-lg mt-1 mb-2">{product.name}</h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{product.note}</p>
+              <TiltCard className="h-full">
+                <div className="glass-card overflow-hidden group h-full border border-border/20 hover:border-primary/30 transition-all duration-500">
+                  {/* Image with zoom */}
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
 
-                <div className="flex items-center gap-2">
-                  {product.code && (
-                    <button
-                      onClick={() => copyCode(product.code!)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors"
-                    >
-                      {copiedCode === product.code ? <Check size={12} /> : <Copy size={12} />}
-                      {product.code}
-                    </button>
-                  )}
-                  <Button variant="glow" size="sm" className="ml-auto" asChild>
-                    <a href={product.link} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink size={14} />
-                      Shop
-                    </a>
-                  </Button>
+                    {/* Category badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.2em] uppercase bg-background/80 backdrop-blur-sm text-primary border border-primary/20">
+                        {product.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">{product.name}</h3>
+                    <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">{product.note}</p>
+
+                    <div className="flex items-center gap-2">
+                      {product.code && (
+                        <button
+                          onClick={() => copyCode(product.code!)}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold hover:bg-primary/20 transition-all group/code"
+                        >
+                          {copiedCode === product.code ? (
+                            <><Check size={12} /><span>Copied!</span></>
+                          ) : (
+                            <><Copy size={12} className="group-hover/code:scale-110 transition-transform" />{product.code}</>
+                          )}
+                        </button>
+                      )}
+                      <a
+                        href={product.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:shadow-lg hover:shadow-primary/30 hover:scale-105 transition-all duration-300"
+                      >
+                        <ExternalLink size={14} />
+                        Shop
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </TiltCard>
             </motion.div>
           ))}
         </div>
