@@ -92,6 +92,25 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-background to-transparent" />
 
       <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+        {/* Profile image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mb-8 relative"
+        >
+          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-primary/30 mx-auto ring-4 ring-primary/10">
+            <img
+              src="/images/devin-profile.jpg"
+              alt="Devin Policastro"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary text-[10px] font-display font-bold tracking-widest uppercase">
+            Relentless Entrepreneur
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
@@ -105,7 +124,7 @@ const HeroSection = () => {
           transition={{ duration: 1.2, delay: 0.4 }}
           className="text-primary font-display font-medium text-xs sm:text-sm uppercase mb-6"
         >
-          Entrepreneur · Connector · Builder
+          2THIRTY · Impact Zone · SBS · Impactful Brands
         </motion.p>
 
         <h1 className="font-display font-bold text-6xl sm:text-8xl lg:text-9xl leading-[0.85] mb-4 tracking-tight">
@@ -140,9 +159,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 font-body leading-relaxed"
         >
-          General Manager at Impact Zone NJ. Founder of 2THIRTY. 
-          I build brands, connect people, and turn every handshake into a revenue stream.
-          <span className="text-foreground font-medium"> Welcome to the headquarters.</span>
+          Entrepreneur dedicated to creating impactful experiences across fitness, wellness, and business. 
+          Leading Impact Zone, building 2THIRTY, delivering premium products through Impactful Brands.
+          <span className="text-foreground font-medium"> 335 Chestnut St. Norwood, NJ.</span>
         </motion.p>
 
         <motion.div

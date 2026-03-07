@@ -12,14 +12,9 @@ interface PromoCode {
 }
 
 const promoCodes: PromoCode[] = [
-  { brand: "2THIRTY", code: "DEVON20", discount: "20% Off", shopUrl: "https://drink2thirty.com" },
-  { brand: "Impact Zone NJ", code: "DEVONFREE", discount: "Free Day Pass", shopUrl: "#" },
-  { brand: "Supplement Brand", code: "DEVON15", discount: "15% Off First Order", shopUrl: "#" },
-  { brand: "Car Detailing Co.", code: "POLICASTRO10", discount: "10% Off", shopUrl: "#" },
-  { brand: "Athletic Apparel", code: "DEVON25", discount: "25% Off Sitewide", shopUrl: "#" },
-  { brand: "Meal Prep Service", code: "DEVMEALS", discount: "$30 Off First Week", shopUrl: "#" },
-  { brand: "Fitness App Pro", code: "DEVFIT", discount: "1 Month Free", shopUrl: "#" },
-  { brand: "Grooming Brand", code: "DEVON20G", discount: "20% Off Everything", shopUrl: "#" },
+  { brand: "2THIRTY", code: "DEV", discount: "35% Off + Free Shipping", shopUrl: "https://drink2thirty.com/shop" },
+  { brand: "Fitrition", code: "DEVIN10", discount: "10% Off", shopUrl: "https://fitrition.com" },
+  { brand: "Impact Zone NJ", code: "DEVINFREE", discount: "Free Day Pass", shopUrl: "https://onlinejoin.abcfitness.com/signup/plan?club=30591" },
 ];
 
 const CodesSection = () => {
@@ -37,7 +32,6 @@ const CodesSection = () => {
 
   return (
     <section id="codes" className="section-padding relative overflow-hidden">
-      {/* Animated gradient orb */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] animate-float" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px] animate-float" style={{ animationDelay: "3s" }} />
 
@@ -77,7 +71,6 @@ const CodesSection = () => {
             >
               <TiltCard intensity={6}>
                 <div className="glass-card p-6 relative overflow-hidden border border-border/20 hover:border-primary/30 transition-all duration-500 group">
-                  {/* Ripple on copy */}
                   {ripple === promo.code && (
                     <div className="absolute inset-0 z-0">
                       <div className="absolute inset-0 bg-primary/10 animate-fade-in rounded-xl" />
@@ -103,7 +96,6 @@ const CodesSection = () => {
                         onClick={() => copyCode(promo.code, promo.brand)}
                         className="flex-1 flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-secondary/80 border border-border/50 font-mono text-sm font-bold tracking-widest hover:border-primary/40 hover:bg-secondary transition-all group/copy relative overflow-hidden"
                       >
-                        {/* Shine on hover */}
                         <div className="absolute inset-0 -translate-x-full group-hover/copy:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
                         <span className="relative z-10 flex items-center gap-2">
                           {copiedCode === promo.code ? (

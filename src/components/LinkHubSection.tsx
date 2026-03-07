@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Copy, Check, Building2, Dumbbell, ShoppingBag, Instagram, Users, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Copy, Check, Building2, Dumbbell, ShoppingBag, Instagram, Users, ArrowUpRight, Video, Linkedin, Music } from "lucide-react";
 import { toast } from "sonner";
 
 type LinkCategory = "all" | "business" | "fitness" | "shop" | "social" | "collabs";
@@ -15,17 +15,19 @@ interface LinkItem {
 
 const links: LinkItem[] = [
   { title: "2THIRTY", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories. Hydration, energy, focus, recovery & immunity.", url: "https://drink2thirty.com", icon: Building2, category: "business" },
-  { title: "Impact Zone Fitness", desc: "Bergen County's premier 51,000 sq ft gym — 335 Chestnut St, Norwood NJ.", url: "https://impactzonenj.com", icon: Dumbbell, category: "business" },
+  { title: "Impact Zone Fitness", desc: "Bergen County's premier 51,000 sq ft gym — 335 Chestnut St, Norwood NJ. Since 2017.", url: "https://impactzonenj.com", icon: Dumbbell, category: "business" },
   { title: "2THIRTY on Amazon", desc: "Shop 2THIRTY on Amazon — Strawberry Lemonade, Limeade, Red Raspberry. Prime eligible.", url: "https://www.amazon.com/2THIRTY-Hydration-Precovery-Electrolyte-Raspberry/dp/B0DCW71LH8", icon: ShoppingBag, category: "shop" },
-  { title: "Amazon Storefront", desc: "Everything I use — supplements, gear, tech, car mods. Curated picks.", url: "#", icon: ShoppingBag, category: "shop" },
-  { title: "Instagram", desc: "@devinpolicastro — the daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "social" },
-  { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Instagram, category: "social" },
-  { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Instagram, category: "social" },
-  { title: "Impact Zone Instagram", desc: "Follow the gym — @impactzonenj. Member highlights, events, classes.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "social" },
-  { title: "Book a Gym Tour", desc: "Schedule a tour of Impact Zone with Devin directly.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Dumbbell, category: "fitness" },
-  { title: "Join Impact Zone", desc: "No contracts. No commitment. Just results. $139/mo.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Dumbbell, category: "fitness" },
-  { title: "2THIRTY Subscribe & Save", desc: "Subscribe and save 20% on every 2THIRTY order. Never run out.", url: "https://drink2thirty.com/subscribe", icon: Building2, category: "shop" },
-  { title: "Partner Brands", desc: "Companies I work with and believe in.", url: "#", icon: Users, category: "collabs" },
+  { title: "2THIRTY Shop", desc: "35% off + free shipping on all orders. Strawberry Lemonade, Limeade, Red Raspberry.", url: "https://drink2thirty.com/shop", icon: ShoppingBag, category: "shop" },
+  { title: "2THIRTY Subscribe & Save", desc: "Subscribe and save 20% on every 2THIRTY order. $10.38/pack delivered on your schedule.", url: "https://drink2thirty.com/subscribe", icon: Building2, category: "shop" },
+  { title: "Instagram — @devinpolicastro", desc: "The daily grind, unfiltered. Personal brand, behind the scenes, real talk.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "social" },
+  { title: "TikTok — @devinpolicastro", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "social" },
+  { title: "YouTube — @devinpolicastro", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "social" },
+  { title: "LinkedIn", desc: "Professional network — connect with me for business opportunities.", url: "https://linkedin.com/in/devinpolicastro", icon: Linkedin, category: "social" },
+  { title: "Instagram — @impactzonenj", desc: "Follow the gym — member highlights, events, classes, community.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "social" },
+  { title: "Instagram — @drink2thirty", desc: "Follow 2THIRTY — product drops, reviews, and hydration tips.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "social" },
+  { title: "Popl Digital Card", desc: "Save my contact info, all my links, and connect instantly.", url: "https://poplme.co/fFOVmkEx", icon: Users, category: "social" },
+  { title: "Book a Gym Tour", desc: "Schedule a tour of Impact Zone with Devin directly. 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Dumbbell, category: "fitness" },
+  { title: "Join Impact Zone", desc: "No contracts. No commitment. Just results. $139/mo. Welcome bag with enrollment.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Dumbbell, category: "fitness" },
 ];
 
 const categories: { key: LinkCategory; label: string }[] = [
@@ -34,7 +36,6 @@ const categories: { key: LinkCategory; label: string }[] = [
   { key: "fitness", label: "Fitness" },
   { key: "shop", label: "Shop" },
   { key: "social", label: "Social" },
-  { key: "collabs", label: "Collabs" },
 ];
 
 const LinkHubSection = () => {
@@ -74,7 +75,6 @@ const LinkHubSection = () => {
           </h2>
         </motion.div>
 
-        {/* Category pills */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +96,6 @@ const LinkHubSection = () => {
           ))}
         </motion.div>
 
-        {/* Links */}
         <div className="grid gap-3 max-w-3xl">
           <AnimatePresence mode="popLayout">
             {filtered.map((link, i) => (
