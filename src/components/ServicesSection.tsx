@@ -11,11 +11,11 @@ interface Service {
 }
 
 const services: Service[] = [
-  { icon: Dumbbell, title: "Gym Membership Referrals", desc: "Get a deal at Impact Zone NJ — Bergen County's biggest gym. I'll make the intro and get you set up.", price: "Free Referral", tag: "FITNESS" },
-  { icon: Briefcase, title: "Brand Consulting", desc: "I'll break down your brand, your content, and your revenue strategy. No fluff — just what works.", price: "Starting at $500", tag: "BUSINESS" },
-  { icon: Droplets, title: "2THIRTY Wholesale", desc: "Want to stock 2THIRTY at your gym, studio, or store? Let's talk bulk pricing and co-branded deals.", price: "Request a Quote", tag: "PARTNERSHIP" },
+  { icon: Dumbbell, title: "Impact Zone Membership", desc: "Bergen County's biggest gym — 51,000 sq ft in Norwood, NJ. No contracts, world-class equipment, infrared saunas, cold plunges, hot yoga, and more. I'll get you set up.", price: "$139/mo", tag: "FITNESS" },
+  { icon: Briefcase, title: "Brand Consulting", desc: "I'll break down your brand, your content, and your revenue strategy. No fluff — just what works. I've built 2THIRTY and Impact Zone from the ground up.", price: "Starting at $500", tag: "BUSINESS" },
+  { icon: Droplets, title: "2THIRTY Wholesale", desc: "Want to stock 2THIRTY at your gym, studio, or store? Zero sugar, 5-in-1 hydration mixer. Let's talk bulk pricing and co-branded deals.", price: "Request a Quote", tag: "PARTNERSHIP" },
   { icon: Camera, title: "Influencer Collabs", desc: "If your brand fits my audience, let's create content that converts. I don't do weak partnerships.", price: "Starting at $250", tag: "CONTENT" },
-  { icon: Handshake, title: "Paid Introductions", desc: "I know people. You need people. I'll connect you to the right person for your business or deal.", price: "$100–$500", tag: "NETWORK" },
+  { icon: Handshake, title: "Paid Introductions", desc: "I know people across Bergen County and beyond. You need people. I'll connect you to the right person for your business or deal.", price: "$100–$500", tag: "NETWORK" },
   { icon: DollarSign, title: "Brand Clarity Calls", desc: "30-minute call where I rip apart your brand and tell you exactly what to fix. Direct, actionable, zero BS.", price: "$150 / 30 min", tag: "CONSULTING" },
 ];
 
@@ -58,7 +58,6 @@ const ServicesSection = () => (
           >
             <TiltCard className="h-full" intensity={6}>
               <div className="glass-card p-7 flex flex-col h-full relative overflow-hidden border border-border/20 hover:border-primary/30 transition-all duration-500 group">
-                {/* Hover gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10 flex flex-col h-full">

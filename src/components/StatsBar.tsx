@@ -3,9 +3,9 @@ import AnimatedCounter from "@/components/effects/AnimatedCounter";
 
 const stats = [
   { value: 51000, suffix: "", label: "Sq Ft Gym", prefix: "" },
-  { value: 8, suffix: "+", label: "Revenue Streams", prefix: "" },
-  { value: 500, suffix: "K+", label: "Social Reach", prefix: "" },
-  { value: 100, suffix: "+", label: "Brand Partners", prefix: "" },
+  { value: 3500, suffix: "+", label: "5-Star Reviews", prefix: "" },
+  { value: 7000, suffix: "+", label: "2THIRTY Packs Sold", prefix: "" },
+  { value: 500, suffix: "+", label: "Google Reviews", prefix: "" },
 ];
 
 const StatsBar = () => (

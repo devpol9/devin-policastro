@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Copy, Check, Building2, Dumbbell, ShoppingBag, Instagram, Users, ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import TiltCard from "@/components/effects/TiltCard";
 
 type LinkCategory = "all" | "business" | "fitness" | "shop" | "social" | "collabs";
 
@@ -16,14 +14,17 @@ interface LinkItem {
 }
 
 const links: LinkItem[] = [
-  { title: "2THIRTY", desc: "Functional hydration mixers — clean energy, real ingredients.", url: "https://drink2thirty.com", icon: Building2, category: "business" },
-  { title: "Impact Zone NJ", desc: "Bergen County's biggest gym. 51,000 sq ft of serious training.", url: "#", icon: Dumbbell, category: "business" },
-  { title: "Amazon Storefront", desc: "Everything I use — supplements, gear, tech, car mods.", url: "#", icon: ShoppingBag, category: "shop" },
-  { title: "Instagram", desc: "@devinpolicastro — the daily grind, unfiltered.", url: "https://instagram.com", icon: Instagram, category: "social" },
-  { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com", icon: Instagram, category: "social" },
-  { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com", icon: Instagram, category: "social" },
-  { title: "My Supplement Stack", desc: "The exact supplements I take daily — no fluff.", url: "#", icon: Dumbbell, category: "fitness" },
-  { title: "Workout Program", desc: "Train like I do. Programs that actually work.", url: "#", icon: Dumbbell, category: "fitness" },
+  { title: "2THIRTY", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories. Hydration, energy, focus, recovery & immunity.", url: "https://drink2thirty.com", icon: Building2, category: "business" },
+  { title: "Impact Zone Fitness", desc: "Bergen County's premier 51,000 sq ft gym — 335 Chestnut St, Norwood NJ.", url: "https://impactzonenj.com", icon: Dumbbell, category: "business" },
+  { title: "2THIRTY on Amazon", desc: "Shop 2THIRTY on Amazon — Strawberry Lemonade, Limeade, Red Raspberry. Prime eligible.", url: "https://www.amazon.com/2THIRTY-Hydration-Precovery-Electrolyte-Raspberry/dp/B0DCW71LH8", icon: ShoppingBag, category: "shop" },
+  { title: "Amazon Storefront", desc: "Everything I use — supplements, gear, tech, car mods. Curated picks.", url: "#", icon: ShoppingBag, category: "shop" },
+  { title: "Instagram", desc: "@devinpolicastro — the daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "social" },
+  { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Instagram, category: "social" },
+  { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Instagram, category: "social" },
+  { title: "Impact Zone Instagram", desc: "Follow the gym — @impactzonenj. Member highlights, events, classes.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "social" },
+  { title: "Book a Gym Tour", desc: "Schedule a tour of Impact Zone with Devin directly.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Dumbbell, category: "fitness" },
+  { title: "Join Impact Zone", desc: "No contracts. No commitment. Just results. $139/mo.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Dumbbell, category: "fitness" },
+  { title: "2THIRTY Subscribe & Save", desc: "Subscribe and save 20% on every 2THIRTY order. Never run out.", url: "https://drink2thirty.com/subscribe", icon: Building2, category: "shop" },
   { title: "Partner Brands", desc: "Companies I work with and believe in.", url: "#", icon: Users, category: "collabs" },
 ];
 
@@ -108,7 +109,6 @@ const LinkHubSection = () => {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
                 <div className="glass-card group relative overflow-hidden border border-border/20 hover:border-primary/30 transition-all duration-500">
-                  {/* Shine effect on hover */}
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
 
                   <div className="relative z-10 p-5 flex items-center gap-5">

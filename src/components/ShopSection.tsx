@@ -1,6 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ExternalLink, Copy, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
 import TiltCard from "@/components/effects/TiltCard";
@@ -15,12 +14,12 @@ interface Product {
 }
 
 const products: Product[] = [
-  { name: "2THIRTY Hydration Mix", note: "My brand. Clean hydration with function — no sugar, no garbage. I drink this every single day.", category: "Hydration", code: "DEVON20", link: "https://drink2thirty.com", image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=400&fit=crop" },
-  { name: "Whey Protein Isolate", note: "30g protein, mixes clean, tastes legit. Non-negotiable in my stack.", category: "Supplements", link: "#", image: "https://images.unsplash.com/photo-1593095948071-474c5cc2c4d8?w=400&h=400&fit=crop" },
-  { name: "Pre-Workout Formula", note: "Smooth energy, no crash. I hit this 20 min before every session.", category: "Supplements", code: "DEVON15", link: "#", image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop" },
-  { name: "Wireless Earbuds", note: "Gym-proof, sweat-proof, sound quality is insane. Can't train without em.", category: "Tech", link: "#", image: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&h=400&fit=crop" },
-  { name: "Training Shoes", note: "Flat sole, great grip. Perfect for heavy lifts and circuits.", category: "Gear", link: "#", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" },
-  { name: "Car Detailing Kit", note: "I'm obsessive about my cars. This kit is what I actually use.", category: "Automotive", link: "#", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=400&h=400&fit=crop" },
+  { name: "2THIRTY Strawberry Lemonade", note: "My brand. The OG flavor — 5-in-1 hydration with zero sugar, zero calories. I drink this every single day.", category: "2THIRTY", code: "35% OFF", link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=strawberry-lemonade&quantity=6-pack", image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=400&fit=crop" },
+  { name: "2THIRTY Limeade", note: "Clean, crisp, and my go-to for daytime focus. NAC + L-Glutathione for liver support.", category: "2THIRTY", link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=limeade&quantity=6-pack", image: "https://images.unsplash.com/photo-1593095948071-474c5cc2c4d8?w=400&h=400&fit=crop" },
+  { name: "2THIRTY Red Raspberry", note: "Night mode flavor — pre-covery support with adaptogens like Milk Thistle and Ginseng Root.", category: "2THIRTY", link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=red-raspberry&quantity=6-pack", image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop" },
+  { name: "2THIRTY Subscribe & Save", note: "Never run out. Subscribe and save 20% on every order. Auto-delivered on your schedule.", category: "2THIRTY", link: "https://drink2thirty.com/subscribe", image: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&h=400&fit=crop" },
+  { name: "Impact Zone Membership", note: "51,000 sq ft of Bergen County's biggest gym. No contracts, $139/mo. Cold plunges, saunas, turf, basketball court.", category: "Fitness", link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" },
+  { name: "Book a Gym Tour", note: "Come see Impact Zone in person. Schedule a tour directly with me — Norwood, NJ.", category: "Fitness", link: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=400&h=400&fit=crop" },
 ];
 
 const ShopSection = () => {
@@ -36,7 +35,6 @@ const ShopSection = () => {
 
   return (
     <section id="shop" className="section-padding relative overflow-hidden">
-      {/* Ambient background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/3 rounded-full blur-[200px]" />
 
       <div className="container-tight relative z-10" ref={containerRef}>
@@ -61,7 +59,7 @@ const ShopSection = () => {
           </h2>
           <p className="text-muted-foreground max-w-lg text-lg">
             Every product here is something I personally use and stand behind. 
-            No paid placements — just real recommendations.
+            2THIRTY is my brand — the rest are real recommendations from my daily life.
           </p>
         </motion.div>
 
@@ -76,7 +74,6 @@ const ShopSection = () => {
             >
               <TiltCard className="h-full">
                 <div className="glass-card overflow-hidden group h-full border border-border/20 hover:border-primary/30 transition-all duration-500">
-                  {/* Image with zoom */}
                   <div className="aspect-[4/3] overflow-hidden relative">
                     <img
                       src={product.image}
@@ -85,8 +82,6 @@ const ShopSection = () => {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
-
-                    {/* Category badge */}
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.2em] uppercase bg-background/80 backdrop-blur-sm text-primary border border-primary/20">
                         {product.category}

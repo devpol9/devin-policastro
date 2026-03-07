@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowRight, Tag, ChevronDown } from "lucide-react";
 import TextScramble from "@/components/effects/TextScramble";
@@ -60,7 +60,6 @@ const HeroSection = () => {
         ctx.fillStyle = `hsla(210, 100%, 55%, ${p.opacity})`;
         ctx.fill();
 
-        // Connect nearby particles
         for (let j = i + 1; j < particles.length; j++) {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
@@ -88,15 +87,11 @@ const HeroSection = () => {
 
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Particle canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-
-      {/* Gradient overlays */}
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,hsl(210_100%_55%/0.1)_0%,transparent_50%)]" />
       <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-background to-transparent" />
 
       <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-        {/* Overline with line animation */}
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
@@ -145,7 +140,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 font-body leading-relaxed"
         >
-          I build brands, connect people, and turn every handshake into a revenue stream. 
+          General Manager at Impact Zone NJ. Founder of 2THIRTY. 
+          I build brands, connect people, and turn every handshake into a revenue stream.
           <span className="text-foreground font-medium"> Welcome to the headquarters.</span>
         </motion.p>
 
@@ -158,7 +154,7 @@ const HeroSection = () => {
           <MagneticButton strength={0.2}>
             <Button variant="hero" size="lg" onClick={() => scrollTo("#shop")} className="min-w-[200px] h-13 text-base">
               <ShoppingBag size={18} />
-              Shop My Picks
+              Shop 2THIRTY
             </Button>
           </MagneticButton>
           <MagneticButton strength={0.2}>
@@ -176,7 +172,6 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      {/* Animated scroll indicator */}
       <motion.button
         onClick={() => scrollTo("#marquee")}
         initial={{ opacity: 0 }}
