@@ -11,8 +11,10 @@ const words = [
   "AUTOMOTIVE",
   "CONTENT",
   "LIFESTYLE",
-  "JERSEY",
+  "NORWOOD NJ",
   "NO BS",
+  "5-IN-1 MIXER",
+  "BERGEN COUNTY",
 ];
 
 const MarqueeStrip = () => (

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Send, Instagram, ArrowUpRight, Mail } from "lucide-react";
+import { Send, Instagram, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
 
 const ContactSection = () => {
@@ -45,13 +45,13 @@ const ContactSection = () => {
               <span className="text-muted-foreground">Business.</span>
             </h2>
             <p className="text-muted-foreground mb-10 leading-relaxed">
-              Whether it's a collab, a wholesale inquiry, or you just want to connect — 
-              I respond to everything.
+              Whether it's a collab, wholesale inquiry for 2THIRTY, Impact Zone membership, 
+              or you just want to connect — I respond to everything.
             </p>
 
             <div className="flex flex-col gap-3">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/devinpolicastro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card p-4 flex items-center gap-4 group border border-border/20 hover:border-primary/30 transition-all duration-300"
@@ -61,12 +61,12 @@ const ContactSection = () => {
                 </div>
                 <div className="flex-1">
                   <span className="font-display font-semibold text-sm">Instagram DM</span>
-                  <p className="text-muted-foreground text-xs">Fastest way to reach me</p>
+                  <p className="text-muted-foreground text-xs">@devinpolicastro — fastest way to reach me</p>
                 </div>
                 <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
               <a
-                href="mailto:hello@devinpolicastro.com"
+                href="mailto:info@impactzonenj.com"
                 className="glass-card p-4 flex items-center gap-4 group border border-border/20 hover:border-primary/30 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -74,10 +74,32 @@ const ContactSection = () => {
                 </div>
                 <div className="flex-1">
                   <span className="font-display font-semibold text-sm">Email</span>
-                  <p className="text-muted-foreground text-xs">For formal inquiries</p>
+                  <p className="text-muted-foreground text-xs">info@impactzonenj.com</p>
                 </div>
                 <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
+              <a
+                href="tel:201-775-1025"
+                className="glass-card p-4 flex items-center gap-4 group border border-border/20 hover:border-primary/30 transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Phone size={18} className="text-primary" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-display font-semibold text-sm">Phone</span>
+                  <p className="text-muted-foreground text-xs">(201) 775-1025</p>
+                </div>
+                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+              </a>
+              <div className="glass-card p-4 flex items-center gap-4 border border-border/20">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <MapPin size={18} className="text-primary" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-display font-semibold text-sm">Impact Zone</span>
+                  <p className="text-muted-foreground text-xs">335 Chestnut St, Norwood, NJ 07648</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 

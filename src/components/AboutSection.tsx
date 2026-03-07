@@ -4,12 +4,12 @@ import TiltCard from "@/components/effects/TiltCard";
 import TextScramble from "@/components/effects/TextScramble";
 
 const verticals = [
-  { icon: Dumbbell, title: "FITNESS", desc: "Impact Zone NJ — 51,000 sq ft of Bergen County's biggest gym.", link: "#", color: "from-blue-500/20 to-cyan-500/10" },
-  { icon: Droplets, title: "HYDRATION", desc: "2THIRTY — Functional hydration mixers. Clean, effective, no BS.", link: "https://drink2thirty.com", color: "from-cyan-500/20 to-teal-500/10" },
-  { icon: Sparkles, title: "LIFESTYLE", desc: "Living loud. Cars, travel, culture, and the hustle behind it all.", link: "#", color: "from-purple-500/20 to-pink-500/10" },
-  { icon: Briefcase, title: "BUSINESS", desc: "Building brands, closing deals, and connecting the dots others can't see.", link: "#", color: "from-amber-500/20 to-orange-500/10" },
-  { icon: Car, title: "AUTOMOTIVE", desc: "Builds, mods, and the car culture that fuels me.", link: "#", color: "from-red-500/20 to-orange-500/10" },
-  { icon: Video, title: "CONTENT", desc: "Documenting the grind across IG, TikTok, and YouTube.", link: "#", color: "from-indigo-500/20 to-violet-500/10" },
+  { icon: Dumbbell, title: "FITNESS", desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. World-class equipment, recovery amenities, and elite coaching.", link: "https://impactzonenj.com", color: "from-blue-500/20 to-cyan-500/10" },
+  { icon: Droplets, title: "HYDRATION", desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. Hydration, energy, focus, recovery, immunity in one packet.", link: "https://drink2thirty.com", color: "from-cyan-500/20 to-teal-500/10" },
+  { icon: Sparkles, title: "LIFESTYLE", desc: "Living loud in Bergen County. Cars, travel, culture, and the hustle behind building multiple businesses before 30.", link: "#", color: "from-purple-500/20 to-pink-500/10" },
+  { icon: Briefcase, title: "BUSINESS", desc: "From General Manager at Impact Zone to founding 2THIRTY — building brands, closing deals, and connecting dots others can't see.", link: "#", color: "from-amber-500/20 to-orange-500/10" },
+  { icon: Car, title: "AUTOMOTIVE", desc: "Builds, mods, and the car culture that fuels me. Always something new in the garage.", link: "#", color: "from-red-500/20 to-orange-500/10" },
+  { icon: Video, title: "CONTENT", desc: "Documenting the grind across Instagram, TikTok, and YouTube. Real talk, real results, no filter.", link: "#", color: "from-indigo-500/20 to-violet-500/10" },
 ];
 
 const AboutSection = () => (
@@ -48,7 +48,8 @@ const AboutSection = () => (
           <span className="gradient-text">Highway.</span>
         </h2>
         <p className="text-muted-foreground max-w-lg text-lg leading-relaxed">
-          Entrepreneur from Jersey. Multiple businesses, multiple verticals, one mission: 
+          Entrepreneur from Westwood, New Jersey. General Manager at Impact Zone, founder of 2THIRTY, 
+          and building across fitness, hydration, lifestyle, and content. Multiple verticals, one mission: 
           build things that matter and connect people who move the needle.
         </p>
       </motion.div>
