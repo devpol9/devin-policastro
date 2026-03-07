@@ -18,7 +18,7 @@ const links: LinkItem[] = [
   { title: "2THIRTY", desc: "Functional hydration mixers — clean energy, real ingredients.", url: "https://drink2thirty.com", icon: Building2, category: "business" },
   { title: "Impact Zone NJ", desc: "Bergen County's biggest gym. 51,000 sq ft of serious training.", url: "#", icon: Dumbbell, category: "business" },
   { title: "Amazon Storefront", desc: "Everything I use — supplements, gear, tech, car mods.", url: "#", icon: ShoppingBag, category: "shop" },
-  { title: "Instagram", desc: "@devonpolycastro — the daily grind, unfiltered.", url: "https://instagram.com", icon: Instagram, category: "social" },
+  { title: "Instagram", desc: "@devinpolicastro — the daily grind, unfiltered.", url: "https://instagram.com", icon: Instagram, category: "social" },
   { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com", icon: Instagram, category: "social" },
   { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com", icon: Instagram, category: "social" },
   { title: "My Supplement Stack", desc: "The exact supplements I take daily — no fluff.", url: "#", icon: Dumbbell, category: "fitness" },
