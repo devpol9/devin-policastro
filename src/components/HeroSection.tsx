@@ -124,7 +124,7 @@ const HeroSection = () => {
           transition={{ duration: 1.2, delay: 0.4 }}
           className="text-primary font-display font-medium text-xs sm:text-sm uppercase mb-6"
         >
-          2THIRTY · Impact Zone · SBS · Impactful Brands
+          2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
 
         <h1 className="font-display font-bold text-6xl sm:text-8xl lg:text-9xl leading-[0.85] mb-4 tracking-tight">
@@ -160,7 +160,7 @@ const HeroSection = () => {
           className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 font-body leading-relaxed"
         >
           Entrepreneur dedicated to creating impactful experiences across fitness, wellness, and business. 
-          Leading Impact Zone, building 2THIRTY, delivering premium products through Impactful Brands.
+          Leading Impact Zone, building 2THIRTY, manufacturing premium fitness products through Impactful Brands.
           <span className="text-foreground font-medium"> 335 Chestnut St. Norwood, NJ.</span>
         </motion.p>
 

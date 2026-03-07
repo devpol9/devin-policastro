@@ -4,7 +4,7 @@ const words = [
   "ENTREPRENEUR",
   "2THIRTY",
   "IMPACT ZONE",
-  "IMPACTFUL BRANDS",
+  "MANUFACTURING",
   "SBS",
   "FITNESS",
   "HYDRATION",
