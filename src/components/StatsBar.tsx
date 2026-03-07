@@ -4,22 +4,23 @@ import AnimatedCounter from "@/components/effects/AnimatedCounter";
 const stats = [
   { value: 51000, suffix: "", label: "Sq Ft Gym", prefix: "" },
   { value: 3500, suffix: "+", label: "5-Star Reviews", prefix: "" },
-  { value: 7000, suffix: "+", label: "2THIRTY Packs Sold", prefix: "" },
-  { value: 500, suffix: "+", label: "Google Reviews", prefix: "" },
+  { value: 7000, suffix: "+", label: "Packs Sold", prefix: "" },
+  { value: 3000, suffix: "+", label: "Happy Members", prefix: "" },
+  { value: 60, suffix: "+", label: "Weekly Classes", prefix: "" },
 ];
 
 const StatsBar = () => (
   <section className="section-padding py-16 relative overflow-hidden">
     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(210_100%_55%/0.05)_0%,transparent_70%)]" />
     <div className="container-tight relative z-10">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
         {stats.map((stat, i) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
+            transition={{ delay: i * 0.12, duration: 0.6 }}
             className="text-center"
           >
             <div className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl mb-2">

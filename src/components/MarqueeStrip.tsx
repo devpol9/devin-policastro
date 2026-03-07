@@ -2,19 +2,20 @@ import Marquee from "@/components/effects/Marquee";
 
 const words = [
   "ENTREPRENEUR",
-  "CONNECTOR",
   "2THIRTY",
   "IMPACT ZONE",
+  "IMPACTFUL BRANDS",
+  "SBS",
   "FITNESS",
   "HYDRATION",
-  "BUILDER",
-  "AUTOMOTIVE",
-  "CONTENT",
-  "LIFESTYLE",
+  "PRE-COVERY",
   "NORWOOD NJ",
-  "NO BS",
-  "5-IN-1 MIXER",
   "BERGEN COUNTY",
+  "ZERO SUGAR",
+  "5-IN-1 MIXER",
+  "51K SQ FT",
+  "NO CONTRACTS",
+  "RELENTLESS",
 ];
 
 const MarqueeStrip = () => (

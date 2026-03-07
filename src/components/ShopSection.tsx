@@ -9,17 +9,72 @@ interface Product {
   note: string;
   category: string;
   code?: string;
+  price?: string;
+  originalPrice?: string;
+  rating?: string;
+  reviews?: string;
   link: string;
   image: string;
 }
 
 const products: Product[] = [
-  { name: "2THIRTY Strawberry Lemonade", note: "My brand. The OG flavor — 5-in-1 hydration with zero sugar, zero calories. I drink this every single day.", category: "2THIRTY", code: "35% OFF", link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=strawberry-lemonade&quantity=6-pack", image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=400&fit=crop" },
-  { name: "2THIRTY Limeade", note: "Clean, crisp, and my go-to for daytime focus. NAC + L-Glutathione for liver support.", category: "2THIRTY", link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=limeade&quantity=6-pack", image: "https://images.unsplash.com/photo-1593095948071-474c5cc2c4d8?w=400&h=400&fit=crop" },
-  { name: "2THIRTY Red Raspberry", note: "Night mode flavor — pre-covery support with adaptogens like Milk Thistle and Ginseng Root.", category: "2THIRTY", link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=red-raspberry&quantity=6-pack", image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop" },
-  { name: "2THIRTY Subscribe & Save", note: "Never run out. Subscribe and save 20% on every order. Auto-delivered on your schedule.", category: "2THIRTY", link: "https://drink2thirty.com/subscribe", image: "https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=400&h=400&fit=crop" },
-  { name: "Impact Zone Membership", note: "51,000 sq ft of Bergen County's biggest gym. No contracts, $139/mo. Cold plunges, saunas, turf, basketball court.", category: "Fitness", link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" },
-  { name: "Book a Gym Tour", note: "Come see Impact Zone in person. Schedule a tour directly with me — Norwood, NJ.", category: "Fitness", link: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=400&h=400&fit=crop" },
+  {
+    name: "Strawberry Lemonade",
+    note: "The OG flavor — 5-in-1 hydration+ mixer. Zero sugar, zero calories. 3x hydration vs sports drinks. I drink this every single day.",
+    category: "2THIRTY",
+    code: "DEV",
+    price: "$12.97",
+    originalPrice: "$19.99",
+    rating: "4.9",
+    reviews: "847",
+    link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=strawberry-lemonade&quantity=6-pack",
+    image: "/images/2thirty-strawberry.png",
+  },
+  {
+    name: "Limeade",
+    note: "Clean, crisp, and my go-to for daytime focus. NAC + L-Glutathione for liver support. Caffeine-free steady energy.",
+    category: "2THIRTY",
+    code: "DEV",
+    price: "$12.97",
+    originalPrice: "$19.99",
+    rating: "4.9",
+    reviews: "519",
+    link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=limeade&quantity=6-pack",
+    image: "/images/2thirty-limeade.png",
+  },
+  {
+    name: "Red Raspberry",
+    note: "Night mode flavor — pre-covery support with adaptogens like Milk Thistle and Ginseng Root. Feel human the next day.",
+    category: "2THIRTY",
+    code: "DEV",
+    price: "$12.97",
+    originalPrice: "$19.99",
+    rating: "4.8",
+    reviews: "632",
+    link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=red-raspberry&quantity=6-pack",
+    image: "/images/2thirty-raspberry.png",
+  },
+  {
+    name: "Subscribe & Save 20%",
+    note: "Never run out. Subscribe and save 20% on every order. Auto-delivered on your schedule. $10.38/pack.",
+    category: "2THIRTY",
+    link: "https://drink2thirty.com/subscribe",
+    image: "/images/2thirty-strawberry.png",
+  },
+  {
+    name: "Impact Zone Membership",
+    note: "51,000 sq ft. No contracts. Cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, 5K turf. $139/mo.",
+    category: "Fitness",
+    link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591",
+    image: "/images/iz-hero.jpg",
+  },
+  {
+    name: "Book a Gym Tour",
+    note: "Come see Impact Zone in person. Schedule a tour directly with me — 335 Chestnut St, Norwood, NJ.",
+    category: "Fitness",
+    link: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
+    image: "/images/iz-mezzanine.jpg",
+  },
 ];
 
 const ShopSection = () => {
@@ -58,8 +113,8 @@ const ShopSection = () => {
             <span className="text-muted-foreground">Actually Use.</span>
           </h2>
           <p className="text-muted-foreground max-w-lg text-lg">
-            Every product here is something I personally use and stand behind. 
-            2THIRTY is my brand — the rest are real recommendations from my daily life.
+            2THIRTY is my brand — 5-in-1 hydration+ mixer with zero sugar, zero calories. 
+            4.9 stars from 3,500+ reviews. 7,000+ packs sold. Made in the USA.
           </p>
         </motion.div>
 
@@ -74,24 +129,42 @@ const ShopSection = () => {
             >
               <TiltCard className="h-full">
                 <div className="glass-card overflow-hidden group h-full border border-border/20 hover:border-primary/30 transition-all duration-500">
-                  <div className="aspect-[4/3] overflow-hidden relative">
+                  <div className="aspect-[4/3] overflow-hidden relative bg-secondary/30">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 p-4"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-4 left-4 flex items-center gap-2">
                       <span className="px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.2em] uppercase bg-background/80 backdrop-blur-sm text-primary border border-primary/20">
                         {product.category}
                       </span>
+                      {product.price && (
+                        <span className="px-2 py-1 rounded-full text-[10px] font-bold bg-primary text-primary-foreground">
+                          35% OFF
+                        </span>
+                      )}
                     </div>
+                    {product.rating && (
+                      <div className="absolute top-4 right-4 px-2 py-1 rounded-full text-[10px] font-bold bg-background/80 backdrop-blur-sm text-foreground border border-border/20">
+                        ⭐ {product.rating} ({product.reviews})
+                      </div>
+                    )}
                   </div>
 
                   <div className="p-6">
                     <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors">{product.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">{product.note}</p>
+                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2">{product.note}</p>
+
+                    {product.price && (
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="font-display font-bold text-lg text-primary">{product.price}</span>
+                        <span className="text-muted-foreground text-sm line-through">{product.originalPrice}</span>
+                        <span className="text-[10px] text-muted-foreground">• FREE Shipping</span>
+                      </div>
+                    )}
 
                     <div className="flex items-center gap-2">
                       {product.code && (
@@ -102,7 +175,7 @@ const ShopSection = () => {
                           {copiedCode === product.code ? (
                             <><Check size={12} /><span>Copied!</span></>
                           ) : (
-                            <><Copy size={12} className="group-hover/code:scale-110 transition-transform" />{product.code}</>
+                            <><Copy size={12} className="group-hover/code:scale-110 transition-transform" />Code: {product.code}</>
                           )}
                         </button>
                       )}
