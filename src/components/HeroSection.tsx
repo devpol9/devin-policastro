@@ -97,7 +97,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-8 relative"
+          className="mx-auto mb-8 relative mt-16"
         >
           <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-primary/30 mx-auto ring-4 ring-primary/10">
             <img

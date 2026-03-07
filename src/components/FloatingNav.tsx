@@ -53,9 +53,8 @@ const FloatingNav = () => {
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-          <button onClick={() => handleClick("#home")} className="font-display font-bold text-lg tracking-tight group">
-            <span className="text-foreground group-hover:text-primary transition-colors">DEVIN</span>
-            <span className="glow-text ml-1">P.</span>
+          <button onClick={() => handleClick("#home")} className="font-display font-medium text-sm tracking-tight group text-muted-foreground hover:text-foreground transition-colors">
+            hey, i'm <span className="text-primary font-bold">dev.</span>
           </button>
 
           {/* Desktop */}
