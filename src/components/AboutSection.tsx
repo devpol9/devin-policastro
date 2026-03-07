@@ -6,7 +6,7 @@ import TextScramble from "@/components/effects/TextScramble";
 const verticals = [
   { icon: Dumbbell, title: "FITNESS", desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf. 3,000+ members strong.", link: "https://impactzonenj.com", color: "from-blue-500/20 to-cyan-500/10" },
   { icon: Droplets, title: "HYDRATION", desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews. 7,000+ packs sold.", link: "https://drink2thirty.com", color: "from-cyan-500/20 to-teal-500/10" },
-  { icon: Briefcase, title: "IMPACTFUL BRANDS", desc: "Delivering premium products for performance-driven individuals. From supplement partnerships to curated lifestyle gear — building brands that move the needle.", link: "#", color: "from-amber-500/20 to-orange-500/10" },
+  { icon: Briefcase, title: "MANUFACTURING", desc: "Impactful Brands — my manufacturing arm. Custom apparel, jump ropes, mini bands, wrist wraps, wrist straps, blow-up tents, and more. Designing and producing premium fitness products from concept to delivery.", link: "#", color: "from-amber-500/20 to-orange-500/10" },
   { icon: Sparkles, title: "SBS", desc: "Strategic business solutions — connecting dots others can't see. Consulting, partnerships, and growth strategies for brands ready to level up.", link: "#", color: "from-purple-500/20 to-pink-500/10" },
   { icon: Car, title: "AUTOMOTIVE", desc: "Builds, mods, and the car culture that fuels me. Always something new in the garage.", link: "#", color: "from-red-500/20 to-orange-500/10" },
   { icon: Video, title: "CONTENT", desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.", link: "https://instagram.com/devinpolicastro", color: "from-indigo-500/20 to-violet-500/10" },
@@ -48,7 +48,7 @@ const AboutSection = () => (
         </h2>
         <p className="text-muted-foreground max-w-lg text-lg leading-relaxed">
           Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY, 
-          delivering through Impactful Brands and SBS. My mission is to inspire growth, 
+          manufacturing through Impactful Brands and SBS. My mission is to inspire growth, 
           efficiency, and transformation in everything I do.
         </p>
       </motion.div>
