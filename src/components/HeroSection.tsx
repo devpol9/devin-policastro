@@ -43,9 +43,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="font-display font-bold text-5xl sm:text-7xl lg:text-8xl leading-[0.9] mb-6"
         >
-          DEVON
+          DEVIN
           <br />
-          <span className="gradient-text">POLYCASTRO</span>
+          <span className="gradient-text">POLICASTRO</span>
         </motion.h1>
 
         <motion.p

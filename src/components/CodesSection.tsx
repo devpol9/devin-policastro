@@ -16,7 +16,7 @@ const promoCodes: PromoCode[] = [
   { brand: "2THIRTY", code: "DEVON20", discount: "20% Off", shopUrl: "https://drink2thirty.com" },
   { brand: "Impact Zone NJ", code: "DEVONFREE", discount: "Free Day Pass", shopUrl: "#" },
   { brand: "Supplement Brand", code: "DEVON15", discount: "15% Off First Order", shopUrl: "#" },
-  { brand: "Car Detailing Co.", code: "POLYCASTRO10", discount: "10% Off", shopUrl: "#" },
+  { brand: "Car Detailing Co.", code: "POLICASTRO10", discount: "10% Off", shopUrl: "#" },
   { brand: "Athletic Apparel", code: "DEVON25", discount: "25% Off Sitewide", shopUrl: "#" },
   { brand: "Meal Prep Service", code: "DEVMEALS", discount: "$30 Off First Week", shopUrl: "#" },
   { brand: "Fitness App Pro", code: "DEVFIT", discount: "1 Month Free", shopUrl: "#" },

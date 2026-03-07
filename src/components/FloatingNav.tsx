@@ -40,7 +40,7 @@ const FloatingNav = () => {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <button onClick={() => handleClick("#home")} className="font-display font-bold text-lg tracking-tight">
-            <span className="text-foreground">DEVON</span>
+            <span className="text-foreground">DEVIN</span>
             <span className="glow-text ml-1">P.</span>
           </button>
 
