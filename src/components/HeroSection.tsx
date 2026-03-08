@@ -107,7 +107,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-card/80 backdrop-blur-xl border border-primary/20 text-primary text-[8px] sm:text-[10px] font-display font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase whitespace-nowrap"
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-card/80 backdrop-blur-xl border border-primary/20 text-primary text-[8px] sm:text-[10px] font-display font-bold tracking-[0.14em] sm:tracking-[0.24em] uppercase whitespace-normal text-center max-w-[78vw] sm:max-w-none leading-tight"
           >
             Relentless Entrepreneur
           </motion.div>
