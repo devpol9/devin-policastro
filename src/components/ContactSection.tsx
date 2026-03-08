@@ -4,19 +4,32 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Send, Instagram, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Instagram, ArrowUpRight, Mail, MapPin, Phone, Calendar } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const [sending, setSending] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: formData,
+      });
+
+      if (error) throw error;
+      toast.success(data?.message || "Message sent! Devin will get back to you.");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to send. DM @devinpolicastro on Instagram instead.");
+    } finally {
       setSending(false);
-      toast.success("Message sent! I'll get back to you.");
-    }, 1000);
+    }
   };
 
   return (
@@ -50,55 +63,29 @@ const ContactSection = () => {
             </p>
 
             <div className="flex flex-col gap-2.5">
-              <a
-                href="https://instagram.com/devinpolicastro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500"
-              >
-                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500">
-                  <Instagram size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
-                </div>
-                <div className="flex-1">
-                  <span className="font-display font-semibold text-sm">Instagram DM</span>
-                  <p className="text-muted-foreground text-xs">@devinpolicastro</p>
-                </div>
-                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+              <a href="https://instagram.com/devinpolicastro" target="_blank" rel="noopener noreferrer" className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500">
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500"><Instagram size={16} className="text-primary/70 group-hover:text-primary transition-colors" /></div>
+                <div className="flex-1"><span className="font-display font-semibold text-sm">Instagram DM</span><p className="text-muted-foreground text-xs">@devinpolicastro</p></div>
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary transition-all duration-300" />
               </a>
-              <a
-                href="mailto:info@impactzonenj.com"
-                className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500"
-              >
-                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500">
-                  <Mail size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
-                </div>
-                <div className="flex-1">
-                  <span className="font-display font-semibold text-sm">Email</span>
-                  <p className="text-muted-foreground text-xs">info@impactzonenj.com</p>
-                </div>
-                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+              <a href="mailto:info@impactzonenj.com" className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500">
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500"><Mail size={16} className="text-primary/70 group-hover:text-primary transition-colors" /></div>
+                <div className="flex-1"><span className="font-display font-semibold text-sm">Email</span><p className="text-muted-foreground text-xs">info@impactzonenj.com</p></div>
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary transition-all duration-300" />
               </a>
-              <a
-                href="tel:201-775-1025"
-                className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500"
-              >
-                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500">
-                  <Phone size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
-                </div>
-                <div className="flex-1">
-                  <span className="font-display font-semibold text-sm">Phone</span>
-                  <p className="text-muted-foreground text-xs">(201) 775-1025</p>
-                </div>
-                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+              <a href="tel:201-775-1025" className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500">
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500"><Phone size={16} className="text-primary/70 group-hover:text-primary transition-colors" /></div>
+                <div className="flex-1"><span className="font-display font-semibold text-sm">Phone</span><p className="text-muted-foreground text-xs">(201) 775-1025</p></div>
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary transition-all duration-300" />
+              </a>
+              <a href="https://calendar.app.google/2MSzLtJVX7GZ93Zs9" target="_blank" rel="noopener noreferrer" className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500">
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500"><Calendar size={16} className="text-primary/70 group-hover:text-primary transition-colors" /></div>
+                <div className="flex-1"><span className="font-display font-semibold text-sm">Book a Meeting</span><p className="text-muted-foreground text-xs">Schedule a tour or consultation</p></div>
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary transition-all duration-300" />
               </a>
               <div className="glass-card p-4 flex items-center gap-4">
-                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
-                  <MapPin size={16} className="text-primary/70" />
-                </div>
-                <div className="flex-1">
-                  <span className="font-display font-semibold text-sm">Impact Zone</span>
-                  <p className="text-muted-foreground text-xs">335 Chestnut St, Norwood, NJ 07648</p>
-                </div>
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center"><MapPin size={16} className="text-primary/70" /></div>
+                <div className="flex-1"><span className="font-display font-semibold text-sm">Impact Zone</span><p className="text-muted-foreground text-xs">335 Chestnut St, Norwood, NJ 07648</p></div>
               </div>
             </div>
           </motion.div>
@@ -113,20 +100,20 @@ const ContactSection = () => {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Name</label>
-                <Input placeholder="Your name" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
+                <Input value={formData.name} onChange={(e) => setFormData(p => ({ ...p, name: e.target.value }))} placeholder="Your name" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
               </div>
               <div>
                 <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Email</label>
-                <Input type="email" placeholder="you@email.com" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
+                <Input value={formData.email} onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))} type="email" placeholder="you@email.com" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
               </div>
             </div>
             <div>
               <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Subject</label>
-              <Input placeholder="What's this about?" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
+              <Input value={formData.subject} onChange={(e) => setFormData(p => ({ ...p, subject: e.target.value }))} placeholder="What's this about?" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
             </div>
             <div>
               <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Message</label>
-              <Textarea placeholder="Give me the details..." rows={5} required className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm" />
+              <Textarea value={formData.message} onChange={(e) => setFormData(p => ({ ...p, message: e.target.value }))} placeholder="Give me the details..." rows={5} required className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm" />
             </div>
             <MagneticButton strength={0.15} className="w-full">
               <Button variant="hero" size="lg" type="submit" className="w-full h-13 text-sm font-display font-semibold tracking-wide" disabled={sending}>

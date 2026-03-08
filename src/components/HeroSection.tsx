@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowRight, Tag, ChevronDown } from "lucide-react";
 import TextScramble from "@/components/effects/TextScramble";
 import MagneticButton from "@/components/effects/MagneticButton";
+
+const HeroOrb = lazy(() => import("@/components/effects/HeroOrb"));
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,7 +28,7 @@ const HeroSection = () => {
 
     let animId: number;
     const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
-    const particleCount = 60;
+    const particleCount = 40;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -39,10 +41,10 @@ const HeroSection = () => {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
-        size: Math.random() * 1.5 + 0.3,
-        opacity: Math.random() * 0.3 + 0.05,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        size: Math.random() * 1.2 + 0.3,
+        opacity: Math.random() * 0.2 + 0.03,
       });
     }
 
@@ -64,11 +66,11 @@ const HeroSection = () => {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          if (dist < 100) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `hsla(38, 90%, 58%, ${0.04 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `hsla(38, 90%, 58%, ${0.03 * (1 - dist / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -88,8 +90,14 @@ const HeroSection = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,hsl(38_90%_58%/0.06)_0%,transparent_50%)]" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 z-[1] bg-gradient-to-t from-background to-transparent" />
+      
+      {/* 3D Orb */}
+      <Suspense fallback={null}>
+        <HeroOrb />
+      </Suspense>
+      
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,hsl(38_90%_58%/0.04)_0%,transparent_50%)]" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 z-[2] bg-gradient-to-t from-background to-transparent" />
 
       <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-24 sm:pt-16">
         {/* Profile image */}
@@ -100,11 +108,7 @@ const HeroSection = () => {
           className="mx-auto mb-8 sm:mb-10 relative"
         >
           <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-full overflow-hidden border border-primary/20 mx-auto ring-[3px] ring-primary/10 ring-offset-4 ring-offset-background">
-            <img
-              src="/images/devin-profile.jpg"
-              alt="Devin Policastro"
-              className="w-full h-full object-cover"
-            />
+            <img src="/images/devin-profile.jpg" alt="Devin Policastro" className="w-full h-full object-cover" />
           </div>
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
