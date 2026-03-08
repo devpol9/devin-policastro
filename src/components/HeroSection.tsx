@@ -1,11 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, lazy, Suspense } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowRight, Tag, ChevronDown } from "lucide-react";
 import TextScramble from "@/components/effects/TextScramble";
 import MagneticButton from "@/components/effects/MagneticButton";
-
-const HeroOrb = lazy(() => import("@/components/effects/HeroOrb"));
+import HeroOrb from "@/components/effects/HeroOrb";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
