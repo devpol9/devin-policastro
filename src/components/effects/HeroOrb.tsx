@@ -8,8 +8,9 @@ const OrbMesh = () => {
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const t = clock.getElapsedTime();
-    meshRef.current.rotation.y = t * 0.12;
-    meshRef.current.rotation.x = Math.sin(t * 0.2) * 0.15;
+    meshRef.current.rotation.y = t * 0.24;
+    meshRef.current.rotation.x = Math.sin(t * 0.45) * 0.22;
+    meshRef.current.position.y = Math.sin(t * 0.6) * 0.12;
   });
 
   return (
@@ -30,7 +31,7 @@ const OrbMesh = () => {
 
 const HeroOrb = () => {
   return (
-    <div className="absolute inset-0 z-[1] pointer-events-none opacity-60">
+    <div className="absolute inset-0 z-[1] pointer-events-none opacity-75">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         dpr={[1, 1.5]}
