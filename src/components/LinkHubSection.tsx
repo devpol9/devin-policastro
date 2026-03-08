@@ -110,28 +110,28 @@ const LinkHubSection = () => {
                 <div className="glass-card group relative overflow-hidden border border-border/20 hover:border-primary/30 transition-all duration-500">
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/5 to-transparent" />
 
-                  <div className="relative z-10 p-5 flex items-center gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                      <link.icon size={22} className="text-primary" />
+                  <div className="relative z-10 p-4 sm:p-5 flex items-center gap-3 sm:gap-5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <link.icon size={20} className="text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-display font-semibold text-base group-hover:text-primary transition-colors">{link.title}</h3>
-                      <p className="text-muted-foreground text-sm truncate">{link.desc}</p>
+                      <h3 className="font-display font-semibold text-sm sm:text-base group-hover:text-primary transition-colors">{link.title}</h3>
+                      <p className="text-muted-foreground text-xs sm:text-sm truncate">{link.desc}</p>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                       <button
                         onClick={(e) => { e.stopPropagation(); copyLink(link.url, link.title); }}
-                        className="p-2.5 rounded-lg hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
+                        className="p-2 sm:p-2.5 rounded-lg hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
                       >
-                        {copied === link.title ? <Check size={16} className="text-primary" /> : <Copy size={16} />}
+                        {copied === link.title ? <Check size={14} className="text-primary" /> : <Copy size={14} />}
                       </button>
                       <a
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                        className="p-2 sm:p-2.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                       >
-                        <ArrowUpRight size={16} />
+                        <ArrowUpRight size={14} />
                       </a>
                     </div>
                   </div>

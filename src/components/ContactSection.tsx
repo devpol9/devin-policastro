@@ -20,7 +20,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding pb-32 md:pb-24 relative">
+    <section id="contact" className="section-padding pb-28 md:pb-24 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(210_100%_55%/0.05)_0%,transparent_60%)]" />
 
       <div className="container-tight relative z-10">

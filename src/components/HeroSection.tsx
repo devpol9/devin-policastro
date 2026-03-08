@@ -91,15 +91,15 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,hsl(210_100%_55%/0.1)_0%,transparent_50%)]" />
       <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-background to-transparent" />
 
-      <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+      <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-20 sm:pt-16">
         {/* Profile image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-8 relative mt-16"
+          className="mx-auto mb-6 sm:mb-8 relative"
         >
-          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-primary/30 mx-auto ring-4 ring-primary/10">
+          <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-primary/30 mx-auto ring-4 ring-primary/10">
             <img
               src="/images/devin-profile.jpg"
               alt="Devin Policastro"
@@ -127,7 +127,7 @@ const HeroSection = () => {
           2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
 
-        <h1 className="font-display font-bold text-6xl sm:text-8xl lg:text-9xl leading-[0.85] mb-4 tracking-tight">
+        <h1 className="font-display font-bold text-5xl sm:text-8xl lg:text-9xl leading-[0.85] mb-4 tracking-tight">
           <motion.span
             initial={{ opacity: 0, y: 80, rotateX: 40 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -157,7 +157,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 font-body leading-relaxed"
+          className="text-muted-foreground text-base sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 font-body leading-relaxed"
         >
           Entrepreneur dedicated to creating impactful experiences across fitness, wellness, and business. 
           Leading Impact Zone, building 2THIRTY, manufacturing premium fitness products through Impactful Brands.
@@ -168,7 +168,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <MagneticButton strength={0.2}>
             <Button variant="hero" size="lg" onClick={() => scrollTo("#shop")} className="min-w-[200px] h-13 text-base">
@@ -196,7 +196,7 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5 }}
-        className="absolute bottom-24 md:bottom-10 left-1/2 -translate-x-1/2 z-10 group"
+        className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 z-10 group hidden sm:block"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
