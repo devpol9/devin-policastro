@@ -32,11 +32,11 @@ const GallerySection = () => {
         </h2>
       </div>
 
-      <div className="flex gap-3 sm:gap-4 px-5 sm:px-8 pb-16 sm:pb-20 pt-6 sm:pt-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+      <div className="flex gap-3 sm:gap-4 lg:gap-5 px-5 sm:px-8 pb-16 sm:pb-20 pt-6 sm:pt-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
         {images.map((img, i) => (
           <div
             key={i}
-            className="relative min-w-[260px] sm:min-w-[420px] lg:min-w-[520px] aspect-[4/3] rounded-xl overflow-hidden shrink-0 snap-center group"
+            className="relative w-[82vw] sm:w-[68vw] lg:w-[44vw] xl:w-[36vw] max-w-[620px] aspect-[4/3] rounded-xl overflow-hidden shrink-0 snap-start group"
           >
             <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
