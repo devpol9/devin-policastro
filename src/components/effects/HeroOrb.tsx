@@ -31,7 +31,7 @@ const OrbMesh = () => {
 
 const HeroOrb = () => {
   return (
-    <div className="absolute inset-0 z-[1] pointer-events-none opacity-60">
+    <div className="absolute inset-0 z-[1] pointer-events-none opacity-75">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         dpr={[1, 1.5]}
