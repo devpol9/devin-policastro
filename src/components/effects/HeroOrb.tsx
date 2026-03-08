@@ -8,8 +8,9 @@ const OrbMesh = () => {
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
     const t = clock.getElapsedTime();
-    meshRef.current.rotation.y = t * 0.12;
-    meshRef.current.rotation.x = Math.sin(t * 0.2) * 0.15;
+    meshRef.current.rotation.y = t * 0.24;
+    meshRef.current.rotation.x = Math.sin(t * 0.45) * 0.22;
+    meshRef.current.position.y = Math.sin(t * 0.6) * 0.12;
   });
 
   return (
