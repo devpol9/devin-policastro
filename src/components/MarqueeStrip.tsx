@@ -19,12 +19,12 @@ const words = [
 ];
 
 const MarqueeStrip = () => (
-  <section id="marquee" className="py-6 border-y border-border/20 overflow-hidden">
-    <Marquee speed={25}>
+  <section id="marquee" className="py-8 border-y border-border/10 overflow-hidden">
+    <Marquee speed={20}>
       {words.map((word, i) => (
-        <span key={i} className="font-display font-bold text-2xl sm:text-4xl tracking-tight mx-6 sm:mx-10">
-          <span className="text-foreground/10">{word}</span>
-          <span className="text-primary mx-6 sm:mx-10 text-lg">✦</span>
+        <span key={i} className="font-display font-extrabold text-xl sm:text-3xl tracking-[-0.02em] mx-6 sm:mx-10">
+          <span className="text-foreground/[0.06]">{word}</span>
+          <span className="text-primary/30 mx-6 sm:mx-10 text-xs">◆</span>
         </span>
       ))}
     </Marquee>
