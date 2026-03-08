@@ -97,28 +97,28 @@ const ShopSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20"
+          className="mb-14 sm:mb-20"
         >
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 60 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="h-px bg-primary/60 mb-10"
+            className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">[ 04 — Shop ]</p>
-          <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[0.88] mb-8 tracking-[-0.02em]">
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 04 — Shop ]</p>
+          <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
             Things I
             <br />
             <span className="text-muted-foreground">Actually Use.</span>
           </h2>
-          <p className="text-muted-foreground max-w-md text-base leading-[1.8]">
+          <p className="text-muted-foreground max-w-md text-xs sm:text-base leading-[1.8]">
             2THIRTY is my brand — 5-in-1 hydration+ mixer with zero sugar, zero calories. 
             4.9 stars. 7,000+ packs sold. Made in the USA.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {products.map((product, i) => (
             <motion.div
               key={product.name}
@@ -137,32 +137,32 @@ const ShopSection = () => {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-full text-[9px] font-display font-bold tracking-[0.2em] uppercase bg-background/80 backdrop-blur-xl text-primary/80 border border-primary/15">
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                      <span className="px-2 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-display font-bold tracking-[0.2em] uppercase bg-background/80 backdrop-blur-xl text-primary/80 border border-primary/15">
                         {product.category}
                       </span>
                       {product.price && (
-                        <span className="px-2 py-1 rounded-full text-[9px] font-bold bg-primary text-primary-foreground">
+                        <span className="px-2 py-1 rounded-full text-[8px] sm:text-[9px] font-bold bg-primary text-primary-foreground">
                           35% OFF
                         </span>
                       )}
                     </div>
                     {product.rating && (
-                      <div className="absolute top-4 right-4 px-2 py-1 rounded-full text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/20">
+                      <div className="absolute top-3 right-3 px-2 py-1 rounded-full text-[8px] sm:text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/20">
                         ⭐ {product.rating} ({product.reviews})
                       </div>
                     )}
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="font-display font-bold text-base mb-2 group-hover:text-primary transition-colors duration-300">{product.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">{product.note}</p>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="font-display font-bold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:text-primary transition-colors duration-300">{product.name}</h3>
+                    <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-5 leading-relaxed line-clamp-2">{product.note}</p>
 
                     {product.price && (
-                      <div className="flex items-center gap-2 mb-5">
-                        <span className="font-display font-bold text-lg text-primary">{product.price}</span>
-                        <span className="text-muted-foreground text-sm line-through">{product.originalPrice}</span>
-                        <span className="text-[9px] text-muted-foreground tracking-wider">FREE SHIPPING</span>
+                      <div className="flex items-center gap-2 mb-4 sm:mb-5 flex-wrap">
+                        <span className="font-display font-bold text-base sm:text-lg text-primary">{product.price}</span>
+                        <span className="text-muted-foreground text-xs sm:text-sm line-through">{product.originalPrice}</span>
+                        <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider">FREE SHIPPING</span>
                       </div>
                     )}
 
@@ -170,7 +170,7 @@ const ShopSection = () => {
                       {product.code && (
                         <button
                           onClick={() => copyCode(product.code!)}
-                          className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary/8 border border-primary/15 text-primary/80 text-xs font-mono font-bold hover:bg-primary/15 transition-all group/code"
+                          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg bg-primary/8 border border-primary/15 text-primary/80 text-[10px] sm:text-xs font-mono font-bold hover:bg-primary/15 transition-all group/code"
                         >
                           {copiedCode === product.code ? (
                             <><Check size={12} /><span>Copied!</span></>
@@ -183,7 +183,7 @@ const ShopSection = () => {
                         href={product.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="ml-auto flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-display font-semibold tracking-wide hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-500"
+                        className="ml-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg bg-primary text-primary-foreground text-[10px] sm:text-xs font-display font-semibold tracking-wide hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-500"
                       >
                         <ExternalLink size={12} />
                         Shop

@@ -26,17 +26,17 @@ const ServicesSection = () => (
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-20"
+        className="mb-14 sm:mb-20"
       >
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: 60 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="h-px bg-primary/60 mb-10"
+          className="h-px bg-primary/60 mb-8 sm:mb-10"
         />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">[ 06 — Services ]</p>
-        <h2 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[0.88] mb-8 tracking-[-0.02em]">
+        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 06 — Services ]</p>
+        <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
           Work With Me.
           <br />
           <span className="text-muted-foreground">Or I'll Introduce</span>
@@ -47,7 +47,7 @@ const ServicesSection = () => (
         </h2>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {services.map((service, i) => (
           <motion.div
             key={service.title}
@@ -57,23 +57,23 @@ const ServicesSection = () => (
             transition={{ delay: i * 0.08, duration: 0.7 }}
           >
             <TiltCard className="h-full" intensity={6}>
-              <div className="glass-card p-7 flex flex-col h-full relative overflow-hidden hover:border-primary/20 transition-all duration-700 group">
+              <div className="glass-card p-5 sm:p-7 flex flex-col h-full relative overflow-hidden hover:border-primary/20 transition-all duration-700 group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/4 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-105 transition-all duration-500">
-                      <service.icon size={20} className="text-primary/70 group-hover:text-primary transition-colors duration-500" />
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-105 transition-all duration-500">
+                      <service.icon size={18} className="text-primary/70 group-hover:text-primary transition-colors duration-500" />
                     </div>
-                    <span className="text-[9px] font-display font-bold tracking-[0.3em] text-muted-foreground/60">{service.tag}</span>
+                    <span className="text-[8px] sm:text-[9px] font-display font-bold tracking-[0.3em] text-muted-foreground/60">{service.tag}</span>
                   </div>
 
-                  <h3 className="font-display font-bold text-base mb-3 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-6 flex-1 leading-[1.7]">{service.desc}</p>
+                  <h3 className="font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-6 flex-1 leading-[1.7]">{service.desc}</p>
 
-                  <div className="flex items-center justify-between pt-5 border-t border-border/15">
-                    <span className="text-primary font-display font-bold text-sm">{service.price}</span>
-                    <button className="flex items-center gap-1.5 text-xs font-display font-medium tracking-wider text-muted-foreground hover:text-primary transition-colors duration-300 group/btn">
+                  <div className="flex items-center justify-between pt-4 sm:pt-5 border-t border-border/15">
+                    <span className="text-primary font-display font-bold text-xs sm:text-sm">{service.price}</span>
+                    <button className="flex items-center gap-1.5 text-[10px] sm:text-xs font-display font-medium tracking-wider text-muted-foreground hover:text-primary transition-colors duration-300 group/btn">
                       Inquire
                       <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform duration-300" />
                     </button>
