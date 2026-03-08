@@ -58,17 +58,17 @@ const LinkHubSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-10 sm:mb-16"
         >
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 60 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="h-px bg-primary/60 mb-10"
+            className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">[ 03 — Link Hub ]</p>
-          <h2 className="font-display font-extrabold text-4xl sm:text-6xl mb-4 tracking-[-0.02em]">
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 03 — Link Hub ]</p>
+          <h2 className="font-display font-extrabold text-3xl sm:text-6xl mb-4 tracking-[-0.02em]">
             Everything.
             <br />
             <span className="text-muted-foreground">One Tap.</span>
@@ -79,13 +79,13 @@ const LinkHubSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap gap-2 mb-12"
+          className="flex flex-wrap gap-1.5 sm:gap-2 mb-8 sm:mb-12"
         >
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`relative px-5 py-2 rounded-full text-xs font-display font-semibold tracking-[0.1em] uppercase transition-all duration-500 ${
+              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-display font-semibold tracking-[0.1em] uppercase transition-all duration-500 ${
                 activeCategory === cat.key
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
                   : "bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card border border-border/20"
@@ -96,7 +96,7 @@ const LinkHubSection = () => {
           ))}
         </motion.div>
 
-        <div className="grid gap-2.5 max-w-3xl overflow-hidden">
+        <div className="grid gap-2 sm:gap-2.5 max-w-3xl overflow-hidden">
           <AnimatePresence mode="popLayout">
             {filtered.map((link, i) => (
               <motion.div
@@ -110,28 +110,28 @@ const LinkHubSection = () => {
                 <div className="glass-card group relative overflow-hidden hover:border-primary/20 transition-all duration-700">
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-primary/3 to-transparent" />
 
-                  <div className="relative z-10 p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-primary/8 flex items-center justify-center shrink-0 group-hover:bg-primary/15 group-hover:scale-105 transition-all duration-500">
-                      <link.icon size={16} className="text-primary/70 group-hover:text-primary transition-colors duration-500" />
+                  <div className="relative z-10 p-3 sm:p-5 flex items-center gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/8 flex items-center justify-center shrink-0 group-hover:bg-primary/15 group-hover:scale-105 transition-all duration-500">
+                      <link.icon size={14} className="sm:w-4 sm:h-4 text-primary/70 group-hover:text-primary transition-colors duration-500" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-display font-semibold text-sm group-hover:text-primary transition-colors duration-300">{link.title}</h3>
-                      <p className="text-muted-foreground text-xs leading-relaxed">{link.desc}</p>
+                      <h3 className="font-display font-semibold text-xs sm:text-sm group-hover:text-primary transition-colors duration-300 leading-tight">{link.title}</h3>
+                      <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed">{link.desc}</p>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
                       <button
                         onClick={(e) => { e.stopPropagation(); copyLink(link.url, link.title); }}
-                        className="p-2 rounded-lg hover:bg-card transition-colors text-muted-foreground hover:text-foreground"
+                        className="p-1.5 sm:p-2 rounded-lg hover:bg-card transition-colors text-muted-foreground hover:text-foreground"
                       >
-                        {copied === link.title ? <Check size={13} className="text-primary" /> : <Copy size={13} />}
+                        {copied === link.title ? <Check size={12} className="text-primary" /> : <Copy size={12} />}
                       </button>
                       <a
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 rounded-lg bg-primary/8 text-primary/70 hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+                        className="p-1.5 sm:p-2 rounded-lg bg-primary/8 text-primary/70 hover:bg-primary hover:text-primary-foreground transition-all duration-500"
                       >
-                        <ArrowUpRight size={13} />
+                        <ArrowUpRight size={12} />
                       </a>
                     </div>
                   </div>
