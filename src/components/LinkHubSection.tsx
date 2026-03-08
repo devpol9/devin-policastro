@@ -22,7 +22,7 @@ const links: LinkItem[] = [
   { title: "Instagram — @devinpolicastro", desc: "The daily grind, unfiltered. Personal brand, behind the scenes, real talk.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "social" },
   { title: "TikTok — @devinpolicastro", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "social" },
   { title: "YouTube — @devinpolicastro", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "social" },
-  { title: "LinkedIn", desc: "Professional network — connect with me for business opportunities.", url: "https://linkedin.com/in/devinpolicastro", icon: Linkedin, category: "social" },
+  { title: "LinkedIn", desc: "Professional network — connect with me for business opportunities.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "social" },
   { title: "Instagram — @impactzonenj", desc: "Follow the gym — member highlights, events, classes, community.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "social" },
   { title: "Instagram — @drink2thirty", desc: "Follow 2THIRTY — product drops, reviews, and hydration tips.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "social" },
   { title: "Popl Digital Card", desc: "Save my contact info, all my links, and connect instantly.", url: "https://poplme.co/fFOVmkEx", icon: Users, category: "social" },
