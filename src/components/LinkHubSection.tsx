@@ -96,7 +96,7 @@ const LinkHubSection = () => {
           ))}
         </motion.div>
 
-        <div className="grid gap-3 max-w-3xl">
+        <div className="grid gap-3 max-w-3xl overflow-hidden">
           <AnimatePresence mode="popLayout">
             {filtered.map((link, i) => (
               <motion.div
@@ -114,8 +114,8 @@ const LinkHubSection = () => {
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                       <link.icon size={20} className="text-primary" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display font-semibold text-sm sm:text-base group-hover:text-primary transition-colors">{link.title}</h3>
+                    <div className="flex-1 min-w-0 overflow-hidden">
+                      <h3 className="font-display font-semibold text-sm sm:text-base group-hover:text-primary transition-colors truncate">{link.title}</h3>
                       <p className="text-muted-foreground text-xs sm:text-sm truncate">{link.desc}</p>
                     </div>
                     <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
