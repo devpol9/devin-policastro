@@ -1,11 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, lazy, Suspense } from "react";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowRight, Tag, ChevronDown } from "lucide-react";
 import TextScramble from "@/components/effects/TextScramble";
 import MagneticButton from "@/components/effects/MagneticButton";
-
-const HeroOrb = lazy(() => import("@/components/effects/HeroOrb"));
+import HeroOrb from "@/components/effects/HeroOrb";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -86,9 +85,9 @@ const HeroSection = () => {
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
       
-      <Suspense fallback={null}>
+      <div className="hidden md:block">
         <HeroOrb />
-      </Suspense>
+      </div>
       
       <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,hsl(38_90%_58%/0.04)_0%,transparent_50%)]" />
       <div className="absolute bottom-0 left-0 right-0 h-48 z-[2] bg-gradient-to-t from-background to-transparent" />
@@ -108,7 +107,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-card/80 backdrop-blur-xl border border-primary/20 text-primary text-[8px] sm:text-[10px] font-display font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase whitespace-nowrap"
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-card/80 backdrop-blur-xl border border-primary/20 text-primary text-[8px] sm:text-[10px] font-display font-bold tracking-[0.14em] sm:tracking-[0.24em] uppercase whitespace-normal text-center max-w-[78vw] sm:max-w-none leading-tight"
           >
             Relentless Entrepreneur
           </motion.div>
@@ -125,12 +124,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, letterSpacing: "0.1em" }}
           animate={{ opacity: 1, letterSpacing: "0.25em" }}
           transition={{ duration: 1.5, delay: 0.4 }}
-          className="text-muted-foreground font-display font-medium text-[8px] sm:text-xs uppercase mb-6 sm:mb-8 px-2"
+          className="text-muted-foreground font-display font-medium text-[9px] sm:text-xs uppercase mb-6 sm:mb-8 px-2 tracking-[0.18em] sm:tracking-[0.25em] leading-relaxed"
         >
           2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
 
-        <h1 className="font-display font-extrabold text-[3rem] sm:text-8xl lg:text-[10rem] leading-[0.85] mb-4 tracking-[-0.03em]">
+        <h1 className="font-display font-extrabold text-[2.6rem] sm:text-8xl lg:text-[10rem] leading-[0.85] mb-4 tracking-[-0.03em]">
           <motion.span
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
