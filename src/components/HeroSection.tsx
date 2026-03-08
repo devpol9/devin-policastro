@@ -85,9 +85,9 @@ const HeroSection = () => {
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
       
-      <Suspense fallback={null}>
+      <div className="hidden md:block">
         <HeroOrb />
-      </Suspense>
+      </div>
       
       <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,hsl(38_90%_58%/0.04)_0%,transparent_50%)]" />
       <div className="absolute bottom-0 left-0 right-0 h-48 z-[2] bg-gradient-to-t from-background to-transparent" />
