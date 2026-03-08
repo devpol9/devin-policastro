@@ -124,7 +124,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, letterSpacing: "0.1em" }}
           animate={{ opacity: 1, letterSpacing: "0.25em" }}
           transition={{ duration: 1.5, delay: 0.4 }}
-          className="text-muted-foreground font-display font-medium text-[8px] sm:text-xs uppercase mb-6 sm:mb-8 px-2"
+          className="text-muted-foreground font-display font-medium text-[9px] sm:text-xs uppercase mb-6 sm:mb-8 px-2 tracking-[0.18em] sm:tracking-[0.25em] leading-relaxed"
         >
           2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
