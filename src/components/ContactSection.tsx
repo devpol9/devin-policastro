@@ -21,7 +21,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="section-padding pb-28 md:pb-24 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(210_100%_55%/0.05)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(38_90%_58%/0.03)_0%,transparent_60%)]" />
 
       <div className="container-tight relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
@@ -33,67 +33,67 @@ const ContactSection = () => {
           >
             <motion.div
               initial={{ width: 0 }}
-              whileInView={{ width: 80 }}
+              whileInView={{ width: 60 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="h-px bg-primary mb-8"
+              transition={{ duration: 1 }}
+              className="h-px bg-primary/60 mb-10"
             />
-            <p className="text-primary font-display text-xs tracking-[0.4em] uppercase mb-4">[ 07 — Contact ]</p>
-            <h2 className="font-display font-bold text-4xl sm:text-5xl leading-[0.9] mb-6">
+            <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">[ 07 — Contact ]</p>
+            <h2 className="font-display font-extrabold text-4xl sm:text-5xl leading-[0.88] mb-8 tracking-[-0.02em]">
               Let's Talk
               <br />
               <span className="text-muted-foreground">Business.</span>
             </h2>
-            <p className="text-muted-foreground mb-10 leading-relaxed">
+            <p className="text-muted-foreground mb-12 leading-[1.8] text-sm">
               Whether it's a collab, wholesale inquiry for 2THIRTY, Impact Zone membership, 
               or you just want to connect — I respond to everything.
             </p>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2.5">
               <a
                 href="https://instagram.com/devinpolicastro"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card p-4 flex items-center gap-4 group border border-border/20 hover:border-primary/30 transition-all duration-300"
+                className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Instagram size={18} className="text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500">
+                  <Instagram size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
                 </div>
                 <div className="flex-1">
                   <span className="font-display font-semibold text-sm">Instagram DM</span>
-                  <p className="text-muted-foreground text-xs">@devinpolicastro — fastest way to reach me</p>
+                  <p className="text-muted-foreground text-xs">@devinpolicastro</p>
                 </div>
-                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </a>
               <a
                 href="mailto:info@impactzonenj.com"
-                className="glass-card p-4 flex items-center gap-4 group border border-border/20 hover:border-primary/30 transition-all duration-300"
+                className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Mail size={18} className="text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500">
+                  <Mail size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
                 </div>
                 <div className="flex-1">
                   <span className="font-display font-semibold text-sm">Email</span>
                   <p className="text-muted-foreground text-xs">info@impactzonenj.com</p>
                 </div>
-                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </a>
               <a
                 href="tel:201-775-1025"
-                className="glass-card p-4 flex items-center gap-4 group border border-border/20 hover:border-primary/30 transition-all duration-300"
+                className="glass-card p-4 flex items-center gap-4 group hover:border-primary/20 transition-all duration-500"
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <Phone size={18} className="text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500">
+                  <Phone size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
                 </div>
                 <div className="flex-1">
                   <span className="font-display font-semibold text-sm">Phone</span>
                   <p className="text-muted-foreground text-xs">(201) 775-1025</p>
                 </div>
-                <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
               </a>
-              <div className="glass-card p-4 flex items-center gap-4 border border-border/20">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <MapPin size={18} className="text-primary" />
+              <div className="glass-card p-4 flex items-center gap-4">
+                <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center">
+                  <MapPin size={16} className="text-primary/70" />
                 </div>
                 <div className="flex-1">
                   <span className="font-display font-semibold text-sm">Impact Zone</span>
@@ -108,29 +108,29 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-8 space-y-5 lg:col-span-3 border border-border/20"
+            className="glass-card p-8 space-y-5 lg:col-span-3"
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-display font-medium tracking-wider uppercase text-muted-foreground mb-2 block">Name</label>
-                <Input placeholder="Your name" required className="bg-secondary/50 border-border/30 focus:border-primary/50 h-12" />
+                <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Name</label>
+                <Input placeholder="Your name" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
               </div>
               <div>
-                <label className="text-xs font-display font-medium tracking-wider uppercase text-muted-foreground mb-2 block">Email</label>
-                <Input type="email" placeholder="you@email.com" required className="bg-secondary/50 border-border/30 focus:border-primary/50 h-12" />
+                <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Email</label>
+                <Input type="email" placeholder="you@email.com" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
               </div>
             </div>
             <div>
-              <label className="text-xs font-display font-medium tracking-wider uppercase text-muted-foreground mb-2 block">Subject</label>
-              <Input placeholder="What's this about?" required className="bg-secondary/50 border-border/30 focus:border-primary/50 h-12" />
+              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Subject</label>
+              <Input placeholder="What's this about?" required className="bg-card/50 border-border/20 focus:border-primary/30 h-12 text-sm" />
             </div>
             <div>
-              <label className="text-xs font-display font-medium tracking-wider uppercase text-muted-foreground mb-2 block">Message</label>
-              <Textarea placeholder="Give me the details..." rows={5} required className="bg-secondary/50 border-border/30 focus:border-primary/50 resize-none" />
+              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Message</label>
+              <Textarea placeholder="Give me the details..." rows={5} required className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm" />
             </div>
             <MagneticButton strength={0.15} className="w-full">
-              <Button variant="hero" size="lg" type="submit" className="w-full h-13 text-base" disabled={sending}>
-                <Send size={16} />
+              <Button variant="hero" size="lg" type="submit" className="w-full h-13 text-sm font-display font-semibold tracking-wide" disabled={sending}>
+                <Send size={14} />
                 {sending ? "Sending..." : "Send It"}
               </Button>
             </MagneticButton>

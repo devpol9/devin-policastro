@@ -9,14 +9,14 @@ const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]);
-  const y = useTransform(scrollYProgress, [0, 0.8], [0, 100]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 0.8], [0, 80]);
 
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Particle effect
+  // Particle effect with warm tones
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,7 +26,7 @@ const HeroSection = () => {
 
     let animId: number;
     const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
-    const particleCount = 80;
+    const particleCount = 60;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -39,10 +39,10 @@ const HeroSection = () => {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.1,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2,
+        size: Math.random() * 1.5 + 0.3,
+        opacity: Math.random() * 0.3 + 0.05,
       });
     }
 
@@ -57,18 +57,18 @@ const HeroSection = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(210, 100%, 55%, ${p.opacity})`;
+        ctx.fillStyle = `hsla(38, 90%, 58%, ${p.opacity})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
+          if (dist < 120) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `hsla(210, 100%, 55%, ${0.08 * (1 - dist / 150)})`;
+            ctx.strokeStyle = `hsla(38, 90%, 58%, ${0.04 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -88,58 +88,63 @@ const HeroSection = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,hsl(210_100%_55%/0.1)_0%,transparent_50%)]" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 z-[1] bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_top,hsl(38_90%_58%/0.06)_0%,transparent_50%)]" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 z-[1] bg-gradient-to-t from-background to-transparent" />
 
-      <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-20 sm:pt-16">
+      <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto pt-24 sm:pt-16">
         {/* Profile image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-6 sm:mb-8 relative"
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mb-8 sm:mb-10 relative"
         >
-          <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden border-2 border-primary/30 mx-auto ring-4 ring-primary/10">
+          <div className="w-28 h-28 sm:w-40 sm:h-40 rounded-full overflow-hidden border border-primary/20 mx-auto ring-[3px] ring-primary/10 ring-offset-4 ring-offset-background">
             <img
               src="/images/devin-profile.jpg"
               alt="Devin Policastro"
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary text-[10px] font-display font-bold tracking-widest uppercase">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-card/80 backdrop-blur-xl border border-primary/20 text-primary text-[9px] sm:text-[10px] font-display font-bold tracking-[0.3em] uppercase whitespace-nowrap"
+          >
             Relentless Entrepreneur
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
-          transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto max-w-xs mb-8"
+          transition={{ duration: 2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mx-auto max-w-[200px] mb-10"
         />
 
         <motion.p
           initial={{ opacity: 0, letterSpacing: "0.1em" }}
-          animate={{ opacity: 1, letterSpacing: "0.35em" }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-          className="text-primary font-display font-medium text-xs sm:text-sm uppercase mb-6"
+          animate={{ opacity: 1, letterSpacing: "0.4em" }}
+          transition={{ duration: 1.5, delay: 0.4 }}
+          className="text-muted-foreground font-display font-medium text-[10px] sm:text-xs uppercase mb-8"
         >
           2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
 
-        <h1 className="font-display font-bold text-5xl sm:text-8xl lg:text-9xl leading-[0.85] mb-4 tracking-tight">
+        <h1 className="font-display font-extrabold text-5xl sm:text-8xl lg:text-[10rem] leading-[0.85] mb-4 tracking-[-0.03em]">
           <motion.span
-            initial={{ opacity: 0, y: 80, rotateX: 40 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="block"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="block text-foreground/90"
           >
             DEVIN
           </motion.span>
           <motion.span
-            initial={{ opacity: 0, y: 80, rotateX: 40 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="block gradient-text"
           >
             <TextScramble text="POLICASTRO" delay={1200} />
@@ -149,19 +154,18 @@ const HeroSection = () => {
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "100%" }}
-          transition={{ duration: 1.5, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mx-auto max-w-lg mb-8"
+          transition={{ duration: 2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto max-w-lg mb-10"
         />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-muted-foreground text-base sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 font-body leading-relaxed"
+          className="text-muted-foreground text-sm sm:text-lg max-w-xl mx-auto mb-10 sm:mb-14 font-body leading-relaxed"
         >
-          Entrepreneur dedicated to creating impactful experiences across fitness, wellness, and business. 
-          Leading Impact Zone, building 2THIRTY, manufacturing premium fitness products through Impactful Brands.
-          <span className="text-foreground font-medium"> 335 Chestnut St. Norwood, NJ.</span>
+          Entrepreneur dedicated to creating impactful experiences across fitness, wellness, and business.
+          <span className="text-foreground/70 font-medium"> 335 Chestnut St. Norwood, NJ.</span>
         </motion.p>
 
         <motion.div
@@ -171,20 +175,20 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <MagneticButton strength={0.2}>
-            <Button variant="hero" size="lg" onClick={() => scrollTo("#shop")} className="min-w-[200px] h-13 text-base">
-              <ShoppingBag size={18} />
+            <Button variant="hero" size="lg" onClick={() => scrollTo("#shop")} className="min-w-[200px] h-13 text-sm font-display font-semibold tracking-wide">
+              <ShoppingBag size={16} />
               Shop 2THIRTY
             </Button>
           </MagneticButton>
           <MagneticButton strength={0.2}>
-            <Button variant="heroOutline" size="lg" onClick={() => scrollTo("#services")} className="min-w-[200px] h-13 text-base">
+            <Button variant="heroOutline" size="lg" onClick={() => scrollTo("#services")} className="min-w-[200px] h-13 text-sm font-display font-semibold tracking-wide">
               Work With Me
-              <ArrowRight size={18} />
+              <ArrowRight size={16} />
             </Button>
           </MagneticButton>
           <MagneticButton strength={0.2}>
-            <Button variant="glass" size="lg" onClick={() => scrollTo("#codes")} className="min-w-[200px] h-13 text-base">
-              <Tag size={18} />
+            <Button variant="glass" size="lg" onClick={() => scrollTo("#codes")} className="min-w-[200px] h-13 text-sm font-display font-semibold tracking-wide">
+              <Tag size={16} />
               Get the Code
             </Button>
           </MagneticButton>
@@ -199,14 +203,14 @@ const HeroSection = () => {
         className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 z-10 group hidden sm:block"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-muted-foreground text-[10px] font-display tracking-[0.3em] uppercase group-hover:text-primary transition-colors">
+          <span className="text-muted-foreground text-[9px] font-display tracking-[0.4em] uppercase group-hover:text-primary transition-colors duration-300">
             Scroll
           </span>
-          <ChevronDown size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+          <ChevronDown size={14} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
         </motion.div>
       </motion.button>
     </section>
