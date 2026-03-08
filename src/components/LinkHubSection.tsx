@@ -114,9 +114,9 @@ const LinkHubSection = () => {
                     <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-primary/8 flex items-center justify-center shrink-0 group-hover:bg-primary/15 group-hover:scale-105 transition-all duration-500">
                       <link.icon size={16} className="text-primary/70 group-hover:text-primary transition-colors duration-500" />
                     </div>
-                    <div className="flex-1 min-w-0 overflow-hidden">
-                      <h3 className="font-display font-semibold text-sm group-hover:text-primary transition-colors duration-300 truncate">{link.title}</h3>
-                      <p className="text-muted-foreground text-xs truncate">{link.desc}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display font-semibold text-sm group-hover:text-primary transition-colors duration-300">{link.title}</h3>
+                      <p className="text-muted-foreground text-xs leading-relaxed">{link.desc}</p>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
                       <button
