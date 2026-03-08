@@ -85,7 +85,7 @@ const HeroSection = () => {
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-x-hidden overflow-y-visible">
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
       
-      <div className="hidden md:block">
+      <div className="block">
         <HeroOrb />
       </div>
       
