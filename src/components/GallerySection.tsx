@@ -34,7 +34,7 @@ const GallerySection = () => {
 
       <p className="px-5 sm:px-8 text-[10px] sm:text-xs text-muted-foreground/70 font-display tracking-[0.2em] uppercase">Scroll sideways to explore the gym</p>
 
-      <div className="flex gap-3 sm:gap-4 lg:gap-5 px-5 sm:px-8 pb-16 sm:pb-20 pt-6 sm:pt-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className="flex gap-3 sm:gap-4 lg:gap-5 px-5 sm:px-8 pb-16 sm:pb-20 pt-6 sm:pt-10 overflow-x-auto overflow-y-hidden scrollbar-hide snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
         {images.map((img, i) => (
           <div
             key={i}

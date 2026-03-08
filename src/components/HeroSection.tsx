@@ -129,7 +129,7 @@ const HeroSection = () => {
           2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
 
-        <h1 className="font-display font-extrabold text-[clamp(2rem,10vw,10rem)] leading-[0.85] mb-4 tracking-[-0.03em]">
+        <h1 className="font-display font-extrabold text-[14vw] sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.86] mb-4 tracking-[-0.02em]">
           <motion.span
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
