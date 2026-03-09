@@ -87,11 +87,6 @@ const products: Product[] = [
   },
 ];
 
-const promoCodes: PromoCode[] = [
-  { brand: "2THIRTY", code: "DEV", discount: "35% Off + Free Shipping", shopUrl: "https://drink2thirty.com/shop", color: "195 90% 55%" },
-  { brand: "Fitrition", code: "DEVIN10", discount: "10% Off", shopUrl: "https://fitrition.com", color: "120 60% 50%" },
-];
-
 const ShopSection = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [ripple, setRipple] = useState<string | null>(null);
