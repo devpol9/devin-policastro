@@ -175,8 +175,10 @@ const ShopSection = () => {
                           className="px-2.5 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-display font-bold tracking-[0.2em] uppercase backdrop-blur-xl"
                           style={{
                             color: `hsl(${product.color})`,
-                            background: `hsl(${product.color} / 0.15)`,
-                            border: `1px solid hsl(${product.color} / 0.35)`,
+                            background: `hsl(${product.color} / 0.2)`,
+                            border: `1px solid hsl(${product.color} / 0.8)`,
+                            boxShadow: `0 0 10px hsl(${product.color} / 0.25), inset 0 0 6px hsl(${product.color} / 0.1)`,
+                            textShadow: `0 0 8px hsl(${product.color} / 0.5)`,
                           }}
                         >
                           {product.category}
@@ -184,7 +186,11 @@ const ShopSection = () => {
                         {product.price && (
                           <span
                             className="px-2 py-1 rounded-full text-[8px] sm:text-[9px] font-bold"
-                            style={{ background: `hsl(${product.color})`, color: `hsl(225 25% 3%)` }}
+                            style={{
+                              background: `hsl(${product.color})`,
+                              color: `hsl(225 25% 3%)`,
+                              boxShadow: `0 0 12px hsl(${product.color} / 0.4)`,
+                            }}
                           >
                             35% OFF
                           </span>
