@@ -145,16 +145,7 @@ const LinkHubSection = () => {
                       </h3>
                       <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed">{link.desc}</p>
                     </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); copyLink(link.url, link.title); }}
-                        className="p-1.5 sm:p-2 rounded-lg transition-all duration-300"
-                        style={{ color: `hsl(${link.color} / 0.4)` }}
-                        onMouseEnter={(e) => { e.currentTarget.style.color = `hsl(${link.color})`; e.currentTarget.style.background = `hsl(${link.color} / 0.1)`; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.color = `hsl(${link.color} / 0.4)`; e.currentTarget.style.background = `transparent`; }}
-                      >
-                        {copied === link.title ? <Check size={13} /> : <Copy size={13} />}
-                      </button>
+                    <div className="flex items-center shrink-0">
                       <a
                         href={link.url}
                         target="_blank"
