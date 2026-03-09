@@ -3,7 +3,13 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import { cn } from "@/lib/utils";
 
-const TooltipProvider = TooltipPrimitive.Provider;
+type TooltipProviderProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>;
+
+// Wrap Radix Provider with forwardRef to avoid noisy dev warnings when a ref is passed implicitly.
+const TooltipProvider = React.forwardRef<unknown, TooltipProviderProps>(({ ...props }, _ref) => (
+  <TooltipPrimitive.Provider {...props} />
+));
+TooltipProvider.displayName = "TooltipProvider";
 
 const Tooltip = TooltipPrimitive.Root;
 
