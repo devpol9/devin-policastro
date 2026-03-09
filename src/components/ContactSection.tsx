@@ -185,7 +185,7 @@ const ContactSection = () => {
                   <MapPin size={14} className="text-primary/70" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="font-display font-semibold text-xs sm:text-sm block">Impact Zone</span>
+                  <span className="font-display font-semibold text-xs sm:text-sm block">The Hub</span>
                   <p className="text-muted-foreground text-[10px] sm:text-xs">335 Chestnut St, Norwood, NJ 07648</p>
                 </div>
               </div>
