@@ -36,8 +36,8 @@ const links: LinkItem[] = [
 ];
 
 const categories: { key: LinkCategory; label: string }[] = [
-  { key: "websites", label: "Websites" },
   { key: "socials", label: "Socials" },
+  { key: "2thirty", label: "2THIRTY" },
   { key: "impact-zone", label: "Impact Zone" },
 ];
 
