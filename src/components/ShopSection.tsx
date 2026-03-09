@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Copy, Check, Tag, Sparkles, Dumbbell, Zap, Star, Target, Clock, MapPin } from "lucide-react";
+import { ExternalLink, Copy, Check, Dumbbell, Zap, Star, Target, Clock, MapPin } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
 import TiltCard from "@/components/effects/TiltCard";
