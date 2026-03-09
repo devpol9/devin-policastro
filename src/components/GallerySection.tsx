@@ -84,11 +84,12 @@ const GallerySection = () => {
                   className="flex flex-col items-center gap-2.5 py-5 sm:py-6 px-3 rounded-lg text-center group transition-all duration-500"
                   style={{
                     background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
-                    border: `1px solid hsl(${perk.color} / 0.12)`,
+                    border: `1px solid hsl(${perk.color} / 0.4)`,
+                    boxShadow: `0 0 12px hsl(${perk.color} / 0.1), inset 0 1px 0 hsl(${perk.color} / 0.15)`,
                   }}
                 >
-                  <perk.icon size={20} style={{ color: `hsl(${perk.color} / 0.6)`, filter: `drop-shadow(0 0 4px hsl(${perk.color} / 0.3))` }} className="group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-muted-foreground text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight group-hover:text-foreground/70 transition-colors duration-300">
+                  <perk.icon size={20} style={{ color: `hsl(${perk.color})`, filter: `drop-shadow(0 0 8px hsl(${perk.color} / 0.5))` }} className="group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight transition-colors duration-300" style={{ color: `hsl(${perk.color} / 0.85)` }}>
                     {perk.text}
                   </span>
                 </motion.div>
