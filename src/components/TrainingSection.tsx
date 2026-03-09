@@ -68,13 +68,13 @@ const TrainingSection = () => (
           <span className="gradient-text">I'll Get You There.</span>
         </h2>
         <p className="text-muted-foreground max-w-lg text-sm sm:text-base leading-[1.8]">
-          Whether you train with me, one of my handpicked coaches, or on your own —
-          Impact Zone has everything you need under one roof. 51,000 sq ft. All-inclusive. No contracts.
+          Whether you train with me or one of my handpicked coaches —
+          I'll make sure you're set up for success.
         </p>
       </motion.div>
 
-      {/* Three paths */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 mb-12 sm:mb-16">
+      {/* Two paths */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
         {paths.map((path, i) => (
           <motion.div
             key={path.title}
