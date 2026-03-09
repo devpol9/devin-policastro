@@ -192,7 +192,7 @@ const ShopSection = () => {
                               boxShadow: `0 0 12px hsl(${product.color} / 0.4)`,
                             }}
                           >
-                            35% OFF
+                            10% OFF
                           </span>
                         )}
                       </div>
