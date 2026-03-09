@@ -213,10 +213,17 @@ const ShopSection = () => {
                       <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-5 leading-relaxed line-clamp-2">{product.note}</p>
 
                       {product.price && (
-                        <div className="flex items-center gap-2 mb-4 sm:mb-5 flex-wrap">
-                          <span className="font-display font-bold text-base sm:text-lg" style={{ color: `hsl(${product.color})` }}>{product.price}</span>
-                          <span className="text-muted-foreground text-xs sm:text-sm line-through">{product.originalPrice}</span>
-                          <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider">FREE SHIPPING</span>
+                        <div className="mb-4 sm:mb-5 space-y-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-muted-foreground text-xs line-through">MSRP $19.99</span>
+                            <span className="text-foreground/70 text-xs">→</span>
+                            <span className="text-foreground text-sm font-semibold">{product.originalPrice}</span>
+                            <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider">FREE SHIPPING</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-display font-bold text-base sm:text-lg" style={{ color: `hsl(${product.color})` }}>{product.price}</span>
+                            <span className="text-[9px] font-display font-bold tracking-wider uppercase px-1.5 py-0.5 rounded" style={{ color: `hsl(${product.color})`, background: `hsl(${product.color} / 0.15)` }}>with code</span>
+                          </div>
                         </div>
                       )}
 
