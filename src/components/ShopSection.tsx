@@ -89,16 +89,13 @@ const products: Product[] = [
 
 const ShopSection = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const [ripple, setRipple] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const copyCode = (code: string, label?: string) => {
+  const copyCode = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
-    setRipple(code);
     toast.success(`Code copied: ${code}`);
     setTimeout(() => setCopiedCode(null), 2000);
-    setTimeout(() => setRipple(null), 600);
   };
 
   return (
