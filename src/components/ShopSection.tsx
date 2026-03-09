@@ -54,7 +54,7 @@ const products: Product[] = [
     note: "Night mode flavor — pre-covery support with adaptogens like Milk Thistle and Ginseng Root.",
     category: "2THIRTY",
     code: "DEV",
-    price: "$12.97",
+    price: "$17.99",
     originalPrice: "$19.99",
     rating: "4.8",
     reviews: "632",
