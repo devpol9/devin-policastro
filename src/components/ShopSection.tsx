@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Copy, Check, Tag, Sparkles } from "lucide-react";
+import { ExternalLink, Copy, Check, Tag, Sparkles, Dumbbell, Zap, Star, Target, Clock, MapPin } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
 import TiltCard from "@/components/effects/TiltCard";
@@ -392,6 +392,49 @@ const ShopSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Impact Zone Facility Perks */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-12 sm:mt-16"
+        >
+          <h3 className="font-display font-extrabold text-xl sm:text-3xl mb-2 tracking-[-0.02em]">
+            Impact Zone. <span className="gradient-text">All Under One Roof.</span>
+          </h3>
+          <p className="text-muted-foreground text-xs sm:text-sm mb-6 sm:mb-8">51,000 sq ft. Month-to-month. No commitment.</p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {[
+              { icon: Dumbbell, text: "100+ Machines & Free Weights", color: "38 90% 58%" },
+              { icon: Zap, text: "Cold Plunges & Infrared Saunas", color: "195 90% 55%" },
+              { icon: Star, text: "Hot Yoga & Red Light Therapy", color: "340 80% 62%" },
+              { icon: Target, text: "Basketball Court & 5K Turf", color: "155 85% 55%" },
+              { icon: Clock, text: "Month-to-Month, No Commitment", color: "265 80% 65%" },
+              { icon: MapPin, text: "335 Chestnut St, Norwood NJ", color: "18 90% 58%" },
+            ].map((perk, i) => (
+              <motion.div
+                key={perk.text}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05, duration: 0.5 }}
+                className="flex flex-col items-center gap-2.5 py-5 sm:py-6 px-3 rounded-lg text-center group transition-all duration-500"
+                style={{
+                  background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                  border: `1px solid hsl(${perk.color} / 0.12)`,
+                }}
+              >
+                <perk.icon size={20} style={{ color: `hsl(${perk.color} / 0.6)`, filter: `drop-shadow(0 0 4px hsl(${perk.color} / 0.3))` }} className="group-hover:scale-110 transition-transform duration-300" />
+                <span className="text-muted-foreground text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight group-hover:text-foreground/70 transition-colors duration-300">
+                  {perk.text}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

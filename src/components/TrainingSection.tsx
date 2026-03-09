@@ -28,14 +28,6 @@ const paths = [
     color: "195 90% 55%",
     highlight: false,
   },
-  {
-    icon: Target,
-    title: "Self-Guided Membership",
-    desc: "Full access to 51,000 sq ft of world-class equipment. No contracts, no BS. Just show up and put in the work.",
-    cta: "Join Impact Zone",
-    color: "155 85% 55%",
-    highlight: false,
-  },
 ];
 
 const TrainingSection = () => (
@@ -76,13 +68,13 @@ const TrainingSection = () => (
           <span className="gradient-text">I'll Get You There.</span>
         </h2>
         <p className="text-muted-foreground max-w-lg text-sm sm:text-base leading-[1.8]">
-          Whether you train with me, one of my handpicked coaches, or on your own —
-          Impact Zone has everything you need under one roof. 51,000 sq ft. All-inclusive. No contracts.
+          Whether you train with me or one of my handpicked coaches —
+          I'll make sure you're set up for success.
         </p>
       </motion.div>
 
-      {/* Three paths */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 mb-12 sm:mb-16">
+      {/* Two paths */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
         {paths.map((path, i) => (
           <motion.div
             key={path.title}
@@ -178,30 +170,6 @@ const TrainingSection = () => (
         ))}
       </div>
 
-      {/* Facility perks strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
-      >
-        {perks.map((perk, i) => (
-          <motion.div
-            key={perk.text}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.5 }}
-            className="flex flex-col items-center gap-2 py-4 sm:py-5 px-3 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm text-center group hover:border-primary/20 transition-all duration-500"
-          >
-            <perk.icon size={18} className="text-primary/60 group-hover:text-primary transition-colors duration-300" />
-            <span className="text-muted-foreground text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight">
-              {perk.text}
-            </span>
-          </motion.div>
-        ))}
-      </motion.div>
     </div>
   </section>
 );
