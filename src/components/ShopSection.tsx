@@ -72,7 +72,7 @@ const products: Product[] = [
     note: "51,000 sq ft. No contracts. Cold plunges, infrared saunas, hot yoga, red light therapy. $139/mo.",
     category: "Fitness",
     link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591",
-    image: "/images/iz-turf.jpg",
+    image: "/images/iz-machines-red.jpg",
     tourLink: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
     color: "38 90% 58%",
   },
