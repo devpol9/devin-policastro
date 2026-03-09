@@ -7,7 +7,7 @@ import AboutSection from "@/components/AboutSection";
 import GallerySection from "@/components/GallerySection";
 import LinkHubSection from "@/components/LinkHubSection";
 import ShopSection from "@/components/ShopSection";
-import CodesSection from "@/components/CodesSection";
+
 import ServicesSection from "@/components/ServicesSection";
 import TrainingSection from "@/components/TrainingSection";
 import ContactSection from "@/components/ContactSection";
