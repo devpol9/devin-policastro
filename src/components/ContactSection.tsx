@@ -126,8 +126,7 @@ const ContactSection = () => {
 
   const contactLinks = [
     { href: "https://instagram.com/devinpolicastro", icon: Instagram, label: "Instagram DM", sub: "@devinpolicastro", external: true },
-    { href: "mailto:info@impactzonenj.com", icon: Mail, label: "Email", sub: "info@impactzonenj.com", external: false },
-    { href: "tel:201-775-1025", icon: Phone, label: "Phone", sub: "(201) 775-1025", external: false },
+    { href: "mailto:devinpolicastro@gmail.com", icon: Mail, label: "Email", sub: "devinpolicastro@gmail.com", external: false },
     { href: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, label: "Book a Meeting", sub: "Schedule a tour or consultation", external: true },
   ];
 
@@ -186,7 +185,7 @@ const ContactSection = () => {
                   <MapPin size={14} className="text-primary/70" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="font-display font-semibold text-xs sm:text-sm block">Impact Zone</span>
+                  <span className="font-display font-semibold text-xs sm:text-sm block">The Hub</span>
                   <p className="text-muted-foreground text-[10px] sm:text-xs">335 Chestnut St, Norwood, NJ 07648</p>
                 </div>
               </div>
