@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Dumbbell, Zap, Star, Target, Clock, MapPin } from "lucide-react";
 
 const images = [
   { src: "/images/iz-hero.jpg", alt: "Impact Zone Gym Floor", label: "The Floor" },
@@ -11,6 +12,15 @@ const images = [
   { src: "/images/iz-redlight.jpg", alt: "Red Light Therapy", label: "Red Light" },
   { src: "/images/iz-mezzanine.jpg", alt: "Mezzanine", label: "Mezzanine" },
   { src: "/images/iz-training.jpg", alt: "Training", label: "Training" },
+];
+
+const perks = [
+  { icon: Dumbbell, text: "100+ Machines & Free Weights", color: "38 90% 58%" },
+  { icon: Zap, text: "Cold Plunges & Infrared Saunas", color: "195 90% 55%" },
+  { icon: Star, text: "Hot Yoga & Red Light Therapy", color: "340 80% 62%" },
+  { icon: Target, text: "Basketball Court & 5K Turf", color: "155 85% 55%" },
+  { icon: Clock, text: "Month-to-Month, No Commitment", color: "265 80% 65%" },
+  { icon: MapPin, text: "335 Chestnut St, Norwood NJ", color: "18 90% 58%" },
 ];
 
 const GallerySection = () => {
@@ -34,7 +44,7 @@ const GallerySection = () => {
 
       <p className="px-5 sm:px-8 text-[10px] sm:text-xs text-muted-foreground/70 font-display tracking-[0.2em] uppercase">Scroll sideways to explore the gym</p>
 
-      <div className="touch-carousel flex gap-3 sm:gap-4 lg:gap-5 px-5 sm:px-8 pb-16 sm:pb-20 pt-6 sm:pt-10 overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className="touch-carousel flex gap-3 sm:gap-4 lg:gap-5 px-5 sm:px-8 pb-10 sm:pb-14 pt-6 sm:pt-10 overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
         {images.map((img, i) => (
           <div
             key={i}
@@ -47,6 +57,45 @@ const GallerySection = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Impact Zone Facility Perks */}
+      <div className="px-5 sm:px-8 pb-16 sm:pb-20">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="font-display font-extrabold text-xl sm:text-3xl mb-2 tracking-[-0.02em]">
+              Impact Zone. <span className="gradient-text">All Under One Roof.</span>
+            </h3>
+            <p className="text-muted-foreground text-xs sm:text-sm mb-6 sm:mb-8">51,000 sq ft. Month-to-month. No commitment.</p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {perks.map((perk, i) => (
+                <motion.div
+                  key={perk.text}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.5 }}
+                  className="flex flex-col items-center gap-2.5 py-5 sm:py-6 px-3 rounded-lg text-center group transition-all duration-500"
+                  style={{
+                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    border: `1px solid hsl(${perk.color} / 0.12)`,
+                  }}
+                >
+                  <perk.icon size={20} style={{ color: `hsl(${perk.color} / 0.6)`, filter: `drop-shadow(0 0 4px hsl(${perk.color} / 0.3))` }} className="group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-muted-foreground text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight group-hover:text-foreground/70 transition-colors duration-300">
+                    {perk.text}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

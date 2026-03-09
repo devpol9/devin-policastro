@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Copy, Check, Dumbbell, Zap, Star, Target, Clock, MapPin } from "lucide-react";
+import { ExternalLink, Copy, Check } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
 import TiltCard from "@/components/effects/TiltCard";
@@ -17,9 +17,8 @@ interface Product {
   image: string;
   tourLink?: string;
   color: string;
+  glowColor: string;
 }
-
-
 
 const products: Product[] = [
   {
@@ -33,7 +32,8 @@ const products: Product[] = [
     reviews: "847",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=strawberry-lemonade&quantity=6-pack",
     image: "/images/2thirty-strawberry.png",
-    color: "0 85% 60%",
+    color: "45 95% 55%",
+    glowColor: "45 95% 55%",
   },
   {
     name: "Limeade",
@@ -46,7 +46,8 @@ const products: Product[] = [
     reviews: "519",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=limeade&quantity=6-pack",
     image: "/images/2thirty-limeade.png",
-    color: "155 85% 55%",
+    color: "130 70% 50%",
+    glowColor: "130 70% 50%",
   },
   {
     name: "Red Raspberry",
@@ -59,7 +60,8 @@ const products: Product[] = [
     reviews: "632",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=red-raspberry&quantity=6-pack",
     image: "/images/2thirty-raspberry.png",
-    color: "280 100% 70%",
+    color: "340 75% 55%",
+    glowColor: "340 75% 55%",
   },
   {
     name: "Impact Zone Membership",
@@ -69,6 +71,7 @@ const products: Product[] = [
     image: "/images/iz-machines-red.jpg",
     tourLink: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
     color: "38 90% 58%",
+    glowColor: "38 90% 58%",
   },
   {
     name: "Fitrition",
@@ -78,6 +81,7 @@ const products: Product[] = [
     link: "https://fitrition.com",
     image: "/images/fitrition-plate.png",
     color: "120 60% 50%",
+    glowColor: "120 60% 50%",
   },
 ];
 
@@ -123,7 +127,7 @@ const ShopSection = () => {
         </motion.div>
 
         {/* Product cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {products.map((product, i) => (
             <motion.div
               key={product.name}
@@ -137,24 +141,24 @@ const ShopSection = () => {
                   className="overflow-hidden group h-full transition-all duration-700 rounded-lg relative"
                   style={{
                     background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
-                    border: `1px solid hsl(${product.color} / 0.15)`,
-                    boxShadow: `0 4px 24px hsl(225 30% 2% / 0.6), inset 0 1px 0 hsl(${product.color} / 0.06)`,
+                    border: `1px solid hsl(${product.color} / 0.3)`,
+                    boxShadow: `0 4px 30px hsl(${product.glowColor} / 0.1), inset 0 1px 0 hsl(${product.color} / 0.12)`,
                   }}
                 >
                   {/* Top accent */}
                   <div
-                    className="absolute top-0 left-0 right-0 h-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(90deg, transparent, hsl(${product.color}), transparent)` }}
+                    className="absolute top-0 left-0 right-0 h-[2px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `linear-gradient(90deg, transparent 5%, hsl(${product.color}) 50%, transparent 95%)` }}
                   />
                   {/* Ambient glow */}
                   <div
-                    className="absolute inset-0 opacity-[0.04] group-hover:opacity-[0.12] transition-opacity duration-700"
-                    style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${product.color}) 0%, transparent 70%)` }}
+                    className="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.18] transition-opacity duration-700"
+                    style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${product.glowColor}) 0%, transparent 70%)` }}
                   />
                   {/* Hover border glow */}
                   <div
                     className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ boxShadow: `inset 0 0 0 1px hsl(${product.color} / 0.3), 0 0 20px hsl(${product.color} / 0.08)` }}
+                    style={{ boxShadow: `inset 0 0 0 1px hsl(${product.color} / 0.5), 0 0 40px hsl(${product.glowColor} / 0.15)` }}
                   />
 
                   <div className="relative z-10">
@@ -171,8 +175,8 @@ const ShopSection = () => {
                           className="px-2.5 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-display font-bold tracking-[0.2em] uppercase backdrop-blur-xl"
                           style={{
                             color: `hsl(${product.color})`,
-                            background: `hsl(${product.color} / 0.12)`,
-                            border: `1px solid hsl(${product.color} / 0.25)`,
+                            background: `hsl(${product.color} / 0.15)`,
+                            border: `1px solid hsl(${product.color} / 0.35)`,
                           }}
                         >
                           {product.category}
@@ -196,7 +200,7 @@ const ShopSection = () => {
                     <div className="p-4 sm:p-6">
                       <h3
                         className="font-display font-bold text-sm sm:text-base mb-1.5 sm:mb-2 transition-colors duration-300"
-                        style={{ color: `hsl(${product.color} / 0.9)` }}
+                        style={{ color: `hsl(${product.color})` }}
                       >
                         {product.name}
                       </h3>
@@ -216,9 +220,9 @@ const ShopSection = () => {
                             onClick={() => copyCode(product.code!)}
                             className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-[10px] sm:text-xs font-mono font-bold transition-all group/code"
                             style={{
-                              background: `hsl(${product.color} / 0.08)`,
-                              border: `1px solid hsl(${product.color} / 0.2)`,
-                              color: `hsl(${product.color} / 0.8)`,
+                              background: `hsl(${product.color} / 0.12)`,
+                              border: `1px solid hsl(${product.color} / 0.3)`,
+                              color: `hsl(${product.color})`,
                             }}
                           >
                             {copiedCode === product.code ? (
@@ -247,11 +251,11 @@ const ShopSection = () => {
                           rel="noopener noreferrer"
                           className="flex items-center justify-center gap-2 mt-3 sm:mt-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase transition-all duration-500"
                           style={{
-                            border: `1px solid hsl(${product.color} / 0.2)`,
-                            color: `hsl(${product.color} / 0.7)`,
+                            border: `1px solid hsl(${product.color} / 0.3)`,
+                            color: `hsl(${product.color} / 0.8)`,
                           }}
-                          onMouseEnter={(e) => { e.currentTarget.style.background = `hsl(${product.color} / 0.1)`; e.currentTarget.style.color = `hsl(${product.color})`; }}
-                          onMouseLeave={(e) => { e.currentTarget.style.background = `transparent`; e.currentTarget.style.color = `hsl(${product.color} / 0.7)`; }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = `hsl(${product.color} / 0.15)`; e.currentTarget.style.color = `hsl(${product.color})`; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = `transparent`; e.currentTarget.style.color = `hsl(${product.color} / 0.8)`; }}
                         >
                           📍 Book a Gym Tour
                         </a>
@@ -263,49 +267,6 @@ const ShopSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Impact Zone Facility Perks */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-12 sm:mt-16"
-        >
-          <h3 className="font-display font-extrabold text-xl sm:text-3xl mb-2 tracking-[-0.02em]">
-            Impact Zone. <span className="gradient-text">All Under One Roof.</span>
-          </h3>
-          <p className="text-muted-foreground text-xs sm:text-sm mb-6 sm:mb-8">51,000 sq ft. Month-to-month. No commitment.</p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {[
-              { icon: Dumbbell, text: "100+ Machines & Free Weights", color: "38 90% 58%" },
-              { icon: Zap, text: "Cold Plunges & Infrared Saunas", color: "195 90% 55%" },
-              { icon: Star, text: "Hot Yoga & Red Light Therapy", color: "340 80% 62%" },
-              { icon: Target, text: "Basketball Court & 5K Turf", color: "155 85% 55%" },
-              { icon: Clock, text: "Month-to-Month, No Commitment", color: "265 80% 65%" },
-              { icon: MapPin, text: "335 Chestnut St, Norwood NJ", color: "18 90% 58%" },
-            ].map((perk, i) => (
-              <motion.div
-                key={perk.text}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.5 }}
-                className="flex flex-col items-center gap-2.5 py-5 sm:py-6 px-3 rounded-lg text-center group transition-all duration-500"
-                style={{
-                  background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
-                  border: `1px solid hsl(${perk.color} / 0.12)`,
-                }}
-              >
-                <perk.icon size={20} style={{ color: `hsl(${perk.color} / 0.6)`, filter: `drop-shadow(0 0 4px hsl(${perk.color} / 0.3))` }} className="group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-muted-foreground text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight group-hover:text-foreground/70 transition-colors duration-300">
-                  {perk.text}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
