@@ -15,6 +15,7 @@ interface Product {
   reviews?: string;
   link: string;
   image: string;
+  tourLink?: string;
 }
 
 const products: Product[] = [
