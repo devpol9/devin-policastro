@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Copy, Check, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
 import { toast } from "sonner";
 
-type LinkCategory = "websites" | "socials" | "impact-zone";
+type LinkCategory = "socials" | "2thirty" | "impact-zone";
 
 interface LinkItem {
   title: string;
