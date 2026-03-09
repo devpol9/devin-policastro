@@ -25,7 +25,6 @@ const Index = () => {
       <FloatingNav />
       <HeroSection />
       <MarqueeStrip />
-      <StatsBar />
       <AboutSection />
       <GallerySection />
       <LinkHubSection />

@@ -1,9 +1,9 @@
-import { Home, ShoppingBag, Link2, Mail } from "lucide-react";
+import { Home, ShoppingBag, Briefcase, Mail } from "lucide-react";
 
 const items = [
   { icon: Home, label: "Home", href: "#home" },
-  { icon: ShoppingBag, label: "Shop+Codes", href: "#shop" },
-  { icon: Link2, label: "Links", href: "#links" },
+  { icon: ShoppingBag, label: "Shop", href: "#shop" },
+  { icon: Briefcase, label: "Services", href: "#services" },
   { icon: Mail, label: "Contact", href: "#contact" },
 ];
 
