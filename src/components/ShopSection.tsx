@@ -55,25 +55,12 @@ const products: Product[] = [
     image: "/images/2thirty-raspberry.png",
   },
   {
-    name: "Subscribe & Save 20%",
-    note: "Never run out. Auto-delivered on your schedule. $10.38/pack.",
-    category: "2THIRTY",
-    link: "https://drink2thirty.com/subscribe",
-    image: "/images/2thirty-strawberry.png",
-  },
-  {
     name: "Impact Zone Membership",
     note: "51,000 sq ft. No contracts. Cold plunges, infrared saunas, hot yoga, red light therapy. $139/mo.",
     category: "Fitness",
     link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591",
-    image: "/images/iz-hero.jpg",
-  },
-  {
-    name: "Book a Gym Tour",
-    note: "Come see Impact Zone in person. Schedule a tour directly with me.",
-    category: "Fitness",
-    link: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
-    image: "/images/iz-mezzanine.jpg",
+    image: "/images/iz-turf.jpg",
+    tourLink: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
   },
 ];
 
