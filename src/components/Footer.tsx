@@ -11,7 +11,7 @@ const Footer = () => (
         <a href="https://instagram.com/devinpolicastro" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">Instagram</a>
         <a href="https://tiktok.com/@devinpolicastro" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">TikTok</a>
         <a href="https://youtube.com/@devinpolicastro" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">YouTube</a>
-        <a href="https://poplme.co/fFOVmkEx" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors duration-300">Popl</a>
+        
       </div>
       <p className="text-muted-foreground/40 text-xs font-body">
         © {new Date().getFullYear()} Devin Policastro
