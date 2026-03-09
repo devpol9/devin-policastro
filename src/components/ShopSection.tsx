@@ -19,13 +19,7 @@ interface Product {
   color: string;
 }
 
-interface PromoCode {
-  brand: string;
-  code: string;
-  discount: string;
-  shopUrl: string;
-  color: string;
-}
+
 
 const products: Product[] = [
   {
