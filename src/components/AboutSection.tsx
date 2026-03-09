@@ -25,7 +25,7 @@ const verticals = [
     title: "MANUFACTURING",
     desc: "Impactful Brands — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
     link: "#",
-    color: "265 80% 65%",
+    color: "280 100% 70%",
     label: "Impactful Brands",
   },
   {
