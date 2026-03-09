@@ -40,7 +40,7 @@ const products: Product[] = [
     note: "Clean, crisp, and my go-to for daytime focus. NAC + L-Glutathione for liver support.",
     category: "2THIRTY",
     code: "DEV",
-    price: "$12.97",
+    price: "$17.99",
     originalPrice: "$19.99",
     rating: "4.9",
     reviews: "519",
