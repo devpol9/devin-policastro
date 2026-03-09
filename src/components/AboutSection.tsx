@@ -30,11 +30,11 @@ const verticals = [
   },
   {
     icon: Sparkles,
-    title: "SBS",
-    desc: "Strategic business solutions — connecting dots others can't see. Consulting, partnerships, and growth strategies for brands ready to level up.",
+    title: "VALENCE",
+    desc: "Connecting the dots in the gym space. The all-in-one platform replacing ABC Fitness and Mindbody — solving problems, connecting solutions.",
     link: "#",
-    color: "155 75% 48%",
-    label: "Strategy",
+    color: "155 85% 55%",
+    label: "Valence",
   },
   {
     icon: Car,
