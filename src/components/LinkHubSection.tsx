@@ -42,7 +42,7 @@ const categories: { key: LinkCategory; label: string }[] = [
 ];
 
 const LinkHubSection = () => {
-  const [activeCategory, setActiveCategory] = useState<LinkCategory>("websites");
+  const [activeCategory, setActiveCategory] = useState<LinkCategory>("socials");
   const [copied, setCopied] = useState<string | null>(null);
 
   const filtered = links.filter((l) => l.category === activeCategory);
