@@ -2,7 +2,6 @@ import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import HeroSection from "@/components/HeroSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
-import StatsBar from "@/components/StatsBar";
 import AboutSection from "@/components/AboutSection";
 import GallerySection from "@/components/GallerySection";
 import LinkHubSection from "@/components/LinkHubSection";
