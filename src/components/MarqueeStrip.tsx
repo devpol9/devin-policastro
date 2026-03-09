@@ -5,7 +5,7 @@ const words = [
   "2THIRTY",
   "IMPACT ZONE",
   "MANUFACTURING",
-  "SBS",
+  "VALENCE",
   "FITNESS",
   "HYDRATION",
   "PRE-COVERY",
