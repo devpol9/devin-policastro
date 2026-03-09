@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Copy, Check, Building2, Dumbbell, ShoppingBag, Instagram, Users, ArrowUpRight, Video, Linkedin, Music, Calendar, Sparkles } from "lucide-react";
+import { ExternalLink, Copy, Check, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
 import { toast } from "sonner";
 
-type LinkCategory = "all" | "business" | "fitness" | "shop" | "social";
+type LinkCategory = "websites" | "socials" | "impact-zone";
 
 interface LinkItem {
   title: string;
@@ -15,32 +15,36 @@ interface LinkItem {
 }
 
 const links: LinkItem[] = [
-  { title: "2THIRTY", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories. 35% off + free shipping on all orders.", url: "https://drink2thirty.com", icon: Building2, category: "business", color: "195 90% 55%" },
-  { title: "Impact Zone Fitness", desc: "Bergen County's premier 51,000 sq ft gym — Norwood NJ. No contracts, $139/mo.", url: "https://impactzonenj.com", icon: Dumbbell, category: "business", color: "38 90% 58%" },
-  { title: "Instagram — @devinpolicastro", desc: "The daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "social", color: "340 80% 62%" },
-  { title: "TikTok — @devinpolicastro", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "social", color: "280 100% 70%" },
-  { title: "YouTube — @devinpolicastro", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "social", color: "0 85% 60%" },
-  { title: "LinkedIn — Devin Policastro", desc: "Entrepreneur, connector, and fitness industry leader. Let's build something together.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "social", color: "210 90% 58%" },
-  { title: "Explore Impact Zone", desc: "See what 51,000 sq ft of world-class fitness looks like.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "fitness", color: "38 90% 58%" },
-  { title: "Get a Taste of 2THIRTY", desc: "Product drops, reviews, and hydration content.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "shop", color: "195 90% 55%" },
-  { title: "Book a Gym Tour", desc: "Schedule a walkthrough — 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, category: "fitness", color: "155 85% 55%" },
-  { title: "Book a Training Consultation", desc: "Let's talk goals, programming, and getting you started.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Sparkles, category: "fitness", color: "265 85% 65%" },
-  { title: "Join Impact Zone", desc: "No contracts. Month-to-month. Welcome bag included.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Dumbbell, category: "fitness", color: "18 90% 58%" },
+  // Websites
+  { title: "2THIRTY", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories. 35% off + free shipping.", url: "https://drink2thirty.com", icon: Building2, category: "websites", color: "195 90% 55%" },
+  { title: "Impact Zone Fitness", desc: "Bergen County's premier 51,000 sq ft gym — Norwood NJ.", url: "https://impactzonenj.com", icon: Dumbbell, category: "websites", color: "38 90% 58%" },
+
+  // Socials (combined personal + brand accounts)
+  { title: "@devinpolicastro", desc: "Instagram — the daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "socials", color: "340 80% 62%" },
+  { title: "@impactzonenj", desc: "Instagram — 51,000 sq ft of world-class fitness.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "socials", color: "38 90% 58%" },
+  { title: "@drink2thirty", desc: "Instagram — product drops, reviews, and hydration.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "socials", color: "195 90% 55%" },
+  { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "socials", color: "280 100% 70%" },
+  { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "socials", color: "0 85% 60%" },
+  { title: "LinkedIn", desc: "Entrepreneur, connector, fitness industry leader.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "socials", color: "210 90% 58%" },
+
+  // Impact Zone
+  { title: "Book a Gym Tour", desc: "Schedule a walkthrough — 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, category: "impact-zone", color: "155 85% 55%" },
+  { title: "Training Consultation", desc: "Let's talk goals, programming, and getting you started.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Sparkles, category: "impact-zone", color: "265 85% 65%" },
+  { title: "Join Impact Zone", desc: "No contracts. Month-to-month. Welcome bag included.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Users, category: "impact-zone", color: "18 90% 58%" },
+  { title: "Coach Pricing", desc: "View personal training and coaching rates.", url: "https://impactzonenj.com/personal-training", icon: DollarSign, category: "impact-zone", color: "38 90% 58%" },
 ];
 
 const categories: { key: LinkCategory; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "business", label: "Businesses" },
-  { key: "fitness", label: "Fitness" },
-  { key: "shop", label: "Shop" },
-  { key: "social", label: "Social" },
+  { key: "websites", label: "Websites" },
+  { key: "socials", label: "Socials" },
+  { key: "impact-zone", label: "Impact Zone" },
 ];
 
 const LinkHubSection = () => {
-  const [activeCategory, setActiveCategory] = useState<LinkCategory>("all");
+  const [activeCategory, setActiveCategory] = useState<LinkCategory>("websites");
   const [copied, setCopied] = useState<string | null>(null);
 
-  const filtered = activeCategory === "all" ? links : links.filter((l) => l.category === activeCategory);
+  const filtered = links.filter((l) => l.category === activeCategory);
 
   const copyLink = (url: string, title: string) => {
     navigator.clipboard.writeText(url);
@@ -113,19 +117,14 @@ const LinkHubSection = () => {
                     boxShadow: `0 4px 24px hsl(225 30% 2% / 0.6), inset 0 1px 0 hsl(${link.color} / 0.06)`,
                   }}
                 >
-                  {/* Left accent bar */}
                   <div
                     className="absolute left-0 top-0 bottom-0 w-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background: `linear-gradient(180deg, transparent, hsl(${link.color}), transparent)` }}
                   />
-
-                  {/* Ambient glow */}
                   <div
                     className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity duration-700"
                     style={{ background: `radial-gradient(ellipse at 0% 50%, hsl(${link.color}) 0%, transparent 60%)` }}
                   />
-
-                  {/* Hover border glow */}
                   <div
                     className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{ boxShadow: `inset 0 0 0 1px hsl(${link.color} / 0.3), 0 0 20px hsl(${link.color} / 0.08)` }}
