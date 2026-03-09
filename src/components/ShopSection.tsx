@@ -15,6 +15,7 @@ interface Product {
   reviews?: string;
   link: string;
   image: string;
+  tourLink?: string;
 }
 
 const products: Product[] = [
@@ -55,25 +56,12 @@ const products: Product[] = [
     image: "/images/2thirty-raspberry.png",
   },
   {
-    name: "Subscribe & Save 20%",
-    note: "Never run out. Auto-delivered on your schedule. $10.38/pack.",
-    category: "2THIRTY",
-    link: "https://drink2thirty.com/subscribe",
-    image: "/images/2thirty-strawberry.png",
-  },
-  {
     name: "Impact Zone Membership",
     note: "51,000 sq ft. No contracts. Cold plunges, infrared saunas, hot yoga, red light therapy. $139/mo.",
     category: "Fitness",
     link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591",
-    image: "/images/iz-hero.jpg",
-  },
-  {
-    name: "Book a Gym Tour",
-    note: "Come see Impact Zone in person. Schedule a tour directly with me.",
-    category: "Fitness",
-    link: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
-    image: "/images/iz-mezzanine.jpg",
+    image: "/images/iz-turf.jpg",
+    tourLink: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
   },
 ];
 
@@ -129,11 +117,11 @@ const ShopSection = () => {
             >
               <TiltCard className="h-full">
                 <div className="glass-card overflow-hidden group h-full hover:border-primary/20 transition-all duration-700">
-                  <div className="aspect-[4/3] overflow-hidden relative bg-card/50">
+                  <div className={`aspect-[4/3] overflow-hidden relative bg-card/50 ${product.tourLink ? '' : ''}`}>
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 p-4"
+                      className={`w-full h-full ${product.category === "Fitness" ? "object-cover" : "object-contain p-4"} group-hover:scale-105 transition-transform duration-700`}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
@@ -189,6 +177,17 @@ const ShopSection = () => {
                         Shop
                       </a>
                     </div>
+
+                    {product.tourLink && (
+                      <a
+                        href={product.tourLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 mt-3 sm:mt-4 py-2 rounded-lg border border-primary/15 text-primary/70 text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase hover:bg-primary/10 hover:text-primary transition-all duration-500"
+                      >
+                        📍 Book a Gym Tour
+                      </a>
+                    )}
                   </div>
                 </div>
               </TiltCard>
