@@ -15,17 +15,18 @@ interface LinkItem {
 }
 
 const links: LinkItem[] = [
-  // Websites
-  { title: "2THIRTY", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories. 35% off + free shipping.", url: "https://drink2thirty.com", icon: Building2, category: "websites", color: "195 90% 55%" },
-  { title: "Impact Zone Fitness", desc: "Bergen County's premier 51,000 sq ft gym — Norwood NJ.", url: "https://impactzonenj.com", icon: Dumbbell, category: "websites", color: "38 90% 58%" },
-
-  // Socials (combined personal + brand accounts)
+  // Socials
   { title: "@devinpolicastro", desc: "Instagram — the daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "socials", color: "340 80% 62%" },
   { title: "@impactzonenj", desc: "Instagram — 51,000 sq ft of world-class fitness.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "socials", color: "38 90% 58%" },
   { title: "@drink2thirty", desc: "Instagram — product drops, reviews, and hydration.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "socials", color: "195 90% 55%" },
   { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "socials", color: "280 100% 70%" },
   { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "socials", color: "0 85% 60%" },
   { title: "LinkedIn", desc: "Entrepreneur, connector, fitness industry leader.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "socials", color: "210 90% 58%" },
+
+  // 2THIRTY
+  { title: "What is 2THIRTY?", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories.", url: "https://drink2thirty.com", icon: Building2, category: "2thirty", color: "195 90% 55%" },
+  { title: "Shop 2THIRTY", desc: "35% off + free shipping. Try all three flavors.", url: "https://drink2thirty.com/collections/all", icon: ExternalLink, category: "2thirty", color: "195 90% 55%" },
+  { title: "Subscribe & Save", desc: "Never run out. Auto-ship monthly at a discount.", url: "https://drink2thirty.com/collections/all", icon: Sparkles, category: "2thirty", color: "195 90% 55%" },
 
   // Impact Zone
   { title: "Book a Gym Tour", desc: "Schedule a walkthrough — 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, category: "impact-zone", color: "155 85% 55%" },
