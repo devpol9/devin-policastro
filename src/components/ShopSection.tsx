@@ -26,7 +26,7 @@ const products: Product[] = [
     note: "The OG flavor — 5-in-1 hydration+ mixer. Zero sugar, zero calories. 3x hydration vs sports drinks.",
     category: "2THIRTY",
     code: "DEV",
-    price: "$12.97",
+    price: "$17.99",
     originalPrice: "$19.99",
     rating: "4.9",
     reviews: "847",
