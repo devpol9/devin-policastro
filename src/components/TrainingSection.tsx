@@ -59,7 +59,7 @@ const TrainingSection = () => {
       {/* Tabs + Content */}
       <div className="container-tight relative z-10 py-10 sm:py-16">
         {/* Tab pills */}
-        <div className="flex gap-2 sm:gap-3 mb-8 sm:mb-12 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
           {tabs.map((tab) => {
             const isActive = tab.id === active;
             return (
