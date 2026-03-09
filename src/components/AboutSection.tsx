@@ -91,7 +91,7 @@ const AboutSection = () => (
         </h2>
         <p className="text-muted-foreground max-w-md text-sm sm:text-base leading-[1.8]">
           Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY,
-          manufacturing through Impactful Brands and SBS.
+          manufacturing through Valence.
         </p>
       </motion.div>
 
