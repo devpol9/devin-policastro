@@ -129,12 +129,12 @@ const HeroSection = () => {
           2THIRTY · Impact Zone · SBS · Manufacturing
         </motion.p>
 
-        <h1 className="font-display font-extrabold text-[clamp(1.7rem,11vw,10rem)] sm:text-7xl md:text-8xl lg:text-[10rem] leading-[0.9] mb-4 tracking-[-0.015em] sm:tracking-[-0.02em] max-w-full">
+        <h1 className="font-display font-extrabold text-[clamp(1.7rem,8vw,8rem)] leading-[0.85] mb-4 tracking-[-0.02em] max-w-full">
           <motion.span
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-foreground/90"
+            className="block text-foreground/90 text-[clamp(1.7rem,8vw,8rem)]"
           >
             DEVIN
           </motion.span>
@@ -142,9 +142,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="block gradient-text whitespace-nowrap break-normal text-[clamp(2.1rem,8.4vw,7.5rem)] tracking-[-0.06em]"
+            className="block gradient-text text-[clamp(1.9rem,8.2vw,7.5rem)] tracking-[-0.04em] max-w-[90vw] mx-auto"
           >
-            <TextScramble text="POLICASTRO" delay={1200} className="whitespace-nowrap" />
+            <TextScramble text="POLICASTRO" delay={1200} className="inline-block max-w-full" />
           </motion.span>
         </h1>
 
