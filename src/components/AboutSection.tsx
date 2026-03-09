@@ -4,17 +4,60 @@ import TiltCard from "@/components/effects/TiltCard";
 import TextScramble from "@/components/effects/TextScramble";
 
 const verticals = [
-  { icon: Dumbbell, title: "FITNESS", desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf.", link: "https://impactzonenj.com" },
-  { icon: Droplets, title: "HYDRATION", desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.", link: "https://drink2thirty.com" },
-  { icon: Briefcase, title: "MANUFACTURING", desc: "Impactful Brands — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.", link: "#" },
-  { icon: Sparkles, title: "SBS", desc: "Strategic business solutions — connecting dots others can't see. Consulting, partnerships, and growth strategies for brands ready to level up.", link: "#" },
-  { icon: Car, title: "AUTOMOTIVE", desc: "Builds, mods, and the car culture that fuels me. Always something new in the garage.", link: "#" },
-  { icon: Video, title: "CONTENT", desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.", link: "https://instagram.com/devinpolicastro" },
+  {
+    icon: Dumbbell,
+    title: "FITNESS",
+    desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf.",
+    link: "https://impactzonenj.com",
+    color: "38 90% 58%",
+    label: "Impact Zone",
+  },
+  {
+    icon: Droplets,
+    title: "HYDRATION",
+    desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.",
+    link: "https://drink2thirty.com",
+    color: "195 90% 55%",
+    label: "2THIRTY",
+  },
+  {
+    icon: Briefcase,
+    title: "MANUFACTURING",
+    desc: "Impactful Brands — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
+    link: "#",
+    color: "265 80% 65%",
+    label: "Impactful Brands",
+  },
+  {
+    icon: Sparkles,
+    title: "SBS",
+    desc: "Strategic business solutions — connecting dots others can't see. Consulting, partnerships, and growth strategies for brands ready to level up.",
+    link: "#",
+    color: "155 75% 48%",
+    label: "Strategy",
+  },
+  {
+    icon: Car,
+    title: "AUTOMOTIVE",
+    desc: "Builds, mods, and the car culture that fuels me. Always something new in the garage.",
+    link: "#",
+    color: "18 90% 58%",
+    label: "Car Culture",
+  },
+  {
+    icon: Video,
+    title: "CONTENT",
+    desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.",
+    link: "https://instagram.com/devinpolicastro",
+    color: "340 80% 62%",
+    label: "@devinpolicastro",
+  },
 ];
 
 const AboutSection = () => (
   <section id="about" className="section-padding relative overflow-hidden">
-    <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.015]"
+    <div
+      className="absolute top-0 right-0 w-1/2 h-full opacity-[0.015]"
       style={{
         backgroundImage: `linear-gradient(hsl(40 10% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(40 10% 50%) 1px, transparent 1px)`,
         backgroundSize: "60px 60px",
@@ -47,7 +90,7 @@ const AboutSection = () => (
           <span className="gradient-text">Highway.</span>
         </h2>
         <p className="text-muted-foreground max-w-md text-sm sm:text-base leading-[1.8]">
-          Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY, 
+          Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY,
           manufacturing through Impactful Brands and SBS.
         </p>
       </motion.div>
@@ -66,18 +109,70 @@ const AboutSection = () => (
                 href={v.link}
                 target={v.link.startsWith("http") ? "_blank" : undefined}
                 rel={v.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="glass-card p-5 sm:p-7 lg:p-8 h-full block group relative overflow-hidden cursor-pointer hover:border-primary/20 transition-all duration-700"
+                className="h-full block group relative overflow-hidden cursor-pointer rounded-lg transition-all duration-500"
+                style={{
+                  background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                  border: `1px solid hsl(${v.color} / 0.15)`,
+                  boxShadow: `0 4px 24px hsl(225 30% 2% / 0.6), inset 0 1px 0 hsl(${v.color} / 0.08)`,
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative z-10">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-primary/8 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-primary/15 transition-all duration-500 group-hover:scale-105">
-                    <v.icon size={18} className="text-primary/80 group-hover:text-primary transition-colors duration-500" />
+                {/* Top accent bar */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[2px] transition-opacity duration-500 opacity-60 group-hover:opacity-100"
+                  style={{ background: `linear-gradient(90deg, transparent, hsl(${v.color}), transparent)` }}
+                />
+
+                {/* Ambient glow background */}
+                <div
+                  className="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.14] transition-opacity duration-700"
+                  style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${v.color}) 0%, transparent 70%)` }}
+                />
+
+                {/* Hover border glow */}
+                <div
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ boxShadow: `inset 0 0 0 1px hsl(${v.color} / 0.4), 0 0 30px hsl(${v.color} / 0.12)` }}
+                />
+
+                <div className="relative z-10 p-5 sm:p-7 lg:p-8 flex flex-col h-full">
+                  {/* Icon + label row */}
+                  <div className="flex items-start justify-between mb-5 sm:mb-7">
+                    <div
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 relative"
+                      style={{
+                        background: `linear-gradient(135deg, hsl(${v.color} / 0.2) 0%, hsl(${v.color} / 0.08) 100%)`,
+                        border: `1px solid hsl(${v.color} / 0.25)`,
+                        boxShadow: `0 0 20px hsl(${v.color} / 0.15)`,
+                      }}
+                    >
+                      <v.icon
+                        size={20}
+                        style={{ color: `hsl(${v.color})`, filter: `drop-shadow(0 0 6px hsl(${v.color} / 0.6))` }}
+                      />
+                    </div>
+                    <span
+                      className="text-[8px] sm:text-[9px] font-display font-bold tracking-[0.3em] uppercase px-2.5 py-1 rounded-full"
+                      style={{
+                        color: `hsl(${v.color})`,
+                        background: `hsl(${v.color} / 0.1)`,
+                        border: `1px solid hsl(${v.color} / 0.2)`,
+                      }}
+                    >
+                      {v.label}
+                    </span>
                   </div>
-                  <h3 className="font-display font-bold text-xs sm:text-sm tracking-[0.15em] mb-2 sm:mb-3">
+
+                  <h3 className="font-display font-extrabold text-sm sm:text-base tracking-[0.12em] mb-2 sm:mb-3 transition-colors duration-300"
+                    style={{ color: `hsl(${v.color})` }}
+                  >
                     <TextScramble text={v.title} delay={i * 200 + 500} />
                   </h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7]">{v.desc}</p>
-                  <div className="mt-4 sm:mt-6 flex items-center gap-2 text-primary/70 text-xs font-display font-medium tracking-wider uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7] flex-1">{v.desc}</p>
+
+                  <div
+                    className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
+                    style={{ color: `hsl(${v.color})` }}
+                  >
                     <span>Explore</span>
                     <span className="text-sm">→</span>
                   </div>
