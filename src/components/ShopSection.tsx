@@ -26,7 +26,7 @@ const products: Product[] = [
     note: "The OG flavor — 5-in-1 hydration+ mixer. Zero sugar, zero calories. 3x hydration vs sports drinks.",
     category: "2THIRTY",
     code: "DEV",
-    price: "$12.97",
+    price: "$17.99",
     originalPrice: "$19.99",
     rating: "4.9",
     reviews: "847",
@@ -40,7 +40,7 @@ const products: Product[] = [
     note: "Clean, crisp, and my go-to for daytime focus. NAC + L-Glutathione for liver support.",
     category: "2THIRTY",
     code: "DEV",
-    price: "$12.97",
+    price: "$17.99",
     originalPrice: "$19.99",
     rating: "4.9",
     reviews: "519",
@@ -54,7 +54,7 @@ const products: Product[] = [
     note: "Night mode flavor — pre-covery support with adaptogens like Milk Thistle and Ginseng Root.",
     category: "2THIRTY",
     code: "DEV",
-    price: "$12.97",
+    price: "$17.99",
     originalPrice: "$19.99",
     rating: "4.8",
     reviews: "632",
@@ -192,7 +192,7 @@ const ShopSection = () => {
                               boxShadow: `0 0 12px hsl(${product.color} / 0.4)`,
                             }}
                           >
-                            35% OFF
+                            10% OFF
                           </span>
                         )}
                       </div>
