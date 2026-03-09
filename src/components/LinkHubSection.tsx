@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Copy, Check, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
-import { toast } from "sonner";
+import { ExternalLink, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
 
 type LinkCategory = "socials" | "2thirty" | "impact-zone";
 
