@@ -9,6 +9,7 @@ import LinkHubSection from "@/components/LinkHubSection";
 import ShopSection from "@/components/ShopSection";
 import CodesSection from "@/components/CodesSection";
 import ServicesSection from "@/components/ServicesSection";
+import TrainingSection from "@/components/TrainingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/effects/CustomCursor";
@@ -32,6 +33,7 @@ const Index = () => {
       <ShopSection />
       <CodesSection />
       <ServicesSection />
+      <TrainingSection />
       <ContactSection />
       <Footer />
       <MobileBottomNav />
