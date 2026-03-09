@@ -43,16 +43,7 @@ const categories: { key: LinkCategory; label: string }[] = [
 
 const LinkHubSection = () => {
   const [activeCategory, setActiveCategory] = useState<LinkCategory>("socials");
-  const [copied, setCopied] = useState<string | null>(null);
-
   const filtered = links.filter((l) => l.category === activeCategory);
-
-  const copyLink = (url: string, title: string) => {
-    navigator.clipboard.writeText(url);
-    setCopied(title);
-    toast.success(`Link copied: ${title}`);
-    setTimeout(() => setCopied(null), 2000);
-  };
 
   return (
     <section id="links" className="section-padding relative">
