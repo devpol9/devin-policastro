@@ -23,10 +23,10 @@ const verticals = [
   {
     icon: Briefcase,
     title: "MANUFACTURING",
-    desc: "Impactful Brands — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
+    desc: "Creative Vision — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
     link: "#",
     color: "280 100% 70%",
-    label: "Impactful Brands",
+    label: "Creative Vision",
   },
   {
     icon: Sparkles,
