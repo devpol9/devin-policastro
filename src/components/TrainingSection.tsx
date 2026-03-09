@@ -170,30 +170,6 @@ const TrainingSection = () => (
         ))}
       </div>
 
-      {/* Facility perks strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
-      >
-        {perks.map((perk, i) => (
-          <motion.div
-            key={perk.text}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.5 }}
-            className="flex flex-col items-center gap-2 py-4 sm:py-5 px-3 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm text-center group hover:border-primary/20 transition-all duration-500"
-          >
-            <perk.icon size={18} className="text-primary/60 group-hover:text-primary transition-colors duration-300" />
-            <span className="text-muted-foreground text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight">
-              {perk.text}
-            </span>
-          </motion.div>
-        ))}
-      </motion.div>
     </div>
   </section>
 );
