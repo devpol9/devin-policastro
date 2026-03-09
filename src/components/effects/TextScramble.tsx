@@ -6,7 +6,7 @@ interface TextScrambleProps {
   delay?: number;
 }
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
+const chars = "ABCDEFGHJKLNPQRSTUVXYZ0123456789!@#$%&*";
 
 const TextScramble = ({ text, className = "", delay = 0 }: TextScrambleProps) => {
   const [display, setDisplay] = useState(text.replace(/[^\s]/g, " "));
