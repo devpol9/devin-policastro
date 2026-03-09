@@ -117,11 +117,11 @@ const ShopSection = () => {
             >
               <TiltCard className="h-full">
                 <div className="glass-card overflow-hidden group h-full hover:border-primary/20 transition-all duration-700">
-                  <div className="aspect-[4/3] overflow-hidden relative bg-card/50">
+                  <div className={`aspect-[4/3] overflow-hidden relative bg-card/50 ${product.tourLink ? '' : ''}`}>
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 p-4"
+                      className={`w-full h-full ${product.category === "Fitness" ? "object-cover" : "object-contain p-4"} group-hover:scale-105 transition-transform duration-700`}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
