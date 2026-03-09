@@ -31,7 +31,7 @@ const Index = () => {
       <GallerySection />
       <LinkHubSection />
       <ShopSection />
-      <CodesSection />
+      
       <ServicesSection />
       <TrainingSection />
       <ContactSection />
