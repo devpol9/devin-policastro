@@ -90,7 +90,6 @@ const products: Product[] = [
 const promoCodes: PromoCode[] = [
   { brand: "2THIRTY", code: "DEV", discount: "35% Off + Free Shipping", shopUrl: "https://drink2thirty.com/shop", color: "195 90% 55%" },
   { brand: "Fitrition", code: "DEVIN10", discount: "10% Off", shopUrl: "https://fitrition.com", color: "120 60% 50%" },
-  { brand: "Impact Zone NJ", code: "DEVINFREE", discount: "Free Day Pass", shopUrl: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", color: "38 90% 58%" },
 ];
 
 const ShopSection = () => {
