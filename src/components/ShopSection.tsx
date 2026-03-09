@@ -177,6 +177,17 @@ const ShopSection = () => {
                         Shop
                       </a>
                     </div>
+
+                    {product.tourLink && (
+                      <a
+                        href={product.tourLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 mt-3 sm:mt-4 py-2 rounded-lg border border-primary/15 text-primary/70 text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase hover:bg-primary/10 hover:text-primary transition-all duration-500"
+                      >
+                        📍 Book a Gym Tour
+                      </a>
+                    )}
                   </div>
                 </div>
               </TiltCard>
