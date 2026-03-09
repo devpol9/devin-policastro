@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Copy, Check, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
-import { toast } from "sonner";
+import { ExternalLink, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
 
 type LinkCategory = "socials" | "2thirty" | "impact-zone";
 
@@ -43,16 +42,7 @@ const categories: { key: LinkCategory; label: string }[] = [
 
 const LinkHubSection = () => {
   const [activeCategory, setActiveCategory] = useState<LinkCategory>("socials");
-  const [copied, setCopied] = useState<string | null>(null);
-
   const filtered = links.filter((l) => l.category === activeCategory);
-
-  const copyLink = (url: string, title: string) => {
-    navigator.clipboard.writeText(url);
-    setCopied(title);
-    toast.success(`Link copied: ${title}`);
-    setTimeout(() => setCopied(null), 2000);
-  };
 
   return (
     <section id="links" className="section-padding relative">
@@ -155,16 +145,7 @@ const LinkHubSection = () => {
                       </h3>
                       <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed">{link.desc}</p>
                     </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); copyLink(link.url, link.title); }}
-                        className="p-1.5 sm:p-2 rounded-lg transition-all duration-300"
-                        style={{ color: `hsl(${link.color} / 0.4)` }}
-                        onMouseEnter={(e) => { e.currentTarget.style.color = `hsl(${link.color})`; e.currentTarget.style.background = `hsl(${link.color} / 0.1)`; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.color = `hsl(${link.color} / 0.4)`; e.currentTarget.style.background = `transparent`; }}
-                      >
-                        {copied === link.title ? <Check size={13} /> : <Copy size={13} />}
-                      </button>
+                    <div className="flex items-center shrink-0">
                       <a
                         href={link.url}
                         target="_blank"
