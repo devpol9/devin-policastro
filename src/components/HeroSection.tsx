@@ -142,7 +142,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="block gradient-text whitespace-nowrap break-normal text-[clamp(2.4rem,9.5vw,9rem)] tracking-[-0.05em]"
+            className="block gradient-text whitespace-nowrap break-normal text-[clamp(2.1rem,8.4vw,7.5rem)] tracking-[-0.06em]"
           >
             <TextScramble text="POLICASTRO" delay={1200} className="whitespace-nowrap" />
           </motion.span>
