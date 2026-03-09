@@ -28,14 +28,6 @@ const paths = [
     color: "195 90% 55%",
     highlight: false,
   },
-  {
-    icon: Target,
-    title: "Self-Guided Membership",
-    desc: "Full access to 51,000 sq ft of world-class equipment. No contracts, no BS. Just show up and put in the work.",
-    cta: "Join Impact Zone",
-    color: "155 85% 55%",
-    highlight: false,
-  },
 ];
 
 const TrainingSection = () => (

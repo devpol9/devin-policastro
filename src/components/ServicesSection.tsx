@@ -12,7 +12,6 @@ interface Service {
 }
 
 const services: Service[] = [
-  { icon: Dumbbell, title: "Impact Zone Membership", desc: "Bergen County's biggest gym — 51,000 sq ft in Norwood, NJ. No contracts, world-class equipment, infrared saunas, cold plunges, hot yoga.", price: "$139/mo", tag: "FITNESS", color: "38 90% 58%" },
   { icon: Briefcase, title: "Brand Consulting", desc: "I'll break down your brand, your content, and your revenue strategy. No fluff — just what works.", price: "Starting at $500", tag: "BUSINESS", color: "265 80% 65%" },
   { icon: Droplets, title: "2THIRTY Wholesale", desc: "Stock 2THIRTY at your gym, studio, or store. Zero sugar, 5-in-1 hydration mixer. Bulk pricing available.", price: "Request a Quote", tag: "PARTNERSHIP", color: "195 90% 55%" },
   { icon: Camera, title: "Influencer Collabs", desc: "If your brand fits my audience, let's create content that converts.", price: "Starting at $250", tag: "CONTENT", color: "340 80% 62%" },
