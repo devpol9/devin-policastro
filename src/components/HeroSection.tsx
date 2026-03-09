@@ -169,24 +169,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 px-2"
+          className="flex items-center justify-center px-2"
         >
           <MagneticButton strength={0.2}>
-            <Button variant="hero" size="lg" onClick={() => scrollTo("#shop")} className="w-full sm:w-auto min-w-[180px] h-12 sm:h-13 text-xs sm:text-sm font-display font-semibold tracking-wide">
-              <ShoppingBag size={16} />
-              Shop 2THIRTY
-            </Button>
-          </MagneticButton>
-          <MagneticButton strength={0.2}>
-            <Button variant="heroOutline" size="lg" onClick={() => scrollTo("#services")} className="w-full sm:w-auto min-w-[180px] h-12 sm:h-13 text-xs sm:text-sm font-display font-semibold tracking-wide">
+            <Button variant="heroOutline" size="lg" onClick={() => scrollTo("#services")} className="min-w-[220px] h-12 sm:h-13 text-xs sm:text-sm font-display font-semibold tracking-wide">
               Work With Me
               <ArrowRight size={16} />
-            </Button>
-          </MagneticButton>
-          <MagneticButton strength={0.2}>
-            <Button variant="glass" size="lg" onClick={() => scrollTo("#codes")} className="w-full sm:w-auto min-w-[180px] h-12 sm:h-13 text-xs sm:text-sm font-display font-semibold tracking-wide">
-              <Tag size={16} />
-              Get the Code
             </Button>
           </MagneticButton>
         </motion.div>
