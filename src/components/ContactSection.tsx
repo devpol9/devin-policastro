@@ -4,72 +4,110 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Send, Instagram, ArrowUpRight, Mail, MapPin, Phone, Calendar, ChevronDown } from "lucide-react";
+import {
+  Send, Instagram, ArrowUpRight, Mail, MapPin, Calendar, ChevronDown,
+  Dumbbell, Users, Target, Package, Lightbulb, Handshake, MessageCircle,
+} from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
 import { supabase } from "@/integrations/supabase/client";
 
 type SubjectKey = "" | "gym-tour" | "membership" | "training" | "wholesale" | "brand-consulting" | "collab" | "general";
 
+interface FieldConfig {
+  key: string;
+  label: string;
+  placeholder: string;
+  type: "input" | "textarea";
+  required?: boolean;
+  rows?: number;
+}
+
 interface SubjectOption {
   value: SubjectKey;
   label: string;
-  prompts: { label: string; placeholder: string }[];
+  icon: React.ElementType;
+  description: string;
+  fields: FieldConfig[];
 }
 
 const subjectOptions: SubjectOption[] = [
   {
     value: "gym-tour",
     label: "Book a Gym Tour",
-    prompts: [
-      { label: "Preferred Date & Time", placeholder: "e.g. Saturday morning, weekday evening..." },
-      { label: "What are you looking for in a gym?", placeholder: "Recovery, lifting, classes, community..." },
+    icon: Dumbbell,
+    description: "Come see the facility in person",
+    fields: [
+      { key: "date", label: "Preferred Date & Time", placeholder: "e.g. Saturday morning, weekday evening...", type: "input", required: true },
+      { key: "looking-for", label: "What are you looking for in a gym?", placeholder: "Recovery, lifting, classes, community...", type: "textarea", rows: 2 },
+      { key: "experience", label: "Current training experience", placeholder: "Beginner, intermediate, advanced...", type: "input" },
     ],
   },
   {
     value: "membership",
-    label: "Membership / Join Impact Zone",
-    prompts: [
-      { label: "Current fitness routine?", placeholder: "How often do you train? What's your style?" },
-      { label: "Any questions about the facility?", placeholder: "Cold plunge hours, class schedule, pricing..." },
+    label: "Membership",
+    icon: Users,
+    description: "Join Impact Zone",
+    fields: [
+      { key: "routine", label: "Current fitness routine", placeholder: "How often do you train? What's your style?", type: "textarea", rows: 2 },
+      { key: "interests", label: "What interests you most?", placeholder: "Cold plunge, sauna, turf, classes, open gym...", type: "input" },
+      { key: "questions", label: "Questions about the facility?", placeholder: "Hours, pricing, class schedule...", type: "textarea", rows: 2 },
     ],
   },
   {
     value: "training",
     label: "Training / Coaching",
-    prompts: [
-      { label: "What are your goals?", placeholder: "Weight loss, muscle gain, sport-specific, rehab..." },
-      { label: "Experience level & schedule", placeholder: "Beginner/advanced, how many days per week..." },
+    icon: Target,
+    description: "1-on-1 or group training",
+    fields: [
+      { key: "goals", label: "What are your goals?", placeholder: "Weight loss, muscle gain, sport-specific, rehab...", type: "textarea", rows: 2, required: true },
+      { key: "experience", label: "Experience level", placeholder: "Beginner, intermediate, advanced...", type: "input" },
+      { key: "schedule", label: "Preferred schedule", placeholder: "How many days per week? Morning or evening?", type: "input" },
+      { key: "injuries", label: "Any injuries or limitations?", placeholder: "Knee issues, back pain, post-surgery...", type: "input" },
     ],
   },
   {
     value: "wholesale",
     label: "2THIRTY Wholesale",
-    prompts: [
-      { label: "Business name & type", placeholder: "Gym, studio, retail store, online..." },
-      { label: "Estimated monthly volume", placeholder: "How many units/cases per month?" },
+    icon: Package,
+    description: "Stock 2THIRTY at your location",
+    fields: [
+      { key: "business", label: "Business name & type", placeholder: "Gym, studio, retail store, café, online...", type: "input", required: true },
+      { key: "location", label: "Location(s)", placeholder: "City, state — how many locations?", type: "input" },
+      { key: "volume", label: "Estimated monthly volume", placeholder: "How many units or cases per month?", type: "input" },
+      { key: "details", label: "Anything else about your business?", placeholder: "Website, current product lineup, distribution needs...", type: "textarea", rows: 2 },
     ],
   },
   {
     value: "brand-consulting",
     label: "Brand Consulting",
-    prompts: [
-      { label: "What's your brand / business?", placeholder: "Tell me about your company and what you do." },
-      { label: "What do you need help with?", placeholder: "Content strategy, revenue, positioning..." },
+    icon: Lightbulb,
+    description: "Grow & position your brand",
+    fields: [
+      { key: "brand", label: "What's your brand / business?", placeholder: "Tell me about your company and what you do.", type: "textarea", rows: 2, required: true },
+      { key: "revenue", label: "Current revenue range", placeholder: "Pre-revenue, $10K/mo, $100K/mo, $1M+...", type: "input" },
+      { key: "help", label: "What do you need help with?", placeholder: "Content strategy, revenue growth, positioning, launches...", type: "textarea", rows: 2 },
+      { key: "timeline", label: "Timeline & budget", placeholder: "When do you want to start? Ballpark budget?", type: "input" },
     ],
   },
   {
     value: "collab",
-    label: "Influencer Collab / Sponsorship",
-    prompts: [
-      { label: "Your platform & audience size", placeholder: "Instagram 50K, TikTok 100K, YouTube..." },
-      { label: "What kind of collab?", placeholder: "Product review, sponsored post, event..." },
+    label: "Collab / Sponsorship",
+    icon: Handshake,
+    description: "Influencer & brand partnerships",
+    fields: [
+      { key: "platform", label: "Your platform & audience size", placeholder: "Instagram 50K, TikTok 100K, YouTube 25K...", type: "input", required: true },
+      { key: "niche", label: "Your niche", placeholder: "Fitness, lifestyle, food, wellness...", type: "input" },
+      { key: "collab-type", label: "What kind of collab?", placeholder: "Product review, sponsored post, event, long-term...", type: "textarea", rows: 2 },
+      { key: "links", label: "Links to your content", placeholder: "Instagram, TikTok, YouTube, website...", type: "input" },
     ],
   },
   {
     value: "general",
     label: "General Inquiry",
-    prompts: [
-      { label: "What's on your mind?", placeholder: "Ask me anything — I respond to everything." },
+    icon: MessageCircle,
+    description: "Anything else — I respond to everything",
+    fields: [
+      { key: "message", label: "What's on your mind?", placeholder: "Ask me anything — business, fitness, 2THIRTY, whatever.", type: "textarea", rows: 4, required: true },
     ],
   },
 ];
@@ -79,10 +117,8 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     subject: "" as SubjectKey,
-    prompts: {} as Record<string, string>,
-    message: "",
+    fields: {} as Record<string, string>,
   });
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -96,8 +132,8 @@ const ContactSection = () => {
     }
     setSending(true);
 
-    const promptDetails = selectedSubject?.prompts
-      .map((p) => `${p.label}: ${formData.prompts[p.label] || "N/A"}`)
+    const fieldDetails = selectedSubject?.fields
+      .map((f) => `${f.label}: ${formData.fields[f.key] || "N/A"}`)
       .join("\n") || "";
 
     try {
@@ -105,17 +141,14 @@ const ContactSection = () => {
         body: {
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
           subject: selectedSubject?.label || formData.subject,
-          message: formData.message
-            ? `${promptDetails}\n\nAdditional message:\n${formData.message}`
-            : promptDetails,
+          message: fieldDetails,
         },
       });
 
       if (error) throw error;
       toast.success(data?.message || "Message sent! Devin will get back to you.");
-      setFormData({ name: "", email: "", phone: "", subject: "", prompts: {}, message: "" });
+      setFormData({ name: "", email: "", subject: "", fields: {} });
     } catch (err) {
       console.error(err);
       toast.error("Failed to send. DM @devinpolicastro on Instagram instead.");
@@ -227,117 +260,107 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Phone */}
+            {/* Subject selector — card grid */}
             <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Phone</label>
-              <Input
-                value={formData.phone}
-                onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
-                type="tel"
-                placeholder="(555) 123-4567"
-                maxLength={20}
-                className="bg-card/50 border-border/20 focus:border-primary/30 h-11 sm:h-12 text-sm"
-              />
-            </div>
-
-            {/* Subject dropdown */}
-            <div className="relative">
-              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">Subject *</label>
-              <button
-                type="button"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="w-full flex items-center justify-between bg-card/50 border border-border/20 focus:border-primary/30 h-11 sm:h-12 text-sm rounded-md px-3 text-left transition-colors hover:border-primary/20"
-              >
-                <span className={formData.subject ? "text-foreground" : "text-muted-foreground"}>
-                  {selectedSubject?.label || "What's this about?"}
-                </span>
-                <ChevronDown size={14} className={`text-muted-foreground transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
-              </button>
-              <AnimatePresence>
-                {dropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute z-30 top-full mt-1 left-0 right-0 bg-card border border-border/30 rounded-lg overflow-hidden shadow-2xl shadow-black/40 backdrop-blur-2xl"
-                  >
-                    {subjectOptions.map((opt) => (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        onClick={() => {
-                          setFormData((p) => ({ ...p, subject: opt.value, prompts: {} }));
-                          setDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm font-display transition-colors duration-200 ${
-                          formData.subject === opt.value
-                            ? "bg-primary/10 text-primary font-semibold"
-                            : "text-foreground/80 hover:bg-primary/5 hover:text-foreground"
+              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-3 block">What's this about? *</label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {subjectOptions.map((opt) => {
+                  const isActive = formData.subject === opt.value;
+                  const Icon = opt.icon;
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => setFormData((p) => ({ ...p, subject: opt.value, fields: {} }))}
+                      className={`relative p-3 rounded-lg border text-left transition-all duration-300 group ${
+                        isActive
+                          ? "border-primary/40 bg-primary/8 shadow-[0_0_20px_hsl(var(--primary)/0.08)]"
+                          : "border-border/15 bg-card/30 hover:border-border/30 hover:bg-card/50"
+                      }`}
+                    >
+                      <Icon
+                        size={16}
+                        className={`mb-1.5 transition-colors duration-300 ${
+                          isActive ? "text-primary" : "text-muted-foreground/50 group-hover:text-muted-foreground"
                         }`}
-                      >
+                      />
+                      <span className={`font-display font-semibold text-[11px] sm:text-xs block leading-tight ${
+                        isActive ? "text-foreground" : "text-foreground/70"
+                      }`}>
                         {opt.label}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      </span>
+                      <p className={`text-[9px] sm:text-[10px] mt-0.5 leading-tight ${
+                        isActive ? "text-muted-foreground" : "text-muted-foreground/40"
+                      }`}>
+                        {opt.description}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Dynamic prompts based on subject */}
+            {/* Dynamic tailored fields based on subject */}
             <AnimatePresence mode="popLayout">
-              {selectedSubject && selectedSubject.prompts.length > 0 && (
+              {selectedSubject && selectedSubject.fields.length > 0 && (
                 <motion.div
                   key={formData.subject}
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-3 sm:space-y-4 overflow-hidden"
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="overflow-hidden"
                 >
-                  <div className="pt-1 border-t border-primary/10">
-                    <p className="text-[9px] font-display font-bold tracking-[0.3em] uppercase text-primary/60 mb-3 sm:mb-4">
-                      Tell me more →
+                  <div className="pt-2 border-t border-primary/10 space-y-3 sm:space-y-4">
+                    <p className="text-[9px] font-display font-bold tracking-[0.3em] uppercase text-primary/60">
+                      {selectedSubject.label} →
                     </p>
-                    {selectedSubject.prompts.map((prompt) => (
-                      <div key={prompt.label} className="mb-3">
+                    {selectedSubject.fields.map((field, i) => (
+                      <motion.div
+                        key={field.key}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.06, duration: 0.25 }}
+                      >
                         <label className="text-[10px] font-display font-semibold tracking-[0.2em] uppercase text-muted-foreground/60 mb-1.5 block">
-                          {prompt.label}
+                          {field.label}{field.required ? " *" : ""}
                         </label>
-                        <Textarea
-                          value={formData.prompts[prompt.label] || ""}
-                          onChange={(e) =>
-                            setFormData((p) => ({
-                              ...p,
-                              prompts: { ...p.prompts, [prompt.label]: e.target.value },
-                            }))
-                          }
-                          placeholder={prompt.placeholder}
-                          rows={2}
-                          maxLength={500}
-                          className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm"
-                        />
-                      </div>
+                        {field.type === "textarea" ? (
+                          <Textarea
+                            value={formData.fields[field.key] || ""}
+                            onChange={(e) =>
+                              setFormData((p) => ({
+                                ...p,
+                                fields: { ...p.fields, [field.key]: e.target.value },
+                              }))
+                            }
+                            placeholder={field.placeholder}
+                            rows={field.rows || 2}
+                            maxLength={500}
+                            required={field.required}
+                            className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm"
+                          />
+                        ) : (
+                          <Input
+                            value={formData.fields[field.key] || ""}
+                            onChange={(e) =>
+                              setFormData((p) => ({
+                                ...p,
+                                fields: { ...p.fields, [field.key]: e.target.value },
+                              }))
+                            }
+                            placeholder={field.placeholder}
+                            maxLength={200}
+                            required={field.required}
+                            className="bg-card/50 border-border/20 focus:border-primary/30 h-11 sm:h-12 text-sm"
+                          />
+                        )}
+                      </motion.div>
                     ))}
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* Additional message */}
-            <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-2 block">
-                Anything else?
-              </label>
-              <Textarea
-                value={formData.message}
-                onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
-                placeholder="Additional details, links, whatever you want me to know..."
-                rows={3}
-                maxLength={1000}
-                className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm"
-              />
-            </div>
 
             <MagneticButton strength={0.15} className="w-full">
               <Button
