@@ -30,7 +30,7 @@ const verticals = [
   },
   {
     icon: Sparkles,
-    title: "VALENCE",
+    title: "SOFTWARE SOLUTIONS",
     desc: "Connecting the dots in the gym space. The all-in-one platform replacing ABC Fitness and Mindbody — solving problems, connecting solutions.",
     link: "#",
     color: "155 85% 55%",
