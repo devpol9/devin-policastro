@@ -2,7 +2,7 @@ import { useState } from "react";
 import SEOHead from "@/components/SEOHead";
 import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ExternalLink, Paintbrush, Shield, Sun, Gauge, Sparkles, Car, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, Paintbrush, Shield, Sun, Gauge, Sparkles, Car, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -130,30 +130,16 @@ const Automotive = () => {
               [ Automotive ]
             </p>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              NextGen Auto
+              Automotive
               <br />
               <span className="text-muted-foreground">& Custom Builds.</span>
             </h1>
             <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
               Builds, mods, and the car culture that fuels me. Always something new in the garage.
-              All services through NextGen Automotive — I'll connect you directly and make sure you're taken care of.
+              Tell me what you need — I'll connect you with the right people and make sure you're taken care of.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://nextgenautonj.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  background: `hsl(${COLOR} / 0.15)`,
-                  border: `1px solid hsl(${COLOR} / 0.3)`,
-                  color: `hsl(${COLOR})`,
-                }}
-              >
-                <ExternalLink size={14} />
-                NextGen Automotive
-              </a>
               <button
                 onClick={() => setGeneralInquiryOpen(true)}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
@@ -215,7 +201,7 @@ const Automotive = () => {
                           border: `1px solid hsl(${COLOR} / 0.2)`,
                         }}
                       >
-                        NEXTGEN AUTO
+                        AUTOMOTIVE
                       </span>
                     </div>
 
@@ -232,19 +218,6 @@ const Automotive = () => {
                       className="flex items-center gap-2 pt-4"
                       style={{ borderTop: `1px solid hsl(${COLOR} / 0.12)` }}
                     >
-                      <a
-                        href={service.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                        style={{
-                          background: `hsl(${COLOR} / 0.1)`,
-                          border: `1px solid hsl(${COLOR} / 0.2)`,
-                          color: `hsl(${COLOR} / 0.6)`,
-                        }}
-                      >
-                        <ExternalLink size={13} />
-                      </a>
                       <button
                         onClick={() => openInquiry(service.name)}
                         className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02]"
@@ -263,22 +236,6 @@ const Automotive = () => {
             })}
           </div>
 
-          {/* Bottom info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="p-4 rounded-lg text-center mb-12"
-            style={{ background: `hsl(${COLOR} / 0.06)`, border: `1px solid hsl(${COLOR} / 0.15)` }}
-          >
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              All services through{" "}
-              <a href="https://nextgenautonj.com" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: `hsl(${COLOR})` }}>
-                NextGen Automotive
-              </a>{" "}
-              — 563 Piermont Road, Closter, NJ
-            </p>
-          </motion.div>
         </div>
       </section>
 
@@ -290,7 +247,7 @@ const Automotive = () => {
         open={inquiryOpen}
         onOpenChange={setInquiryOpen}
         title={`${selectedService} Inquiry`}
-        subtitle="I'll connect you with the NextGen team and make sure you're taken care of."
+        subtitle="Tell me what you need and I'll get you taken care of."
         color={COLOR}
         emailSubject={`Automotive Inquiry: ${selectedService}`}
         fields={[

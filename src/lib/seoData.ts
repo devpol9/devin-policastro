@@ -55,8 +55,8 @@ export const seoPages: Record<string, { title: string; description: string }> = 
     description: "Instagram reels, short-form video, and social media content creation. Build your brand's digital presence.",
   },
   "/automotive": {
-    title: "Automotive — NextGen Auto by Devin Policastro",
-    description: "Vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. Premium automotive services in NJ.",
+    title: "Automotive & Custom Builds — Devin Policastro",
+    description: "Vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. Premium automotive services — I'll connect you.",
   },
   "/financing": {
     title: "Financing — Devin Policastro",

@@ -97,9 +97,9 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
               <DialogTitle className="font-display font-extrabold text-lg sm:text-2xl" style={{ color: `hsl(${COLOR})` }}>
                 Automotive Services
               </DialogTitle>
-              <p className="text-muted-foreground text-xs sm:text-sm mt-1">
-                Premium vehicle customization through NextGen Automotive — I'll connect you directly.
-              </p>
+               <p className="text-muted-foreground text-xs sm:text-sm mt-1">
+                 Premium vehicle customization — tell me what you need and I'll connect you.
+               </p>
             </DialogHeader>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -173,15 +173,6 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
               })}
             </div>
 
-            <div className="mt-4 p-3 rounded-lg text-center" style={{ background: `hsl(${COLOR} / 0.06)`, border: `1px solid hsl(${COLOR} / 0.15)` }}>
-              <p className="text-[10px] sm:text-xs text-muted-foreground">
-                All services through{" "}
-                <a href="https://nextgenautonj.com" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: `hsl(${COLOR})` }}>
-                  NextGen Automotive
-                </a>{" "}
-                — 563 Piermont Road, Closter, NJ
-              </p>
-            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -190,7 +181,7 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
         open={inquiryOpen}
         onOpenChange={setInquiryOpen}
         title={`${selectedService} Inquiry`}
-        subtitle="I'll connect you with the NextGen team and make sure you're taken care of."
+        subtitle="Tell me what you need and I'll get you taken care of."
         color={COLOR}
         emailSubject={`Automotive Inquiry: ${selectedService}`}
         fields={[
