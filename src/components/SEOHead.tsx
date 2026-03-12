@@ -11,7 +11,7 @@ interface SEOHeadProps {
 
 const SITE_URL = "https://brand-hq-hub.lovable.app";
 
-const SEOHead = ({ title, description, canonicalPath, type = "website", jsonLd }: SEOHeadProps) => {
+const SEOHead = ({ title, description, canonicalPath, type = "website", jsonLd, ogImage }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
 
