@@ -47,17 +47,20 @@ const ServiceInquiryDialog = ({
     e.preventDefault();
     setSending(true);
 
-    const fieldDetails = fields
-      .map((f) => `${f.label}: ${formData[f.key] || "N/A"}`)
-      .join("\n");
+    // Build form_data from custom fields
+    const customFields: Record<string, string> = {};
+    fields.forEach((f) => {
+      if (formData[f.key]) customFields[f.label] = formData[f.key];
+    });
 
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           subject: emailSubject,
-          message: `Phone: ${formData.phone || "N/A"}\n\n${fieldDetails}`,
+          formData: customFields,
         },
       });
 
