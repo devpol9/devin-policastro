@@ -13,13 +13,11 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/effects/CustomCursor";
 import MouseSpotlight from "@/components/effects/MouseSpotlight";
-import SmoothScroll from "@/components/effects/SmoothScroll";
 import AIChatbot from "@/components/AIChatbot";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SmoothScroll />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

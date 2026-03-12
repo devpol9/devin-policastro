@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import SmoothScroll from "./components/effects/SmoothScroll";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Manufacturing from "./pages/Manufacturing";
@@ -25,6 +26,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <SmoothScroll />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/manufacturing" element={<Manufacturing />} />
