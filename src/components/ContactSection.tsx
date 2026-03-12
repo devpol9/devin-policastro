@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import {
   Send, Instagram, ArrowUpRight, Mail, MapPin, Calendar, ChevronDown,
   Dumbbell, Users, Target, Package, Lightbulb, Handshake, MessageCircle,
+  type LucideIcon,
 } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
 import { supabase } from "@/integrations/supabase/client";
