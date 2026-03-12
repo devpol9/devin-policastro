@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import TiltCard from "@/components/effects/TiltCard";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
-import AutomotiveDialog from "@/components/services/AutomotiveDialog";
+
 
 interface ServiceTab {
   key: string;
@@ -22,7 +22,7 @@ const tabs: ServiceTab[] = [
   { key: "consulting", label: "Consulting", icon: Briefcase, color: "265 80% 65%", action: "cards" },
   { key: "manufacturing", label: "Manufacturing", icon: Factory, color: "280 70% 60%", action: "page", route: "/manufacturing" },
   { key: "content", label: "Content", icon: Camera, color: "340 80% 62%", action: "page", route: "/content" },
-  { key: "automotive", label: "Automotive", icon: Car, color: "0 85% 60%", action: "dialog" },
+  { key: "automotive", label: "Automotive", icon: Car, color: "0 85% 60%", action: "page", route: "/automotive" },
   { key: "financing", label: "Financing", icon: CreditCard, color: "210 80% 60%", action: "cards" },
   { key: "networking", label: "Networking", icon: Handshake, color: "155 75% 48%", action: "cards" },
 ];
@@ -95,14 +95,11 @@ const inquiryConfigs: Record<string, { title: string; subtitle: string; color: s
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState("consulting");
   const [inquiryOpen, setInquiryOpen] = useState(false);
-  const [autoDialogOpen, setAutoDialogOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleTabClick = (tab: ServiceTab) => {
     if (tab.action === "page" && tab.route) {
       navigate(tab.route);
-    } else if (tab.action === "dialog" && tab.key === "automotive") {
-      setAutoDialogOpen(true);
     } else {
       setActiveTab(tab.key);
     }
@@ -275,8 +272,6 @@ const ServicesSection = () => {
         />
       )}
 
-      {/* Automotive dialog */}
-      <AutomotiveDialog open={autoDialogOpen} onOpenChange={setAutoDialogOpen} />
     </section>
   );
 };
