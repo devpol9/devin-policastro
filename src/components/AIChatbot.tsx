@@ -137,7 +137,7 @@ const AIChatbot = () => {
             </div>
 
             {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 scrollbar-hide">
+            <div ref={scrollRef} data-lenis-prevent className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 scrollbar-hide overscroll-contain touch-pan-y">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
