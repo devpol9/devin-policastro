@@ -100,8 +100,6 @@ const ServicesSection = () => {
   const handleTabClick = (tab: ServiceTab) => {
     if (tab.action === "page" && tab.route) {
       navigate(tab.route);
-    } else if (tab.action === "dialog" && tab.key === "automotive") {
-      setAutoDialogOpen(true);
     } else {
       setActiveTab(tab.key);
     }
