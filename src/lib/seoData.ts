@@ -48,7 +48,7 @@ export const seoPages: Record<string, { title: string; description: string }> = 
   },
   "/manufacturing": {
     title: "Manufacturing — Creative Vision by Devin Policastro",
-    description: "Custom manufacturing and product development. From concept to shelf — bring your vision to life.",
+    description: "Custom apparel, accessories, supplements, gym equipment, and ecom products. From concept to shelf — build your next brand.",
   },
   "/content": {
     title: "Content Creation — Devin Policastro",

@@ -122,7 +122,7 @@ const Manufacturing = () => {
         color={COLOR}
         emailSubject="Manufacturing Inquiry"
         fields={[
-          { key: "product", label: "What product do you want to manufacture?", placeholder: "Supplement, beverage, skincare, wellness...", type: "textarea", rows: 2, required: true },
+          { key: "product", label: "What do you want to manufacture?", placeholder: "Apparel, supplements, gym accessories, Amazon product, custom merch...", type: "textarea", rows: 2, required: true },
           { key: "stage", label: "Current stage", placeholder: "Idea, prototype, ready to scale, existing product...", type: "input", required: true },
           { key: "volume", label: "Estimated volume / MOQ needs", placeholder: "500 units, 5,000 units, 50,000+...", type: "input" },
           { key: "timeline", label: "Target launch timeline", placeholder: "3 months, 6 months, ASAP...", type: "input" },
