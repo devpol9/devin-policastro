@@ -44,11 +44,11 @@ const verticals = [
   {
     icon: Car,
     title: "AUTOMOTIVE",
-    desc: "NextGen Auto — vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. Premium automotive services in NJ.",
+    desc: "Vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. I'll connect you with the right people.",
     link: null,
     route: "/automotive",
     color: "18 90% 58%",
-    label: "NextGen Auto",
+    label: "AUTOMOTIVE",
   },
   {
     icon: Video,
