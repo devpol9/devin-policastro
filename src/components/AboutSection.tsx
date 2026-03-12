@@ -192,13 +192,14 @@ const AboutSection = () => {
                     <span className="text-sm">→</span>
                   </div>
                 </div>
-              </a>
+              </div>
             </TiltCard>
           </motion.div>
         ))}
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default AboutSection;
