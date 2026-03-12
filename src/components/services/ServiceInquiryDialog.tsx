@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Send, X } from "lucide-react";
+import { Send } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -43,11 +43,12 @@ const ServiceInquiryDialog = ({
     phone: "",
   });
 
+  const colorId = color.replace(/\s+/g, "-");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
 
-    // Build form_data from custom fields
     const customFields: Record<string, string> = {};
     fields.forEach((f) => {
       if (formData[f.key]) customFields[f.label] = formData[f.key];
@@ -79,34 +80,34 @@ const ServiceInquiryDialog = ({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg bg-card border-border/30 p-0 overflow-hidden">
+        <style>{`
+          .inquiry-${colorId} input:focus,
+          .inquiry-${colorId} textarea:focus {
+            border-color: hsl(${color} / 0.4) !important;
+            box-shadow: 0 0 0 1px hsl(${color} / 0.15);
+          }
+        `}</style>
+
         {/* Header accent */}
         <div
-          className="h-1 w-full"
+          className="h-1 w-full shrink-0"
           style={{ background: `linear-gradient(90deg, transparent, hsl(${color}), transparent)` }}
         />
-        <div className="p-6 sm:p-8">
-          <DialogHeader className="mb-6">
+        <div className={`p-5 sm:p-8 inquiry-${colorId}`}>
+          <DialogHeader className="mb-5">
             <DialogTitle
-              className="font-display font-extrabold text-xl sm:text-2xl"
+              className="font-display font-extrabold text-lg sm:text-2xl"
               style={{ color: `hsl(${color})` }}
             >
               {title}
             </DialogTitle>
-            <p className="text-muted-foreground text-sm mt-1">{subtitle}</p>
+            <p className="text-muted-foreground text-xs sm:text-sm mt-1">{subtitle}</p>
           </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <style>{`
-              .inquiry-${color.replace(/\s/g, '-')} input:focus,
-              .inquiry-${color.replace(/\s/g, '-')} textarea:focus {
-                border-color: hsl(${color} / 0.4) !important;
-                box-shadow: 0 0 0 1px hsl(${color} / 0.15);
-              }
-            `}</style>
-            <div className={`space-y-4 inquiry-${color.replace(/\s/g, '-')}`}>
-            <div className="grid sm:grid-cols-2 gap-3">
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1 block">
                   Name *
                 </label>
                 <Input
@@ -115,11 +116,11 @@ const ServiceInquiryDialog = ({
                   placeholder="Your name"
                   required
                   maxLength={100}
-                  className="bg-background/50 border-border/20 h-11 text-sm"
+                  className="bg-background/50 border-border/20 h-10 text-sm"
                 />
               </div>
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1 block">
                   Email *
                 </label>
                 <Input
@@ -129,13 +130,13 @@ const ServiceInquiryDialog = ({
                   placeholder="you@email.com"
                   required
                   maxLength={255}
-                  className="bg-background/50 border-border/20 h-11 text-sm"
+                  className="bg-background/50 border-border/20 h-10 text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1.5 block">
+              <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1 block">
                 Phone
               </label>
               <Input
@@ -143,18 +144,18 @@ const ServiceInquiryDialog = ({
                 onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
                 placeholder="(201) 555-0123"
                 maxLength={20}
-                className="bg-background/50 border-border/20 h-11 text-sm"
+                className="bg-background/50 border-border/20 h-10 text-sm"
               />
             </div>
 
             {fields.map((field, i) => (
               <motion.div
                 key={field.key}
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: i * 0.04 }}
               >
-                <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1.5 block">
+                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1 block">
                   {field.label}
                   {field.required ? " *" : ""}
                 </label>
@@ -163,7 +164,7 @@ const ServiceInquiryDialog = ({
                     value={formData[field.key] || ""}
                     onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
                     placeholder={field.placeholder}
-                    rows={field.rows || 3}
+                    rows={field.rows || 2}
                     maxLength={500}
                     required={field.required}
                     className="bg-background/50 border-border/20 resize-none text-sm"
@@ -175,17 +176,16 @@ const ServiceInquiryDialog = ({
                     placeholder={field.placeholder}
                     maxLength={200}
                     required={field.required}
-                    className="bg-background/50 border-border/20 h-11 text-sm"
+                    className="bg-background/50 border-border/20 h-10 text-sm"
                   />
                 )}
               </motion.div>
             ))}
-            </div>
 
             <Button
               type="submit"
               disabled={sending}
-              className="w-full h-12 font-display font-semibold tracking-wide text-sm"
+              className="w-full h-11 font-display font-semibold tracking-wide text-sm mt-2"
               style={{
                 background: `hsl(${color})`,
                 color: "hsl(225 25% 3%)",
