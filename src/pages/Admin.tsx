@@ -12,7 +12,7 @@ interface Inquiry {
   name: string;
   email: string;
   phone: string | null;
-  form_data: Record<string, string>;
+  form_data: Record<string, unknown>;
   status: string;
   created_at: string;
   notes: string | null;
