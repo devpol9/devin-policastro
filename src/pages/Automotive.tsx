@@ -236,22 +236,6 @@ const Automotive = () => {
             })}
           </div>
 
-          {/* Bottom info */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="p-4 rounded-lg text-center mb-12"
-            style={{ background: `hsl(${COLOR} / 0.06)`, border: `1px solid hsl(${COLOR} / 0.15)` }}
-          >
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              All services through{" "}
-              <a href="https://nextgenautonj.com" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: `hsl(${COLOR})` }}>
-                NextGen Automotive
-              </a>{" "}
-              — 563 Piermont Road, Closter, NJ
-            </p>
-          </motion.div>
         </div>
       </section>
 
