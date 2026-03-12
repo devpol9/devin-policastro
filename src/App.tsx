@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Manufacturing from "./pages/Manufacturing";
 import Content from "./pages/Content";
+import Automotive from "./pages/Automotive";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 
