@@ -11,6 +11,7 @@ const verticals = [
     desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf.",
     link: "https://impactzonenj.com",
     route: null,
+    color: "38 90% 58%",
     label: "Impact Zone",
   },
   {
@@ -19,6 +20,7 @@ const verticals = [
     desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.",
     link: "https://drink2thirty.com",
     route: null,
+    color: "195 90% 55%",
     label: "2THIRTY",
   },
   {
