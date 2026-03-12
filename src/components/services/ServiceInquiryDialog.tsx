@@ -93,6 +93,14 @@ const ServiceInquiryDialog = ({
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <style>{`
+              .inquiry-${color.replace(/\s/g, '-')} input:focus,
+              .inquiry-${color.replace(/\s/g, '-')} textarea:focus {
+                border-color: hsl(${color} / 0.4) !important;
+                box-shadow: 0 0 0 1px hsl(${color} / 0.15);
+              }
+            `}</style>
+            <div className={`space-y-4 inquiry-${color.replace(/\s/g, '-')}`}>
             <div className="grid sm:grid-cols-2 gap-3">
               <div>
                 <label className="text-[10px] font-display font-semibold tracking-[0.3em] uppercase text-muted-foreground/70 mb-1.5 block">
@@ -104,7 +112,7 @@ const ServiceInquiryDialog = ({
                   placeholder="Your name"
                   required
                   maxLength={100}
-                  className="bg-background/50 border-border/20 focus:border-primary/30 h-11 text-sm"
+                  className="bg-background/50 border-border/20 h-11 text-sm"
                 />
               </div>
               <div>
@@ -118,7 +126,7 @@ const ServiceInquiryDialog = ({
                   placeholder="you@email.com"
                   required
                   maxLength={255}
-                  className="bg-background/50 border-border/20 focus:border-primary/30 h-11 text-sm"
+                  className="bg-background/50 border-border/20 h-11 text-sm"
                 />
               </div>
             </div>
@@ -132,7 +140,7 @@ const ServiceInquiryDialog = ({
                 onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
                 placeholder="(201) 555-0123"
                 maxLength={20}
-                className="bg-background/50 border-border/20 focus:border-primary/30 h-11 text-sm"
+                className="bg-background/50 border-border/20 h-11 text-sm"
               />
             </div>
 
@@ -155,7 +163,7 @@ const ServiceInquiryDialog = ({
                     rows={field.rows || 3}
                     maxLength={500}
                     required={field.required}
-                    className="bg-background/50 border-border/20 focus:border-primary/30 resize-none text-sm"
+                    className="bg-background/50 border-border/20 resize-none text-sm"
                   />
                 ) : (
                   <Input
@@ -164,11 +172,12 @@ const ServiceInquiryDialog = ({
                     placeholder={field.placeholder}
                     maxLength={200}
                     required={field.required}
-                    className="bg-background/50 border-border/20 focus:border-primary/30 h-11 text-sm"
+                    className="bg-background/50 border-border/20 h-11 text-sm"
                   />
                 )}
               </motion.div>
             ))}
+            </div>
 
             <Button
               type="submit"
