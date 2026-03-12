@@ -1,4 +1,6 @@
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CreditCard, DollarSign, Wrench, Building2, TrendingUp, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
