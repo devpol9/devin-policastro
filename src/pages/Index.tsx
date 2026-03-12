@@ -28,7 +28,7 @@ const Index = () => {
       <HeroSection />
       <MarqueeStrip />
       <AboutSection />
-      <StatsBar />
+      
       <GallerySection />
       <LinkHubSection />
       <ShopSection />
