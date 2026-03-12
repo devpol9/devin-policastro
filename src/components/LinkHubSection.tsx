@@ -25,7 +25,7 @@ const links: LinkItem[] = [
   // 2THIRTY
   { title: "What is 2THIRTY?", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories.", url: "https://www.drink2thirty.com/how-it-works", icon: Building2, category: "2thirty", color: "195 90% 55%" },
   { title: "Shop 2THIRTY", desc: "35% off + free shipping. Try all three flavors.", url: "https://www.drink2thirty.com/shop", icon: ExternalLink, category: "2thirty", color: "195 90% 55%" },
-  { title: "Subscribe & Save", desc: "Never run out. Auto-ship monthly at a discount.", url: "https://drink2thirty.com/collections/all", icon: Sparkles, category: "2thirty", color: "195 90% 55%" },
+  { title: "Subscribe & Save", desc: "Never run out. Auto-ship monthly at a discount.", url: "https://www.drink2thirty.com/subscribe", icon: Sparkles, category: "2thirty", color: "195 90% 55%" },
 
   // Impact Zone
   { title: "Book a Gym Tour", desc: "Schedule a walkthrough — 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, category: "impact-zone", color: "155 85% 55%" },
