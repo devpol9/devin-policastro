@@ -48,7 +48,7 @@ const verticals = [
     link: null,
     route: "/automotive",
     color: "18 90% 58%",
-    label: "Car Culture",
+    label: "NextGen Auto",
   },
   {
     icon: Video,
