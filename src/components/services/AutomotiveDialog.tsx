@@ -97,9 +97,9 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
               <DialogTitle className="font-display font-extrabold text-lg sm:text-2xl" style={{ color: `hsl(${COLOR})` }}>
                 Automotive Services
               </DialogTitle>
-              <p className="text-muted-foreground text-xs sm:text-sm mt-1">
-                Premium vehicle customization through NextGen Automotive — I'll connect you directly.
-              </p>
+               <p className="text-muted-foreground text-xs sm:text-sm mt-1">
+                 Premium vehicle customization — tell me what you need and I'll connect you.
+               </p>
             </DialogHeader>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
