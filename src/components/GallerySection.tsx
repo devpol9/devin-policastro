@@ -78,6 +78,32 @@ const GallerySection = () => {
         ))}
       </div>
 
+      {/* Gym Tour Video */}
+      <div className="px-5 sm:px-8 pb-10 sm:pb-14">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="font-display font-bold text-sm sm:text-base mb-3 sm:mb-4 tracking-wide" style={{ color: `hsl(38 90% 58% / 0.8)` }}>
+              🎬 Take the Tour
+            </h3>
+            <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%', border: '1px solid hsl(38 90% 58% / 0.15)' }}>
+              <iframe
+                src="https://player.vimeo.com/video/1171638387?badge=0&autopause=0&player_id=0&app_id=58479"
+                className="absolute inset-0 w-full h-full"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Dev Gym Tour"
+                loading="lazy"
+              />
+            </div>
+          </motion.div>
+        </div>
+
       {/* Impact Zone Facility Perks */}
       <div className="px-5 sm:px-8 pb-16 sm:pb-20">
         <div className="max-w-5xl mx-auto">
