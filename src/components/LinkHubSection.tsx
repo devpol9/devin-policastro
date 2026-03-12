@@ -8,7 +8,7 @@ interface LinkItem {
   title: string;
   desc: string;
   url: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   category: LinkCategory;
   color: string;
 }

@@ -9,7 +9,7 @@ import {
 interface ServiceTab {
   key: string;
   label: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   color: string;
   route: string;
 }

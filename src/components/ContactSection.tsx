@@ -26,7 +26,7 @@ interface FieldConfig {
 interface SubjectOption {
   value: SubjectKey;
   label: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   description: string;
   fields: FieldConfig[];
 }

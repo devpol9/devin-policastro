@@ -12,7 +12,7 @@ import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 const COLOR = "38 90% 58%";
 
 interface FitnessService {
-  icon: React.ElementType;
+  icon: LucideIcon;
   name: string;
   desc: string;
   detail: string;

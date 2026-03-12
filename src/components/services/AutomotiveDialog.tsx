@@ -7,7 +7,7 @@ import ServiceInquiryDialog from "./ServiceInquiryDialog";
 const COLOR = "0 85% 60%";
 
 interface AutoService {
-  icon: React.ElementType;
+  icon: LucideIcon;
   name: string;
   desc: string;
   link: string;

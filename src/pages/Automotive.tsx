@@ -12,7 +12,7 @@ import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 const COLOR = "0 85% 60%";
 
 interface AutoService {
-  icon: React.ElementType;
+  icon: LucideIcon;
   name: string;
   desc: string;
   detail: string;
