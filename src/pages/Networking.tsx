@@ -1,4 +1,6 @@
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Handshake, Camera, Users, Globe, Briefcase, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
