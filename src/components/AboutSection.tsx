@@ -42,8 +42,9 @@ const verticals = [
   {
     icon: Car,
     title: "AUTOMOTIVE",
-    desc: "Builds, mods, and the car culture that fuels me. Always something new in the garage.",
-    link: "#",
+    desc: "NextGen Auto — vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. Premium automotive services in NJ.",
+    link: null,
+    route: "/automotive",
     color: "18 90% 58%",
     label: "Car Culture",
   },
