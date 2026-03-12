@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Briefcase, Camera, Handshake, Dumbbell,
   ArrowRight, Factory, Car, CreditCard,
+  type LucideIcon,
 } from "lucide-react";
 
 interface ServiceTab {
