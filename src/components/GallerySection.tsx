@@ -26,6 +26,8 @@ const perks = [
 ];
 
 const GallerySection = () => {
+  const [trainingInquiryOpen, setTrainingInquiryOpen] = useState(false);
+
   return (
     <section className="relative overflow-hidden">
       <div className="px-5 sm:px-8 pt-16 sm:pt-20 pb-6 sm:pb-8">
