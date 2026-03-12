@@ -107,7 +107,7 @@ const Automotive = () => {
       <section className="section-padding pt-32 sm:pt-40">
         <div className="container-tight">
           <Link
-            to="/"
+            to="/#services"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-display mb-8"
           >
             <ArrowLeft size={16} />
