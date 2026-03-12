@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { ArrowLeft, Instagram, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
@@ -31,6 +33,7 @@ const Content = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/content"]} canonicalPath="/content" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

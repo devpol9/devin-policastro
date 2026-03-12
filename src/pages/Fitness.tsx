@@ -1,6 +1,8 @@
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Dumbbell, Heart, Apple, Calendar, Users, Target, Flame, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Dumbbell, Heart, Apple, Calendar, Users, Target, Flame, Trophy, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -12,7 +14,7 @@ import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 const COLOR = "38 90% 58%";
 
 interface FitnessService {
-  icon: React.ElementType;
+  icon: LucideIcon;
   name: string;
   desc: string;
   detail: string;
@@ -90,6 +92,7 @@ const Fitness = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/fitness"]} canonicalPath="/fitness" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

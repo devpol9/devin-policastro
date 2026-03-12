@@ -1,6 +1,8 @@
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ExternalLink, Paintbrush, Shield, Sun, Gauge, Sparkles, Car, Disc, Sofa, Lightbulb } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Paintbrush, Shield, Sun, Gauge, Sparkles, Car, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -12,7 +14,7 @@ import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 const COLOR = "0 85% 60%";
 
 interface AutoService {
-  icon: React.ElementType;
+  icon: LucideIcon;
   name: string;
   desc: string;
   detail: string;
@@ -97,6 +99,7 @@ const Automotive = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/automotive"]} canonicalPath="/automotive" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

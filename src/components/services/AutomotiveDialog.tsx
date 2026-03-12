@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Paintbrush, Shield, Sun, Gauge, Sparkles, Car, ArrowRight, ExternalLink, Disc, Sofa, Lightbulb } from "lucide-react";
+import { Paintbrush, Shield, Sun, Gauge, Sparkles, Car, ArrowRight, ExternalLink, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
 import ServiceInquiryDialog from "./ServiceInquiryDialog";
 
 const COLOR = "0 85% 60%";
 
 interface AutoService {
-  icon: React.ElementType;
+  icon: LucideIcon;
   name: string;
   desc: string;
   link: string;

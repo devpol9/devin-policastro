@@ -1,4 +1,6 @@
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Handshake, Camera, Users, Globe, Briefcase, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -73,6 +75,7 @@ const Networking = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/networking"]} canonicalPath="/networking" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

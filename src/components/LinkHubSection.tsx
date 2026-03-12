@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users } from "lucide-react";
+import { ExternalLink, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users, type LucideIcon } from "lucide-react";
 
 type LinkCategory = "socials" | "2thirty" | "impact-zone";
 
@@ -8,7 +8,7 @@ interface LinkItem {
   title: string;
   desc: string;
   url: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   category: LinkCategory;
   color: string;
 }
