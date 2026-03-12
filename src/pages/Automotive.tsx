@@ -215,7 +215,7 @@ const Automotive = () => {
                           border: `1px solid hsl(${COLOR} / 0.2)`,
                         }}
                       >
-                        CAR CULTURE
+                        NEXTGEN AUTO
                       </span>
                     </div>
 
