@@ -272,8 +272,6 @@ const ServicesSection = () => {
         />
       )}
 
-      {/* Automotive dialog */}
-      <AutomotiveDialog open={autoDialogOpen} onOpenChange={setAutoDialogOpen} />
     </section>
   );
 };
