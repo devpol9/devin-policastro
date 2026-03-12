@@ -9,6 +9,10 @@ import NotFound from "./pages/NotFound";
 import Manufacturing from "./pages/Manufacturing";
 import Content from "./pages/Content";
 import Automotive from "./pages/Automotive";
+import Consulting from "./pages/Consulting";
+import Financing from "./pages/Financing";
+import Networking from "./pages/Networking";
+import Fitness from "./pages/Fitness";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 
@@ -26,6 +30,10 @@ const App = () => (
           <Route path="/manufacturing" element={<Manufacturing />} />
           <Route path="/content" element={<Content />} />
           <Route path="/automotive" element={<Automotive />} />
+          <Route path="/consulting" element={<Consulting />} />
+          <Route path="/financing" element={<Financing />} />
+          <Route path="/networking" element={<Networking />} />
+          <Route path="/fitness" element={<Fitness />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
