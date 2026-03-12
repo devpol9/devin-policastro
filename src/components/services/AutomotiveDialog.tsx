@@ -181,7 +181,7 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
         open={inquiryOpen}
         onOpenChange={setInquiryOpen}
         title={`${selectedService} Inquiry`}
-        subtitle="I'll connect you with the NextGen team and make sure you're taken care of."
+        subtitle="Tell me what you need and I'll get you taken care of."
         color={COLOR}
         emailSubject={`Automotive Inquiry: ${selectedService}`}
         fields={[
