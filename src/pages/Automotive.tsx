@@ -140,20 +140,6 @@ const Automotive = () => {
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://nextgenautonj.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  background: `hsl(${COLOR} / 0.15)`,
-                  border: `1px solid hsl(${COLOR} / 0.3)`,
-                  color: `hsl(${COLOR})`,
-                }}
-              >
-                <ExternalLink size={14} />
-                NextGen Automotive
-              </a>
               <button
                 onClick={() => setGeneralInquiryOpen(true)}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
