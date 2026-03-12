@@ -173,15 +173,6 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
               })}
             </div>
 
-            <div className="mt-4 p-3 rounded-lg text-center" style={{ background: `hsl(${COLOR} / 0.06)`, border: `1px solid hsl(${COLOR} / 0.15)` }}>
-              <p className="text-[10px] sm:text-xs text-muted-foreground">
-                All services through{" "}
-                <a href="https://nextgenautonj.com" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: `hsl(${COLOR})` }}>
-                  NextGen Automotive
-                </a>{" "}
-                — 563 Piermont Road, Closter, NJ
-              </p>
-            </div>
           </div>
         </DialogContent>
       </Dialog>
