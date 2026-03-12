@@ -54,8 +54,8 @@ const Manufacturing = () => {
             </h1>
             <p className="text-muted-foreground max-w-lg text-sm sm:text-base leading-[1.8]">
               From concept to shelf — we manufacture, formulate, and bring products to life.
-              Custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more.
-              Premium fitness products from idea to delivery.
+              Custom apparel, accessories, hats, gym equipment, supplements, beverages, and ecom-ready products.
+              Whether you're building your next Amazon brand or launching a private label — we handle it all.
             </p>
           </motion.div>
 
