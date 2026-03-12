@@ -17,6 +17,7 @@ const services: Service[] = [
   { icon: Camera, title: "Influencer Collabs", desc: "If your brand fits my audience, let's create content that converts.", price: "Starting at $250", tag: "CONTENT", color: "340 80% 62%" },
   { icon: Handshake, title: "Paid Introductions", desc: "I know people across Bergen County and beyond. I'll connect you to the right person.", price: "$100–$500", tag: "NETWORK", color: "155 75% 48%" },
   { icon: DollarSign, title: "Brand Clarity Calls", desc: "30-minute call where I rip apart your brand and tell you exactly what to fix.", price: "$150 / 30 min", tag: "CONSULTING", color: "18 90% 58%" },
+  { icon: DollarSign, title: "Financing & Credit", desc: "Need funding or credit solutions? I'll connect you with the right experts to get your business or project financed.", price: "Free Intro", tag: "FINANCING", color: "210 80% 60%" },
 ];
 
 const ServicesSection = () => (
