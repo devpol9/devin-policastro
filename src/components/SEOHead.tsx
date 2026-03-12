@@ -6,6 +6,7 @@ interface SEOHeadProps {
   canonicalPath: string;
   type?: "website" | "article";
   jsonLd?: object;
+  ogImage?: string;
 }
 
 const SITE_URL = "https://brand-hq-hub.lovable.app";
