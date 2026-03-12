@@ -82,7 +82,7 @@ const Admin = () => {
       console.error(error);
       toast.error("Failed to load inquiries");
     } else {
-      setInquiries(data || []);
+      setInquiries((data as any[]) || []);
     }
     setLoading(false);
   };
