@@ -130,13 +130,13 @@ const Automotive = () => {
               [ Automotive ]
             </p>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              NextGen Auto
+              Automotive
               <br />
               <span className="text-muted-foreground">& Custom Builds.</span>
             </h1>
             <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
               Builds, mods, and the car culture that fuels me. Always something new in the garage.
-              All services through NextGen Automotive — I'll connect you directly and make sure you're taken care of.
+              Tell me what you need — I'll connect you with the right people and make sure you're taken care of.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
