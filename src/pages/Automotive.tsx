@@ -2,7 +2,7 @@ import { useState } from "react";
 import SEOHead from "@/components/SEOHead";
 import { seoPages } from "@/lib/seoData";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ExternalLink, Paintbrush, Shield, Sun, Gauge, Sparkles, Car, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, Paintbrush, Shield, Sun, Gauge, Sparkles, Car, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
