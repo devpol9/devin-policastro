@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import SEOHead from "@/components/SEOHead";
 import { seoPages } from "@/lib/seoData";
-import { ArrowLeft, Factory, Wrench, Package, Lightbulb, ArrowRight } from "lucide-react";
+import { ArrowLeft, Factory, Wrench, Package, Lightbulb, ArrowRight, Shirt, Dumbbell, ShoppingBag, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -54,17 +54,21 @@ const Manufacturing = () => {
             </h1>
             <p className="text-muted-foreground max-w-lg text-sm sm:text-base leading-[1.8]">
               From concept to shelf — we manufacture, formulate, and bring products to life.
-              Custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more.
-              Premium fitness products from idea to delivery.
+              Custom apparel, accessories, hats, gym equipment, supplements, beverages, and ecom-ready products.
+              Whether you're building your next Amazon brand or launching a private label — we handle it all.
             </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {[
-              { icon: Factory, title: "Product Manufacturing", desc: "End-to-end manufacturing for consumer products. From formulation to finished goods." },
-              { icon: Package, title: "Private Label", desc: "White-label and private-label solutions. Your brand, our production." },
-              { icon: Wrench, title: "Custom Formulation", desc: "R&D and custom formulation for supplements, beverages, and wellness products." },
-              { icon: Lightbulb, title: "Brand Development", desc: "Packaging design, compliance, and go-to-market strategy." },
+              { icon: Shirt, title: "Custom Apparel & Accessories", desc: "T-shirts, hoodies, hats, bags — branded merchandise from design to bulk production." },
+              { icon: Dumbbell, title: "Gym & Fitness Equipment", desc: "Jump ropes, mini bands, wrist wraps, resistance gear, and custom fitness products." },
+              { icon: Wrench, title: "Custom Formulation", desc: "R&D and formulation for supplements, beverages, and wellness products." },
+              { icon: Package, title: "Private Label & White Label", desc: "Your brand, our production. Ready-to-sell products under your name." },
+              { icon: ShoppingBag, title: "Ecom & Amazon Products", desc: "Products designed for ecommerce — Amazon FBA, DTC, and marketplace-ready." },
+              { icon: Factory, title: "Full-Scale Manufacturing", desc: "End-to-end production — sourcing, prototyping, production runs, and fulfillment." },
+              { icon: Crown, title: "Brand Development", desc: "Packaging design, compliance, go-to-market strategy, and launch support." },
+              { icon: Lightbulb, title: "Product Ideation & R&D", desc: "Got an idea? We'll help you develop it from napkin sketch to finished product." },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -118,7 +122,7 @@ const Manufacturing = () => {
         color={COLOR}
         emailSubject="Manufacturing Inquiry"
         fields={[
-          { key: "product", label: "What product do you want to manufacture?", placeholder: "Supplement, beverage, skincare, wellness...", type: "textarea", rows: 2, required: true },
+          { key: "product", label: "What do you want to manufacture?", placeholder: "Apparel, supplements, gym accessories, Amazon product, custom merch...", type: "textarea", rows: 2, required: true },
           { key: "stage", label: "Current stage", placeholder: "Idea, prototype, ready to scale, existing product...", type: "input", required: true },
           { key: "volume", label: "Estimated volume / MOQ needs", placeholder: "500 units, 5,000 units, 50,000+...", type: "input" },
           { key: "timeline", label: "Target launch timeline", placeholder: "3 months, 6 months, ASAP...", type: "input" },
