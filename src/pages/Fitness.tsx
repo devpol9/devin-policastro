@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Dumbbell, Heart, Apple, Calendar, Users, Target, Flame, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Dumbbell, Heart, Apple, Calendar, Users, Target, Flame, Trophy, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
