@@ -56,8 +56,23 @@ const GallerySection = () => {
           >
             <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-            <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+            <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex items-end justify-between">
               <span className="font-display font-bold text-xs sm:text-sm tracking-[0.15em] uppercase text-foreground/90">{img.label}</span>
+              {img.label === "Training" && (
+                <button
+                  onClick={() => setTrainingInquiryOpen(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-[1.03]"
+                  style={{
+                    background: `hsl(0 75% 55% / 0.85)`,
+                    color: `hsl(0 0% 100%)`,
+                    backdropFilter: 'blur(8px)',
+                    border: `1px solid hsl(0 75% 55% / 0.5)`,
+                  }}
+                >
+                  Inquire
+                  <ArrowRight size={11} />
+                </button>
+              )}
             </div>
           </div>
         ))}
