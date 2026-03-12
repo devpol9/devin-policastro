@@ -20,7 +20,7 @@ ABOUT DEVIN:
 - He builds brands, connects people, and turns every handshake into a revenue stream
 - His superpower: if he doesn't do it himself, he knows the right person and will connect you — and he makes sure you're taken care of
 - Owner of Impact Zone Fitness, 2THIRTY hydration, Creative Vision (manufacturing), and Valence (gym software + manufacturing)
-- Contact: 335 Chestnut St, Norwood NJ 07648 | (201) 775-1025 | info@impactzonenj.com
+- Contact: 335 Chestnut St, Norwood NJ 07648 | (201) 775-1025 | devinpolicastro@gmail.com
 - Social: @devinpolicastro on Instagram, TikTok, YouTube
 
 THE CONNECTOR MODEL — THIS IS KEY:
