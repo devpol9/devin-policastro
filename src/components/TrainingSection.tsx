@@ -47,7 +47,7 @@ const TrainingSection = () => {
     } else if (current.ctaAction === "fitness") {
       navigate("/fitness");
     } else if (current.ctaAction === "external") {
-      window.open("https://impactzonenj.com", "_blank", "noopener,noreferrer");
+      window.open("https://www.impactzonenj.com/classes", "_blank", "noopener,noreferrer");
     }
   };
 
