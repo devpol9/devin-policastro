@@ -53,6 +53,7 @@ const verticals = [
     title: "CONTENT",
     desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.",
     link: "https://instagram.com/devinpolicastro",
+    route: null,
     color: "340 80% 62%",
     label: "@devinpolicastro",
   },
