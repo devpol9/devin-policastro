@@ -75,6 +75,7 @@ const Consulting = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/consulting"]} canonicalPath="/consulting" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

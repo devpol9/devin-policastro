@@ -75,6 +75,7 @@ const Networking = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/networking"]} canonicalPath="/networking" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

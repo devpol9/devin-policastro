@@ -19,6 +19,7 @@ import AIChatbot from "@/components/AIChatbot";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/"]} canonicalPath="/" jsonLd={personJsonLd} />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

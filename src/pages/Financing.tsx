@@ -69,6 +69,7 @@ const Financing = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/financing"]} canonicalPath="/financing" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

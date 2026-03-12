@@ -92,6 +92,7 @@ const Fitness = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/fitness"]} canonicalPath="/fitness" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

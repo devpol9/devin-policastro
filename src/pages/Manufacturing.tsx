@@ -18,6 +18,7 @@ const Manufacturing = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/manufacturing"]} canonicalPath="/manufacturing" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

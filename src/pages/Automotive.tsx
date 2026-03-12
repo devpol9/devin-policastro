@@ -99,6 +99,7 @@ const Automotive = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/automotive"]} canonicalPath="/automotive" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />

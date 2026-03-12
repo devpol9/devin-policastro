@@ -33,6 +33,7 @@ const Content = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+      <SEOHead {...seoPages["/content"]} canonicalPath="/content" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />
