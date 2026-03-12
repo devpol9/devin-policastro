@@ -34,12 +34,12 @@ const verticals = [
   },
   {
     icon: Sparkles,
-    title: "SOFTWARE SOLUTIONS",
-    desc: "Connecting the dots in the gym space. The all-in-one platform replacing ABC Fitness and Mindbody — solving problems, connecting solutions.",
+    title: "VALENCE",
+    desc: "The gym industry runs on broken software. Valence is the all-in-one platform replacing ABC Fitness and Mindbody — member management, billing, scheduling, and retention tools built by someone who actually runs a gym.",
     link: null,
     route: null,
     color: "155 85% 55%",
-    label: "Valence",
+    label: "Coming Soon",
   },
   {
     icon: Car,
