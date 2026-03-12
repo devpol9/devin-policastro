@@ -138,12 +138,22 @@ const ContactSection = () => {
       .join("\n") || "";
 
     try {
+      // Build a labeled formData object for DB storage and email
+      const labeledFields: Record<string, string> = {};
+      if (selectedSubject) {
+        for (const field of selectedSubject.fields) {
+          if (formData.fields[field.key]) {
+            labeledFields[field.label] = formData.fields[field.key];
+          }
+        }
+      }
+
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: formData.name,
           email: formData.email,
           subject: selectedSubject?.label || formData.subject,
-          message: fieldDetails,
+          formData: labeledFields,
         },
       });
 
