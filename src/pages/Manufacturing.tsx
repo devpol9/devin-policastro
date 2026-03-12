@@ -61,10 +61,14 @@ const Manufacturing = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {[
-              { icon: Factory, title: "Product Manufacturing", desc: "End-to-end manufacturing for consumer products. From formulation to finished goods." },
-              { icon: Package, title: "Private Label", desc: "White-label and private-label solutions. Your brand, our production." },
-              { icon: Wrench, title: "Custom Formulation", desc: "R&D and custom formulation for supplements, beverages, and wellness products." },
-              { icon: Lightbulb, title: "Brand Development", desc: "Packaging design, compliance, and go-to-market strategy." },
+              { icon: Shirt, title: "Custom Apparel & Accessories", desc: "T-shirts, hoodies, hats, bags — branded merchandise from design to bulk production." },
+              { icon: Dumbbell, title: "Gym & Fitness Equipment", desc: "Jump ropes, mini bands, wrist wraps, resistance gear, and custom fitness products." },
+              { icon: Wrench, title: "Custom Formulation", desc: "R&D and formulation for supplements, beverages, and wellness products." },
+              { icon: Package, title: "Private Label & White Label", desc: "Your brand, our production. Ready-to-sell products under your name." },
+              { icon: ShoppingBag, title: "Ecom & Amazon Products", desc: "Products designed for ecommerce — Amazon FBA, DTC, and marketplace-ready." },
+              { icon: Factory, title: "Full-Scale Manufacturing", desc: "End-to-end production — sourcing, prototyping, production runs, and fulfillment." },
+              { icon: Crown, title: "Brand Development", desc: "Packaging design, compliance, go-to-market strategy, and launch support." },
+              { icon: Lightbulb, title: "Product Ideation & R&D", desc: "Got an idea? We'll help you develop it from napkin sketch to finished product." },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
