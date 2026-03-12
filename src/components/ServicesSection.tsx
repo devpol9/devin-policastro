@@ -22,7 +22,7 @@ const tabs: ServiceTab[] = [
   { key: "consulting", label: "Consulting", icon: Briefcase, color: "265 80% 65%", action: "cards" },
   { key: "manufacturing", label: "Manufacturing", icon: Factory, color: "280 70% 60%", action: "page", route: "/manufacturing" },
   { key: "content", label: "Content", icon: Camera, color: "340 80% 62%", action: "page", route: "/content" },
-  { key: "automotive", label: "Automotive", icon: Car, color: "0 85% 60%", action: "dialog" },
+  { key: "automotive", label: "Automotive", icon: Car, color: "0 85% 60%", action: "page", route: "/automotive" },
   { key: "financing", label: "Financing", icon: CreditCard, color: "210 80% 60%", action: "cards" },
   { key: "networking", label: "Networking", icon: Handshake, color: "155 75% 48%", action: "cards" },
 ];
