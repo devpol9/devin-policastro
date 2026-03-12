@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import SEOHead from "@/components/SEOHead";
+import { seoPages } from "@/lib/seoData";
 import { ArrowLeft, Factory, Wrench, Package, Lightbulb, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
