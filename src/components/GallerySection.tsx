@@ -117,6 +117,20 @@ const GallerySection = () => {
           </motion.div>
         </div>
       </div>
+      <ServiceInquiryDialog
+        open={trainingInquiryOpen}
+        onOpenChange={setTrainingInquiryOpen}
+        title="Training Inquiry"
+        subtitle="Tell us about your fitness goals and we'll match you with the right coach or program."
+        color="0 75% 55%"
+        emailSubject="Training Inquiry"
+        fields={[
+          { key: "goals", label: "What are your fitness goals?", placeholder: "Weight loss, muscle gain, athletic performance, rehab...", type: "textarea", rows: 3, required: true },
+          { key: "experience", label: "Training experience", placeholder: "Beginner, intermediate, advanced, former athlete...", type: "input", required: true },
+          { key: "schedule", label: "Preferred schedule", placeholder: "Mornings, evenings, weekends, 3x/week...", type: "input" },
+          { key: "type", label: "What type of training?", placeholder: "1-on-1, small group, online coaching, program only...", type: "input" },
+        ]}
+      />
     </section>
   );
 };
