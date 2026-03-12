@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Dumbbell, Droplets, Sparkles, Briefcase, Car, Video } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import TiltCard from "@/components/effects/TiltCard";
 import TextScramble from "@/components/effects/TextScramble";
 
@@ -9,7 +10,7 @@ const verticals = [
     title: "FITNESS",
     desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf.",
     link: "https://impactzonenj.com",
-    color: "38 90% 58%",
+    route: null,
     label: "Impact Zone",
   },
   {
@@ -17,14 +18,15 @@ const verticals = [
     title: "HYDRATION",
     desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.",
     link: "https://drink2thirty.com",
-    color: "195 90% 55%",
+    route: null,
     label: "2THIRTY",
   },
   {
     icon: Briefcase,
     title: "MANUFACTURING",
     desc: "Creative Vision — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
-    link: "#",
+    link: null,
+    route: "/manufacturing",
     color: "280 100% 70%",
     label: "Creative Vision",
   },
@@ -32,15 +34,17 @@ const verticals = [
     icon: Sparkles,
     title: "SOFTWARE SOLUTIONS",
     desc: "Connecting the dots in the gym space. The all-in-one platform replacing ABC Fitness and Mindbody — solving problems, connecting solutions.",
-    link: "#",
+    link: null,
+    route: null,
     color: "155 85% 55%",
     label: "Valence",
   },
   {
     icon: Car,
     title: "AUTOMOTIVE",
-    desc: "Builds, mods, and the car culture that fuels me. Always something new in the garage.",
-    link: "#",
+    desc: "NextGen Auto — vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. Premium automotive services in NJ.",
+    link: null,
+    route: "/automotive",
     color: "18 90% 58%",
     label: "Car Culture",
   },
@@ -49,12 +53,24 @@ const verticals = [
     title: "CONTENT",
     desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.",
     link: "https://instagram.com/devinpolicastro",
+    route: null,
     color: "340 80% 62%",
     label: "@devinpolicastro",
   },
 ];
 
-const AboutSection = () => (
+const AboutSection = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (v: typeof verticals[0]) => {
+    if (v.route) {
+      navigate(v.route);
+    } else if (v.link) {
+      window.open(v.link, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  return (
   <section id="about" className="section-padding relative overflow-hidden">
     <div
       className="absolute top-0 right-0 w-1/2 h-full opacity-[0.015]"
@@ -105,11 +121,9 @@ const AboutSection = () => (
             transition={{ duration: 0.7, delay: i * 0.08 }}
           >
             <TiltCard className="h-full">
-              <a
-                href={v.link}
-                target={v.link.startsWith("http") ? "_blank" : undefined}
-                rel={v.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="h-full block group relative overflow-hidden cursor-pointer rounded-lg transition-all duration-500"
+              <div
+                onClick={() => handleCardClick(v)}
+                className={`h-full block group relative overflow-hidden rounded-lg transition-all duration-500 ${v.link || v.route ? "cursor-pointer" : "cursor-default"}`}
                 style={{
                   background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
                   border: `1px solid hsl(${v.color} / 0.15)`,
@@ -177,13 +191,14 @@ const AboutSection = () => (
                     <span className="text-sm">→</span>
                   </div>
                 </div>
-              </a>
+              </div>
             </TiltCard>
           </motion.div>
         ))}
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default AboutSection;
