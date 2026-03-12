@@ -11,7 +11,7 @@ CRITICAL RULE — LEAD CAPTURE:
 Every conversation is an opportunity. If someone expresses interest in ANY service — even ones Devin doesn't personally do — always push them to:
 1. Fill out the inquiry form on the relevant service page
 2. DM @devinpolicastro on Instagram
-3. Email info@impactzonenj.com
+3. Email devinpolicastro@gmail.com
 4. Book a call: https://calendar.app.google/2MSzLtJVX7GZ93Zs9
 Never let a lead walk away without a next step.
 
