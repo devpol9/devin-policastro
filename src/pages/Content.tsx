@@ -152,7 +152,7 @@ const Content = () => {
         fields={[
           { key: "brand", label: "Your brand / company", placeholder: "Brand name and what you do", type: "input", required: true },
           { key: "platform", label: "Platform & audience size", placeholder: "Instagram 50K, TikTok 100K...", type: "input", required: true },
-          { key: "collab-type", label: "What kind of content?", placeholder: "Product review, sponsored reel, UGC, event coverage...", type: "textarea", rows: 3 },
+          { key: "collab-type", label: "What kind of content?", placeholder: "Product review, sponsored reel, UGC, event coverage...", type: "textarea", rows: 2 },
           { key: "budget", label: "Budget range", placeholder: "$250-$500, $500-$1K, $1K+...", type: "input" },
           { key: "links", label: "Links to your brand / content", placeholder: "Instagram, website, TikTok...", type: "input" },
         ]}
