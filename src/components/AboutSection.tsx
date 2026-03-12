@@ -59,7 +59,18 @@ const verticals = [
   },
 ];
 
-const AboutSection = () => (
+const AboutSection = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (v: typeof verticals[0]) => {
+    if (v.route) {
+      navigate(v.route);
+    } else if (v.link) {
+      window.open(v.link, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  return (
   <section id="about" className="section-padding relative overflow-hidden">
     <div
       className="absolute top-0 right-0 w-1/2 h-full opacity-[0.015]"
