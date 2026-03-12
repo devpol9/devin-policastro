@@ -95,7 +95,6 @@ const inquiryConfigs: Record<string, { title: string; subtitle: string; color: s
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState("consulting");
   const [inquiryOpen, setInquiryOpen] = useState(false);
-  const [autoDialogOpen, setAutoDialogOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleTabClick = (tab: ServiceTab) => {
