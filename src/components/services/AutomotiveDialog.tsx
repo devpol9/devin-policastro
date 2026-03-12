@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Paintbrush, Shield, Sun, Gauge, Sparkles, Car, ArrowRight, ExternalLink } from "lucide-react";
+import { Paintbrush, Shield, Sun, Gauge, Sparkles, Car, ArrowRight, ExternalLink, Disc, Sofa, Wrench, Lightbulb } from "lucide-react";
 import ServiceInquiryDialog from "./ServiceInquiryDialog";
 
 const COLOR = "0 85% 60%";
@@ -29,25 +29,43 @@ const autoServices: AutoService[] = [
   {
     icon: Sparkles,
     name: "Ceramic Coating",
-    desc: "Advanced nano-coating for unparalleled protection and a brilliant, lasting shine.",
+    desc: "Advanced nano-coating with paint correction for unparalleled protection and a brilliant, lasting shine.",
     link: "https://nextgenautonj.com/ceramic-coating/",
   },
   {
     icon: Sun,
     name: "Window Tinting",
-    desc: "Premium window films for privacy, UV protection, and a sleek look. Legal-compliant options.",
+    desc: "Premium window films blocking 99% UV rays. Privacy, cool cabin, and a sleek look.",
     link: "https://nextgenautonj.com/windows-tints/",
   },
   {
     icon: Gauge,
     name: "Tuning & Performance",
-    desc: "ECU remapping, exhaust upgrades, and performance tuning. Unlock your vehicle's full potential.",
+    desc: "ECU remapping, downpipes, exhaust upgrades. Unlock horsepower, torque, and fuel efficiency.",
     link: "https://nextgenautonj.com/tuning-and-performance/",
   },
   {
+    icon: Disc,
+    name: "Powder Coating",
+    desc: "Wheels, calipers, and metal surfaces. More durable than paint — wide variety of colors available.",
+    link: "https://nextgenautonj.com/",
+  },
+  {
+    icon: Sofa,
+    name: "Custom Interiors",
+    desc: "Tailored luxury interiors — custom upholstery, stitching, trim, and premium materials.",
+    link: "https://nextgenautonj.com/",
+  },
+  {
+    icon: Lightbulb,
+    name: "Exterior Styling",
+    desc: "Aero kits, spoilers, diffusers, custom lighting, and bold exterior modifications.",
+    link: "https://nextgenautonj.com/",
+  },
+  {
     icon: Car,
-    name: "Full Customization",
-    desc: "Interior, exterior, wheels, lighting — full luxury customization for high-end vehicles.",
+    name: "Full Build / Customization",
+    desc: "Complete vehicle builds — from concept to reality. Wheels, suspension, body, interior, performance.",
     link: "https://nextgenautonj.com/",
   },
 ];
