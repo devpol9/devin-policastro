@@ -43,7 +43,7 @@ const ServicesSection = () => {
             transition={{ duration: 1 }}
             className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 06 — Services ]</p>
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 05 — Services ]</p>
           <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
             Work With Me.
             <br />

@@ -52,7 +52,7 @@ const TrainingSection = () => {
           viewport={{ once: true }}
           className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 font-display font-extrabold text-sm sm:text-lg tracking-[0.35em] uppercase text-foreground/70"
         >
-          Training
+          <span className="text-primary/80 text-[10px] tracking-[0.5em] block mb-1">[ 06 — Training ]</span>
         </motion.p>
       </div>
 
