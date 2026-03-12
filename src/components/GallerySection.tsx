@@ -103,6 +103,7 @@ const GallerySection = () => {
             </div>
           </motion.div>
         </div>
+      </div>
 
       {/* Impact Zone Facility Perks */}
       <div className="px-5 sm:px-8 pb-16 sm:pb-20">
