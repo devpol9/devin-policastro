@@ -1,48 +1,36 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import * as THREE from "three";
-
-const OrbMesh = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-    const t = clock.getElapsedTime();
-    meshRef.current.rotation.y = t * 0.24;
-    meshRef.current.rotation.x = Math.sin(t * 0.45) * 0.22;
-    meshRef.current.position.y = Math.sin(t * 0.6) * 0.12;
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <icosahedronGeometry args={[2.15, 4]} />
-      <meshStandardMaterial
-        color="hsl(38 90% 58%)"
-        emissive="hsl(28 85% 50%)"
-        emissiveIntensity={0.22}
-        roughness={0.25}
-        metalness={0.55}
-        transparent
-        opacity={0.22}
-      />
-    </mesh>
-  );
-};
+import { motion } from "framer-motion";
 
 const HeroOrb = () => {
   return (
-    <div className="absolute inset-0 z-[1] pointer-events-none opacity-75">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: true }}
-        style={{ background: "transparent" }}
+    <div className="absolute inset-0 z-[1] pointer-events-none flex items-center justify-center opacity-75">
+      <motion.div
+        animate={{
+          rotate: [0, 360],
+          y: [0, -8, 0, 8, 0],
+        }}
+        transition={{
+          rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+          y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] rounded-full relative"
+        style={{
+          background: `radial-gradient(circle at 35% 35%, hsl(38 90% 58% / 0.15), hsl(28 85% 50% / 0.08) 50%, transparent 70%)`,
+          boxShadow: `
+            0 0 80px 40px hsl(38 90% 58% / 0.06),
+            inset 0 0 60px 20px hsl(38 90% 58% / 0.04)
+          `,
+          border: `1px solid hsl(38 90% 58% / 0.08)`,
+        }}
       >
-        <ambientLight intensity={0.45} />
-        <directionalLight position={[2, 3, 4]} intensity={0.85} color="hsl(38 90% 58%)" />
-        <pointLight position={[-3, -2, 3]} intensity={0.5} color="hsl(28 85% 50%)" />
-        <OrbMesh />
-      </Canvas>
+        {/* Inner glow ring */}
+        <div
+          className="absolute inset-4 rounded-full"
+          style={{
+            background: `radial-gradient(circle at 40% 40%, hsl(38 90% 58% / 0.1), transparent 60%)`,
+            border: `1px solid hsl(38 90% 58% / 0.05)`,
+          }}
+        />
+      </motion.div>
     </div>
   );
 };
