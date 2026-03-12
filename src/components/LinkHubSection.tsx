@@ -23,7 +23,7 @@ const links: LinkItem[] = [
   { title: "LinkedIn", desc: "Entrepreneur, connector, fitness industry leader.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "socials", color: "210 90% 58%" },
 
   // 2THIRTY
-  { title: "What is 2THIRTY?", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories.", url: "https://drink2thirty.com", icon: Building2, category: "2thirty", color: "195 90% 55%" },
+  { title: "What is 2THIRTY?", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories.", url: "https://www.drink2thirty.com/how-it-works", icon: Building2, category: "2thirty", color: "195 90% 55%" },
   { title: "Shop 2THIRTY", desc: "35% off + free shipping. Try all three flavors.", url: "https://drink2thirty.com/collections/all", icon: ExternalLink, category: "2thirty", color: "195 90% 55%" },
   { title: "Subscribe & Save", desc: "Never run out. Auto-ship monthly at a discount.", url: "https://drink2thirty.com/collections/all", icon: Sparkles, category: "2thirty", color: "195 90% 55%" },
 
