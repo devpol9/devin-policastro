@@ -201,7 +201,7 @@ const Automotive = () => {
                           border: `1px solid hsl(${COLOR} / 0.2)`,
                         }}
                       >
-                        NEXTGEN AUTO
+                        AUTOMOTIVE
                       </span>
                     </div>
 
