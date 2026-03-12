@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Dumbbell, Users, ArrowRight, Zap } from "lucide-react";
+import { Dumbbell, Users, ArrowRight, Zap, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const tabs = [
   {
@@ -10,6 +11,7 @@ const tabs = [
     title: "1-on-1 With Devin",
     desc: "Personal sessions with me. I'll push you past your limits and build a program that actually works for your goals. No cookie-cutter plans — just results.",
     cta: "Book a Session",
+    ctaAction: "calendar" as const,
     color: "38 90% 58%",
   },
   {
@@ -19,6 +21,7 @@ const tabs = [
     title: "Get Matched With a Coach",
     desc: "Tell me your goals and I'll pair you with the best coach on my team — strength, weight loss, sports performance, rehab, you name it.",
     cta: "Find My Coach",
+    ctaAction: "fitness" as const,
     color: "195 90% 55%",
   },
   {
@@ -28,6 +31,7 @@ const tabs = [
     title: "Group Programs & Classes",
     desc: "Join our structured group training sessions. From HIIT to strength circuits — push yourself alongside others who are just as hungry.",
     cta: "View Programs",
+    ctaAction: "external" as const,
     color: "150 80% 50%",
   },
 ];
@@ -35,6 +39,17 @@ const tabs = [
 const TrainingSection = () => {
   const [active, setActive] = useState("personal");
   const current = tabs.find((t) => t.id === active)!;
+  const navigate = useNavigate();
+
+  const handleCta = () => {
+    if (current.ctaAction === "calendar") {
+      window.open("https://calendar.app.google/2MSzLtJVX7GZ93Zs9", "_blank", "noopener,noreferrer");
+    } else if (current.ctaAction === "fitness") {
+      navigate("/fitness");
+    } else if (current.ctaAction === "external") {
+      window.open("https://impactzonenj.com", "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <section id="training" className="relative overflow-hidden">
@@ -125,12 +140,20 @@ const TrainingSection = () => {
               </p>
 
               <button
-                className="flex items-center gap-2 text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition-all duration-300 group"
-                style={{ color: `hsl(${current.color})` }}
-                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                className="flex items-center gap-2 text-xs sm:text-sm font-display font-bold tracking-wider uppercase transition-all duration-300 group px-4 py-2.5 rounded-lg"
+                style={{
+                  color: `hsl(${current.color})`,
+                  background: `hsl(${current.color} / 0.12)`,
+                  border: `1px solid hsl(${current.color} / 0.3)`,
+                }}
+                onClick={handleCta}
               >
                 <span>{current.cta}</span>
-                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+                {current.ctaAction === "external" || current.ctaAction === "calendar" ? (
+                  <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+                ) : (
+                  <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+                )}
               </button>
             </div>
           </motion.div>
