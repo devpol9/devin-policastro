@@ -18,7 +18,7 @@ const verticals = [
     title: "HYDRATION",
     desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.",
     link: "https://drink2thirty.com",
-    color: "195 90% 55%",
+    route: null,
     label: "2THIRTY",
   },
   {
