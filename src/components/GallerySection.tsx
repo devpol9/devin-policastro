@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Dumbbell, Zap, Star, Target, Clock, MapPin } from "lucide-react";
+import { Dumbbell, Zap, Star, Target, Clock, MapPin, ArrowRight } from "lucide-react";
+import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 
 const images = [
   { src: "/images/iz-hero.jpg", alt: "Impact Zone Gym Floor", label: "The Floor" },
