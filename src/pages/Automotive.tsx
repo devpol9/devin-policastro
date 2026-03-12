@@ -218,19 +218,6 @@ const Automotive = () => {
                       className="flex items-center gap-2 pt-4"
                       style={{ borderTop: `1px solid hsl(${COLOR} / 0.12)` }}
                     >
-                      <a
-                        href={service.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                        style={{
-                          background: `hsl(${COLOR} / 0.1)`,
-                          border: `1px solid hsl(${COLOR} / 0.2)`,
-                          color: `hsl(${COLOR} / 0.6)`,
-                        }}
-                      >
-                        <ExternalLink size={13} />
-                      </a>
                       <button
                         onClick={() => openInquiry(service.name)}
                         className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02]"
