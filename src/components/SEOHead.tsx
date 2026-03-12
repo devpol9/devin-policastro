@@ -6,11 +6,12 @@ interface SEOHeadProps {
   canonicalPath: string;
   type?: "website" | "article";
   jsonLd?: object;
+  ogImage?: string;
 }
 
 const SITE_URL = "https://brand-hq-hub.lovable.app";
 
-const SEOHead = ({ title, description, canonicalPath, type = "website", jsonLd }: SEOHeadProps) => {
+const SEOHead = ({ title, description, canonicalPath, type = "website", jsonLd, ogImage }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
 
@@ -29,6 +30,11 @@ const SEOHead = ({ title, description, canonicalPath, type = "website", jsonLd }
     setMeta("property", "og:description", description);
     setMeta("property", "og:type", type);
     setMeta("property", "og:url", `${SITE_URL}${canonicalPath}`);
+    if (ogImage) {
+      const imageUrl = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
+      setMeta("property", "og:image", imageUrl);
+      setMeta("name", "twitter:image", imageUrl);
+    }
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
 

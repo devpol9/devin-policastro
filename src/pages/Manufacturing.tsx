@@ -54,7 +54,8 @@ const Manufacturing = () => {
             </h1>
             <p className="text-muted-foreground max-w-lg text-sm sm:text-base leading-[1.8]">
               From concept to shelf — we manufacture, formulate, and bring products to life.
-              More details coming soon. Reach out to learn about current capabilities.
+              Custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more.
+              Premium fitness products from idea to delivery.
             </p>
           </motion.div>
 

@@ -130,7 +130,7 @@ const Automotive = () => {
               [ Automotive ]
             </p>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Car Culture
+              NextGen Auto
               <br />
               <span className="text-muted-foreground">& Custom Builds.</span>
             </h1>
@@ -215,7 +215,7 @@ const Automotive = () => {
                           border: `1px solid hsl(${COLOR} / 0.2)`,
                         }}
                       >
-                        CAR CULTURE
+                        NEXTGEN AUTO
                       </span>
                     </div>
 

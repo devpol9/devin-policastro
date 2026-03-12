@@ -159,7 +159,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-muted-foreground text-xs sm:text-lg max-w-xl mx-auto mb-8 sm:mb-14 font-body leading-relaxed px-2"
+          className="text-muted-foreground text-xs sm:text-base lg:text-lg max-w-xl mx-auto mb-8 sm:mb-14 font-body leading-relaxed px-2"
         >
           I build brands, connect people, and turn every handshake into a revenue stream.
           <span className="text-foreground/70 font-medium"> Norwood, NJ.</span>
