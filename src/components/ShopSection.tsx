@@ -78,7 +78,7 @@ const products: Product[] = [
     note: "Clean, macro-friendly meals delivered. Real food, real results. Fuel your training the right way.",
     category: "Nutrition",
     code: "DEVIN10",
-    link: "https://fitrition.com",
+    link: "https://fitritionmeals.com/collections/all",
     image: "/images/fitrition-plate.png",
     color: "120 60% 50%",
     glowColor: "120 60% 50%",
