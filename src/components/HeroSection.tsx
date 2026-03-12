@@ -161,8 +161,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-muted-foreground text-xs sm:text-lg max-w-xl mx-auto mb-8 sm:mb-14 font-body leading-relaxed px-2"
         >
-          Entrepreneur dedicated to creating impactful experiences across fitness, wellness, and business.
-          <span className="text-foreground/70 font-medium"> 335 Chestnut St. Norwood, NJ.</span>
+          I build brands, connect people, and turn every handshake into a revenue stream.
+          <span className="text-foreground/70 font-medium"> Norwood, NJ.</span>
         </motion.p>
 
         <motion.div
