@@ -24,26 +24,37 @@ const MobileBottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/90 backdrop-blur-xl border-t border-border/30">
-      <div className="flex items-center justify-around h-16 px-2">
+      <div className="flex items-center justify-around h-14 px-2">
         {!isHome && (
           <button
             onClick={() => navigate("/")}
-            className="flex flex-col items-center gap-1 text-primary transition-colors"
+            className="flex flex-col items-center gap-0.5 text-primary transition-colors"
           >
-            <ArrowLeft size={20} />
-            <span className="text-[10px] font-medium">Back</span>
+            <ArrowLeft size={18} />
+            <span className="text-[9px] font-medium">Back</span>
           </button>
         )}
-        {(isHome ? homeItems : homeItems).map((item) => (
+        {isHome ? (
+          homeItems.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => handleClick(item.href)}
+              className="flex flex-col items-center gap-0.5 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <item.icon size={18} />
+              <span className="text-[9px] font-medium">{item.label}</span>
+            </button>
+          ))
+        ) : (
+          // Sub-pages: only show Back + Contact (2 items, no crowding)
           <button
-            key={item.href}
-            onClick={() => handleClick(item.href)}
-            className="flex flex-col items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
+            onClick={() => handleClick("#contact")}
+            className="flex flex-col items-center gap-0.5 text-muted-foreground hover:text-primary transition-colors"
           >
-            <item.icon size={20} />
-            <span className="text-[10px] font-medium">{item.label}</span>
+            <Mail size={18} />
+            <span className="text-[9px] font-medium">Contact</span>
           </button>
-        ))}
+        )}
       </div>
     </nav>
   );

@@ -100,30 +100,34 @@ const Content = () => {
           {/* Instagram Reels Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-12">
             {reelIds.map((reelId, i) => (
-              <motion.div
+              <motion.a
                 key={reelId}
+                href={`https://www.instagram.com/reel/${reelId}/`}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.05 }}
-                className="aspect-[9/16] rounded-lg overflow-hidden relative group"
+                className="aspect-[9/16] rounded-lg overflow-hidden relative group block"
                 style={{
                   background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
                   border: `1px solid hsl(${COLOR} / 0.15)`,
                 }}
               >
+                {/* Embed — hidden on touch devices where iframes are problematic */}
                 <iframe
                   src={`https://www.instagram.com/reel/${reelId}/embed/`}
-                  className="w-full h-full border-0"
+                  className="w-full h-full border-0 hidden sm:block pointer-events-none"
                   allowFullScreen
                   loading="lazy"
                   title={`Instagram Reel ${i + 1}`}
                 />
-                {/* Fallback overlay for blocked embeds */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <Instagram size={32} className="mb-2" style={{ color: `hsl(${COLOR})` }} />
-                  <p className="text-xs text-muted-foreground font-display">View on Instagram</p>
+                {/* Always-visible card for mobile / fallback */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 bg-card/80">
+                  <Instagram size={28} className="mb-2" style={{ color: `hsl(${COLOR})` }} />
+                  <p className="text-[11px] text-muted-foreground font-display font-medium">View on Instagram</p>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
