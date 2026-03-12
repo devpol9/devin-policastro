@@ -48,7 +48,7 @@ const verticals = [
     link: null,
     route: "/automotive",
     color: "18 90% 58%",
-    label: "Car Culture",
+    label: "NextGen Auto",
   },
   {
     icon: Video,
@@ -109,7 +109,7 @@ const AboutSection = () => {
         </h2>
         <p className="text-muted-foreground max-w-md text-sm sm:text-base leading-[1.8]">
           Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY,
-          manufacturing through Valence.
+          manufacturing through Creative Vision, and developing Valence.
         </p>
       </motion.div>
 
@@ -185,13 +185,15 @@ const AboutSection = () => {
                   </h3>
                   <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7] flex-1">{v.desc}</p>
 
-                  <div
-                    className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
-                    style={{ color: `hsl(${v.color})` }}
-                  >
-                    <span>Explore</span>
-                    <span className="text-sm">→</span>
-                  </div>
+                  {(v.link || v.route) && (
+                    <div
+                      className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
+                      style={{ color: `hsl(${v.color})` }}
+                    >
+                      <span>Explore</span>
+                      <span className="text-sm">→</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </TiltCard>
