@@ -185,13 +185,15 @@ const AboutSection = () => {
                   </h3>
                   <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7] flex-1">{v.desc}</p>
 
-                  <div
-                    className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
-                    style={{ color: `hsl(${v.color})` }}
-                  >
-                    <span>Explore</span>
-                    <span className="text-sm">→</span>
-                  </div>
+                  {(v.link || v.route) && (
+                    <div
+                      className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
+                      style={{ color: `hsl(${v.color})` }}
+                    >
+                      <span>Explore</span>
+                      <span className="text-sm">→</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </TiltCard>

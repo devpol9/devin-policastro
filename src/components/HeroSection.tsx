@@ -126,7 +126,7 @@ const HeroSection = () => {
           transition={{ duration: 1.5, delay: 0.4 }}
           className="text-muted-foreground font-display font-medium text-[9px] sm:text-xs uppercase mb-6 sm:mb-8 px-2 tracking-[0.18em] sm:tracking-[0.25em] leading-relaxed"
         >
-          2THIRTY · Impact Zone · Valence · Manufacturing
+          2THIRTY · Impact Zone · Creative Vision · Valence
         </motion.p>
 
         <h1 className="font-display font-extrabold text-[clamp(1.7rem,8vw,8rem)] leading-[0.85] mb-4 tracking-[-0.02em] max-w-full">
