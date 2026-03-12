@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import TiltCard from "@/components/effects/TiltCard";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
-import AutomotiveDialog from "@/components/services/AutomotiveDialog";
+
 
 interface ServiceTab {
   key: string;
