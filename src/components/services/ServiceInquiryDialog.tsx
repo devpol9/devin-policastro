@@ -79,7 +79,7 @@ const ServiceInquiryDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg bg-card border-border/30 p-0 overflow-hidden">
+      <DialogContent className="sm:max-w-lg bg-card border-border/30 p-0 max-h-[90vh] overflow-y-auto">
         <style>{`
           .inquiry-${colorId} input:focus,
           .inquiry-${colorId} textarea:focus {
