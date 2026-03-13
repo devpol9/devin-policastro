@@ -98,7 +98,7 @@ const Footer = () => (
           © {new Date().getFullYear()} Devin Policastro. All rights reserved.
         </p>
         <p className="text-muted-foreground/20 text-[10px] font-display tracking-wide">
-          Built different.
+          Norwood, NJ.
         </p>
       </div>
     </div>

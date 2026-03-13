@@ -29,7 +29,7 @@ const tabs = [
     label: "Programs",
     icon: Zap,
     title: "Group Programs & Classes",
-    desc: "Join our structured group training sessions. From HIIT to strength circuits — push yourself alongside others who are just as hungry.",
+    desc: "Structured group sessions — HIIT, strength circuits, and sport-specific programming. Show up, put in the work, get better.",
     cta: "View Programs",
     ctaAction: "external" as const,
     color: "150 80% 50%",

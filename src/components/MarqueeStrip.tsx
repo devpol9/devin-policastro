@@ -15,7 +15,7 @@ const words = [
   "5-IN-1 MIXER",
   "51K SQ FT",
   "NO CONTRACTS",
-  "RELENTLESS",
+  "BUILDER",
 ];
 
 const MarqueeStrip = () => (
