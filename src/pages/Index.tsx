@@ -1,5 +1,5 @@
 import SEOHead from "@/components/SEOHead";
-import { personJsonLd, seoPages } from "@/lib/seoData";
+import { personJsonLd, localBusinessJsonLd, seoPages } from "@/lib/seoData";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import HeroSection from "@/components/HeroSection";
@@ -21,7 +21,7 @@ import AIChatbot from "@/components/AIChatbot";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SEOHead {...seoPages["/"]} canonicalPath="/" jsonLd={personJsonLd} ogImage="/images/og-image.png" />
+      <SEOHead {...seoPages["/"]} canonicalPath="/" jsonLd={[personJsonLd, localBusinessJsonLd]} ogImage="/images/og-image.png" />
       <CustomCursor />
       <MouseSpotlight />
       <FloatingNav />
