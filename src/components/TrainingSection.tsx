@@ -9,7 +9,7 @@ const tabs = [
     label: "Train With Devin",
     icon: Dumbbell,
     title: "1-on-1 With Devin",
-    desc: "Personal sessions with me. I'll push you past your limits and build a program that actually works for your goals. No cookie-cutter plans — just results.",
+    desc: "Train with me directly. I'll build a program around your goals, your schedule, and what actually works — not some generic template.",
     cta: "Book a Session",
     ctaAction: "calendar" as const,
     color: "38 90% 58%",
