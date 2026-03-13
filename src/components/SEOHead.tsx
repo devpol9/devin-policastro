@@ -9,7 +9,7 @@ interface SEOHeadProps {
   ogImage?: string;
 }
 
-const SITE_URL = "https://devin-policastro.lovable.app";
+const SITE_URL = "https://devinpolicastro.com";
 
 const SEOHead = ({ title, description, canonicalPath, type = "website", jsonLd, ogImage }: SEOHeadProps) => {
   useEffect(() => {
