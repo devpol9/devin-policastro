@@ -1,5 +1,5 @@
 import SEOHead from "@/components/SEOHead";
-import { personJsonLd, seoPages } from "@/lib/seoData";
+import { personJsonLd, localBusinessJsonLd, seoPages } from "@/lib/seoData";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import HeroSection from "@/components/HeroSection";
