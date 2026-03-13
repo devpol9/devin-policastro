@@ -1,4 +1,4 @@
-const SITE_URL = "https://devin-policastro.lovable.app";
+const SITE_URL = "https://devinpolicastro.com";
 
 export const personJsonLd = {
   "@context": "https://schema.org",
