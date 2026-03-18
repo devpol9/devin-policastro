@@ -129,7 +129,7 @@ const HeroSection = () => {
           2THIRTY · Impact Zone · Creative Vision · Valence
         </motion.p>
 
-        <h1 className="font-display font-extrabold text-[clamp(1.7rem,8vw,8rem)] leading-[0.85] mb-4 tracking-[-0.02em] max-w-full">
+        <h1 className="font-display font-extrabold text-[clamp(1.7rem,8vw,8rem)] leading-[0.85] mb-4 tracking-[-0.02em] max-w-full overflow-visible">
           <motion.span
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,9 +142,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="block gradient-text text-[clamp(1.9rem,8.2vw,7.5rem)] tracking-[-0.04em] max-w-[90vw] mx-auto pr-[0.05em]"
+            className="block gradient-text text-[clamp(1.9rem,7.8vw,7.2rem)] tracking-[-0.04em] mx-auto pr-[0.05em]"
           >
-            <TextScramble text="POLICASTRO" delay={1200} className="inline-block max-w-full" />
+            <TextScramble text="POLICASTRO" delay={1200} className="inline-block" />
           </motion.span>
         </h1>
 
