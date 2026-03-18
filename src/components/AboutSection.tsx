@@ -99,13 +99,13 @@ const AboutSection = () => {
         />
         <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 01 — My World ]</p>
         <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-          I Don't Pick
+          I Don't Wait for
           <br />
-          One Lane.
+          Opportunities.
           <br />
-          <span className="text-muted-foreground">I Build the</span>
+          <span className="text-muted-foreground">I Build</span>
           <br />
-          <span className="gradient-text">Highway.</span>
+          <span className="gradient-text">Them.</span>
         </h2>
         <p className="text-muted-foreground max-w-md text-sm sm:text-base leading-[1.8]">
           Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY,
