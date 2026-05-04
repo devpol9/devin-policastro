@@ -60,7 +60,7 @@ const LinkHubSection = () => {
             transition={{ duration: 1 }}
             className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">Link Hub</p>
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5">Link Hub</p>
           <h2 className="font-display font-extrabold text-3xl sm:text-6xl mb-4 tracking-[-0.02em]">
             Everything.
             <br />
@@ -78,7 +78,7 @@ const LinkHubSection = () => {
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-display font-semibold tracking-[0.1em] uppercase transition-all duration-500 ${
+              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-display font-semibold tracking-[0.1em]  transition-all duration-500 ${
                 activeCategory === cat.key
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
                   : "bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card border border-border/20"

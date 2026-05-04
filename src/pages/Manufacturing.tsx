@@ -40,7 +40,7 @@ const Manufacturing = () => {
               transition={{ duration: 1 }}
               className="h-px bg-primary/60 mb-8 sm:mb-10"
             />
-            <p className="font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
+            <p className="font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
               [ Manufacturing ]
             </p>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">

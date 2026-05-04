@@ -157,7 +157,7 @@ const Admin = () => {
         <div className="flex flex-wrap gap-2 mb-6">
           <div className="flex items-center gap-2 mr-4">
             <Filter size={14} className="text-muted-foreground" />
-            <span className="text-xs text-muted-foreground font-display uppercase tracking-wider">Service:</span>
+            <span className="text-xs text-muted-foreground font-display  tracking-wider">Service:</span>
           </div>
           <button
             onClick={() => setFilter("all")}
@@ -180,7 +180,7 @@ const Admin = () => {
           ))}
 
           <div className="flex items-center gap-2 ml-4 mr-2">
-            <span className="text-xs text-muted-foreground font-display uppercase tracking-wider">Status:</span>
+            <span className="text-xs text-muted-foreground font-display  tracking-wider">Status:</span>
           </div>
           {["all", "new", "contacted", "in-progress", "closed"].map((s) => (
             <button
@@ -225,7 +225,7 @@ const Admin = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
                         <span
-                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold uppercase tracking-wider"
+                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold  tracking-wider"
                           style={{
                             background: `hsl(${serviceColor} / 0.15)`,
                             color: `hsl(${serviceColor})`,
@@ -237,7 +237,7 @@ const Admin = () => {
                         <select
                           value={inq.status}
                           onChange={(e) => updateStatus(inq.id, e.target.value)}
-                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold uppercase tracking-wider bg-transparent cursor-pointer"
+                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold  tracking-wider bg-transparent cursor-pointer"
                           style={{
                             color: `hsl(${statusColor})`,
                             border: `1px solid hsl(${statusColor} / 0.3)`,
@@ -272,7 +272,7 @@ const Admin = () => {
                           if (!value) return null;
                           return (
                             <div key={key} className="text-xs">
-                              <span className="text-muted-foreground font-display uppercase tracking-wider text-[10px]">
+                              <span className="text-muted-foreground font-display  tracking-wider text-[10px]">
                                 {key}:
                               </span>{" "}
                               <span className="text-foreground/80">{value}</span>

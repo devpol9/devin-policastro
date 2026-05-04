@@ -157,7 +157,7 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
                         </a>
                         <button
                           onClick={() => openInquiry(service.name)}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02]"
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded text-[10px] sm:text-xs font-display font-semibold tracking-wider  transition-all duration-300 hover:scale-[1.02]"
                           style={{
                             background: `hsl(${COLOR})`,
                             color: `hsl(36 30% 98%)`,
