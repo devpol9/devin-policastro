@@ -194,7 +194,7 @@ const ContactSection = () => {
               transition={{ duration: 1 }}
               className="h-px bg-primary/60 mb-8 sm:mb-10"
             />
-            <p className="text-primary/80 font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5">Contact</p>
+            <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Contact</p>
             <h2 className="font-display font-extrabold text-3xl sm:text-5xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
               Let's Talk
               <br />
@@ -247,7 +247,7 @@ const ContactSection = () => {
             {/* Name / Email row */}
             <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-2 block">Name *</label>
+                <label className="text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-2 block">Name *</label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
@@ -258,7 +258,7 @@ const ContactSection = () => {
                 />
               </div>
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-2 block">Email *</label>
+                <label className="text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-2 block">Email *</label>
                 <Input
                   value={formData.email}
                   onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
@@ -273,7 +273,7 @@ const ContactSection = () => {
 
             {/* Subject selector — card grid */}
             <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-3 block">What's this about? *</label>
+              <label className="text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-3 block">What's this about? *</label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {subjectOptions.map((opt) => {
                   const isActive = formData.subject === opt.value;
@@ -323,7 +323,7 @@ const ContactSection = () => {
                   className="overflow-hidden"
                 >
                   <div className="pt-2 border-t border-primary/10 space-y-3 sm:space-y-4">
-                    <p className="text-[9px] font-display font-bold tracking-[0.3em]  text-primary/60">
+                    <p className="text-[9px] font-display font-bold tracking-[0.12em]  text-primary/60">
                       {selectedSubject.label} →
                     </p>
                     {selectedSubject.fields.map((field, i) => (

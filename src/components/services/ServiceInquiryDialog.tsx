@@ -107,7 +107,7 @@ const ServiceInquiryDialog = ({
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-1 block">
+                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
                   Name *
                 </label>
                 <Input
@@ -120,7 +120,7 @@ const ServiceInquiryDialog = ({
                 />
               </div>
               <div>
-                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-1 block">
+                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
                   Email *
                 </label>
                 <Input
@@ -136,7 +136,7 @@ const ServiceInquiryDialog = ({
             </div>
 
             <div>
-              <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-1 block">
+              <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
                 Phone
               </label>
               <Input
@@ -155,7 +155,7 @@ const ServiceInquiryDialog = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04 }}
               >
-                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.3em]  text-muted-foreground/70 mb-1 block">
+                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
                   {field.label}
                   {field.required ? " *" : ""}
                 </label>

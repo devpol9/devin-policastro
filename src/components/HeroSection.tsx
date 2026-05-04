@@ -57,27 +57,27 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 mb-6 sm:mb-8"
             >
               <span className="h-px w-8 bg-foreground/30" />
-              <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.3em] ">
+              <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.12em] ">
                 Norwood, NJ — Builder
               </span>
             </motion.div>
 
-            <h1 className="font-display font-extrabold leading-[0.9] tracking-[-0.03em] mb-6 sm:mb-8">
+            <h1 className="font-display font-semibold leading-[0.95] tracking-[-0.035em] mb-6 sm:mb-8 text-[clamp(2.6rem,8.5vw,6.5rem)]">
               <motion.span
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-foreground text-[clamp(2.4rem,9vw,7rem)]"
+                transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-foreground"
               >
                 Devin
               </motion.span>
               <motion.span
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-foreground/40 text-[clamp(2.4rem,9vw,7rem)] italic font-light"
+                transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-accent"
               >
-                Policastro.
+                Policastro
               </motion.span>
             </h1>
 
@@ -131,7 +131,7 @@ const HeroSection = () => {
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-muted-foreground text-[10px] font-display tracking-[0.4em]  group-hover:text-foreground transition-colors">
+          <span className="text-muted-foreground text-[10px] font-display tracking-[0.15em]  group-hover:text-foreground transition-colors">
             Scroll
           </span>
           <ChevronDown size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />

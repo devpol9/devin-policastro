@@ -114,7 +114,7 @@ const ShopSection = () => {
             transition={{ duration: 1 }}
             className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5">Shop & Codes</p>
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Shop & Codes</p>
           <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
             Things I
             <br />
@@ -218,11 +218,11 @@ const ShopSection = () => {
                             <span className="text-muted-foreground text-xs line-through">MSRP $19.99</span>
                             <span className="text-foreground/70 text-xs">→</span>
                             <span className="text-foreground text-sm font-semibold">{product.originalPrice}</span>
-                            <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider">Free shipping</span>
+                            <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-[0.06em]">Free shipping</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="font-display font-bold text-base sm:text-lg" style={{ color: `hsl(${product.color})` }}>{product.price}</span>
-                            <span className="text-[9px] font-display font-bold tracking-wider  px-1.5 py-0.5 rounded" style={{ color: `hsl(${product.color})`, background: `hsl(${product.color} / 0.15)` }}>with code</span>
+                            <span className="text-[9px] font-display font-bold tracking-[0.06em]  px-1.5 py-0.5 rounded" style={{ color: `hsl(${product.color})`, background: `hsl(${product.color} / 0.15)` }}>with code</span>
                           </div>
                         </div>
                       )}
@@ -262,7 +262,7 @@ const ShopSection = () => {
                           href={product.tourLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 mt-3 sm:mt-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wider  transition-all duration-500"
+                          className="flex items-center justify-center gap-2 mt-3 sm:mt-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-[0.06em]  transition-all duration-500"
                           style={{
                             border: `1px solid hsl(${product.color} / 0.3)`,
                             color: `hsl(${product.color} / 0.8)`,

@@ -60,7 +60,7 @@ const LinkHubSection = () => {
             transition={{ duration: 1 }}
             className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5">Link Hub</p>
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Link Hub</p>
           <h2 className="font-display font-extrabold text-3xl sm:text-6xl mb-4 tracking-[-0.02em]">
             Everything.
             <br />

@@ -65,9 +65,9 @@ const TrainingSection = () => {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 font-display font-extrabold text-sm sm:text-lg tracking-[0.35em]  text-foreground/70"
+          className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 font-display font-extrabold text-sm sm:text-lg tracking-[0.14em]  text-foreground/70"
         >
-          <span className="text-primary/80 text-[10px] tracking-[0.5em] block mb-1">Training</span>
+          <span className="text-primary/80 text-[10px] tracking-[0.18em] block mb-1">Training</span>
         </motion.p>
       </div>
 
@@ -140,7 +140,7 @@ const TrainingSection = () => {
               </p>
 
               <button
-                className="flex items-center gap-2 text-xs sm:text-sm font-display font-bold tracking-wider  transition-all duration-300 group px-4 py-2.5 rounded-lg"
+                className="flex items-center gap-2 text-xs sm:text-sm font-display font-bold tracking-[0.06em]  transition-all duration-300 group px-4 py-2.5 rounded-lg"
                 style={{
                   color: `hsl(${current.color})`,
                   background: `hsl(${current.color} / 0.12)`,

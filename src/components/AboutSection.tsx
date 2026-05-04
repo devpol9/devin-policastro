@@ -97,7 +97,7 @@ const AboutSection = () => {
           transition={{ duration: 1 }}
           className="h-px bg-primary/60 mb-8 sm:mb-10"
         />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5">My World</p>
+        <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">My World</p>
         <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
           <span className="text-muted-foreground">I Just</span>
           <br />
@@ -163,7 +163,7 @@ const AboutSection = () => {
                       />
                     </div>
                     <span
-                      className="text-[8px] sm:text-[9px] font-display font-bold tracking-[0.3em]  px-2.5 py-1 rounded-full"
+                      className="text-[8px] sm:text-[9px] font-display font-bold tracking-[0.12em]  px-2.5 py-1 rounded-full"
                       style={{
                         color: `hsl(${v.color})`,
                         background: `hsl(${v.color} / 0.1)`,
@@ -183,7 +183,7 @@ const AboutSection = () => {
 
                   {(v.link || v.route) && (
                     <div
-                      className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-widest  opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
+                      className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-[0.1em]  opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
                       style={{ color: `hsl(${v.color})` }}
                     >
                       <span>Explore</span>
