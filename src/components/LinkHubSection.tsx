@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users, type LucideIcon } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 type LinkCategory = "socials" | "2thirty" | "impact-zone";
 
