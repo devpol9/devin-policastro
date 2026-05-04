@@ -10,6 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
+import SectionHeader from "@/components/SectionHeader";
 import { supabase } from "@/integrations/supabase/client";
 
 type SubjectKey = "" | "gym-tour" | "membership" | "training" | "wholesale" | "brand-consulting" | "collab" | "general";
