@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Paintbrush, Shield, Sun, Gauge, Sparkles, Car, ArrowRight, ExternalLink, Disc, Sofa, Lightbulb, type LucideIcon } from "lucide-react";
 import ServiceInquiryDialog from "./ServiceInquiryDialog";
 
-const COLOR = "0 85% 60%";
+const COLOR = "12 45% 48%";
 
 interface AutoService {
   icon: LucideIcon;

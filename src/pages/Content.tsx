@@ -11,7 +11,7 @@ import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import { useState } from "react";
 
-const COLOR = "340 80% 62%";
+const COLOR = "350 22% 55%";
 
 const INSTAGRAM_USERNAME = "devinpolicastro";
 
@@ -22,7 +22,7 @@ const platforms = [
     url: "https://instagram.com/devinpolicastro",
     icon: Instagram,
     desc: "The daily grind — gym, business, builds, and real talk. No filter.",
-    color: "340 80% 62%",
+    color: "350 22% 55%",
   },
   {
     name: "TikTok",
@@ -30,7 +30,7 @@ const platforms = [
     url: "https://tiktok.com/@devinpolicastro",
     icon: Video,
     desc: "Short-form content. Business tips, fitness clips, and behind the scenes.",
-    color: "280 100% 70%",
+    color: "270 18% 55%",
   },
   {
     name: "YouTube",
@@ -38,7 +38,7 @@ const platforms = [
     url: "https://youtube.com/@devinpolicastro",
     icon: Youtube,
     desc: "Long-form builds, vlogs, business breakdowns, and full gym tours.",
-    color: "0 85% 60%",
+    color: "12 45% 48%",
   },
 ];
 

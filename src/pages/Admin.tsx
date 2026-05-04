@@ -20,16 +20,16 @@ interface Inquiry {
 
 const STATUS_COLORS: Record<string, string> = {
   new: "24 32% 52%",
-  contacted: "210 80% 60%",
-  "in-progress": "280 70% 60%",
+  contacted: "210 22% 50%",
+  "in-progress": "270 16% 48%",
   closed: "140 60% 45%",
 };
 
 const SERVICE_COLORS: Record<string, string> = {
-  "Manufacturing Inquiry": "280 70% 60%",
-  "Content / Collab Inquiry": "340 80% 62%",
+  "Manufacturing Inquiry": "270 16% 48%",
+  "Content / Collab Inquiry": "350 22% 55%",
   "Automotive Inquiry": "0 75% 55%",
-  "Financing Inquiry": "210 80% 60%",
+  "Financing Inquiry": "210 22% 50%",
   "Consulting Inquiry": "24 32% 52%",
   "Networking Inquiry": "160 60% 45%",
 };

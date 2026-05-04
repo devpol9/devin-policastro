@@ -11,7 +11,7 @@ import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import { useState } from "react";
 
-const COLOR = "280 70% 60%";
+const COLOR = "270 16% 48%";
 
 const Manufacturing = () => {
   const [inquiryOpen, setInquiryOpen] = useState(false);

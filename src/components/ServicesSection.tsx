@@ -15,12 +15,12 @@ interface ServiceTab {
 }
 
 const tabs: ServiceTab[] = [
-  { key: "consulting", label: "Consulting", icon: Briefcase, color: "265 80% 65%", route: "/consulting" },
-  { key: "manufacturing", label: "Manufacturing", icon: Factory, color: "280 70% 60%", route: "/manufacturing" },
-  { key: "content", label: "Content", icon: Camera, color: "340 80% 62%", route: "/content" },
-  { key: "automotive", label: "Automotive", icon: Car, color: "0 85% 60%", route: "/automotive" },
-  { key: "financing", label: "Financing", icon: CreditCard, color: "210 80% 60%", route: "/financing" },
-  { key: "networking", label: "Networking", icon: Handshake, color: "155 75% 48%", route: "/networking" },
+  { key: "consulting", label: "Consulting", icon: Briefcase, color: "270 16% 50%", route: "/consulting" },
+  { key: "manufacturing", label: "Manufacturing", icon: Factory, color: "270 16% 48%", route: "/manufacturing" },
+  { key: "content", label: "Content", icon: Camera, color: "350 22% 55%", route: "/content" },
+  { key: "automotive", label: "Automotive", icon: Car, color: "12 45% 48%", route: "/automotive" },
+  { key: "financing", label: "Financing", icon: CreditCard, color: "210 22% 50%", route: "/financing" },
+  { key: "networking", label: "Networking", icon: Handshake, color: "140 18% 42%", route: "/networking" },
   { key: "fitness", label: "Fitness", icon: Dumbbell, color: "24 32% 52%", route: "/fitness" },
 ];
 

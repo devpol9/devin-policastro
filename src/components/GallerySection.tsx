@@ -18,11 +18,11 @@ const images = [
 
 const perks = [
   { icon: Dumbbell, text: "100+ Machines & Free Weights", color: "24 32% 52%" },
-  { icon: Zap, text: "Cold Plunges & Infrared Saunas", color: "195 90% 55%" },
-  { icon: Star, text: "Hot Yoga & Red Light Therapy", color: "340 80% 62%" },
-  { icon: Target, text: "Basketball Court & 5K Turf", color: "155 85% 55%" },
-  { icon: Clock, text: "Month-to-Month, No Commitment", color: "265 80% 65%" },
-  { icon: MapPin, text: "335 Chestnut St, Norwood NJ", color: "18 90% 58%" },
+  { icon: Zap, text: "Cold Plunges & Infrared Saunas", color: "200 22% 50%" },
+  { icon: Star, text: "Hot Yoga & Red Light Therapy", color: "350 22% 55%" },
+  { icon: Target, text: "Basketball Court & 5K Turf", color: "140 18% 45%" },
+  { icon: Clock, text: "Month-to-Month, No Commitment", color: "270 16% 50%" },
+  { icon: MapPin, text: "335 Chestnut St, Norwood NJ", color: "18 38% 50%" },
 ];
 
 const GallerySection = () => {

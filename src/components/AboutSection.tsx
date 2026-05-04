@@ -20,7 +20,7 @@ const verticals = [
     desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.",
     link: "https://drink2thirty.com",
     route: null,
-    color: "195 90% 55%",
+    color: "200 22% 50%",
     label: "2THIRTY",
   },
   {
@@ -29,7 +29,7 @@ const verticals = [
     desc: "Creative Vision — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
     link: null,
     route: "/manufacturing",
-    color: "280 100% 70%",
+    color: "270 18% 55%",
     label: "Creative Vision",
   },
   {
@@ -38,7 +38,7 @@ const verticals = [
     desc: "The gym industry runs on broken software. Valence is the all-in-one platform replacing ABC Fitness and Mindbody — member management, billing, scheduling, and retention tools built by someone who actually runs a gym.",
     link: null,
     route: null,
-    color: "155 85% 55%",
+    color: "140 18% 45%",
     label: "Coming Soon",
   },
   {
@@ -47,7 +47,7 @@ const verticals = [
     desc: "Vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. I'll connect you with the right people.",
     link: null,
     route: "/automotive",
-    color: "18 90% 58%",
+    color: "18 38% 50%",
     label: "AUTOMOTIVE",
   },
   {
@@ -56,7 +56,7 @@ const verticals = [
     desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.",
     link: "https://instagram.com/devinpolicastro",
     route: null,
-    color: "340 80% 62%",
+    color: "350 22% 55%",
     label: "@devinpolicastro",
   },
 ];

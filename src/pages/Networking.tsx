@@ -11,7 +11,7 @@ import CustomCursor from "@/components/effects/CustomCursor";
 import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 
-const COLOR = "155 75% 48%";
+const COLOR = "140 18% 42%";
 
 const networkingServices = [
   {

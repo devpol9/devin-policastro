@@ -11,7 +11,7 @@ import CustomCursor from "@/components/effects/CustomCursor";
 import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 
-const COLOR = "0 85% 60%";
+const COLOR = "12 45% 48%";
 
 interface AutoService {
   icon: LucideIcon;

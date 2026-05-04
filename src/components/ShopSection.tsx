@@ -32,8 +32,8 @@ const products: Product[] = [
     reviews: "847",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=strawberry-lemonade&quantity=6-pack",
     image: "/images/2thirty-strawberry.png",
-    color: "45 95% 55%",
-    glowColor: "45 95% 55%",
+    color: "38 35% 52%",
+    glowColor: "38 35% 52%",
   },
   {
     name: "Limeade",
@@ -46,8 +46,8 @@ const products: Product[] = [
     reviews: "519",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=limeade&quantity=6-pack",
     image: "/images/2thirty-limeade.png",
-    color: "130 70% 50%",
-    glowColor: "130 70% 50%",
+    color: "140 18% 42%",
+    glowColor: "140 18% 42%",
   },
   {
     name: "Red Raspberry",
@@ -60,8 +60,8 @@ const products: Product[] = [
     reviews: "632",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=red-raspberry&quantity=6-pack",
     image: "/images/2thirty-raspberry.png",
-    color: "340 75% 55%",
-    glowColor: "340 75% 55%",
+    color: "350 22% 50%",
+    glowColor: "350 22% 50%",
   },
   {
     name: "Impact Zone Membership",
@@ -80,8 +80,8 @@ const products: Product[] = [
     code: "DEVIN10",
     link: "https://fitritionmeals.com/collections/all",
     image: "/images/fitrition-plate.png",
-    color: "120 60% 50%",
-    glowColor: "120 60% 50%",
+    color: "140 18% 45%",
+    glowColor: "140 18% 45%",
   },
 ];
 
