@@ -8,6 +8,7 @@ import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
+import SectionHeader from "@/components/SectionHeader";
 
 const COLOR = "24 32% 52%";
 
@@ -103,31 +104,15 @@ const Fitness = () => {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-10 sm:mb-16"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 60 }}
-              transition={{ duration: 1 }}
-              className="h-px mb-8 sm:mb-10"
-              style={{ background: `hsl(${COLOR} / 0.6)` }}
-            />
-            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
-              [ Fitness ]
-            </p>
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Train With
-              <br />
-              <span className="text-muted-foreground">Purpose.</span>
-            </h1>
-            <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
-              Personal training, lifestyle coaching, nutrition, and structured programming.
-              Whether you're just starting or leveling up — I'll build the plan and keep you accountable.
-            </p>
-
+          <SectionHeader
+            as="h1"
+            numeral="07"
+            eyebrow="Fitness"
+            accentColor={COLOR}
+            title={<>Train with <span className="italic font-light" style={{ color: `hsl(${COLOR})` }}>purpose.</span></>}
+            description="Personal training, lifestyle coaching, nutrition, and structured programming. Whether you're just starting or leveling up — I'll build the plan and keep you accountable."
+          />
+          <div className="mb-10 sm:mb-16">
             <button
               onClick={() => setGeneralInquiryOpen(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"

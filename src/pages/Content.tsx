@@ -67,30 +67,15 @@ const Content = () => {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-10 sm:mb-16"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 60 }}
-              transition={{ duration: 1 }}
-              className="h-px mb-8 sm:mb-10"
-              style={{ background: `hsl(${COLOR} / 0.6)` }}
-            />
-            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
-              [ Content ]
-            </p>
-            <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Real Content.
-              <br />
-              <span className="text-muted-foreground">No Filter.</span>
-            </h1>
-            <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
-              Documenting the grind on Instagram, TikTok, and YouTube.
-              Business, fitness, car culture, and everything I'm building — unfiltered.
-            </p>
+          <SectionHeader
+            as="h1"
+            numeral="03"
+            eyebrow="Content"
+            accentColor={COLOR}
+            title={<>Real content. <span className="italic font-light" style={{ color: `hsl(${COLOR})` }}>No filter.</span></>}
+            description="Documenting the grind on Instagram, TikTok, and YouTube. Business, fitness, car culture, and everything I'm building — unfiltered."
+          />
+          <div className="mb-10 sm:mb-16">
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href={`https://instagram.com/${INSTAGRAM_USERNAME}`}

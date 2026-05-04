@@ -7,6 +7,7 @@ import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
+import SectionHeader from "@/components/SectionHeader";
 import { useState } from "react";
 
 const COLOR = "270 16% 48%";
@@ -29,31 +30,14 @@ const Manufacturing = () => {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-14 sm:mb-20"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 60 }}
-              transition={{ duration: 1 }}
-              className="h-px bg-primary/60 mb-8 sm:mb-10"
-            />
-            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
-              [ Manufacturing ]
-            </p>
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Creative Vision
-              <br />
-              <span className="text-muted-foreground">Manufacturing.</span>
-            </h1>
-            <p className="text-muted-foreground max-w-lg text-sm sm:text-base leading-[1.8]">
-              From concept to shelf — we manufacture, formulate, and bring products to life.
-              Custom apparel, accessories, hats, gym equipment, supplements, beverages, and ecom-ready products.
-              Whether you're building your next Amazon brand or launching a private label — we handle it all.
-            </p>
-          </motion.div>
+          <SectionHeader
+            as="h1"
+            numeral="02"
+            eyebrow="Manufacturing"
+            accentColor={COLOR}
+            title={<>Creative Vision <span className="italic font-light" style={{ color: `hsl(${COLOR})` }}>manufacturing.</span></>}
+            description="From concept to shelf — we manufacture, formulate, and bring products to life. Custom apparel, accessories, hats, gym equipment, supplements, beverages, and ecom-ready products. Whether you're building your next Amazon brand or launching a private label — we handle it all."
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {[

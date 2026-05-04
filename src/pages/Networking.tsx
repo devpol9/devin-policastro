@@ -8,6 +8,7 @@ import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
+import SectionHeader from "@/components/SectionHeader";
 
 const COLOR = "140 18% 42%";
 
@@ -86,31 +87,14 @@ const Networking = () => {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-10 sm:mb-16"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 60 }}
-              transition={{ duration: 1 }}
-              className="h-px mb-8 sm:mb-10"
-              style={{ background: `hsl(${COLOR} / 0.6)` }}
-            />
-            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
-              [ Networking ]
-            </p>
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              I Know
-              <br />
-              <span className="text-muted-foreground">The Right People.</span>
-            </h1>
-            <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
-              Need an introduction? A vendor? A partner? Tell me what you're looking for
-              and I'll connect you with someone who can help.
-            </p>
-          </motion.div>
+          <SectionHeader
+            as="h1"
+            numeral="06"
+            eyebrow="Networking"
+            accentColor={COLOR}
+            title={<>I know <span className="italic font-light" style={{ color: `hsl(${COLOR})` }}>the right people.</span></>}
+            description="Need an introduction? A vendor? A partner? Tell me what you're looking for and I'll connect you with someone who can help."
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-12">
             {networkingServices.map((service, i) => {
