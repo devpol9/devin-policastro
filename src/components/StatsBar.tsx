@@ -10,28 +10,40 @@ const stats = [
 ];
 
 const StatsBar = () => (
-  <section className="px-5 sm:px-8 lg:px-10 py-12 sm:py-20 relative overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(24_32%_52%/0.03)_0%,transparent_70%)]" />
+  <section className="px-5 sm:px-8 lg:px-10 py-20 sm:py-28 relative overflow-hidden bg-accent text-accent-foreground">
+    <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
+      style={{
+        backgroundImage: `linear-gradient(hsl(var(--accent-foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent-foreground)) 1px, transparent 1px)`,
+        backgroundSize: "80px 80px",
+      }}
+    />
     <div className="container-tight relative z-10">
-      <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-accent-foreground/70 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em] mb-10 sm:mb-14 text-center"
+      >
+        — Receipts, not promises
+      </motion.p>
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-y-12 gap-x-6 sm:gap-x-10">
         {stats.map((stat, i) => (
           <motion.div
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.7 }}
-            className="text-center w-[calc(50%-1.5rem)] sm:w-auto sm:flex-1 sm:max-w-[200px]"
+            transition={{ delay: i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center"
           >
-            <div className="font-display font-extrabold text-2xl sm:text-5xl lg:text-6xl mb-2 sm:mb-3 tracking-tight">
+            <div className="font-display font-black text-4xl sm:text-6xl lg:text-7xl mb-3 tracking-[-0.04em] leading-none">
               <AnimatedCounter
                 target={stat.value}
                 suffix={stat.suffix}
                 prefix={stat.prefix}
-                className="gradient-text"
               />
             </div>
-            <p className="text-muted-foreground text-[10px] sm:text-sm font-display font-medium tracking-[0.15em] sm:tracking-[0.2em] ">
+            <p className="text-accent-foreground/70 text-[10px] sm:text-xs font-display font-medium tracking-[0.18em]">
               {stat.label}
             </p>
           </motion.div>
