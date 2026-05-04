@@ -75,10 +75,10 @@ const AboutSection = () => {
   return (
   <section id="about" className="section-padding relative overflow-hidden">
     <div
-      className="absolute top-0 right-0 w-1/2 h-full opacity-[0.015]"
+      className="absolute top-0 right-0 w-1/2 h-full opacity-[0.04] pointer-events-none"
       style={{
-        backgroundImage: `linear-gradient(hsl(40 10% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(40 10% 50%) 1px, transparent 1px)`,
-        backgroundSize: "60px 60px",
+        backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+        backgroundSize: "80px 80px",
       }}
     />
 
@@ -97,7 +97,7 @@ const AboutSection = () => {
           transition={{ duration: 1 }}
           className="h-px bg-primary/60 mb-8 sm:mb-10"
         />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 01 — My World ]</p>
+        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">My World</p>
         <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
           <span className="text-muted-foreground">I Just</span>
           <br />
@@ -123,9 +123,9 @@ const AboutSection = () => {
                 onClick={() => handleCardClick(v)}
                 className={`h-full block group relative overflow-hidden rounded-lg transition-all duration-500 ${v.link || v.route ? "cursor-pointer" : "cursor-default"}`}
                 style={{
-                  background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                   border: `1px solid hsl(${v.color} / 0.15)`,
-                  boxShadow: `0 4px 24px hsl(225 30% 2% / 0.6), inset 0 1px 0 hsl(${v.color} / 0.08)`,
+                  boxShadow: `0 4px 24px hsl(30 20% 30% / 0.08), inset 0 1px 0 hsl(${v.color} / 0.08)`,
                 }}
               >
                 {/* Top accent bar */}

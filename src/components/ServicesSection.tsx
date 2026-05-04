@@ -43,7 +43,7 @@ const ServicesSection = () => {
             transition={{ duration: 1 }}
             className="h-px bg-primary/60 mb-8 sm:mb-10"
           />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">[ 05 — Services ]</p>
+          <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5">Services</p>
           <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
             Let's
             <br />
@@ -65,8 +65,8 @@ const ServicesSection = () => {
                 onClick={() => navigate(tab.route)}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-display font-semibold tracking-wide transition-all duration-300 hover:scale-[1.03]"
                 style={{
-                  background: `hsl(225 20% 8% / 0.6)`,
-                  border: `1px solid hsl(225 12% 15% / 0.4)`,
+                  background: `hsl(33 20% 92% / 0.6)`,
+                  border: `1px solid hsl(30 14% 80% / 0.5)`,
                   color: `hsl(220 10% 55%)`,
                 }}
                 onMouseEnter={(e) => {
@@ -76,8 +76,8 @@ const ServicesSection = () => {
                   e.currentTarget.style.boxShadow = `0 0 20px hsl(${tab.color} / 0.15)`;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = `hsl(225 20% 8% / 0.6)`;
-                  e.currentTarget.style.borderColor = `hsl(225 12% 15% / 0.4)`;
+                  e.currentTarget.style.background = `hsl(33 20% 92% / 0.6)`;
+                  e.currentTarget.style.borderColor = `hsl(30 14% 80% / 0.5)`;
                   e.currentTarget.style.color = `hsl(220 10% 55%)`;
                   e.currentTarget.style.boxShadow = `none`;
                 }}

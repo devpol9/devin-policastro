@@ -14,16 +14,12 @@ import ServicesSection from "@/components/ServicesSection";
 import TrainingSection from "@/components/TrainingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/effects/CustomCursor";
-import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import AIChatbot from "@/components/AIChatbot";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <SEOHead {...seoPages["/"]} canonicalPath="/" jsonLd={[personJsonLd, localBusinessJsonLd]} ogImage="/images/og-image.png" />
-      <CustomCursor />
-      <MouseSpotlight />
       <FloatingNav />
       <HeroSection />
       <MarqueeStrip />

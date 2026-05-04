@@ -1,30 +1,26 @@
 import Marquee from "@/components/effects/Marquee";
 
 const words = [
-  "ENTREPRENEUR",
+  "Entrepreneur",
   "2THIRTY",
-  "IMPACT ZONE",
-  "MANUFACTURING",
-  "VALENCE",
-  "FITNESS",
-  "HYDRATION",
-  "PRE-COVERY",
-  "NORWOOD NJ",
-  "BERGEN COUNTY",
-  "ZERO SUGAR",
-  "5-IN-1 MIXER",
-  "51K SQ FT",
-  "NO CONTRACTS",
-  "BUILDER",
+  "Impact Zone",
+  "Manufacturing",
+  "Valence",
+  "Hydration",
+  "Norwood NJ",
+  "Builder",
 ];
 
 const MarqueeStrip = () => (
-  <section id="marquee" className="py-8 border-y border-border/10 overflow-hidden">
-    <Marquee speed={20}>
+  <section id="marquee" className="py-10 border-y border-border bg-secondary/40 overflow-hidden">
+    <Marquee speed={25}>
       {words.map((word, i) => (
-        <span key={i} className="font-display font-extrabold text-xl sm:text-3xl tracking-[-0.02em] mx-6 sm:mx-10">
-          <span className="text-foreground/[0.12]">{word}</span>
-          <span className="text-primary/30 mx-6 sm:mx-10 text-xs">◆</span>
+        <span
+          key={i}
+          className="font-display font-medium text-2xl sm:text-4xl tracking-[-0.01em] mx-8 sm:mx-12 text-foreground/70"
+        >
+          {word}
+          <span className="mx-8 sm:mx-12 text-accent/60 text-base align-middle">●</span>
         </span>
       ))}
     </Marquee>

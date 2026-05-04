@@ -188,7 +188,7 @@ const ServiceInquiryDialog = ({
               className="w-full h-11 font-display font-semibold tracking-wide text-sm mt-2"
               style={{
                 background: `hsl(${color})`,
-                color: "hsl(225 25% 3%)",
+                color: "hsl(36 30% 98%)",
               }}
             >
               <Send size={14} />

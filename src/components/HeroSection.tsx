@@ -1,201 +1,140 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, ArrowRight, Tag, ChevronDown } from "lucide-react";
-import TextScramble from "@/components/effects/TextScramble";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
-import HeroOrb from "@/components/effects/HeroOrb";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.95]);
-  const y = useTransform(scrollYProgress, [0, 0.8], [0, 80]);
+  const y = useTransform(scrollYProgress, [0, 0.8], [0, 60]);
 
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
-    const particleCount = 40;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        size: Math.random() * 1.2 + 0.3,
-        opacity: Math.random() * 0.2 + 0.03,
-      });
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(38, 90%, 58%, ${p.opacity})`;
-        ctx.fill();
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = p.x - particles[j].x;
-          const dy = p.y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `hsla(38, 90%, 58%, ${0.03 * (1 - dist / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      });
-      animId = requestAnimationFrame(animate);
-    };
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
   return (
-    <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-visible">
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      
-      <div className="block">
-        <HeroOrb />
-      </div>
-      
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,hsl(24_32%_52%/0.04)_0%,transparent_50%)]" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 z-[2] bg-gradient-to-t from-background to-transparent" />
+    <section
+      id="home"
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+    >
+      {/* Soft ambient wash */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--accent)/0.08)_0%,transparent_60%)]" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent" />
 
-      <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto pt-20 sm:pt-16 w-full">
-        {/* Profile image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-6 sm:mb-10 relative"
-        >
-          <div className="w-24 h-24 sm:w-40 sm:h-40 rounded-full overflow-hidden border border-primary/20 mx-auto ring-[3px] ring-primary/10 ring-offset-4 ring-offset-background">
-            <img src="/images/devin-profile.jpg" alt="Devin Policastro" className="w-full h-full object-cover" />
-          </div>
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-card/80 backdrop-blur-xl border border-primary/20 text-primary text-[8px] sm:text-[10px] font-display font-bold tracking-[0.14em] sm:tracking-[0.24em] uppercase whitespace-normal text-center max-w-[78vw] sm:max-w-none leading-tight"
+      <motion.div
+        style={{ opacity, y }}
+        className="relative z-10 px-6 sm:px-10 max-w-6xl mx-auto pt-24 pb-20 w-full"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
+          {/* Left — portrait */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="md:col-span-5 flex md:justify-start justify-center"
           >
-            Norwood, NJ
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-accent/10 blur-2xl" />
+              <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full overflow-hidden border border-border">
+                <img
+                  src="/images/devin-profile.jpg"
+                  alt="Devin Policastro"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mx-auto max-w-[200px] mb-6 sm:mb-10"
-        />
+          {/* Right — type */}
+          <div className="md:col-span-7 text-center md:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="inline-flex items-center gap-2 mb-6 sm:mb-8"
+            >
+              <span className="h-px w-8 bg-foreground/30" />
+              <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.3em] uppercase">
+                Norwood, NJ — Builder
+              </span>
+            </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, letterSpacing: "0.1em" }}
-          animate={{ opacity: 1, letterSpacing: "0.25em" }}
-          transition={{ duration: 1.5, delay: 0.4 }}
-          className="text-muted-foreground font-display font-medium text-[9px] sm:text-xs uppercase mb-6 sm:mb-8 px-2 tracking-[0.18em] sm:tracking-[0.25em] leading-relaxed"
-        >
-          2THIRTY · Impact Zone · Creative Vision · Valence
-        </motion.p>
+            <h1 className="font-display font-extrabold leading-[0.9] tracking-[-0.03em] mb-6 sm:mb-8">
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-foreground text-[clamp(2.4rem,9vw,7rem)]"
+              >
+                Devin
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-foreground/40 text-[clamp(2.4rem,9vw,7rem)] italic font-light"
+              >
+                Policastro.
+              </motion.span>
+            </h1>
 
-        <h1 className="font-display font-extrabold text-[clamp(1.7rem,8vw,8rem)] leading-[0.85] mb-4 tracking-[-0.02em] max-w-full overflow-visible">
-          <motion.span
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-foreground/90 text-[clamp(1.7rem,8vw,8rem)]"
-          >
-            DEVIN
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="block gradient-text text-[clamp(1.9rem,6.9vw,6.4rem)] tracking-[-0.04em] mx-auto pr-[0.05em] whitespace-nowrap w-fit"
-          >
-            <TextScramble text="POLICASTRO" delay={1200} className="inline-block whitespace-nowrap" />
-          </motion.span>
-        </h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed"
+            >
+              I build brands, connect people, and turn every handshake into a
+              revenue stream.
+            </motion.p>
 
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto max-w-lg mb-6 sm:mb-10"
-        />
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-muted-foreground text-xs sm:text-base lg:text-lg max-w-xl mx-auto mb-8 sm:mb-14 font-body leading-relaxed px-2"
-        >
-          I build brands, connect people, and turn every handshake into a revenue stream.
-          <span className="text-foreground/70 font-medium"> Norwood, NJ.</span>
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex items-center justify-center px-2"
-        >
-          <MagneticButton strength={0.2}>
-            <Button variant="heroOutline" size="lg" onClick={() => scrollTo("#services")} className="min-w-[220px] h-12 sm:h-13 text-xs sm:text-sm font-display font-semibold tracking-wide">
-              Work With Me
-              <ArrowRight size={16} />
-            </Button>
-          </MagneticButton>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+              className="flex flex-wrap items-center gap-4 justify-center md:justify-start"
+            >
+              <MagneticButton strength={0.2}>
+                <Button
+                  variant="default"
+                  size="lg"
+                  onClick={() => scrollTo("#services")}
+                  className="h-12 px-7 text-sm font-display font-semibold tracking-wide rounded-full"
+                >
+                  Work With Me
+                  <ArrowRight size={16} />
+                </Button>
+              </MagneticButton>
+              <button
+                onClick={() => scrollTo("#about")}
+                className="text-sm font-display font-medium tracking-wide text-foreground/70 hover:text-foreground transition-colors underline-offset-4 hover:underline"
+              >
+                About →
+              </button>
+            </motion.div>
+          </div>
+        </div>
       </motion.div>
 
       <motion.button
         onClick={() => scrollTo("#marquee")}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.5 }}
-        className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 z-10 group hidden sm:block"
+        transition={{ delay: 1.4 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 group hidden sm:block"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-muted-foreground text-[9px] font-display tracking-[0.4em] uppercase group-hover:text-primary transition-colors duration-300">
+          <span className="text-muted-foreground text-[10px] font-display tracking-[0.4em] uppercase group-hover:text-foreground transition-colors">
             Scroll
           </span>
-          <ChevronDown size={14} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+          <ChevronDown size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />
         </motion.div>
       </motion.button>
     </section>

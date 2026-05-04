@@ -113,7 +113,7 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
                     transition={{ delay: i * 0.04, duration: 0.3 }}
                     className="group relative overflow-hidden rounded-lg transition-all duration-500"
                     style={{
-                      background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                      background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                       border: `1px solid hsl(${COLOR} / 0.15)`,
                     }}
                   >
@@ -160,7 +160,7 @@ const AutomotiveDialog = ({ open, onOpenChange }: AutomotiveDialogProps) => {
                           className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-[1.02]"
                           style={{
                             background: `hsl(${COLOR})`,
-                            color: `hsl(225 25% 3%)`,
+                            color: `hsl(36 30% 98%)`,
                           }}
                         >
                           Inquire
