@@ -12,7 +12,7 @@ const tabs = [
     desc: "Train with me directly. I'll build a program around your goals, your schedule, and what actually works — not some generic template.",
     cta: "Book a Session",
     ctaAction: "calendar" as const,
-    color: "38 90% 58%",
+    color: "24 32% 52%",
   },
   {
     id: "coaching",

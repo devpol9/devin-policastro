@@ -17,7 +17,7 @@ const images = [
 ];
 
 const perks = [
-  { icon: Dumbbell, text: "100+ Machines & Free Weights", color: "38 90% 58%" },
+  { icon: Dumbbell, text: "100+ Machines & Free Weights", color: "24 32% 52%" },
   { icon: Zap, text: "Cold Plunges & Infrared Saunas", color: "195 90% 55%" },
   { icon: Star, text: "Hot Yoga & Red Light Therapy", color: "340 80% 62%" },
   { icon: Target, text: "Basketball Court & 5K Turf", color: "155 85% 55%" },
@@ -87,10 +87,10 @@ const GallerySection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="font-display font-bold text-sm sm:text-base mb-3 sm:mb-4 tracking-wide" style={{ color: `hsl(38 90% 58% / 0.8)` }}>
+            <h3 className="font-display font-bold text-sm sm:text-base mb-3 sm:mb-4 tracking-wide" style={{ color: `hsl(24 32% 52% / 0.8)` }}>
               🎬 Take the Tour
             </h3>
-            <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%', border: '1px solid hsl(38 90% 58% / 0.15)' }}>
+            <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%', border: '1px solid hsl(24 32% 52% / 0.15)' }}>
               <iframe
                 src="https://player.vimeo.com/video/1171638387?badge=0&autopause=0&player_id=0&app_id=58479"
                 className="absolute inset-0 w-full h-full"

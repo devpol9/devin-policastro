@@ -11,7 +11,7 @@ const verticals = [
     desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf.",
     link: "https://impactzonenj.com",
     route: null,
-    color: "38 90% 58%",
+    color: "24 32% 52%",
     label: "Impact Zone",
   },
   {

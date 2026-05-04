@@ -11,7 +11,7 @@ const stats = [
 
 const StatsBar = () => (
   <section className="px-5 sm:px-8 lg:px-10 py-12 sm:py-20 relative overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(38_90%_58%/0.03)_0%,transparent_70%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(24_32%_52%/0.03)_0%,transparent_70%)]" />
     <div className="container-tight relative z-10">
       <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
         {stats.map((stat, i) => (

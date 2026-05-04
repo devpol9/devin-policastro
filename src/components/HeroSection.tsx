@@ -89,7 +89,7 @@ const HeroSection = () => {
         <HeroOrb />
       </div>
       
-      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,hsl(38_90%_58%/0.04)_0%,transparent_50%)]" />
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,hsl(24_32%_52%/0.04)_0%,transparent_50%)]" />
       <div className="absolute bottom-0 left-0 right-0 h-48 z-[2] bg-gradient-to-t from-background to-transparent" />
 
       <motion.div style={{ opacity, scale, y }} className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto pt-20 sm:pt-16 w-full">

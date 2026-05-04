@@ -70,8 +70,8 @@ const products: Product[] = [
     link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591",
     image: "/images/iz-machines-red.jpg",
     tourLink: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
-    color: "38 90% 58%",
-    glowColor: "38 90% 58%",
+    color: "24 32% 52%",
+    glowColor: "24 32% 52%",
   },
   {
     name: "Fitrition",

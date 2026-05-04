@@ -21,7 +21,7 @@ const tabs: ServiceTab[] = [
   { key: "automotive", label: "Automotive", icon: Car, color: "0 85% 60%", route: "/automotive" },
   { key: "financing", label: "Financing", icon: CreditCard, color: "210 80% 60%", route: "/financing" },
   { key: "networking", label: "Networking", icon: Handshake, color: "155 75% 48%", route: "/networking" },
-  { key: "fitness", label: "Fitness", icon: Dumbbell, color: "38 90% 58%", route: "/fitness" },
+  { key: "fitness", label: "Fitness", icon: Dumbbell, color: "24 32% 52%", route: "/fitness" },
 ];
 
 const ServicesSection = () => {

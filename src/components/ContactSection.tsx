@@ -176,7 +176,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="section-padding pb-32 md:pb-24 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(38_90%_58%/0.03)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(24_32%_52%/0.03)_0%,transparent_60%)]" />
 
       <div className="container-tight relative z-10">
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
