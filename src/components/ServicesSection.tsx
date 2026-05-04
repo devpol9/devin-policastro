@@ -31,26 +31,12 @@ const ServicesSection = () => {
   return (
     <section id="services" className="section-padding relative">
       <div className="container-tight">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-14 sm:mb-20"
-        >
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 60 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="h-px bg-primary/60 mb-8 sm:mb-10"
-          />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Services</p>
-          <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-            Let's
-            <br />
-            <span className="gradient-text">Work.</span>
-          </h2>
-        </motion.div>
+        <SectionHeader
+          numeral="05"
+          eyebrow="Services"
+          title={<>Let's <span className="italic font-light text-accent">work.</span></>}
+          description="Pick a lane. Real services, real outcomes — no agency markup, no middlemen."
+        />
 
         {/* Service Navigation */}
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
