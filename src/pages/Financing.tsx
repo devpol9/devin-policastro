@@ -8,6 +8,7 @@ import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
+import SectionHeader from "@/components/SectionHeader";
 
 const COLOR = "210 22% 50%";
 
@@ -80,31 +81,14 @@ const Financing = () => {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-10 sm:mb-16"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 60 }}
-              transition={{ duration: 1 }}
-              className="h-px mb-8 sm:mb-10"
-              style={{ background: `hsl(${COLOR} / 0.6)` }}
-            />
-            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
-              [ Financing ]
-            </p>
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Get Funded.
-              <br />
-              <span className="text-muted-foreground">Get Moving.</span>
-            </h1>
-            <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
-              I'll connect you with the right financing experts, lenders, and credit specialists.
-              Free introductions — I just make sure you're taken care of.
-            </p>
-          </motion.div>
+          <SectionHeader
+            as="h1"
+            numeral="05"
+            eyebrow="Financing"
+            accentColor={COLOR}
+            title={<>Get funded. <span className="italic font-light" style={{ color: `hsl(${COLOR})` }}>Get moving.</span></>}
+            description="I'll connect you with the right financing experts, lenders, and credit specialists. Free introductions — I just make sure you're taken care of."
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-12">
             {financingServices.map((service, i) => {

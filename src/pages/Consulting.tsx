@@ -8,6 +8,7 @@ import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
+import SectionHeader from "@/components/SectionHeader";
 
 const COLOR = "270 16% 50%";
 
@@ -86,31 +87,14 @@ const Consulting = () => {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-10 sm:mb-16"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 60 }}
-              transition={{ duration: 1 }}
-              className="h-px mb-8 sm:mb-10"
-              style={{ background: `hsl(${COLOR} / 0.6)` }}
-            />
-            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
-              [ Consulting ]
-            </p>
-            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Build Smarter.
-              <br />
-              <span className="text-muted-foreground">Scale Faster.</span>
-            </h1>
-            <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.8] mb-6">
-              Brand strategy, revenue optimization, and content direction.
-              I've built multiple brands from scratch — let me show you what actually works.
-            </p>
-          </motion.div>
+          <SectionHeader
+            as="h1"
+            numeral="01"
+            eyebrow="Consulting"
+            accentColor={COLOR}
+            title={<>Build smarter. <span className="italic font-light text-accent" style={{ color: `hsl(${COLOR})` }}>Scale faster.</span></>}
+            description="Brand strategy, revenue optimization, and content direction. I've built multiple brands from scratch — let me show you what actually works."
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-12">
             {consultingServices.map((service, i) => {

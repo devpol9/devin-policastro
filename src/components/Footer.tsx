@@ -20,47 +20,39 @@ const ventures = [
 ];
 
 const Footer = () => (
-  <footer className="relative border-t border-border/10 mb-24 md:mb-0 overflow-hidden">
-    {/* Ambient glow */}
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center_bottom,hsl(var(--primary)/0.04)_0%,transparent_60%)] pointer-events-none" />
-
+  <footer className="relative border-t border-border mb-24 md:mb-0 overflow-hidden bg-background">
     <div className="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
-      {/* Main footer content */}
-      <div className="py-10 sm:py-16 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
-        {/* Brand column */}
-        <div className="sm:col-span-1">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display font-extrabold text-xl tracking-tight mb-3"
-          >
-            <span className="text-foreground/90">Devin</span>
-            <span className="text-primary ml-1.5">P.</span>
-          </motion.p>
-          <p className="text-muted-foreground/60 text-xs leading-relaxed max-w-[220px] mb-5">
+      {/* Massive wordmark */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        className="pt-16 sm:pt-24 pb-10 sm:pb-14"
+      >
+        <div className="flex items-center gap-3 mb-6 sm:mb-8">
+          <span className="h-px w-8 bg-accent" />
+          <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em]">
+            — End of feed
+          </span>
+        </div>
+        <h2 className="font-display font-black leading-[0.82] tracking-[-0.05em] text-[clamp(3rem,15vw,11rem)] text-foreground">
+          Devin <span className="italic font-light text-accent">Policastro.</span>
+        </h2>
+      </motion.div>
+
+      {/* Columns */}
+      <div className="pb-12 sm:pb-16 grid grid-cols-2 sm:grid-cols-4 gap-8 border-t border-border pt-10 sm:pt-14">
+        <div className="col-span-2 sm:col-span-1">
+          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— Tagline</p>
+          <p className="text-foreground/80 text-sm font-display leading-relaxed max-w-[260px]">
             Entrepreneur. Builder. Norwood, NJ.
           </p>
-          <div className="flex items-center gap-1.5">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="w-9 h-9 rounded-lg bg-card/60 border border-border/15 flex items-center justify-center text-muted-foreground/50 hover:text-primary hover:border-primary/30 hover:bg-primary/8 transition-all duration-300"
-              >
-                <link.icon size={14} />
-              </a>
-            ))}
-          </div>
         </div>
 
-        {/* Ventures column */}
         <div>
-          <p className="text-[9px] font-display font-bold tracking-[0.15em]  text-muted-foreground/40 mb-4">Ventures</p>
-          <ul className="space-y-2">
+          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— Ventures</p>
+          <ul className="space-y-2.5">
             {ventures.map((v) => (
               <li key={v.label}>
                 {v.href ? (
@@ -68,37 +60,52 @@ const Footer = () => (
                     href={v.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground/60 hover:text-primary text-xs font-display font-medium tracking-wide transition-colors duration-300"
+                    className="text-foreground/70 hover:text-accent text-sm font-display transition-colors"
                   >
                     {v.label}
                   </a>
                 ) : (
-                  <span className="text-muted-foreground/30 text-xs font-display font-medium tracking-wide">
-                    {v.label}
-                  </span>
+                  <span className="text-foreground/30 text-sm font-display">{v.label}</span>
                 )}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Location column */}
         <div>
-          <p className="text-[9px] font-display font-bold tracking-[0.15em]  text-muted-foreground/40 mb-4">HQ</p>
-          <div className="flex items-start gap-2 text-muted-foreground/50 text-xs leading-relaxed">
-            <MapPin size={13} className="mt-0.5 shrink-0 text-primary/40" />
+          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— HQ</p>
+          <div className="flex items-start gap-2 text-foreground/70 text-sm font-display leading-relaxed">
+            <MapPin size={14} className="mt-1 shrink-0 text-accent" />
             <span>335 Chestnut St<br />Norwood, NJ 07648</span>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— Follow</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/60 hover:text-accent-foreground hover:bg-accent hover:border-accent transition-all duration-300"
+              >
+                <link.icon size={15} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-border/8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <p className="text-muted-foreground/30 text-[10px] font-display tracking-wide">
+      <div className="border-t border-border py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p className="text-foreground/40 text-[11px] font-display tracking-wide">
           © {new Date().getFullYear()} Devin Policastro. All rights reserved.
         </p>
-        <p className="text-muted-foreground/20 text-[10px] font-display tracking-wide">
-          Norwood, NJ.
+        <p className="text-foreground/40 text-[11px] font-display tracking-[0.18em]">
+          Made in Norwood, NJ.
         </p>
       </div>
     </div>
