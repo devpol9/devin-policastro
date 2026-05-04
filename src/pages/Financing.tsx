@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import FloatingNav from "@/components/FloatingNav";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/effects/CustomCursor";
-import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 
 const COLOR = "210 22% 50%";
@@ -70,8 +68,6 @@ const Financing = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
       <SEOHead {...seoPages["/financing"]} canonicalPath="/financing" />
-      <CustomCursor />
-      <MouseSpotlight />
       <FloatingNav />
 
       <section className="section-padding pt-32 sm:pt-40">
