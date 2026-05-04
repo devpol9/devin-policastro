@@ -38,7 +38,7 @@ const GallerySection = () => {
           transition={{ duration: 1 }}
           className="h-px bg-primary/60 mb-10"
         />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">[ 02 — The Gym ]</p>
+        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">The Gym</p>
         <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] tracking-[-0.02em]">
           51,000 Sq Ft.
           <br />
