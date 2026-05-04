@@ -75,10 +75,10 @@ const AboutSection = () => {
   return (
   <section id="about" className="section-padding relative overflow-hidden">
     <div
-      className="absolute top-0 right-0 w-1/2 h-full opacity-[0.015]"
+      className="absolute top-0 right-0 w-1/2 h-full opacity-[0.04] pointer-events-none"
       style={{
-        backgroundImage: `linear-gradient(hsl(40 10% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(40 10% 50%) 1px, transparent 1px)`,
-        backgroundSize: "60px 60px",
+        backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+        backgroundSize: "80px 80px",
       }}
     />
 
