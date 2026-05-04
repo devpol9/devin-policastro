@@ -102,30 +102,12 @@ const ShopSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[200px]" />
 
       <div className="container-tight relative z-10" ref={containerRef}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-14 sm:mb-20"
-        >
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 60 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="h-px bg-primary/60 mb-8 sm:mb-10"
-          />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Shop & Codes</p>
-          <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-            Things I
-            <br />
-            <span className="text-muted-foreground">Actually Use.</span>
-          </h2>
-          <p className="text-muted-foreground max-w-md text-xs sm:text-base leading-[1.8]">
-            2THIRTY is my brand — 5-in-1 hydration+ mixer with zero sugar, zero calories. 
-            4.9 stars. 7,000+ packs sold. Made in the USA.
-          </p>
-        </motion.div>
+        <SectionHeader
+          numeral="04"
+          eyebrow="Shop & Codes"
+          title={<>Things I <span className="italic font-light text-accent">actually use.</span></>}
+          description="2THIRTY is my brand — 5-in-1 hydration+ mixer with zero sugar, zero calories. 4.9 stars. 7,000+ packs sold. Made in the USA."
+        />
 
         {/* Product cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
