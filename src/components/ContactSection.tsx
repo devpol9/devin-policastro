@@ -188,23 +188,12 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 60 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="h-px bg-primary/60 mb-8 sm:mb-10"
+            <SectionHeader
+              numeral="07"
+              eyebrow="Contact"
+              title={<>Let's talk <span className="italic font-light text-accent">business.</span></>}
+              description="Whether it's a collab, wholesale inquiry for 2THIRTY, Impact Zone membership, or you just want to connect — I respond to everything."
             />
-            <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Contact</p>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-              Let's Talk
-              <br />
-              <span className="text-muted-foreground">Business.</span>
-            </h2>
-            <p className="text-muted-foreground mb-8 sm:mb-12 leading-[1.8] text-xs sm:text-sm">
-              Whether it's a collab, wholesale inquiry for 2THIRTY, Impact Zone membership, 
-              or you just want to connect — I respond to everything.
-            </p>
 
             <div className="flex flex-col gap-2">
               {contactLinks.map((link) => (
