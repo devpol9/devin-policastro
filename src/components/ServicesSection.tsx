@@ -5,6 +5,7 @@ import {
   ArrowRight, Factory, Car, CreditCard,
   type LucideIcon,
 } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 interface ServiceTab {
   key: string;
