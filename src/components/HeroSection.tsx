@@ -62,22 +62,22 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-            <h1 className="font-display font-extrabold leading-[0.9] tracking-[-0.03em] mb-6 sm:mb-8">
+            <h1 className="font-display font-semibold leading-[0.95] tracking-[-0.035em] mb-6 sm:mb-8 text-[clamp(2.6rem,8.5vw,6.5rem)]">
               <motion.span
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-foreground text-[clamp(2.4rem,9vw,7rem)]"
+                transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-foreground"
               >
                 Devin
               </motion.span>
               <motion.span
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-foreground/40 text-[clamp(2.4rem,9vw,7rem)] italic font-light"
+                transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-accent"
               >
-                Policastro.
+                Policastro
               </motion.span>
             </h1>
 
