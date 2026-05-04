@@ -103,7 +103,7 @@ const Content = () => {
                 <ArrowRight size={14} />
               </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Platforms */}
           <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 mb-12 sm:mb-16">

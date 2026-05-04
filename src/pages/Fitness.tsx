@@ -124,7 +124,7 @@ const Fitness = () => {
               Get Started
               <ArrowRight size={14} />
             </button>
-          </motion.div>
+          </div>
 
           {/* Services Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-12">
