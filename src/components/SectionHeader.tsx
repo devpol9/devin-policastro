@@ -1,26 +1,33 @@
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 interface SectionHeaderProps {
-  numeral: string; // e.g. "01"
-  eyebrow: string; // e.g. "My World"
-  title: ReactNode; // can include <span className="italic font-light"> etc
+  numeral: string;
+  eyebrow: string;
+  title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
+  as?: "h1" | "h2";
+  /** Optional HSL string (e.g. "270 16% 50%") to override the accent color (used on service pages). */
+  accentColor?: string;
 }
 
-/**
- * Bold editorial section header.
- * Massive ghosted numeral sits behind a serif display title.
- */
 const SectionHeader = ({
   numeral,
   eyebrow,
   title,
   description,
   align = "left",
+  as = "h2",
+  accentColor,
 }: SectionHeaderProps) => {
   const alignCls = align === "center" ? "text-center items-center" : "text-left items-start";
+  const Heading = as as keyof JSX.IntrinsicElements;
+  const accentStyle: CSSProperties | undefined = accentColor
+    ? ({ ["--header-accent" as never]: `hsl(${accentColor})` } as CSSProperties)
+    : undefined;
+  const lineStyle = accentColor ? { background: `hsl(${accentColor})` } : undefined;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -28,8 +35,8 @@ const SectionHeader = ({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`relative mb-14 sm:mb-20 flex flex-col ${alignCls}`}
+      style={accentStyle}
     >
-      {/* Ghosted numeral */}
       <span
         aria-hidden
         className={`pointer-events-none select-none absolute -top-8 sm:-top-16 ${
@@ -39,17 +46,17 @@ const SectionHeader = ({
         {numeral}
       </span>
 
-      <div className="relative z-10">
+      <div className="relative z-10 w-full">
         <div className={`flex items-center gap-3 mb-5 sm:mb-7 ${align === "center" ? "justify-center" : ""}`}>
-          <span className="h-px w-8 bg-accent" />
+          <span className="h-px w-8 bg-accent" style={lineStyle} />
           <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.18em]">
             {eyebrow}
           </span>
         </div>
 
-        <h2 className="font-display font-black leading-[0.86] tracking-[-0.045em] text-[clamp(2.6rem,9vw,7rem)] mb-6 sm:mb-8">
+        <Heading className="font-display font-black leading-[0.86] tracking-[-0.045em] text-[clamp(2.6rem,9vw,7rem)] mb-6 sm:mb-8">
           {title}
-        </h2>
+        </Heading>
 
         {description && (
           <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.75]">
