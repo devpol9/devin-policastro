@@ -3,6 +3,7 @@ import { ExternalLink, Copy, Check } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
 import TiltCard from "@/components/effects/TiltCard";
+import SectionHeader from "@/components/SectionHeader";
 
 interface Product {
   name: string;
