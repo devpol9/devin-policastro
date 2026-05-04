@@ -57,7 +57,7 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 mb-6 sm:mb-8"
             >
               <span className="h-px w-8 bg-foreground/30" />
-              <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.3em] ">
+              <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.12em] ">
                 Norwood, NJ — Builder
               </span>
             </motion.div>
@@ -131,7 +131,7 @@ const HeroSection = () => {
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-muted-foreground text-[10px] font-display tracking-[0.4em]  group-hover:text-foreground transition-colors">
+          <span className="text-muted-foreground text-[10px] font-display tracking-[0.15em]  group-hover:text-foreground transition-colors">
             Scroll
           </span>
           <ChevronDown size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />

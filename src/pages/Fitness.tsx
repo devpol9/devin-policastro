@@ -115,7 +115,7 @@ const Fitness = () => {
               className="h-px mb-8 sm:mb-10"
               style={{ background: `hsl(${COLOR} / 0.6)` }}
             />
-            <p className="font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
+            <p className="font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
               [ Fitness ]
             </p>
             <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
@@ -179,7 +179,7 @@ const Fitness = () => {
                         <Icon size={18} style={{ color: `hsl(${COLOR})`, filter: `drop-shadow(0 0 6px hsl(${COLOR} / 0.6))` }} />
                       </div>
                       <span
-                        className="text-[8px] font-display font-bold tracking-[0.3em]  px-2.5 py-1 rounded-full"
+                        className="text-[8px] font-display font-bold tracking-[0.12em]  px-2.5 py-1 rounded-full"
                         style={{
                           color: `hsl(${COLOR})`,
                           background: `hsl(${COLOR} / 0.1)`,
@@ -205,7 +205,7 @@ const Fitness = () => {
                     >
                       <button
                         onClick={() => openInquiry(service.name)}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-display font-semibold tracking-wider  transition-all duration-300 hover:scale-[1.02]"
+                        className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-display font-semibold tracking-[0.06em]  transition-all duration-300 hover:scale-[1.02]"
                         style={{
                           background: `hsl(${COLOR})`,
                           color: `hsl(36 30% 98%)`,
