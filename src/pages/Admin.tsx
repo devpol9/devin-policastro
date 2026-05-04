@@ -216,7 +216,7 @@ const Admin = () => {
                   transition={{ delay: i * 0.03 }}
                   className="rounded-lg p-4 sm:p-5 transition-all duration-300"
                   style={{
-                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${serviceColor} / 0.2)`,
                   }}
                 >

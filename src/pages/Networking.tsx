@@ -127,7 +127,7 @@ const Networking = () => {
                   transition={{ delay: 0.15 + i * 0.06 }}
                   className="group relative overflow-hidden rounded-lg transition-all duration-500"
                   style={{
-                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${COLOR} / 0.15)`,
                   }}
                 >

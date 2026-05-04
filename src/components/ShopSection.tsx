@@ -140,7 +140,7 @@ const ShopSection = () => {
                 <div
                   className="overflow-hidden group h-full transition-all duration-700 rounded-lg relative"
                   style={{
-                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${product.color} / 0.3)`,
                     boxShadow: `0 4px 30px hsl(${product.glowColor} / 0.1), inset 0 1px 0 hsl(${product.color} / 0.12)`,
                   }}
@@ -169,7 +169,7 @@ const ShopSection = () => {
                         className={`w-full h-full ${product.category === "Fitness" || product.category === "Nutrition" ? "object-cover" : "object-contain p-4"} group-hover:scale-105 transition-transform duration-700`}
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225_20%_5%)] via-transparent to-transparent opacity-70" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-70" />
                       <div className="absolute top-3 left-3 flex items-center gap-1.5">
                         <span
                           className="px-2.5 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-display font-bold tracking-[0.2em] uppercase backdrop-blur-xl"
@@ -188,7 +188,7 @@ const ShopSection = () => {
                             className="px-2 py-1 rounded-full text-[8px] sm:text-[9px] font-bold"
                             style={{
                               background: `hsl(${product.color})`,
-                              color: `hsl(225 25% 3%)`,
+                              color: `hsl(36 30% 98%)`,
                               boxShadow: `0 0 12px hsl(${product.color} / 0.4)`,
                             }}
                           >
@@ -250,7 +250,7 @@ const ShopSection = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="ml-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wide hover:scale-[1.02] transition-all duration-500"
-                          style={{ background: `hsl(${product.color})`, color: `hsl(225 25% 3%)` }}
+                          style={{ background: `hsl(${product.color})`, color: `hsl(36 30% 98%)` }}
                         >
                           <ExternalLink size={12} />
                           Shop

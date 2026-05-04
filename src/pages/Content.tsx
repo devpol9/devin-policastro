@@ -115,7 +115,7 @@ const Content = () => {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: `hsl(${COLOR})`,
-                  color: `hsl(225 25% 3%)`,
+                  color: `hsl(36 30% 98%)`,
                 }}
               >
                 Collab Inquiry
@@ -139,7 +139,7 @@ const Content = () => {
                   transition={{ delay: 0.1 + i * 0.08 }}
                   className="group relative overflow-hidden rounded-lg transition-all duration-500 block"
                   style={{
-                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${platform.color} / 0.15)`,
                   }}
                 >
@@ -199,7 +199,7 @@ const Content = () => {
                   transition={{ delay: 0.5 + i * 0.05 }}
                   className="p-4 rounded-lg transition-all duration-300"
                   style={{
-                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${COLOR} / 0.1)`,
                   }}
                 >

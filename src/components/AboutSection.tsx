@@ -123,9 +123,9 @@ const AboutSection = () => {
                 onClick={() => handleCardClick(v)}
                 className={`h-full block group relative overflow-hidden rounded-lg transition-all duration-500 ${v.link || v.route ? "cursor-pointer" : "cursor-default"}`}
                 style={{
-                  background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                   border: `1px solid hsl(${v.color} / 0.15)`,
-                  boxShadow: `0 4px 24px hsl(225 30% 2% / 0.6), inset 0 1px 0 hsl(${v.color} / 0.08)`,
+                  boxShadow: `0 4px 24px hsl(30 20% 30% / 0.08), inset 0 1px 0 hsl(${v.color} / 0.08)`,
                 }}
               >
                 {/* Top accent bar */}

@@ -103,9 +103,9 @@ const LinkHubSection = () => {
                 <div
                   className="group relative overflow-hidden rounded-lg transition-all duration-700"
                   style={{
-                    background: `linear-gradient(145deg, hsl(225 20% 7% / 0.95) 0%, hsl(225 20% 5% / 0.8) 100%)`,
+                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${link.color} / 0.15)`,
-                    boxShadow: `0 4px 24px hsl(225 30% 2% / 0.6), inset 0 1px 0 hsl(${link.color} / 0.06)`,
+                    boxShadow: `0 4px 24px hsl(30 20% 30% / 0.08), inset 0 1px 0 hsl(${link.color} / 0.06)`,
                   }}
                 >
                   <div
@@ -156,7 +156,7 @@ const LinkHubSection = () => {
                           color: `hsl(${link.color} / 0.7)`,
                           border: `1px solid hsl(${link.color} / 0.15)`,
                         }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = `hsl(${link.color})`; e.currentTarget.style.color = `hsl(225 25% 3%)`; }}
+                        onMouseEnter={(e) => { e.currentTarget.style.background = `hsl(${link.color})`; e.currentTarget.style.color = `hsl(36 30% 98%)`; }}
                         onMouseLeave={(e) => { e.currentTarget.style.background = `hsl(${link.color} / 0.1)`; e.currentTarget.style.color = `hsl(${link.color} / 0.7)`; }}
                       >
                         <ArrowUpRight size={13} />
