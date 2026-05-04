@@ -15,23 +15,23 @@ interface LinkItem {
 
 const links: LinkItem[] = [
   // Socials
-  { title: "@devinpolicastro", desc: "Instagram — the daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "socials", color: "340 80% 62%" },
-  { title: "@impactzonenj", desc: "Instagram — 51,000 sq ft of world-class fitness.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "socials", color: "38 90% 58%" },
-  { title: "@drink2thirty", desc: "Instagram — product drops, reviews, and hydration.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "socials", color: "195 90% 55%" },
-  { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "socials", color: "280 100% 70%" },
-  { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "socials", color: "0 85% 60%" },
-  { title: "LinkedIn", desc: "Entrepreneur, connector, fitness industry leader.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "socials", color: "210 90% 58%" },
+  { title: "@devinpolicastro", desc: "Instagram — the daily grind, unfiltered.", url: "https://instagram.com/devinpolicastro", icon: Instagram, category: "socials", color: "350 22% 55%" },
+  { title: "@impactzonenj", desc: "Instagram — 51,000 sq ft of world-class fitness.", url: "https://instagram.com/impactzonenj", icon: Instagram, category: "socials", color: "24 32% 52%" },
+  { title: "@drink2thirty", desc: "Instagram — product drops, reviews, and hydration.", url: "https://instagram.com/drink2thirty", icon: Instagram, category: "socials", color: "200 22% 50%" },
+  { title: "TikTok", desc: "Short-form content. Real talk, real results.", url: "https://tiktok.com/@devinpolicastro", icon: Video, category: "socials", color: "270 18% 55%" },
+  { title: "YouTube", desc: "Long-form builds, vlogs, and business breakdowns.", url: "https://youtube.com/@devinpolicastro", icon: Video, category: "socials", color: "12 45% 48%" },
+  { title: "LinkedIn", desc: "Entrepreneur, connector, fitness industry leader.", url: "https://linkedin.com/in/devin-policastro-10a196153/?skipRedirect=true", icon: Linkedin, category: "socials", color: "210 22% 50%" },
 
   // 2THIRTY
-  { title: "What is 2THIRTY?", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories.", url: "https://www.drink2thirty.com/how-it-works", icon: Building2, category: "2thirty", color: "195 90% 55%" },
-  { title: "Shop 2THIRTY", desc: "35% off + free shipping. Try all three flavors.", url: "https://www.drink2thirty.com/shop", icon: ExternalLink, category: "2thirty", color: "195 90% 55%" },
-  { title: "Subscribe & Save", desc: "Never run out. Auto-ship monthly at a discount.", url: "https://www.drink2thirty.com/subscribe", icon: Sparkles, category: "2thirty", color: "195 90% 55%" },
+  { title: "What is 2THIRTY?", desc: "5-in-1 hydration+ mixer — zero sugar, zero calories.", url: "https://www.drink2thirty.com/how-it-works", icon: Building2, category: "2thirty", color: "200 22% 50%" },
+  { title: "Shop 2THIRTY", desc: "35% off + free shipping. Try all three flavors.", url: "https://www.drink2thirty.com/shop", icon: ExternalLink, category: "2thirty", color: "200 22% 50%" },
+  { title: "Subscribe & Save", desc: "Never run out. Auto-ship monthly at a discount.", url: "https://www.drink2thirty.com/subscribe", icon: Sparkles, category: "2thirty", color: "200 22% 50%" },
 
   // Impact Zone
-  { title: "Book a Gym Tour", desc: "Schedule a walkthrough — 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, category: "impact-zone", color: "155 85% 55%" },
-  { title: "Training Consultation", desc: "Let's talk goals, programming, and getting you started.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Sparkles, category: "impact-zone", color: "265 85% 65%" },
-  { title: "Join Impact Zone", desc: "No contracts. Month-to-month. Welcome bag included.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Users, category: "impact-zone", color: "18 90% 58%" },
-  { title: "Coach Pricing", desc: "View personal training and coaching rates.", url: "https://impactzonenj.com/personal-training", icon: DollarSign, category: "impact-zone", color: "38 90% 58%" },
+  { title: "Book a Gym Tour", desc: "Schedule a walkthrough — 335 Chestnut St, Norwood NJ.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, category: "impact-zone", color: "140 18% 45%" },
+  { title: "Training Consultation", desc: "Let's talk goals, programming, and getting you started.", url: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Sparkles, category: "impact-zone", color: "270 16% 50%" },
+  { title: "Join Impact Zone", desc: "No contracts. Month-to-month. Welcome bag included.", url: "https://onlinejoin.abcfitness.com/signup/plan?club=30591", icon: Users, category: "impact-zone", color: "18 38% 50%" },
+  { title: "Coach Pricing", desc: "View personal training and coaching rates.", url: "https://impactzonenj.com/personal-training", icon: DollarSign, category: "impact-zone", color: "24 32% 52%" },
 ];
 
 const categories: { key: LinkCategory; label: string }[] = [

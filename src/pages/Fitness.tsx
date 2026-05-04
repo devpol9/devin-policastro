@@ -11,7 +11,7 @@ import CustomCursor from "@/components/effects/CustomCursor";
 import MouseSpotlight from "@/components/effects/MouseSpotlight";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 
-const COLOR = "38 90% 58%";
+const COLOR = "24 32% 52%";
 
 interface FitnessService {
   icon: LucideIcon;

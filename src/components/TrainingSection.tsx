@@ -12,7 +12,7 @@ const tabs = [
     desc: "Train with me directly. I'll build a program around your goals, your schedule, and what actually works — not some generic template.",
     cta: "Book a Session",
     ctaAction: "calendar" as const,
-    color: "38 90% 58%",
+    color: "24 32% 52%",
   },
   {
     id: "coaching",
@@ -22,7 +22,7 @@ const tabs = [
     desc: "Tell me your goals and I'll pair you with the best coach on my team — strength, weight loss, sports performance, rehab, you name it.",
     cta: "Find My Coach",
     ctaAction: "fitness" as const,
-    color: "195 90% 55%",
+    color: "200 22% 50%",
   },
   {
     id: "programs",
@@ -32,7 +32,7 @@ const tabs = [
     desc: "Structured group sessions — HIIT, strength circuits, and sport-specific programming. Show up, put in the work, get better.",
     cta: "View Programs",
     ctaAction: "external" as const,
-    color: "150 80% 50%",
+    color: "140 18% 42%",
   },
 ];
 
