@@ -26,83 +26,77 @@ const HeroSection = () => {
 
       <motion.div
         style={{ opacity, y }}
-        className="relative z-10 px-6 sm:px-10 max-w-6xl mx-auto pt-24 pb-20 w-full"
+        className="relative z-10 px-5 sm:px-10 max-w-7xl mx-auto pt-28 pb-16 w-full"
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
-          {/* Left — portrait */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-5 flex md:justify-start justify-center"
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="flex items-center gap-3 mb-8 sm:mb-10"
+        >
+          <span className="h-px w-10 bg-accent" />
+          <span className="text-foreground/60 text-[11px] sm:text-xs font-display font-medium tracking-[0.22em]">
+            Norwood, NJ — Est. since day one
+          </span>
+        </motion.div>
+
+        {/* Massive headline */}
+        <h1 className="font-display font-black leading-[0.82] tracking-[-0.05em] mb-10 sm:mb-12 text-[clamp(3.5rem,15vw,12rem)]">
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="block text-foreground"
           >
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-full bg-accent/10 blur-2xl" />
-              <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full overflow-hidden border border-border">
-                <img
-                  src="/images/devin-profile.jpg"
-                  alt="Devin Policastro"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            Devin
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="block italic font-light text-accent"
+            style={{ fontStyle: "italic" }}
+          >
+            Policastro.
+          </motion.span>
+        </h1>
+
+        {/* Bottom row: portrait + tagline + CTAs */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="md:col-span-4 order-2 md:order-1"
+          >
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-border">
+              <img
+                src="/images/devin-profile.jpg"
+                alt="Devin Policastro"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
 
-          {/* Right — type */}
-          <div className="md:col-span-7 text-center md:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-2 mb-6 sm:mb-8"
-            >
-              <span className="h-px w-8 bg-foreground/30" />
-              <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.12em] ">
-                Norwood, NJ — Builder
-              </span>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="md:col-span-8 order-1 md:order-2"
+          >
+            <p className="font-display text-foreground/80 text-xl sm:text-2xl md:text-3xl max-w-2xl mb-8 sm:mb-10 leading-[1.25] tracking-[-0.015em]">
+              I build brands, connect people, and turn every handshake into a{" "}
+              <span className="italic text-accent">revenue stream</span>.
+            </p>
 
-            <h1 className="font-display font-semibold leading-[0.95] tracking-[-0.035em] mb-6 sm:mb-8 text-[clamp(2.6rem,8.5vw,6.5rem)]">
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-foreground"
-              >
-                Devin
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-accent"
-              >
-                Policastro
-              </motion.span>
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto md:mx-0 mb-10 leading-relaxed"
-            >
-              I build brands, connect people, and turn every handshake into a
-              revenue stream.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              className="flex flex-wrap items-center gap-4 justify-center md:justify-start"
-            >
+            <div className="flex flex-wrap items-center gap-5">
               <MagneticButton strength={0.2}>
                 <Button
                   variant="default"
                   size="lg"
                   onClick={() => scrollTo("#services")}
-                  className="h-12 px-7 text-sm font-display font-semibold tracking-wide rounded-full"
+                  className="h-14 px-8 text-sm font-display font-semibold tracking-wide rounded-full"
                 >
                   Work With Me
                   <ArrowRight size={16} />
@@ -110,12 +104,12 @@ const HeroSection = () => {
               </MagneticButton>
               <button
                 onClick={() => scrollTo("#about")}
-                className="text-sm font-display font-medium tracking-wide text-foreground/70 hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                className="text-sm font-display font-semibold tracking-wide text-foreground/70 hover:text-accent transition-colors underline underline-offset-[6px] decoration-1"
               >
-                About →
+                What I'm building →
               </button>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 

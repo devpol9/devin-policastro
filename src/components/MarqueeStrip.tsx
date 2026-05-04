@@ -1,26 +1,27 @@
 import Marquee from "@/components/effects/Marquee";
 
 const words = [
-  "Entrepreneur",
-  "2THIRTY",
-  "Impact Zone",
-  "Manufacturing",
-  "Valence",
-  "Hydration",
-  "Norwood NJ",
-  "Builder",
+  { text: "Entrepreneur", italic: false },
+  { text: "2THIRTY", italic: false },
+  { text: "Impact Zone", italic: true },
+  { text: "Manufacturing", italic: false },
+  { text: "Valence", italic: true },
+  { text: "Hydration", italic: false },
+  { text: "Norwood NJ", italic: false },
+  { text: "Builder", italic: true },
 ];
 
 const MarqueeStrip = () => (
-  <section id="marquee" className="py-10 border-y border-border bg-secondary/40 overflow-hidden">
-    <Marquee speed={25}>
-      {words.map((word, i) => (
-        <span
-          key={i}
-          className="font-display font-medium text-2xl sm:text-4xl tracking-[-0.01em] mx-8 sm:mx-12 text-foreground/70"
-        >
-          {word}
-          <span className="mx-8 sm:mx-12 text-accent/60 text-base align-middle">●</span>
+  <section id="marquee" className="py-12 sm:py-16 border-y border-border bg-secondary/40 overflow-hidden">
+    <Marquee speed={28}>
+      {words.map((w, i) => (
+        <span key={i} className="inline-flex items-center">
+          <span
+            className={`font-display ${w.italic ? "italic font-light text-accent" : "font-bold text-foreground"} text-3xl sm:text-5xl lg:text-6xl tracking-[-0.025em] mx-6 sm:mx-10`}
+          >
+            {w.text}
+          </span>
+          <span className="mx-4 sm:mx-6 text-accent/50 text-xs">✦</span>
         </span>
       ))}
     </Marquee>

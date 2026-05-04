@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Dumbbell, Zap, Star, Target, Clock, MapPin, ArrowRight } from "lucide-react";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
+import SectionHeader from "@/components/SectionHeader";
 
 const images = [
   { src: "/images/iz-hero.jpg", alt: "Impact Zone Gym Floor", label: "The Floor" },
@@ -30,20 +31,12 @@ const GallerySection = () => {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="px-5 sm:px-8 pt-16 sm:pt-20 pb-6 sm:pb-8">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: 60 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="h-px bg-primary/60 mb-10"
+      <div className="px-5 sm:px-8 pt-16 sm:pt-24 pb-6 sm:pb-8 max-w-6xl mx-auto w-full">
+        <SectionHeader
+          numeral="02"
+          eyebrow="The Gym"
+          title={<>51,000 sq ft. <span className="italic font-light text-accent">No excuses.</span></>}
         />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-5">The Gym</p>
-        <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] tracking-[-0.02em]">
-          51,000 Sq Ft.
-          <br />
-          <span className="text-muted-foreground">No Excuses.</span>
-        </h2>
       </div>
 
       <p className="px-5 sm:px-8 text-[10px] sm:text-xs text-muted-foreground/70 font-display tracking-[0.2em] ">Scroll sideways to explore the gym</p>

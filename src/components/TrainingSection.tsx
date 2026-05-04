@@ -60,15 +60,20 @@ const TrainingSection = () => {
           alt="Training at Impact Zone"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-        <motion.p
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 font-display font-extrabold text-sm sm:text-lg tracking-[0.14em]  text-foreground/70"
-        >
-          <span className="text-primary/80 text-[10px] tracking-[0.18em] block mb-1">Training</span>
-        </motion.p>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="container-tight w-full px-5 sm:px-8 pb-10 sm:pb-16">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-8 bg-accent" />
+              <span className="text-foreground/70 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em]">
+                06 — Training
+              </span>
+            </div>
+            <h2 className="font-display font-black text-[clamp(2.6rem,9vw,6rem)] leading-[0.86] tracking-[-0.045em] text-foreground">
+              Move <span className="italic font-light text-accent">smarter.</span>
+            </h2>
+          </div>
+        </div>
       </div>
 
       {/* Tabs + Content */}

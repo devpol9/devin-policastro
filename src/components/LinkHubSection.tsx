@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Building2, Dumbbell, Instagram, ArrowUpRight, Video, Linkedin, Calendar, Sparkles, DollarSign, Users, type LucideIcon } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 type LinkCategory = "socials" | "2thirty" | "impact-zone";
 
@@ -47,26 +48,11 @@ const LinkHubSection = () => {
   return (
     <section id="links" className="section-padding relative">
       <div className="container-tight">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-10 sm:mb-16"
-        >
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 60 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="h-px bg-primary/60 mb-8 sm:mb-10"
-          />
-          <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">Link Hub</p>
-          <h2 className="font-display font-extrabold text-3xl sm:text-6xl mb-4 tracking-[-0.02em]">
-            Everything.
-            <br />
-            <span className="text-muted-foreground">One Tap.</span>
-          </h2>
-        </motion.div>
+        <SectionHeader
+          numeral="03"
+          eyebrow="Link Hub"
+          title={<>Everything. <span className="italic font-light text-accent">One tap.</span></>}
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

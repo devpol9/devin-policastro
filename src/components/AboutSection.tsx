@@ -3,6 +3,7 @@ import { Dumbbell, Droplets, Sparkles, Briefcase, Car, Video } from "lucide-reac
 import { useNavigate } from "react-router-dom";
 import TiltCard from "@/components/effects/TiltCard";
 import TextScramble from "@/components/effects/TextScramble";
+import SectionHeader from "@/components/SectionHeader";
 
 const verticals = [
   {
@@ -83,31 +84,12 @@ const AboutSection = () => {
     />
 
     <div className="container-tight relative z-10">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mb-14 sm:mb-24"
-      >
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: 60 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="h-px bg-primary/60 mb-8 sm:mb-10"
-        />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.18em]  mb-4 sm:mb-5">My World</p>
-        <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
-          <span className="text-muted-foreground">I Just</span>
-          <br />
-          <span className="gradient-text">Build.</span>
-        </h2>
-        <p className="text-muted-foreground max-w-md text-sm sm:text-base leading-[1.8]">
-          Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY,
-          manufacturing through Creative Vision, and developing Valence.
-        </p>
-      </motion.div>
+      <SectionHeader
+        numeral="01"
+        eyebrow="My World"
+        title={<>I just <span className="italic font-light text-accent">build.</span></>}
+        description="Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY, manufacturing through Creative Vision, and developing Valence."
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {verticals.map((v, i) => (
