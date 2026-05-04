@@ -31,7 +31,7 @@ const StatsBar = () => (
                 className="gradient-text"
               />
             </div>
-            <p className="text-muted-foreground text-[10px] sm:text-sm font-display font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase">
+            <p className="text-muted-foreground text-[10px] sm:text-sm font-display font-medium tracking-[0.15em] sm:tracking-[0.2em] ">
               {stat.label}
             </p>
           </motion.div>

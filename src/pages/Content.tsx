@@ -79,7 +79,7 @@ const Content = () => {
               className="h-px mb-8 sm:mb-10"
               style={{ background: `hsl(${COLOR} / 0.6)` }}
             />
-            <p className="font-display text-[10px] tracking-[0.5em] uppercase mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
+            <p className="font-display text-[10px] tracking-[0.5em]  mb-4 sm:mb-5" style={{ color: `hsl(${COLOR})` }}>
               [ Content ]
             </p>
             <h1 className="font-display font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-[0.88] mb-6 sm:mb-8 tracking-[-0.02em]">
@@ -166,7 +166,7 @@ const Content = () => {
                       </div>
                     </div>
                     <p className="text-muted-foreground text-xs leading-relaxed mb-3">{platform.desc}</p>
-                    <div className="flex items-center gap-1.5 text-[10px] font-display font-semibold tracking-wider uppercase opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-500" style={{ color: `hsl(${platform.color})` }}>
+                    <div className="flex items-center gap-1.5 text-[10px] font-display font-semibold tracking-wider  opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-500" style={{ color: `hsl(${platform.color})` }}>
                       <span>Follow</span>
                       <ExternalLink size={10} />
                     </div>

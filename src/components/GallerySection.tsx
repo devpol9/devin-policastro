@@ -38,7 +38,7 @@ const GallerySection = () => {
           transition={{ duration: 1 }}
           className="h-px bg-primary/60 mb-10"
         />
-        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em] uppercase mb-5">The Gym</p>
+        <p className="text-primary/80 font-display text-[10px] tracking-[0.5em]  mb-5">The Gym</p>
         <h2 className="font-display font-extrabold text-3xl sm:text-6xl lg:text-7xl leading-[0.88] tracking-[-0.02em]">
           51,000 Sq Ft.
           <br />
@@ -46,7 +46,7 @@ const GallerySection = () => {
         </h2>
       </div>
 
-      <p className="px-5 sm:px-8 text-[10px] sm:text-xs text-muted-foreground/70 font-display tracking-[0.2em] uppercase">Scroll sideways to explore the gym</p>
+      <p className="px-5 sm:px-8 text-[10px] sm:text-xs text-muted-foreground/70 font-display tracking-[0.2em] ">Scroll sideways to explore the gym</p>
 
       <div className="touch-carousel flex gap-3 sm:gap-4 lg:gap-5 px-5 sm:px-8 pb-10 sm:pb-14 pt-6 sm:pt-10 overflow-x-auto overflow-y-hidden snap-x snap-mandatory" style={{ WebkitOverflowScrolling: 'touch' }}>
         {images.map((img, i) => (
@@ -57,11 +57,11 @@ const GallerySection = () => {
             <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex items-end justify-between">
-              <span className="font-display font-bold text-xs sm:text-sm tracking-[0.15em] uppercase text-foreground/90">{img.label}</span>
+              <span className="font-display font-bold text-xs sm:text-sm tracking-[0.15em]  text-foreground/90">{img.label}</span>
               {img.label === "Training" && (
                 <button
                   onClick={() => setTrainingInquiryOpen(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-[1.03]"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wider  transition-all duration-300 hover:scale-[1.03]"
                   style={{
                     background: `hsl(0 75% 55% / 0.85)`,
                     color: `hsl(0 0% 100%)`,

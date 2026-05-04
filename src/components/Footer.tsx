@@ -35,7 +35,7 @@ const Footer = () => (
             viewport={{ once: true }}
             className="font-display font-extrabold text-xl tracking-tight mb-3"
           >
-            <span className="text-foreground/90">DEVIN</span>
+            <span className="text-foreground/90">Devin</span>
             <span className="text-primary ml-1.5">P.</span>
           </motion.p>
           <p className="text-muted-foreground/60 text-xs leading-relaxed max-w-[220px] mb-5">
@@ -59,7 +59,7 @@ const Footer = () => (
 
         {/* Ventures column */}
         <div>
-          <p className="text-[9px] font-display font-bold tracking-[0.4em] uppercase text-muted-foreground/40 mb-4">Ventures</p>
+          <p className="text-[9px] font-display font-bold tracking-[0.4em]  text-muted-foreground/40 mb-4">Ventures</p>
           <ul className="space-y-2">
             {ventures.map((v) => (
               <li key={v.label}>
@@ -84,7 +84,7 @@ const Footer = () => (
 
         {/* Location column */}
         <div>
-          <p className="text-[9px] font-display font-bold tracking-[0.4em] uppercase text-muted-foreground/40 mb-4">HQ</p>
+          <p className="text-[9px] font-display font-bold tracking-[0.4em]  text-muted-foreground/40 mb-4">HQ</p>
           <div className="flex items-start gap-2 text-muted-foreground/50 text-xs leading-relaxed">
             <MapPin size={13} className="mt-0.5 shrink-0 text-primary/40" />
             <span>335 Chestnut St<br />Norwood, NJ 07648</span>
