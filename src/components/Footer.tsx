@@ -35,7 +35,7 @@ const Footer = () => (
             viewport={{ once: true }}
             className="font-display font-extrabold text-xl tracking-tight mb-3"
           >
-            <span className="text-foreground/90">DEVIN</span>
+            <span className="text-foreground/90">Devin</span>
             <span className="text-primary ml-1.5">P.</span>
           </motion.p>
           <p className="text-muted-foreground/60 text-xs leading-relaxed max-w-[220px] mb-5">

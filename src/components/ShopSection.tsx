@@ -218,7 +218,7 @@ const ShopSection = () => {
                             <span className="text-muted-foreground text-xs line-through">MSRP $19.99</span>
                             <span className="text-foreground/70 text-xs">→</span>
                             <span className="text-foreground text-sm font-semibold">{product.originalPrice}</span>
-                            <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider">FREE SHIPPING</span>
+                            <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider">Free shipping</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="font-display font-bold text-base sm:text-lg" style={{ color: `hsl(${product.color})` }}>{product.price}</span>

@@ -7,7 +7,7 @@ import TextScramble from "@/components/effects/TextScramble";
 const verticals = [
   {
     icon: Dumbbell,
-    title: "FITNESS",
+    title: "Fitness",
     desc: "Impact Zone Fitness — Bergen County's premier 51,000 sq ft facility in Norwood, NJ. 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, and 5K sports turf.",
     link: "https://impactzonenj.com",
     route: null,
@@ -16,7 +16,7 @@ const verticals = [
   },
   {
     icon: Droplets,
-    title: "HYDRATION",
+    title: "Hydration",
     desc: "2THIRTY — The only 5-in-1 hydration+ mixer. Zero sugar, zero calories. NAC, L-Glutathione, Milk Thistle, Ginseng Root. 4.9 stars from 3,500+ reviews.",
     link: "https://drink2thirty.com",
     route: null,
@@ -25,7 +25,7 @@ const verticals = [
   },
   {
     icon: Briefcase,
-    title: "MANUFACTURING",
+    title: "Manufacturing",
     desc: "Creative Vision — custom apparel, jump ropes, mini bands, wrist wraps, blow-up tents, and more. Premium fitness products from concept to delivery.",
     link: null,
     route: "/manufacturing",
@@ -34,7 +34,7 @@ const verticals = [
   },
   {
     icon: Sparkles,
-    title: "VALENCE",
+    title: "Valence",
     desc: "The gym industry runs on broken software. Valence is the all-in-one platform replacing ABC Fitness and Mindbody — member management, billing, scheduling, and retention tools built by someone who actually runs a gym.",
     link: null,
     route: null,
@@ -43,16 +43,16 @@ const verticals = [
   },
   {
     icon: Car,
-    title: "AUTOMOTIVE",
+    title: "Automotive",
     desc: "Vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. I'll connect you with the right people.",
     link: null,
     route: "/automotive",
     color: "18 38% 50%",
-    label: "AUTOMOTIVE",
+    label: "Automotive",
   },
   {
     icon: Video,
-    title: "CONTENT",
+    title: "Content",
     desc: "Documenting the grind on Instagram, TikTok, and YouTube — @devinpolicastro. Real talk, real results, no filter.",
     link: "https://instagram.com/devinpolicastro",
     route: null,
