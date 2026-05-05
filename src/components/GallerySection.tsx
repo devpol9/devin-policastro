@@ -47,7 +47,7 @@ const GallerySection = () => {
             key={i}
             className="relative w-[82vw] sm:w-[68vw] lg:w-[44vw] xl:w-[36vw] max-w-[620px] aspect-[4/3] rounded-xl overflow-hidden shrink-0 snap-start group"
           >
-            <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex items-end justify-between">
               <span className="font-display font-bold text-xs sm:text-sm tracking-[0.15em]  text-foreground/90">{img.label}</span>
