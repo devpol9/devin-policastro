@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { LogOut, Mail, Phone, Clock, Filter, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import SectionHeader from "@/components/SectionHeader";
 
 interface Inquiry {
   id: string;
@@ -126,13 +127,12 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
+      {/* Sticky toolbar */}
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="font-display font-extrabold text-xl">Inquiry Dashboard</h1>
-            <p className="text-muted-foreground text-xs">{inquiries.length} total inquiries</p>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+          <span className="font-display font-bold text-xs tracking-[0.18em] text-muted-foreground">
+            ADMIN · {inquiries.length} TOTAL
+          </span>
           <div className="flex items-center gap-3">
             <button
               onClick={fetchInquiries}
@@ -152,7 +152,14 @@ const Admin = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 pb-6">
+        <SectionHeader
+          as="h1"
+          numeral="00"
+          eyebrow="Control Room"
+          title={<>Inquiry <span className="italic font-light text-accent">dashboard.</span></>}
+          description={`${inquiries.length} total inquiries across every service line. Filter, triage, and update status inline.`}
+        />
         {/* Filters */}
         <div className="flex flex-wrap gap-2 mb-6">
           <div className="flex items-center gap-2 mr-4">
