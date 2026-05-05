@@ -119,98 +119,57 @@ const Automotive = () => {
             title={<>Automotive <span className="italic font-light" style={{ color: `hsl(${COLOR})` }}>& custom builds.</span></>}
             description="Builds, mods, and the car culture that fuels me. Always something new in the garage. Tell me what you need — I'll connect you with the right people and make sure you're taken care of."
           />
-          <div className="mb-10 sm:mb-16">
+          <div className="mb-8 sm:mb-12">
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => setGeneralInquiryOpen(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: `hsl(${COLOR})`,
                   color: `hsl(36 30% 98%)`,
                 }}
               >
-                General Inquiry
+                General inquiry
                 <ArrowRight size={14} />
               </button>
             </div>
           </div>
 
-          {/* Services Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-12">
+          {/* Services Grid — dense, neutral, premium */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mb-12">
             {autoServices.map((service, i) => {
               const Icon = service.icon;
               return (
                 <motion.div
                   key={service.name}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.06 }}
-                  className="group relative overflow-hidden rounded-lg transition-all duration-500"
-                  style={{
-                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                    border: `1px solid hsl(${COLOR} / 0.15)`,
-                  }}
+                  transition={{ delay: 0.1 + i * 0.04, duration: 0.4 }}
+                  className="group relative rounded-xl bg-card border border-border/60 hover:border-foreground/20 transition-colors duration-300"
                 >
-                  {/* Top glow line */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[2px] opacity-40 group-hover:opacity-80 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(90deg, transparent, hsl(${COLOR}), transparent)` }}
-                  />
-                  {/* Hover radial */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700"
-                    style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${COLOR}) 0%, transparent 70%)` }}
-                  />
-
-                  <div className="relative z-10 p-5 sm:p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500"
-                        style={{
-                          background: `linear-gradient(135deg, hsl(${COLOR} / 0.2) 0%, hsl(${COLOR} / 0.08) 100%)`,
-                          border: `1px solid hsl(${COLOR} / 0.25)`,
-                          boxShadow: `0 0 20px hsl(${COLOR} / 0.15)`,
-                        }}
-                      >
-                        <Icon size={18} style={{ color: `hsl(${COLOR})`, filter: `drop-shadow(0 0 6px hsl(${COLOR} / 0.6))` }} />
+                  <div className="p-4 sm:p-5">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-foreground/[0.06] transition-colors">
+                        <Icon size={15} className="text-foreground/70 group-hover:text-foreground transition-colors" strokeWidth={1.6} />
                       </div>
-                      <span
-                        className="text-[8px] font-display font-bold tracking-[0.12em]  px-2.5 py-1 rounded-full"
-                        style={{
-                          color: `hsl(${COLOR})`,
-                          background: `hsl(${COLOR} / 0.1)`,
-                          border: `1px solid hsl(${COLOR} / 0.2)`,
-                        }}
-                      >
-                        AUTOMOTIVE
-                      </span>
+                      <div className="flex-1 min-w-0 pt-0.5">
+                        <h3 className="font-display font-bold text-sm sm:text-[15px] leading-tight text-foreground">
+                          {service.name}
+                        </h3>
+                      </div>
                     </div>
 
-                    <h3
-                      className="font-display font-bold text-sm sm:text-base mb-2 transition-colors duration-300"
-                      style={{ color: `hsl(${COLOR} / 0.9)` }}
-                    >
-                      {service.name}
-                    </h3>
-                    <p className="text-muted-foreground text-xs leading-relaxed mb-1">{service.desc}</p>
-                    <p className="text-muted-foreground/60 text-[11px] leading-relaxed mb-5">{service.detail}</p>
+                    <p className="text-muted-foreground text-[12px] sm:text-[13px] leading-[1.55] mb-4">
+                      {service.desc}
+                    </p>
 
-                    <div
-                      className="flex items-center gap-2 pt-4"
-                      style={{ borderTop: `1px solid hsl(${COLOR} / 0.12)` }}
+                    <button
+                      onClick={() => openInquiry(service.name)}
+                      className="w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg text-[11px] sm:text-xs font-display font-semibold tracking-wide bg-foreground text-background hover:bg-foreground/90 transition-colors"
                     >
-                      <button
-                        onClick={() => openInquiry(service.name)}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-display font-semibold tracking-[0.06em]  transition-all duration-300 hover:scale-[1.02]"
-                        style={{
-                          background: `hsl(${COLOR})`,
-                          color: `hsl(36 30% 98%)`,
-                        }}
-                      >
-                        Inquire
-                        <ArrowRight size={12} />
-                      </button>
-                    </div>
+                      <span>Inquire</span>
+                      <ArrowRight size={12} />
+                    </button>
                   </div>
                 </motion.div>
               );
