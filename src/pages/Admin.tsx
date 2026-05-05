@@ -257,7 +257,7 @@ const Admin = () => {
                         </select>
                       </div>
 
-                      <h3 className="font-display font-bold text-sm mb-1">{inq.name}</h3>
+                      <h3 className="font-display font-black text-xl sm:text-2xl leading-[0.95] tracking-[-0.02em] mb-1" style={{ color: `hsl(${serviceColor})` }}>{inq.name}.</h3>
 
                       <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-3">
                         <a href={`mailto:${inq.email}`} className="flex items-center gap-1 hover:text-foreground transition-colors">
