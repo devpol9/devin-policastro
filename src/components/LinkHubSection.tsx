@@ -51,7 +51,7 @@ const LinkHubSection = () => {
         <SectionHeader
           numeral="03"
           eyebrow="Link Hub"
-          title={<>Everything. <span className="italic font-light text-accent">One tap.</span></>}
+          title="Everything. One tap."
         />
 
         <motion.div
