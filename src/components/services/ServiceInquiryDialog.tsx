@@ -100,6 +100,10 @@ const ServiceInquiryDialog = ({
 
       if (error) throw error;
       toast.success("Inquiry sent! Devin will get back to you.");
+      trackEvent("inquiry_submit", {
+        subject: emailSubject,
+        service: formData.service || null,
+      });
       setFormData({ name: "", email: "", phone: "" });
       onOpenChange(false);
     } catch (err) {
