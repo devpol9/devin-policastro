@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { motion } from "framer-motion";
 import { LogIn } from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -35,16 +36,20 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4 noise-overlay">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-sm"
+        className="w-full max-w-md"
       >
-        <div className="text-center mb-8">
-          <h1 className="font-display font-extrabold text-2xl mb-2">Admin Login</h1>
-          <p className="text-muted-foreground text-sm">Authorized personnel only</p>
-        </div>
+        <SectionHeader
+          as="h1"
+          numeral="00"
+          eyebrow="Restricted"
+          align="center"
+          title={<>Admin <span className="italic font-light text-accent">access.</span></>}
+          description="Authorized personnel only. Sign in to manage inquiries."
+        />
 
         <button
           onClick={handleGoogleLogin}
