@@ -105,7 +105,7 @@ const ShopSection = () => {
         <SectionHeader
           numeral="04"
           eyebrow="Shop & Codes"
-          title={<>Things I <span className="italic font-light text-accent">actually use.</span></>}
+          title="Things I actually use"
           description="2THIRTY is my brand — 5-in-1 hydration+ mixer with zero sugar, zero calories. 4.9 stars. 7,000+ packs sold. Made in the USA."
         />
 
