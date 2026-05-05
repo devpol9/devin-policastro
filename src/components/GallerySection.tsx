@@ -47,14 +47,14 @@ const GallerySection = () => {
             key={i}
             className="relative w-[82vw] sm:w-[68vw] lg:w-[44vw] xl:w-[36vw] max-w-[620px] aspect-[4/3] rounded-xl overflow-hidden shrink-0 snap-start group"
           >
-            <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 flex items-end justify-between">
               <span className="font-display font-bold text-xs sm:text-sm tracking-[0.15em]  text-foreground/90">{img.label}</span>
               {img.label === "Training" && (
                 <button
                   onClick={() => setTrainingInquiryOpen(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-[0.06em]  transition-all duration-300 hover:scale-[1.03]"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-[0.06em]"
                   style={{
                     background: `hsl(0 75% 55% / 0.85)`,
                     color: `hsl(0 0% 100%)`,
@@ -127,7 +127,7 @@ const GallerySection = () => {
                     boxShadow: `0 0 12px hsl(${perk.color} / 0.1), inset 0 1px 0 hsl(${perk.color} / 0.15)`,
                   }}
                 >
-                  <perk.icon size={20} style={{ color: `hsl(${perk.color})`, filter: `drop-shadow(0 0 8px hsl(${perk.color} / 0.5))` }} className="group-hover:scale-110 transition-transform duration-300" />
+                  <perk.icon size={20} style={{ color: `hsl(${perk.color})`, filter: `drop-shadow(0 0 8px hsl(${perk.color} / 0.5))` }} />
                   <span className="text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight transition-colors duration-300" style={{ color: `hsl(${perk.color} / 0.85)` }}>
                     {perk.text}
                   </span>

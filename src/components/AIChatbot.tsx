@@ -107,7 +107,7 @@ const AIChatbot = () => {
       {/* Floating trigger — above mobile bottom nav */}
       <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-[5.5rem] md:bottom-6 right-4 md:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/30 hover:scale-110 transition-transform"
+        className="fixed bottom-[5.5rem] md:bottom-6 right-4 md:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/30 transition-transform"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -211,7 +211,7 @@ const AIChatbot = () => {
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:scale-105 transition-transform disabled:opacity-40 shrink-0"
+                className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center transition-transform disabled:opacity-40 shrink-0"
               >
                 <Send size={16} />
               </button>

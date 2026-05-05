@@ -82,7 +82,7 @@ const Content = () => {
                 href={`https://instagram.com/${INSTAGRAM_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300"
                 style={{
                   background: `hsl(${COLOR} / 0.15)`,
                   border: `1px solid hsl(${COLOR} / 0.3)`,
@@ -94,7 +94,7 @@ const Content = () => {
               </a>
               <button
                 onClick={() => setInquiryOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300"
                 style={{
                   background: `hsl(${COLOR})`,
                   color: `hsl(36 30% 98%)`,
@@ -126,17 +126,13 @@ const Content = () => {
                   }}
                 >
                   <div
-                    className="absolute top-0 left-0 right-0 h-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute top-0 left-0 right-0 h-[2px]"
                     style={{ background: `linear-gradient(90deg, transparent, hsl(${platform.color}), transparent)` }}
-                  />
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-[0.1] transition-opacity duration-700"
-                    style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${platform.color}) 0%, transparent 70%)` }}
                   />
                   <div className="relative z-10 p-5 sm:p-6">
                     <div className="flex items-center gap-3 mb-3">
                       <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500"
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
                         style={{
                           background: `hsl(${platform.color} / 0.15)`,
                           border: `1px solid hsl(${platform.color} / 0.25)`,
@@ -152,7 +148,7 @@ const Content = () => {
                       </div>
                     </div>
                     <p className="text-muted-foreground text-xs leading-relaxed mb-3">{platform.desc}</p>
-                    <div className="flex items-center gap-1.5 text-[10px] font-display font-semibold tracking-[0.06em]  opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-500" style={{ color: `hsl(${platform.color})` }}>
+                    <div className="flex items-center gap-1.5 text-[10px] font-display font-semibold tracking-[0.06em]" style={{ color: `hsl(${platform.color})` }}>
                       <span>Follow</span>
                       <ExternalLink size={10} />
                     </div>
