@@ -177,6 +177,18 @@ const ServiceInquiryDialog = ({
                     required={field.required}
                     className="bg-background border-border/60 resize-none text-sm rounded-lg"
                   />
+                ) : field.type === "select" ? (
+                  <select
+                    value={formData[field.key] || ""}
+                    onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                    required={field.required}
+                    className="w-full bg-background border border-border/60 h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
+                  >
+                    <option value="">{field.placeholder}</option>
+                    {field.options?.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 ) : (
                   <Input
                     value={formData[field.key] || ""}
