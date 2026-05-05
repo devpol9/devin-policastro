@@ -121,7 +121,7 @@ const ShopSection = () => {
             >
               <TiltCard className="h-full">
                 <div
-                  className="overflow-hidden group h-full transition-all duration-700 rounded-lg relative"
+                  className="overflow-hidden group h-full transition-all duration-700 rounded-lg relative isolate"
                   style={{
                     background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                     border: `1px solid hsl(${product.color} / 0.3)`,
@@ -143,6 +143,14 @@ const ShopSection = () => {
                     className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{ boxShadow: `inset 0 0 0 1px hsl(${product.color} / 0.5), 0 0 40px hsl(${product.glowColor} / 0.15)` }}
                   />
+
+                  <span
+                    aria-hidden
+                    className="pointer-events-none select-none absolute -top-8 -right-3 font-display font-black leading-none text-[8rem] sm:text-[10rem] tracking-[-0.06em] z-0"
+                    style={{ color: `hsl(${product.color} / 0.07)` }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
 
                   <div className="relative z-10">
                     <div className="aspect-[4/3] overflow-hidden relative bg-card/30">
@@ -188,10 +196,10 @@ const ShopSection = () => {
 
                     <div className="p-4 sm:p-6">
                       <h3
-                        className="font-display font-bold text-sm sm:text-base mb-1.5 sm:mb-2 transition-colors duration-300"
+                        className="font-display font-black text-xl sm:text-2xl leading-[0.95] tracking-[-0.02em] mb-2 sm:mb-2.5 transition-colors duration-300"
                         style={{ color: `hsl(${product.color})` }}
                       >
-                        {product.name}
+                        {product.name}.
                       </h3>
                       <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-5 leading-relaxed line-clamp-2">{product.note}</p>
 
