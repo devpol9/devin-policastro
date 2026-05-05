@@ -12,9 +12,11 @@ interface InquiryField {
   key: string;
   label: string;
   placeholder: string;
-  type: "input" | "textarea";
+  type: "input" | "textarea" | "select";
   required?: boolean;
   rows?: number;
+  options?: string[];
+  defaultValue?: string;
 }
 
 interface ServiceInquiryDialogProps {
@@ -37,11 +39,11 @@ const ServiceInquiryDialog = ({
   emailSubject,
 }: ServiceInquiryDialogProps) => {
   const [sending, setSending] = useState(false);
-  const [formData, setFormData] = useState<Record<string, string>>({
-    name: "",
-    email: "",
-    phone: "",
+  const initial: Record<string, string> = { name: "", email: "", phone: "" };
+  fields.forEach((f) => {
+    if (f.defaultValue) initial[f.key] = f.defaultValue;
   });
+  const [formData, setFormData] = useState<Record<string, string>>(initial);
 
   const colorId = color.replace(/\s+/g, "-");
 
@@ -175,6 +177,18 @@ const ServiceInquiryDialog = ({
                     required={field.required}
                     className="bg-background border-border/60 resize-none text-sm rounded-lg"
                   />
+                ) : field.type === "select" ? (
+                  <select
+                    value={formData[field.key] || ""}
+                    onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                    required={field.required}
+                    className="w-full bg-background border border-border/60 h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
+                  >
+                    <option value="">{field.placeholder}</option>
+                    {field.options?.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 ) : (
                   <Input
                     value={formData[field.key] || ""}
