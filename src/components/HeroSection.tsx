@@ -7,8 +7,8 @@ import MagneticButton from "@/components/effects/MagneticButton";
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.8], [0, 60]);
+  const opacity = useTransform(scrollYProgress, [0.6, 1], [1, 0]);
+  const y = useTransform(scrollYProgress, [0.6, 1], [0, 60]);
 
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
