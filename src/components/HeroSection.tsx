@@ -77,7 +77,7 @@ const HeroSection = () => {
                 className="w-full h-full object-cover grayscale-[0.15]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[9px] font-display font-semibold tracking-[0.18em] text-background mix-blend-difference">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.14em] text-background mix-blend-difference whitespace-nowrap">
                 <span>— Founder</span>
                 <span>Norwood, NJ</span>
               </div>
