@@ -227,7 +227,11 @@ const ServiceInquiryDialog = ({
                   ) : field.type === "select" ? (
                     <select
                       value={formData[field.key] || ""}
-                      onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        setFormData((p) => ({ ...p, [field.key]: v }));
+                        if (v) trackEvent("inquiry_select_change", { subject: emailSubject, field: field.key, value: v });
+                      }}
                       onBlur={() => markTouched(field.key)}
                       aria-invalid={!!err}
                       className={`w-full bg-background border h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none ${errCls}`}
