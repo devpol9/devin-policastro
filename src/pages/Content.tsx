@@ -82,7 +82,7 @@ const Content = () => {
                 href={`https://instagram.com/${INSTAGRAM_USERNAME}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300"
                 style={{
                   background: `hsl(${COLOR} / 0.15)`,
                   border: `1px solid hsl(${COLOR} / 0.3)`,
@@ -94,7 +94,7 @@ const Content = () => {
               </a>
               <button
                 onClick={() => setInquiryOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-display font-semibold transition-all duration-300"
                 style={{
                   background: `hsl(${COLOR})`,
                   color: `hsl(36 30% 98%)`,

@@ -202,7 +202,7 @@ const ShopSection = () => {
                           href={product.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="ml-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wide hover:scale-[1.02] transition-all duration-500"
+                          className="ml-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wide transition-all duration-500"
                           style={{ background: `hsl(${product.color})`, color: `hsl(36 30% 98%)` }}
                         >
                           <ExternalLink size={12} />
