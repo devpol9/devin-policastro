@@ -12,9 +12,11 @@ interface InquiryField {
   key: string;
   label: string;
   placeholder: string;
-  type: "input" | "textarea";
+  type: "input" | "textarea" | "select";
   required?: boolean;
   rows?: number;
+  options?: string[];
+  defaultValue?: string;
 }
 
 interface ServiceInquiryDialogProps {
