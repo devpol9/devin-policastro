@@ -145,11 +145,15 @@ const ServiceInquiryDialog = ({
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+                  onBlur={() => markTouched("name")}
                   placeholder="Your name"
-                  required
+                  aria-invalid={!!showError("name")}
                   maxLength={100}
-                  className="bg-background border-border/60 h-11 text-sm rounded-lg"
+                  className={`bg-background h-11 text-sm rounded-lg ${showError("name") ? "border-destructive" : "border-border/60"}`}
                 />
+                {showError("name") && (
+                  <p className="text-destructive text-[11px] font-display mt-1">{errors.name}</p>
+                )}
               </div>
               <div>
                 <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
@@ -158,12 +162,16 @@ const ServiceInquiryDialog = ({
                 <Input
                   value={formData.email}
                   onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+                  onBlur={() => markTouched("email")}
                   type="email"
                   placeholder="you@email.com"
-                  required
+                  aria-invalid={!!showError("email")}
                   maxLength={255}
-                  className="bg-background border-border/60 h-11 text-sm rounded-lg"
+                  className={`bg-background h-11 text-sm rounded-lg ${showError("email") ? "border-destructive" : "border-border/60"}`}
                 />
+                {showError("email") && (
+                  <p className="text-destructive text-[11px] font-display mt-1">{errors.email}</p>
+                )}
               </div>
             </div>
 
@@ -180,55 +188,65 @@ const ServiceInquiryDialog = ({
               />
             </div>
 
-            {fields.map((field, i) => (
-              <motion.div
-                key={field.key}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.04 }}
-              >
-                <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
-                  {field.label}
-                  {field.required ? " *" : ""}
-                </label>
-                {field.type === "textarea" ? (
-                  <Textarea
-                    value={formData[field.key] || ""}
-                    onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
-                    placeholder={field.placeholder}
-                    rows={field.rows || 3}
-                    maxLength={500}
-                    required={field.required}
-                    className="bg-background border-border/60 resize-none text-sm rounded-lg"
-                  />
-                ) : field.type === "select" ? (
-                  <select
-                    value={formData[field.key] || ""}
-                    onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
-                    required={field.required}
-                    className="w-full bg-background border border-border/60 h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
-                  >
-                    <option value="">{field.placeholder}</option>
-                    {field.options?.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <Input
-                    value={formData[field.key] || ""}
-                    onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
-                    placeholder={field.placeholder}
-                    maxLength={200}
-                    required={field.required}
-                    className="bg-background border-border/60 h-11 text-sm rounded-lg"
-                  />
-                )}
-              </motion.div>
-            ))}
+            {fields.map((field, i) => {
+              const err = showError(field.key);
+              const errCls = err ? "border-destructive" : "border-border/60";
+              return (
+                <motion.div
+                  key={field.key}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.04 }}
+                >
+                  <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+                    {field.label}
+                    {field.required ? " *" : ""}
+                  </label>
+                  {field.type === "textarea" ? (
+                    <Textarea
+                      value={formData[field.key] || ""}
+                      onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                      onBlur={() => markTouched(field.key)}
+                      placeholder={field.placeholder}
+                      rows={field.rows || 3}
+                      maxLength={500}
+                      aria-invalid={!!err}
+                      className={`bg-background resize-none text-sm rounded-lg ${errCls}`}
+                    />
+                  ) : field.type === "select" ? (
+                    <select
+                      value={formData[field.key] || ""}
+                      onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                      onBlur={() => markTouched(field.key)}
+                      aria-invalid={!!err}
+                      className={`w-full bg-background border h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none ${errCls}`}
+                    >
+                      <option value="">{field.placeholder}</option>
+                      {field.options?.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <Input
+                      value={formData[field.key] || ""}
+                      onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                      onBlur={() => markTouched(field.key)}
+                      placeholder={field.placeholder}
+                      maxLength={200}
+                      aria-invalid={!!err}
+                      className={`bg-background h-11 text-sm rounded-lg ${errCls}`}
+                    />
+                  )}
+                  {err && (
+                    <p className="text-destructive text-[11px] font-display mt-1">{errors[field.key]}</p>
+                  )}
+                </motion.div>
+              );
+            })}
 
             <Button
               type="submit"
-              disabled={sending}
+              disabled={sending || !isValid}
               className="w-full h-12 font-display font-semibold tracking-wide text-sm mt-3 rounded-full bg-foreground text-background hover:bg-foreground/90"
             >
               <Send size={14} />
