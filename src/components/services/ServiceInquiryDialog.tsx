@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { trackEvent } from "@/lib/analytics";
 
 interface InquiryField {
   key: string;
@@ -47,6 +48,12 @@ const ServiceInquiryDialog = ({
   const [formData, setFormData] = useState<Record<string, string>>(initial);
 
   const colorId = color.replace(/\s+/g, "-");
+
+  useEffect(() => {
+    if (open) {
+      trackEvent("inquiry_open", { subject: emailSubject, title });
+    }
+  }, [open, emailSubject, title]);
 
   const emailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 
@@ -93,6 +100,10 @@ const ServiceInquiryDialog = ({
 
       if (error) throw error;
       toast.success("Inquiry sent! Devin will get back to you.");
+      trackEvent("inquiry_submit", {
+        subject: emailSubject,
+        service: formData.service || null,
+      });
       setFormData({ name: "", email: "", phone: "" });
       onOpenChange(false);
     } catch (err) {
@@ -216,7 +227,11 @@ const ServiceInquiryDialog = ({
                   ) : field.type === "select" ? (
                     <select
                       value={formData[field.key] || ""}
-                      onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        setFormData((p) => ({ ...p, [field.key]: v }));
+                        if (v) trackEvent("inquiry_select_change", { subject: emailSubject, field: field.key, value: v });
+                      }}
                       onBlur={() => markTouched(field.key)}
                       aria-invalid={!!err}
                       className={`w-full bg-background border h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none ${errCls}`}
