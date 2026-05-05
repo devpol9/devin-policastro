@@ -122,18 +122,26 @@ const AIChatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-[8.5rem] md:bottom-24 right-3 md:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[380px] max-h-[75vh] sm:max-h-[600px] rounded-2xl overflow-hidden border border-border/30 bg-card/95 backdrop-blur-2xl shadow-2xl shadow-black/30 flex flex-col"
+            className="fixed bottom-[8.5rem] md:bottom-24 right-3 md:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[400px] max-h-[75vh] sm:max-h-[620px] rounded-2xl overflow-hidden border border-border/40 bg-card/95 backdrop-blur-2xl shadow-2xl shadow-foreground/10 flex flex-col"
           >
-            {/* Header */}
-            <div className="p-3 sm:p-4 border-b border-border/20 flex items-center gap-3">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary/15 flex items-center justify-center">
-                <Bot size={16} className="text-primary" />
+            {/* Editorial header */}
+            <div className="relative p-4 sm:p-5 border-b border-border/30 overflow-hidden">
+              <span aria-hidden className="absolute -top-6 -right-2 font-display font-black leading-none text-[5rem] text-foreground/[0.05] tracking-[-0.06em]">00</span>
+              <div className="relative flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center">
+                  <Bot size={16} className="text-accent" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="h-px w-4 bg-accent" />
+                    <span className="text-foreground/60 text-[9px] font-display font-semibold tracking-[0.18em]">Live</span>
+                  </div>
+                  <h3 className="font-display font-black text-base tracking-[-0.02em] leading-none">
+                    Talk to <span className="italic font-light text-accent">Dev.</span>
+                  </h3>
+                </div>
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               </div>
-              <div>
-                <h3 className="font-display font-bold text-sm">Talk to Dev</h3>
-                <p className="text-[10px] text-muted-foreground">AI-powered • knows everything</p>
-              </div>
-              <div className="ml-auto w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             </div>
 
             {/* Messages */}

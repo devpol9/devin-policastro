@@ -23,15 +23,17 @@ const MobileBottomNav = () => {
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/90 backdrop-blur-xl border-t border-border/30">
-      <div className="flex items-center justify-around h-14 px-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/85 backdrop-blur-2xl border-t border-border/40">
+      {/* Top accent line */}
+      <span className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-16 bg-accent" />
+      <div className="flex items-center justify-around h-16 px-2 pt-1">
         {!isHome && (
           <button
             onClick={() => navigate("/")}
-            className="flex flex-col items-center gap-0.5 text-primary transition-colors"
+            className="flex flex-col items-center gap-1 text-accent transition-colors"
           >
-            <ArrowLeft size={18} />
-            <span className="text-[9px] font-medium">Back</span>
+            <ArrowLeft size={18} strokeWidth={2.25} />
+            <span className="text-[9px] font-display font-semibold tracking-[0.12em]">Back</span>
           </button>
         )}
         {isHome ? (
@@ -39,20 +41,19 @@ const MobileBottomNav = () => {
             <button
               key={item.href}
               onClick={() => handleClick(item.href)}
-              className="flex flex-col items-center gap-0.5 text-muted-foreground hover:text-primary transition-colors"
+              className="flex flex-col items-center gap-1 text-foreground/60 hover:text-accent transition-colors"
             >
-              <item.icon size={18} />
-              <span className="text-[9px] font-medium">{item.label}</span>
+              <item.icon size={18} strokeWidth={2.25} />
+              <span className="text-[9px] font-display font-semibold tracking-[0.12em]">{item.label}</span>
             </button>
           ))
         ) : (
-          // Sub-pages: only show Back + Contact (2 items, no crowding)
           <button
             onClick={() => handleClick("#contact")}
-            className="flex flex-col items-center gap-0.5 text-muted-foreground hover:text-primary transition-colors"
+            className="flex flex-col items-center gap-1 text-foreground/60 hover:text-accent transition-colors"
           >
-            <Mail size={18} />
-            <span className="text-[9px] font-medium">Contact</span>
+            <Mail size={18} strokeWidth={2.25} />
+            <span className="text-[9px] font-display font-semibold tracking-[0.12em]">Contact</span>
           </button>
         )}
       </div>
