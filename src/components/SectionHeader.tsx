@@ -34,32 +34,26 @@ const SectionHeader = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative mb-14 sm:mb-20 flex flex-col ${alignCls}`}
+      className={`relative mb-10 sm:mb-14 flex flex-col ${alignCls}`}
       style={accentStyle}
     >
-      <span
-        aria-hidden
-        className={`pointer-events-none select-none absolute -top-8 sm:-top-16 ${
-          align === "center" ? "left-1/2 -translate-x-1/2" : "-left-2 sm:-left-4"
-        } font-display font-black leading-none text-foreground/[0.05] text-[8rem] sm:text-[14rem] lg:text-[18rem] tracking-[-0.06em]`}
-      >
-        {numeral}
-      </span>
-
       <div className="relative z-10 w-full">
-        <div className={`flex items-center gap-3 mb-5 sm:mb-7 ${align === "center" ? "justify-center" : ""}`}>
-          <span className="h-px w-8 bg-accent" style={lineStyle} />
+        <div className={`flex items-center gap-3 mb-4 sm:mb-5 ${align === "center" ? "justify-center" : ""}`}>
+          <span className="font-mono text-[10px] sm:text-xs text-foreground/40 tabular-nums">
+            {numeral}
+          </span>
+          <span className="h-px w-6 bg-foreground/20" style={lineStyle} />
           <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.18em]">
             {eyebrow}
           </span>
         </div>
 
-        <Heading className="font-display font-black leading-[0.86] tracking-[-0.045em] text-[clamp(2.6rem,9vw,7rem)] mb-6 sm:mb-8">
+        <Heading className="font-display font-black leading-[0.92] tracking-[-0.035em] text-[clamp(1.85rem,5.5vw,4rem)] mb-4 sm:mb-5">
           {title}
         </Heading>
 
         {description && (
-          <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.75]">
+          <p className="text-muted-foreground max-w-xl text-sm sm:text-base leading-[1.7]">
             {description}
           </p>
         )}
