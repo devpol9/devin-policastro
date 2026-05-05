@@ -36,7 +36,7 @@ const Footer = () => (
             — End of feed
           </span>
         </div>
-        <h2 className="font-display font-black leading-[0.78] tracking-[-0.06em] text-[clamp(3.5rem,18vw,15rem)] text-foreground">
+        <h2 className="font-display font-black leading-[0.82] tracking-[-0.05em] text-[clamp(3rem,12vw,9rem)] text-foreground">
           Devin
           <br />
           <span className="italic font-light text-accent">Policastro.</span>
