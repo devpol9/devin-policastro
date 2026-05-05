@@ -36,7 +36,7 @@ const ServicesSection = () => {
         <SectionHeader
           numeral="05"
           eyebrow="Services"
-          title={<>Let's <span className="italic font-light text-accent">work.</span></>}
+          title="Let's work"
           description="Pick a lane. Real services, real outcomes — no agency markup, no middlemen."
         />
 

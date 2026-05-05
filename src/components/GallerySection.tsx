@@ -35,7 +35,7 @@ const GallerySection = () => {
         <SectionHeader
           numeral="02"
           eyebrow="The Gym"
-          title={<>51,000 sq ft. <span className="italic font-light text-accent">No excuses.</span></>}
+          title="51,000 sq ft. No excuses."
         />
       </div>
 

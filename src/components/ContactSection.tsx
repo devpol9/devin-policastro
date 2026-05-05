@@ -189,7 +189,7 @@ const ContactSection = () => {
             className="lg:col-span-2"
           >
             <SectionHeader
-              numeral="07"
+              numeral="06"
               eyebrow="Contact"
               title={<>Let's talk <span className="italic font-light text-accent">business.</span></>}
               description="Whether it's a collab, wholesale inquiry for 2THIRTY, Impact Zone membership, or you just want to connect — I respond to everything."

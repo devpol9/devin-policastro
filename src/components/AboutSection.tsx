@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Dumbbell, Droplets, Sparkles, Briefcase, Car, Video } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import TiltCard from "@/components/effects/TiltCard";
-import TextScramble from "@/components/effects/TextScramble";
 import SectionHeader from "@/components/SectionHeader";
 
 const verticals = [
@@ -100,81 +98,39 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: i * 0.08 }}
           >
-            <TiltCard className="h-full">
+            <div
+              onClick={() => handleCardClick(v)}
+              className={`h-full block group relative overflow-hidden rounded-lg bg-card border border-border transition-all duration-500 hover:border-foreground/30 ${v.link || v.route ? "cursor-pointer" : "cursor-default"}`}
+            >
+              {/* Top accent bar (brand color, hover only) */}
               <div
-                onClick={() => handleCardClick(v)}
-                className={`h-full block group relative overflow-hidden rounded-lg transition-all duration-500 ${v.link || v.route ? "cursor-pointer" : "cursor-default"}`}
-                style={{
-                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                  border: `1px solid hsl(${v.color} / 0.15)`,
-                  boxShadow: `0 4px 24px hsl(30 20% 30% / 0.08), inset 0 1px 0 hsl(${v.color} / 0.08)`,
-                }}
-              >
-                {/* Top accent bar */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-[2px] transition-opacity duration-500 opacity-60 group-hover:opacity-100"
-                  style={{ background: `linear-gradient(90deg, transparent, hsl(${v.color}), transparent)` }}
-                />
+                className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-80 transition-opacity duration-500"
+                style={{ background: `hsl(${v.color})` }}
+              />
 
-                {/* Ambient glow background */}
-                <div
-                  className="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.14] transition-opacity duration-700"
-                  style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${v.color}) 0%, transparent 70%)` }}
-                />
-
-                {/* Hover border glow */}
-                <div
-                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ boxShadow: `inset 0 0 0 1px hsl(${v.color} / 0.4), 0 0 30px hsl(${v.color} / 0.12)` }}
-                />
-
-                <div className="relative z-10 p-5 sm:p-7 lg:p-8 flex flex-col h-full">
-                  {/* Icon + label row */}
-                  <div className="flex items-start justify-between mb-5 sm:mb-7">
-                    <div
-                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 relative"
-                      style={{
-                        background: `linear-gradient(135deg, hsl(${v.color} / 0.2) 0%, hsl(${v.color} / 0.08) 100%)`,
-                        border: `1px solid hsl(${v.color} / 0.25)`,
-                        boxShadow: `0 0 20px hsl(${v.color} / 0.15)`,
-                      }}
-                    >
-                      <v.icon
-                        size={20}
-                        style={{ color: `hsl(${v.color})`, filter: `drop-shadow(0 0 6px hsl(${v.color} / 0.6))` }}
-                      />
-                    </div>
-                    <span
-                      className="text-[8px] sm:text-[9px] font-display font-bold tracking-[0.12em]  px-2.5 py-1 rounded-full"
-                      style={{
-                        color: `hsl(${v.color})`,
-                        background: `hsl(${v.color} / 0.1)`,
-                        border: `1px solid hsl(${v.color} / 0.2)`,
-                      }}
-                    >
-                      {v.label}
-                    </span>
+              <div className="relative z-10 p-5 sm:p-7 lg:p-8 flex flex-col h-full">
+                <div className="flex items-start justify-between mb-5 sm:mb-7">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-secondary border border-border group-hover:scale-105 transition-transform duration-500">
+                    <v.icon size={20} className="text-foreground/70 group-hover:text-foreground transition-colors" />
                   </div>
-
-                  <h3 className="font-display font-extrabold text-sm sm:text-base tracking-[0.12em] mb-2 sm:mb-3 transition-colors duration-300"
-                    style={{ color: `hsl(${v.color})` }}
-                  >
-                    <TextScramble text={v.title} delay={i * 200 + 500} />
-                  </h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7] flex-1">{v.desc}</p>
-
-                  {(v.link || v.route) && (
-                    <div
-                      className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-[0.1em]  opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
-                      style={{ color: `hsl(${v.color})` }}
-                    >
-                      <span>Explore</span>
-                      <span className="text-sm">→</span>
-                    </div>
-                  )}
+                  <span className="text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.12em] px-2.5 py-1 rounded-full text-foreground/60 bg-secondary border border-border">
+                    {v.label}
+                  </span>
                 </div>
+
+                <h3 className="font-display font-extrabold text-sm sm:text-base tracking-[0.1em] mb-2 sm:mb-3 text-foreground">
+                  {v.title}
+                </h3>
+                <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7] flex-1">{v.desc}</p>
+
+                {(v.link || v.route) && (
+                  <div className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-[0.1em] text-foreground/50 group-hover:text-accent opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                    <span>Explore</span>
+                    <span className="text-sm">→</span>
+                  </div>
+                )}
               </div>
-            </TiltCard>
+            </div>
           </motion.div>
         ))}
       </div>
