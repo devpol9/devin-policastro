@@ -51,52 +51,25 @@ const ServicesSection = () => {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.06, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => navigate(tab.route)}
-                className="group relative overflow-hidden rounded-lg text-left p-5 sm:p-7 transition-all duration-500 hover:-translate-y-1"
-                style={{
-                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                  border: `1px solid hsl(${tab.color} / 0.18)`,
-                  boxShadow: `0 4px 24px hsl(30 20% 30% / 0.06), inset 0 1px 0 hsl(${tab.color} / 0.06)`,
-                }}
+                className="group relative overflow-hidden rounded-lg text-left p-5 sm:p-7 bg-card border border-border/60 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_-12px_hsl(30_20%_30%/0.18)]"
               >
-                {/* Ghost numeral */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -right-3 -top-6 font-display font-black leading-none tracking-[-0.06em] text-[7rem] sm:text-[9rem] opacity-[0.06] group-hover:opacity-[0.14] transition-opacity duration-500"
-                  style={{ color: `hsl(${tab.color})` }}
-                >
-                  {tab.num}
-                </span>
-
-                {/* Top accent bar */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `linear-gradient(90deg, transparent, hsl(${tab.color}), transparent)` }}
-                />
-
-                <div className="relative z-10 flex flex-col gap-5 sm:gap-7 min-h-[160px] sm:min-h-[180px]">
+                <div className="relative z-10 flex flex-col gap-5 sm:gap-7 min-h-[150px] sm:min-h-[170px]">
                   <div className="flex items-center justify-between">
-                    <div
-                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
-                      style={{
-                        background: `hsl(${tab.color} / 0.12)`,
-                        border: `1px solid hsl(${tab.color} / 0.25)`,
-                      }}
-                    >
-                      <Icon size={18} style={{ color: `hsl(${tab.color})` }} />
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-secondary border border-border/60 transition-colors duration-500 group-hover:bg-accent/10 group-hover:border-accent/30">
+                      <Icon size={18} className="text-foreground/70 group-hover:text-accent transition-colors duration-500" />
                     </div>
-                    <ArrowUpRight
-                      size={18}
-                      className="opacity-30 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-                      style={{ color: `hsl(${tab.color})` }}
-                    />
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[10px] text-foreground/35 tabular-nums">{tab.num}</span>
+                      <ArrowUpRight
+                        size={18}
+                        className="text-foreground/30 group-hover:text-accent transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
+                      />
+                    </div>
                   </div>
 
                   <div className="mt-auto">
-                    <h3
-                      className="font-display font-black tracking-[-0.03em] leading-[0.95] text-3xl sm:text-4xl mb-2 transition-colors"
-                      style={{ color: `hsl(${tab.color})` }}
-                    >
-                      {tab.label}.
+                    <h3 className="font-display font-black tracking-[-0.025em] leading-[0.95] text-2xl sm:text-3xl mb-2 text-foreground">
+                      {tab.label}
                     </h3>
                     <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                       {tab.tagline}

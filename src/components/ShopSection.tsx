@@ -120,88 +120,50 @@ const ShopSection = () => {
               transition={{ delay: i * 0.08, duration: 0.7 }}
             >
               <TiltCard className="h-full">
-                <div
-                  className="overflow-hidden group h-full transition-all duration-700 rounded-lg relative isolate"
-                  style={{
-                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                    border: `1px solid hsl(${product.color} / 0.3)`,
-                    boxShadow: `0 4px 30px hsl(${product.glowColor} / 0.1), inset 0 1px 0 hsl(${product.color} / 0.12)`,
-                  }}
-                >
-                  {/* Top accent */}
+                <div className="overflow-hidden group h-full transition-all duration-500 rounded-lg relative bg-card border border-border/60 hover:border-accent/40 hover:shadow-[0_8px_30px_-12px_hsl(30_20%_30%/0.18)]">
+                  {/* Subtle top accent (brand color) */}
                   <div
-                    className="absolute top-0 left-0 right-0 h-[2px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(90deg, transparent 5%, hsl(${product.color}) 50%, transparent 95%)` }}
+                    className="absolute top-0 left-0 right-0 h-[2px] opacity-60"
+                    style={{ background: `hsl(${product.color})` }}
                   />
-                  {/* Ambient glow */}
-                  <div
-                    className="absolute inset-0 opacity-[0.06] group-hover:opacity-[0.18] transition-opacity duration-700"
-                    style={{ background: `radial-gradient(ellipse at 50% 0%, hsl(${product.glowColor}) 0%, transparent 70%)` }}
-                  />
-                  {/* Hover border glow */}
-                  <div
-                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ boxShadow: `inset 0 0 0 1px hsl(${product.color} / 0.5), 0 0 40px hsl(${product.glowColor} / 0.15)` }}
-                  />
-
-                  <span
-                    aria-hidden
-                    className="pointer-events-none select-none absolute -top-8 -right-3 font-display font-black leading-none text-[8rem] sm:text-[10rem] tracking-[-0.06em] z-0"
-                    style={{ color: `hsl(${product.color} / 0.07)` }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
 
                   <div className="relative z-10">
-                    <div className="aspect-[4/3] overflow-hidden relative bg-card/30">
+                    <div className="aspect-[4/3] overflow-hidden relative bg-secondary/40">
                       <img
                         src={product.image}
                         alt={product.name}
                         className={`w-full h-full ${product.category === "Fitness" || product.category === "Nutrition" ? "object-cover" : "object-contain p-4"} group-hover:scale-105 transition-transform duration-700`}
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-70" />
                       <div className="absolute top-3 left-3 flex items-center gap-1.5">
                         <span
-                          className="px-2.5 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-display font-bold tracking-[0.2em]  backdrop-blur-xl"
+                          className="px-2.5 py-1 rounded-full text-[9px] font-display font-semibold tracking-[0.12em] backdrop-blur-md"
                           style={{
                             color: `hsl(${product.color})`,
-                            background: `hsl(${product.color} / 0.2)`,
-                            border: `1px solid hsl(${product.color} / 0.8)`,
-                            boxShadow: `0 0 10px hsl(${product.color} / 0.25), inset 0 0 6px hsl(${product.color} / 0.1)`,
-                            textShadow: `0 0 8px hsl(${product.color} / 0.5)`,
+                            background: `hsl(${product.color} / 0.12)`,
+                            border: `1px solid hsl(${product.color} / 0.3)`,
                           }}
                         >
                           {product.category}
                         </span>
                         {product.price && (
-                          <span
-                            className="px-2 py-1 rounded-full text-[8px] sm:text-[9px] font-bold"
-                            style={{
-                              background: `hsl(${product.color})`,
-                              color: `hsl(36 30% 98%)`,
-                              boxShadow: `0 0 12px hsl(${product.color} / 0.4)`,
-                            }}
-                          >
-                            10% OFF
+                          <span className="px-2 py-1 rounded-full text-[9px] font-semibold bg-foreground text-background">
+                            10% off
                           </span>
                         )}
                       </div>
                       {product.rating && (
-                        <div className="absolute top-3 right-3 px-2 py-1 rounded-full text-[8px] sm:text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/20">
+                        <div className="absolute top-3 right-3 px-2 py-1 rounded-full text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/40">
                           ⭐ {product.rating} ({product.reviews})
                         </div>
                       )}
                     </div>
 
-                    <div className="p-4 sm:p-6">
-                      <h3
-                        className="font-display font-black text-xl sm:text-2xl leading-[0.95] tracking-[-0.02em] mb-2 sm:mb-2.5 transition-colors duration-300"
-                        style={{ color: `hsl(${product.color})` }}
-                      >
-                        {product.name}.
+                    <div className="p-4 sm:p-5">
+                      <h3 className="font-display font-bold text-lg sm:text-xl leading-tight tracking-[-0.015em] mb-1.5 text-foreground">
+                        {product.name}
                       </h3>
-                      <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-5 leading-relaxed line-clamp-2">{product.note}</p>
+                      <p className="text-muted-foreground text-xs sm:text-sm mb-4 leading-relaxed line-clamp-2">{product.note}</p>
 
                       {product.price && (
                         <div className="mb-4 sm:mb-5 space-y-1">

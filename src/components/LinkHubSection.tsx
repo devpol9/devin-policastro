@@ -86,76 +86,26 @@ const LinkHubSection = () => {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, delay: i * 0.03 }}
               >
-                <div
-                  className="group relative overflow-hidden rounded-lg transition-all duration-700 isolate"
-                  style={{
-                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                    border: `1px solid hsl(${link.color} / 0.15)`,
-                    boxShadow: `0 4px 24px hsl(30 20% 30% / 0.08), inset 0 1px 0 hsl(${link.color} / 0.06)`,
-                  }}
-                >
-                  <div
-                    className="absolute left-0 top-0 bottom-0 w-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(180deg, transparent, hsl(${link.color}), transparent)` }}
-                  />
-                  <div
-                    className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity duration-700"
-                    style={{ background: `radial-gradient(ellipse at 0% 50%, hsl(${link.color}) 0%, transparent 60%)` }}
-                  />
-                  <div
-                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ boxShadow: `inset 0 0 0 1px hsl(${link.color} / 0.3), 0 0 20px hsl(${link.color} / 0.08)` }}
-                  />
-
-                  <span
-                    aria-hidden
-                    className="pointer-events-none select-none absolute -top-4 right-3 font-display font-black leading-none text-[5rem] sm:text-[6rem] tracking-[-0.06em] z-0"
-                    style={{ color: `hsl(${link.color} / 0.06)` }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
+                <div className="group relative overflow-hidden rounded-lg bg-card border border-border/60 transition-all duration-500 hover:border-accent/40 hover:shadow-[0_4px_20px_-8px_hsl(30_20%_30%/0.15)]">
                   <div className="relative z-10 p-3.5 sm:p-5 flex items-center gap-3 sm:gap-4">
-                    <div
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-all duration-500"
-                      style={{
-                        background: `linear-gradient(135deg, hsl(${link.color} / 0.18) 0%, hsl(${link.color} / 0.06) 100%)`,
-                        border: `1px solid hsl(${link.color} / 0.25)`,
-                        boxShadow: `0 0 16px hsl(${link.color} / 0.12)`,
-                      }}
-                    >
-                      <link.icon
-                        size={16}
-                        className="sm:w-[18px] sm:h-[18px]"
-                        style={{ color: `hsl(${link.color})`, filter: `drop-shadow(0 0 4px hsl(${link.color} / 0.5))` }}
-                      />
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center shrink-0 bg-secondary border border-border/60 transition-colors duration-500 group-hover:bg-accent/10 group-hover:border-accent/30">
+                      <link.icon size={16} className="text-foreground/70 group-hover:text-accent transition-colors duration-500" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3
-                        className="font-display font-black text-base sm:text-lg leading-[1] tracking-[-0.015em] transition-colors duration-300 mb-1"
-                        style={{ color: `hsl(${link.color})` }}
-                      >
+                      <h3 className="font-display font-semibold text-sm sm:text-base leading-tight tracking-[-0.01em] text-foreground mb-0.5">
                         {link.title}
                       </h3>
-                      <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed">{link.desc}</p>
+                      <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed line-clamp-1">{link.desc}</p>
                     </div>
-                    <div className="flex items-center shrink-0">
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 sm:p-2 rounded-lg transition-all duration-500"
-                        style={{
-                          background: `hsl(${link.color} / 0.1)`,
-                          color: `hsl(${link.color} / 0.7)`,
-                          border: `1px solid hsl(${link.color} / 0.15)`,
-                        }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = `hsl(${link.color})`; e.currentTarget.style.color = `hsl(36 30% 98%)`; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = `hsl(${link.color} / 0.1)`; e.currentTarget.style.color = `hsl(${link.color} / 0.7)`; }}
-                      >
-                        <ArrowUpRight size={13} />
-                      </a>
-                    </div>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg shrink-0 text-foreground/40 hover:text-accent hover:bg-accent/5 transition-all duration-300"
+                      aria-label={`Open ${link.title}`}
+                    >
+                      <ArrowUpRight size={14} />
+                    </a>
                   </div>
                 </div>
               </motion.div>
