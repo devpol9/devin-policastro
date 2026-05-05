@@ -39,11 +39,11 @@ const ServiceInquiryDialog = ({
   emailSubject,
 }: ServiceInquiryDialogProps) => {
   const [sending, setSending] = useState(false);
-  const [formData, setFormData] = useState<Record<string, string>>({
-    name: "",
-    email: "",
-    phone: "",
+  const initial: Record<string, string> = { name: "", email: "", phone: "" };
+  fields.forEach((f) => {
+    if (f.defaultValue) initial[f.key] = f.defaultValue;
   });
+  const [formData, setFormData] = useState<Record<string, string>>(initial);
 
   const colorId = color.replace(/\s+/g, "-");
 
