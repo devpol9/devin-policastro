@@ -39,6 +39,7 @@ const ServiceInquiryDialog = ({
   emailSubject,
 }: ServiceInquiryDialogProps) => {
   const [sending, setSending] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const initial: Record<string, string> = { name: "", email: "", phone: "" };
   fields.forEach((f) => {
     if (f.defaultValue) initial[f.key] = f.defaultValue;
@@ -47,8 +48,31 @@ const ServiceInquiryDialog = ({
 
   const colorId = color.replace(/\s+/g, "-");
 
+  const emailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+
+  const errors: Record<string, string> = {};
+  if (!formData.name?.trim()) errors.name = "Please enter your name.";
+  if (!formData.email?.trim()) errors.email = "Email is required.";
+  else if (!emailValid(formData.email)) errors.email = "Enter a valid email address.";
+  fields.forEach((f) => {
+    if (f.required && !formData[f.key]?.trim()) {
+      errors[f.key] = `${f.label} is required.`;
+    }
+  });
+
+  const isValid = Object.keys(errors).length === 0;
+
+  const showError = (key: string) => touched[key] && errors[key];
+  const markTouched = (key: string) => setTouched((p) => ({ ...p, [key]: true }));
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isValid) {
+      const allTouched: Record<string, boolean> = { name: true, email: true };
+      fields.forEach((f) => { if (f.required) allTouched[f.key] = true; });
+      setTouched(allTouched);
+      return;
+    }
     setSending(true);
 
     const customFields: Record<string, string> = {};
