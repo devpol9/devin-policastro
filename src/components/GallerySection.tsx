@@ -127,7 +127,7 @@ const GallerySection = () => {
                     boxShadow: `0 0 12px hsl(${perk.color} / 0.1), inset 0 1px 0 hsl(${perk.color} / 0.15)`,
                   }}
                 >
-                  <perk.icon size={20} style={{ color: `hsl(${perk.color})`, filter: `drop-shadow(0 0 8px hsl(${perk.color} / 0.5))` }} className="group-hover:scale-110 transition-transform duration-300" />
+                  <perk.icon size={20} style={{ color: `hsl(${perk.color})`, filter: `drop-shadow(0 0 8px hsl(${perk.color} / 0.5))` }} />
                   <span className="text-[10px] sm:text-xs font-display font-medium tracking-wide leading-tight transition-colors duration-300" style={{ color: `hsl(${perk.color} / 0.85)` }}>
                     {perk.text}
                   </span>
