@@ -65,17 +65,22 @@ const HeroSection = () => {
         {/* Bottom row: portrait + tagline + CTAs */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-4 order-2 md:order-1"
           >
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-border">
+            <div className="relative w-40 h-52 sm:w-48 sm:h-60 md:w-full md:h-80 rounded-md overflow-hidden border border-border shadow-[0_30px_60px_-20px_hsl(30_20%_20%/0.25)]">
               <img
                 src="/images/devin-profile.jpg"
                 alt="Devin Policastro"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale-[0.15]"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[9px] font-display font-semibold tracking-[0.18em] text-background mix-blend-difference">
+                <span>— Founder</span>
+                <span>Norwood, NJ</span>
+              </div>
             </div>
           </motion.div>
 

@@ -30,14 +30,16 @@ const Footer = () => (
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         className="pt-16 sm:pt-24 pb-10 sm:pb-14"
       >
-        <div className="flex items-center gap-3 mb-6 sm:mb-8">
+        <div className="flex items-center gap-3 mb-6 sm:mb-10">
           <span className="h-px w-8 bg-accent" />
           <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em]">
             — End of feed
           </span>
         </div>
-        <h2 className="font-display font-black leading-[0.82] tracking-[-0.05em] text-[clamp(3rem,15vw,11rem)] text-foreground">
-          Devin <span className="italic font-light text-accent">Policastro.</span>
+        <h2 className="font-display font-black leading-[0.78] tracking-[-0.06em] text-[clamp(3.5rem,18vw,15rem)] text-foreground">
+          Devin
+          <br />
+          <span className="italic font-light text-accent">Policastro.</span>
         </h2>
       </motion.div>
 

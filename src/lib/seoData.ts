@@ -111,43 +111,43 @@ export const localBusinessJsonLd = {
 
 export const seoPages: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "Devin Policastro — Entrepreneur & Founder | Norwood, NJ",
+    title: "Devin Policastro — Builder, Connector, NJ Entrepreneur",
     description:
-      "Devin Policastro is an entrepreneur and founder based in Norwood, NJ. Impact Zone Fitness, 2THIRTY hydration, Creative Vision, Valence — building brands and connecting people.",
+      "I build brands, connect people, and turn handshakes into revenue. Impact Zone, 2THIRTY, Creative Vision, Valence — all out of Norwood, NJ.",
   },
   "/consulting": {
-    title: "Business Consulting — Devin Policastro",
+    title: "Consulting — Brand Strategy & Growth | Devin Policastro",
     description:
-      "Brand strategy, growth advisory, and business consulting from Devin Policastro. Real-world experience scaling fitness, CPG, and service businesses.",
+      "Real-world brand strategy and growth advisory from someone who's actually built it. Fitness, CPG, services — no agency markup.",
   },
   "/manufacturing": {
-    title: "Custom Manufacturing — Creative Vision by Devin Policastro",
+    title: "Manufacturing — Concept to Shelf | Creative Vision",
     description:
-      "Custom apparel, fitness equipment, supplements, and branded products. From concept to shelf — Creative Vision handles manufacturing end to end.",
+      "Custom apparel, fitness equipment, supplements, and branded products. Idea to delivery, end to end.",
   },
   "/content": {
-    title: "Content Creation — Devin Policastro",
+    title: "Content — Short-Form Video & Storytelling | Devin Policastro",
     description:
-      "Short-form video, social media content, and brand storytelling. Build your digital presence with proven content strategies.",
+      "Short-form video, social content, and brand storytelling that actually moves the needle. Built by an operator, not an agency.",
   },
   "/automotive": {
-    title: "Automotive Services — Devin Policastro",
+    title: "Automotive — Wraps, PPF, Tuning, Builds | Devin Policastro",
     description:
-      "Vinyl wraps, PPF, ceramic coating, window tinting, tuning, and full custom builds. Premium automotive services in NJ.",
+      "Vinyl wraps, PPF, ceramic coating, tinting, tuning, and full custom builds. Premium work, NJ.",
   },
   "/financing": {
-    title: "Business Financing — Devin Policastro",
+    title: "Financing — Capital & Deal Structure | Devin Policastro",
     description:
-      "Business financing solutions and capital access. Structure your next venture with the right funding and terms.",
+      "Business financing and capital access. Structure your next venture with the right funding, the right terms.",
   },
   "/networking": {
-    title: "Strategic Networking — Devin Policastro",
+    title: "Networking — The Right Intros, On Purpose | Devin Policastro",
     description:
-      "Relationship-driven growth and strategic introductions. Connect with the right people to move your business forward.",
+      "Relationship-driven growth and strategic introductions. The right room beats a thousand cold emails.",
   },
   "/fitness": {
-    title: "Fitness & Training — Impact Zone NJ | Devin Policastro",
+    title: "Fitness — Training & Coaching | Impact Zone NJ",
     description:
-      "Personal training, group programs, and lifestyle coaching at Impact Zone Fitness in Norwood, NJ. 51,000 sq ft, 100+ machines, no contracts.",
+      "Personal training, group programs, and lifestyle coaching at Impact Zone Fitness in Norwood, NJ. 51,000 sq ft, no contracts.",
   },
 };
