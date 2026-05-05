@@ -49,6 +49,12 @@ const ServiceInquiryDialog = ({
 
   const colorId = color.replace(/\s+/g, "-");
 
+  useEffect(() => {
+    if (open) {
+      trackEvent("inquiry_open", { subject: emailSubject, title });
+    }
+  }, [open, emailSubject, title]);
+
   const emailValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 
   const errors: Record<string, string> = {};
