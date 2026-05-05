@@ -22,16 +22,16 @@ const ServiceCard = ({ icon: Icon, name, desc, detail, meta, index, accentColor 
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-40px" }}
     transition={{ delay: 0.06 + index * 0.04, duration: 0.4 }}
-    className="group relative overflow-hidden rounded-xl bg-card border border-border/60 hover:border-foreground/20 transition-colors duration-300"
+    className="group relative overflow-hidden rounded-xl bg-card border border-border/60"
   >
     <div
-      className="absolute top-0 left-0 right-0 h-px opacity-50 group-hover:opacity-100 transition-opacity"
+      className="absolute top-0 left-0 right-0 h-px"
       style={{ background: `hsl(${accentColor})` }}
     />
     <div className="p-4 sm:p-5">
       <div className="flex items-start gap-3 mb-3">
-        <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center shrink-0 group-hover:bg-foreground/[0.06] transition-colors">
-          <Icon size={15} className="text-foreground/70 group-hover:text-foreground transition-colors" strokeWidth={1.6} />
+        <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center shrink-0">
+          <Icon size={15} className="text-foreground" strokeWidth={1.6} />
         </div>
         <div className="flex-1 min-w-0 pt-0.5">
           <h3 className="font-display font-bold text-sm sm:text-[15px] leading-tight text-foreground">
