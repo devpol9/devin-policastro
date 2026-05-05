@@ -132,7 +132,7 @@ const ShopSection = () => {
                       <img
                         src={product.image}
                         alt={product.name}
-                        className={`w-full h-full ${product.category === "Fitness" || product.category === "Nutrition" ? "object-cover" : "object-contain p-4"} group-hover:scale-105 transition-transform duration-700`}
+                        className={`w-full h-full ${product.category === "Fitness" || product.category === "Nutrition" ? "object-cover" : "object-contain p-4"}`}
                         loading="lazy"
                       />
                       <div className="absolute top-3 left-3 flex items-center gap-1.5">
