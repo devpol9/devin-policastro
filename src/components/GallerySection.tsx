@@ -54,7 +54,7 @@ const GallerySection = () => {
               {img.label === "Training" && (
                 <button
                   onClick={() => setTrainingInquiryOpen(true)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-[0.06em]  transition-all duration-300 hover:scale-[1.03]"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-[0.06em]"
                   style={{
                     background: `hsl(0 75% 55% / 0.85)`,
                     color: `hsl(0 0% 100%)`,
