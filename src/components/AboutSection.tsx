@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Dumbbell, Droplets, Sparkles, Briefcase, Car, Video } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import TiltCard from "@/components/effects/TiltCard";
-import TextScramble from "@/components/effects/TextScramble";
 import SectionHeader from "@/components/SectionHeader";
 
 const verticals = [
