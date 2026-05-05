@@ -79,35 +79,41 @@ const ServiceInquiryDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg bg-card border-border/30 p-0 max-h-[90vh] overflow-y-auto">
+      <DialogContent
+        data-lenis-prevent
+        className="sm:max-w-lg bg-card border border-border/60 p-0 max-h-[92vh] overflow-y-auto rounded-2xl shadow-[0_30px_80px_-30px_hsl(30_20%_20%/0.35)]"
+      >
         <style>{`
           .inquiry-${colorId} input:focus,
           .inquiry-${colorId} textarea:focus {
-            border-color: hsl(${color} / 0.4) !important;
-            box-shadow: 0 0 0 1px hsl(${color} / 0.15);
+            border-color: hsl(${color} / 0.5) !important;
+            box-shadow: 0 0 0 3px hsl(${color} / 0.08);
           }
         `}</style>
 
-        {/* Header accent */}
-        <div
-          className="h-1 w-full shrink-0"
-          style={{ background: `linear-gradient(90deg, transparent, hsl(${color}), transparent)` }}
-        />
-        <div className={`p-5 sm:p-8 inquiry-${colorId}`}>
-          <DialogHeader className="mb-5">
-            <DialogTitle
-              className="font-display font-extrabold text-lg sm:text-2xl"
-              style={{ color: `hsl(${color})` }}
-            >
+        {/* Hairline accent */}
+        <div className="h-px w-full" style={{ background: `hsl(${color})` }} />
+
+        <div className={`p-6 sm:p-8 inquiry-${colorId}`}>
+          <DialogHeader className="mb-6">
+            <div className="flex items-center gap-2.5 mb-3">
+              <span className="h-px w-6" style={{ background: `hsl(${color})` }} />
+              <span className="text-foreground/50 text-[10px] font-display font-medium tracking-[0.22em]">
+                Private inquiry
+              </span>
+            </div>
+            <DialogTitle className="font-display font-black text-xl sm:text-2xl leading-[1.05] tracking-[-0.02em] text-foreground">
               {title}
             </DialogTitle>
-            <p className="text-muted-foreground text-xs sm:text-sm mt-1">{subtitle}</p>
+            <p className="text-muted-foreground text-[13px] sm:text-sm mt-2 leading-relaxed">
+              {subtitle}
+            </p>
           </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
+                <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
                   Name *
                 </label>
                 <Input
@@ -116,11 +122,11 @@ const ServiceInquiryDialog = ({
                   placeholder="Your name"
                   required
                   maxLength={100}
-                  className="bg-background/50 border-border/20 h-10 text-sm"
+                  className="bg-background border-border/60 h-11 text-sm rounded-lg"
                 />
               </div>
               <div>
-                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
+                <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
                   Email *
                 </label>
                 <Input
@@ -130,13 +136,13 @@ const ServiceInquiryDialog = ({
                   placeholder="you@email.com"
                   required
                   maxLength={255}
-                  className="bg-background/50 border-border/20 h-10 text-sm"
+                  className="bg-background border-border/60 h-11 text-sm rounded-lg"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
+              <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
                 Phone
               </label>
               <Input
@@ -144,7 +150,7 @@ const ServiceInquiryDialog = ({
                 onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
                 placeholder="(201) 555-0123"
                 maxLength={20}
-                className="bg-background/50 border-border/20 h-10 text-sm"
+                className="bg-background border-border/60 h-11 text-sm rounded-lg"
               />
             </div>
 
@@ -155,7 +161,7 @@ const ServiceInquiryDialog = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04 }}
               >
-                <label className="text-[9px] sm:text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-1 block">
+                <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
                   {field.label}
                   {field.required ? " *" : ""}
                 </label>
@@ -164,10 +170,10 @@ const ServiceInquiryDialog = ({
                     value={formData[field.key] || ""}
                     onChange={(e) => setFormData((p) => ({ ...p, [field.key]: e.target.value }))}
                     placeholder={field.placeholder}
-                    rows={field.rows || 2}
+                    rows={field.rows || 3}
                     maxLength={500}
                     required={field.required}
-                    className="bg-background/50 border-border/20 resize-none text-sm"
+                    className="bg-background border-border/60 resize-none text-sm rounded-lg"
                   />
                 ) : (
                   <Input
@@ -176,7 +182,7 @@ const ServiceInquiryDialog = ({
                     placeholder={field.placeholder}
                     maxLength={200}
                     required={field.required}
-                    className="bg-background/50 border-border/20 h-10 text-sm"
+                    className="bg-background border-border/60 h-11 text-sm rounded-lg"
                   />
                 )}
               </motion.div>
@@ -185,15 +191,15 @@ const ServiceInquiryDialog = ({
             <Button
               type="submit"
               disabled={sending}
-              className="w-full h-11 font-display font-semibold tracking-wide text-sm mt-2"
-              style={{
-                background: `hsl(${color})`,
-                color: "hsl(36 30% 98%)",
-              }}
+              className="w-full h-12 font-display font-semibold tracking-wide text-sm mt-3 rounded-full bg-foreground text-background hover:bg-foreground/90"
             >
               <Send size={14} />
-              {sending ? "Sending..." : "Send Inquiry"}
+              {sending ? "Sending…" : "Send inquiry"}
             </Button>
+
+            <p className="text-foreground/40 text-[10px] font-display tracking-wide text-center pt-1">
+              Replies within 24 hours. Direct from Devin.
+            </p>
           </form>
         </div>
       </DialogContent>
