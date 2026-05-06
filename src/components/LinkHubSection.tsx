@@ -86,10 +86,10 @@ const LinkHubSection = () => {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, delay: i * 0.03 }}
               >
-                <div className="group relative overflow-hidden rounded-lg bg-card border border-border/60 transition-all duration-500 hover:border-accent/40 hover:shadow-[0_4px_20px_-8px_hsl(30_20%_30%/0.15)]">
+                <div className="group relative overflow-hidden rounded-lg bg-card border border-border/60">
                   <div className="relative z-10 p-3.5 sm:p-5 flex items-center gap-3 sm:gap-4">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center shrink-0 bg-secondary border border-border/60 transition-colors duration-500 group-hover:bg-accent/10 group-hover:border-accent/30">
-                      <link.icon size={16} className="text-foreground/70 group-hover:text-accent transition-colors duration-500" />
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center shrink-0 bg-secondary border border-border/60">
+                      <link.icon size={16} className="text-foreground/70" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-display font-semibold text-sm sm:text-base leading-tight tracking-[-0.01em] text-foreground mb-0.5">

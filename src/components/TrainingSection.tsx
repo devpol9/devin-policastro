@@ -155,9 +155,9 @@ const TrainingSection = () => {
               >
                 <span>{current.cta}</span>
                 {current.ctaAction === "external" || current.ctaAction === "calendar" ? (
-                  <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  <ExternalLink size={14} />
                 ) : (
-                  <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight size={16} />
                 )}
               </button>
             </div>

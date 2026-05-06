@@ -202,16 +202,16 @@ const ContactSection = () => {
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
-                  className="glass-card p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group hover:border-primary/20 transition-all duration-500"
+                  className="glass-card p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group"
                 >
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-500 shrink-0">
-                    <link.icon size={14} className="text-primary/70 group-hover:text-primary transition-colors" />
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
+                    <link.icon size={14} className="text-primary/70" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="font-display font-semibold text-xs sm:text-sm block">{link.label}</span>
                     <p className="text-muted-foreground text-[10px] sm:text-xs truncate">{link.sub}</p>
                   </div>
-                  <ArrowUpRight size={14} className="text-muted-foreground/50 group-hover:text-primary transition-all duration-300 shrink-0" />
+                  <ArrowUpRight size={14} className="text-muted-foreground/50 shrink-0" />
                 </a>
               ))}
               <div className="glass-card p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
@@ -282,7 +282,7 @@ const ContactSection = () => {
                       <Icon
                         size={16}
                         className={`mb-1.5 transition-colors duration-300 ${
-                          isActive ? "text-primary" : "text-muted-foreground/50 group-hover:text-muted-foreground"
+                          isActive ? "text-primary" : "text-muted-foreground/50"
                         }`}
                       />
                       <span className={`font-display font-semibold text-[11px] sm:text-xs block leading-tight ${
