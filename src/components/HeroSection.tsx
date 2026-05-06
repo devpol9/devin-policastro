@@ -130,10 +130,10 @@ const HeroSection = () => {
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <span className="text-muted-foreground text-[10px] font-display tracking-[0.15em]  group-hover:text-foreground transition-colors">
+          <span className="text-muted-foreground text-[10px] font-display tracking-[0.15em]">
             Scroll
           </span>
-          <ChevronDown size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+          <ChevronDown size={14} className="text-muted-foreground" />
         </motion.div>
       </motion.button>
     </section>

@@ -194,7 +194,7 @@ const ShopSection = () => {
                             {copiedCode === product.code ? (
                               <><Check size={12} /><span>Copied!</span></>
                             ) : (
-                              <><Copy size={12} className="group-hover/code:scale-110 transition-transform" />Code: {product.code}</>
+                              <><Copy size={12} />Code: {product.code}</>
                             )}
                           </button>
                         )}

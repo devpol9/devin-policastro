@@ -51,18 +51,18 @@ const ServicesSection = () => {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.06, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => navigate(tab.route)}
-                className="group relative overflow-hidden rounded-lg text-left p-5 sm:p-7 bg-card border border-border/60 transition-all duration-500 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_30px_-12px_hsl(30_20%_30%/0.18)]"
+                className="group relative overflow-hidden rounded-lg text-left p-5 sm:p-7 bg-card border border-border/60"
               >
                 <div className="relative z-10 flex flex-col gap-5 sm:gap-7 min-h-[150px] sm:min-h-[170px]">
                   <div className="flex items-center justify-between">
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-secondary border border-border/60 transition-colors duration-500 group-hover:bg-accent/10 group-hover:border-accent/30">
-                      <Icon size={18} className="text-foreground/70 group-hover:text-accent transition-colors duration-500" />
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-secondary border border-border/60">
+                      <Icon size={18} className="text-foreground/70" />
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-[10px] text-foreground/35 tabular-nums">{tab.num}</span>
                       <ArrowUpRight
                         size={18}
-                        className="text-foreground/30 group-hover:text-accent transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
+                        className="text-foreground/30"
                       />
                     </div>
                   </div>

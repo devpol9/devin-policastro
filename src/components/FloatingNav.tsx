@@ -83,7 +83,7 @@ const FloatingNav = () => {
             </button>
           ) : (
             <button onClick={goHome} className="flex items-center gap-2 font-display font-medium text-sm tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300 group">
-              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-300" />
+              <ArrowLeft size={16} />
               <span>hey, i'm <span className="text-primary font-bold">dev.</span></span>
             </button>
           )}
