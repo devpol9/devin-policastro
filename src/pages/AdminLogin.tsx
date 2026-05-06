@@ -53,7 +53,7 @@ const AdminLogin = () => {
 
         <button
           onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-display font-semibold text-sm bg-foreground text-background hover:opacity-90 transition-opacity"
+          className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-lg font-display font-semibold text-sm bg-foreground text-background"
         >
           <LogIn size={18} />
           Sign in with Google
