@@ -5,11 +5,13 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 // Disallow hover-based visual effects (per project design rule: no hover/click reveals).
-// Flags: hover:scale-*, hover:opacity-*, hover:translate-*, hover:-translate-*,
-//        group-hover:* (any), and hover:shadow-* transform/opacity reveals.
-// Allowed (functional, not decorative): hover:text-*, hover:bg-*, hover:border-*, hover:underline.
-const HOVER_FORBIDDEN_RE =
-  /(?:^|\s)(?:group-hover\/[\w-]+:|group-hover:)[\w[\].\/-]+|(?:^|\s)hover:(?:scale-|opacity-|-?translate-|shadow-)[\w[\].\/-]+/;
+// Flags any group-hover: variant, plus hover:scale-, hover:opacity-, hover:translate-, hover:shadow-.
+// Allowed (functional, non-decorative): hover:text-, hover:bg-, hover:border-, hover:underline.
+const FORBIDDEN_HOVER_PATTERN =
+  "group-hover[\\\\/:]|hover:scale-|hover:opacity-|hover:translate-|hover:-translate-|hover:shadow-";
+
+const message =
+  "Hover-only reveal effects are forbidden (no group-hover, hover:scale, hover:opacity, hover:translate, hover:shadow). Make the effect always visible instead.";
 
 export default tseslint.config(
   { ignores: ["dist"] },
@@ -30,21 +32,13 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
       "no-restricted-syntax": [
         "error",
-        {
-          selector: `Literal[value=/${HOVER_FORBIDDEN_RE.source}/]`,
-          message:
-            "Hover-only reveal effects are forbidden (no group-hover, hover:scale, hover:opacity, hover:translate, hover:shadow). Make the effect always visible instead.",
-        },
-        {
-          selector: `TemplateElement[value.raw=/${HOVER_FORBIDDEN_RE.source}/]`,
-          message:
-            "Hover-only reveal effects are forbidden (no group-hover, hover:scale, hover:opacity, hover:translate, hover:shadow). Make the effect always visible instead.",
-        },
+        { selector: `Literal[value=/${FORBIDDEN_HOVER_PATTERN}/]`, message },
+        { selector: `TemplateElement[value.raw=/${FORBIDDEN_HOVER_PATTERN}/]`, message },
       ],
     },
   },
   {
-    // shadcn/ui primitives: leave their default hover affordances alone.
+    // shadcn/ui primitives keep their default hover affordances.
     files: ["src/components/ui/**/*.{ts,tsx}"],
     rules: { "no-restricted-syntax": "off" },
   },
