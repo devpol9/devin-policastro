@@ -8,7 +8,7 @@ import tseslint from "typescript-eslint";
 // Flags any group-hover: variant, plus hover:scale-, hover:opacity-, hover:translate-, hover:shadow-.
 // Allowed (functional, non-decorative): hover:text-, hover:bg-, hover:border-, hover:underline.
 const FORBIDDEN_HOVER_PATTERN =
-  "group-hover[\\\\/:]|hover:scale-|hover:opacity-|hover:translate-|hover:-translate-|hover:shadow-";
+  "group-hover:|group-hover\\\\/|hover:scale-|hover:opacity-|hover:translate-|hover:-translate-|hover:shadow-";
 
 const message =
   "Hover-only reveal effects are forbidden (no group-hover, hover:scale, hover:opacity, hover:translate, hover:shadow). Make the effect always visible instead.";
