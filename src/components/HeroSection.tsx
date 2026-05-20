@@ -118,24 +118,6 @@ const HeroSection = () => {
         </div>
       </motion.div>
 
-      <motion.button
-        onClick={() => scrollTo("#marquee")}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 group hidden lg:block"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-muted-foreground text-[10px] font-display tracking-[0.15em]">
-            Scroll
-          </span>
-          <ChevronDown size={14} className="text-muted-foreground" />
-        </motion.div>
-      </motion.button>
     </section>
   );
 };
