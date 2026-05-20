@@ -77,28 +77,40 @@ export type Database = {
         Row: {
           id: string
           last_message_at: string
+          lead_score: number | null
+          lead_status: string | null
           message_count: number
           path: string | null
+          reviewer_notes: string | null
           session_token: string
           started_at: string
+          tags: string[]
           user_agent: string | null
         }
         Insert: {
           id?: string
           last_message_at?: string
+          lead_score?: number | null
+          lead_status?: string | null
           message_count?: number
           path?: string | null
+          reviewer_notes?: string | null
           session_token: string
           started_at?: string
+          tags?: string[]
           user_agent?: string | null
         }
         Update: {
           id?: string
           last_message_at?: string
+          lead_score?: number | null
+          lead_status?: string | null
           message_count?: number
           path?: string | null
+          reviewer_notes?: string | null
           session_token?: string
           started_at?: string
+          tags?: string[]
           user_agent?: string | null
         }
         Relationships: []
@@ -539,6 +551,54 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      analytics_over_time: {
+        Args: { p_bucket?: string; p_from: string; p_to: string }
+        Returns: {
+          bucket_start: string
+          count: number
+          event_name: string
+        }[]
+      }
+      analytics_overview: {
+        Args: { p_from: string; p_to: string }
+        Returns: {
+          chat_engagements: number
+          inquiries: number
+          page_views: number
+          unique_sessions: number
+        }[]
+      }
+      analytics_top_events: {
+        Args: { p_from: string; p_limit?: number; p_to: string }
+        Returns: {
+          count: number
+          event_name: string
+          latest: string
+        }[]
+      }
+      analytics_top_paths: {
+        Args: { p_from: string; p_limit?: number; p_to: string }
+        Returns: {
+          inquiries: number
+          last_visited: string
+          page_views: number
+          path: string
+        }[]
+      }
+      analytics_top_sources: {
+        Args: { p_from: string; p_limit?: number; p_to: string }
+        Returns: {
+          inquiries: number
+          sessions: number
+          source: string
+        }[]
+      }
+      chat_search: {
+        Args: { p_from?: string; p_lead_status?: string; p_query: string }
+        Returns: {
+          session_id: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -550,6 +610,8 @@ export type Database = {
         Args: { target_user_id: string }
         Returns: undefined
       }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
