@@ -285,7 +285,7 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
         </div>
       </div>
       <div className="panel p-4">
-        <p className="font-mono text-[10px] text-muted-foreground tracking-[0.12em] mb-2">UNSCHEDULED · {unscheduled.length}</p>
+        <p className="text-[11px] text-muted-foreground lowercase mb-2">Unscheduled · {unscheduled.length}</p>
         <div className="space-y-2 max-h-[60vh] overflow-y-auto">
           {unscheduled.length === 0 && <p className="text-xs text-muted-foreground italic">All scheduled.</p>}
           {unscheduled.map((it) => {
@@ -294,12 +294,12 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
             return (
               <button
                 key={it.id} onClick={() => onOpen(it.id)}
-                className="w-full text-left p-2 rounded border border-border/40 hover:border-accent/40 transition-colors"
-                style={{ borderLeft: `3px solid ${v?.accent_color ?? "hsl(30 8% 50%)"}` }}
+                className="w-full text-left p-2 rounded-md border border-border/40 hover:border-accent/40 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-1">
+                  <span className="h-2 w-2 rounded-full shrink-0" style={{ background: v?.accent_color ?? "hsl(30 8% 50%)" }} />
                   <Icon size={10} className="text-muted-foreground" />
-                  <span className="text-[9px] font-display uppercase text-muted-foreground tracking-wider">{it.status}</span>
+                  <span className="text-[10px] text-muted-foreground lowercase">{it.status}</span>
                 </div>
                 <p className="text-xs font-display font-semibold truncate">{it.title}</p>
               </button>
@@ -374,10 +374,11 @@ const PipelineView = ({ items, onOpen, onMove }: {
           return (
             <div key={status} id={status} className="bg-secondary/30 rounded-md p-2 min-h-[120px]">
               <div className="flex items-center justify-between mb-2">
-                <span
-                  className="text-[10px] font-display font-bold tracking-[0.1em] uppercase"
-                  style={{ color: STATUS_COLOR[status] }}
-                >{STATUS_LABEL[status]} · {list.length}</span>
+                <span className="text-[11px] font-medium lowercase inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: STATUS_COLOR[status] }} />
+                  {STATUS_LABEL[status]}
+                  <span className="text-muted-foreground/70 tabular-nums">{list.length}</span>
+                </span>
                 {status === "archived" && (
                   <button onClick={() => setArchiveOpen(!archiveOpen)} className="text-[10px] text-muted-foreground">
                     {archiveOpen ? "Hide" : "Show"}
