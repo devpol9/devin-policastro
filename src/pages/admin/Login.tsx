@@ -6,22 +6,35 @@ import { motion } from "framer-motion";
 import { LogIn } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 
+const RETURN_TO_KEY = "devhq.return_to";
+
+const resolveDestination = () => {
+  try {
+    const stored = sessionStorage.getItem(RETURN_TO_KEY);
+    if (stored && stored.startsWith("/hq") && !stored.startsWith("/hq/login")) {
+      sessionStorage.removeItem(RETURN_TO_KEY);
+      return stored;
+    }
+  } catch {}
+  return "/hq/today";
+};
+
 const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session) navigate("/hq/today", { replace: true });
+      if (session) navigate(resolveDestination(), { replace: true });
     });
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) navigate("/hq/today", { replace: true });
+      if (session) navigate(resolveDestination(), { replace: true });
     });
     return () => subscription.unsubscribe();
   }, [navigate]);
 
   const handleGoogleLogin = async () => {
     const { error } = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+      redirect_uri: window.location.origin + "/hq/login",
       extraParams: { prompt: "select_account" },
     });
     if (error) console.error("Login error:", error);
