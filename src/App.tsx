@@ -85,6 +85,7 @@ const App = () => (
         <ScrollToTop />
         <ConditionalSmoothScroll />
         <HqShortcut />
+        <PageViewTracker />
         <Routes>
           {/* Public site */}
           <Route path="/" element={<Index />} />
