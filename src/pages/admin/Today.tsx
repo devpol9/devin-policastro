@@ -328,6 +328,40 @@ const Today = () => {
         </motion.section>
       )}
 
+      <motion.section
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.075 }}
+        className="mb-10"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.7 · PINNED KPIS</p>
+            <h3 className="font-display font-bold text-lg mt-1">Metrics at a glance</h3>
+          </div>
+          <button
+            onClick={() => navigate("/hq/kpis")}
+            className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+          >
+            View all <ArrowRight size={12} />
+          </button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {pinned.map((k) => (
+            <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
+          ))}
+          {Array.from({ length: Math.max(0, 4 - pinned.length) }).map((_, i) => (
+            <button
+              key={`empty-${i}`}
+              onClick={() => navigate("/hq/kpis")}
+              className="glass-card p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs font-display"
+            >
+              <Pin size={12} /> Pin a KPI
+            </button>
+          ))}
+        </div>
+      </motion.section>
+
+
+
 
       {topContent.length > 0 && (
         <motion.section
