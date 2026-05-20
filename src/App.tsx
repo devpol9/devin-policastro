@@ -69,6 +69,8 @@ import PillarsSettingsPage from "./pages/admin/PillarsSettings";
 import AnalyticsPage from "./pages/admin/Analytics";
 import ChatsPage from "./pages/admin/Chats";
 import KpisPage from "./pages/admin/Kpis";
+import DailyLogPage from "./pages/admin/DailyLog";
+import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
 
 const queryClient = new QueryClient();
@@ -116,6 +118,8 @@ const App = () => (
           <Route path="/hq/analytics" element={<AnalyticsPage />} />
           <Route path="/hq/chats" element={<ChatsPage />} />
           <Route path="/hq/kpis" element={<KpisPage />} />
+          <Route path="/hq/log" element={<DailyLogPage />} />
+          <Route path="/hq/notes" element={<NotesIdeasPage />} />
           <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
           <Route path="/hq/*" element={<AdminNotFound />} />
 

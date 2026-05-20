@@ -12,6 +12,7 @@ import {
   SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
   SidebarProvider, SidebarTrigger,
 } from "@/components/ui/sidebar";
+import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 
 type NavItem = {
   label: string;
@@ -29,8 +30,8 @@ const mainNav: NavItem[] = [
   { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
   { label: "Chat Logs", icon: MessageSquare, to: "/hq/chats" },
   { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
-  { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
-  { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes", soon: true },
+  { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
+  { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
 ];
 
 const pageTitleFor = (pathname: string): string => {
@@ -52,6 +53,24 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [newCount, setNewCount] = useState<number>(0);
+  const [quickOpen, setQuickOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const mod = e.metaKey || e.ctrlKey;
+      if (mod && e.shiftKey && (e.key === "N" || e.key === "n")) {
+        e.preventDefault();
+        setQuickOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    const onCustom = () => setQuickOpen(true);
+    window.addEventListener("devhq:open-quick-capture", onCustom as EventListener);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("devhq:open-quick-capture", onCustom as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -189,6 +208,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
           </main>
         </div>
       </div>
+      <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
     </SidebarProvider>
   );
 };

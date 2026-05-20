@@ -270,6 +270,51 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_logs: {
+        Row: {
+          challenges: string | null
+          created_at: string
+          energy: number | null
+          id: string
+          log_date: string
+          mood: number | null
+          notes: string | null
+          tags: string[]
+          tomorrow_focus: string | null
+          updated_at: string
+          user_id: string
+          wins: string | null
+        }
+        Insert: {
+          challenges?: string | null
+          created_at?: string
+          energy?: number | null
+          id?: string
+          log_date: string
+          mood?: number | null
+          notes?: string | null
+          tags?: string[]
+          tomorrow_focus?: string | null
+          updated_at?: string
+          user_id: string
+          wins?: string | null
+        }
+        Update: {
+          challenges?: string | null
+          created_at?: string
+          energy?: number | null
+          id?: string
+          log_date?: string
+          mood?: number | null
+          notes?: string | null
+          tags?: string[]
+          tomorrow_focus?: string | null
+          updated_at?: string
+          user_id?: string
+          wins?: string | null
+        }
+        Relationships: []
+      }
       daily_logs_quick: {
         Row: {
           content: string
@@ -535,6 +580,72 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "projects_venture_id_fkey"
+            columns: ["venture_id"]
+            isOneToOne: false
+            referencedRelation: "ventures"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quick_captures: {
+        Row: {
+          archived: boolean
+          body: string
+          created_at: string
+          id: string
+          kind: string
+          meta: Json
+          pinned: boolean
+          promoted_at: string | null
+          promoted_project_id: string | null
+          tags: string[]
+          title: string | null
+          updated_at: string
+          user_id: string
+          venture_id: string | null
+        }
+        Insert: {
+          archived?: boolean
+          body: string
+          created_at?: string
+          id?: string
+          kind?: string
+          meta?: Json
+          pinned?: boolean
+          promoted_at?: string | null
+          promoted_project_id?: string | null
+          tags?: string[]
+          title?: string | null
+          updated_at?: string
+          user_id: string
+          venture_id?: string | null
+        }
+        Update: {
+          archived?: boolean
+          body?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          meta?: Json
+          pinned?: boolean
+          promoted_at?: string | null
+          promoted_project_id?: string | null
+          tags?: string[]
+          title?: string | null
+          updated_at?: string
+          user_id?: string
+          venture_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quick_captures_promoted_project_id_fkey"
+            columns: ["promoted_project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quick_captures_venture_id_fkey"
             columns: ["venture_id"]
             isOneToOne: false
             referencedRelation: "ventures"
