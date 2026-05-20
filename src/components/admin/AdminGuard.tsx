@@ -13,6 +13,9 @@ const AdminGuard = ({ children }: { children: ReactNode }) => {
     const verify = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
+        try {
+          sessionStorage.setItem("devhq.return_to", window.location.pathname + window.location.search);
+        } catch {}
         navigate("/hq/login", { replace: true });
         return;
       }
