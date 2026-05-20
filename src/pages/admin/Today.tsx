@@ -30,6 +30,18 @@ interface Priority {
   completed: boolean;
 }
 
+const SubHeader = ({ title, onView, viewLabel = "View all" }: { title: string; onView?: () => void; viewLabel?: string }) => (
+  <div className="flex items-center justify-between mb-3">
+    <h3 className="text-[13px] font-medium lowercase text-foreground">{title}</h3>
+    {onView && (
+      <button onClick={onView} className="text-[11px] text-muted-foreground hover:text-accent flex items-center gap-1">
+        {viewLabel} <ArrowRight size={11} />
+      </button>
+    )}
+  </div>
+);
+
+
 interface Inquiry {
   id: string;
   name: string;
