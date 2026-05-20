@@ -11,6 +11,21 @@ const ConditionalSmoothScroll = () => {
   if (pathname.startsWith("/hq")) return null;
   return <SmoothScroll />;
 };
+
+const HqShortcut = () => {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const mod = e.metaKey || e.ctrlKey;
+      if (mod && e.shiftKey && (e.key === "H" || e.key === "h")) {
+        e.preventDefault();
+        window.location.assign("/hq/login");
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+  return null;
+};
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Manufacturing from "./pages/Manufacturing";
