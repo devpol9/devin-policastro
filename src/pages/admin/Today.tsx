@@ -463,13 +463,26 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
           className="glass-card p-5"
         >
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-1">03 · QUICK LOG</p>
-          <h3 className="font-display font-bold text-lg mb-3">Log a thought</h3>
+          <div className="flex items-center justify-between mb-1">
+            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">03 · QUICK {logMode === "log" ? "LOG" : "CAPTURE"}</p>
+            <div className="flex gap-1">
+              {(["log", "capture"] as const).map((m) => (
+                <button key={m} onClick={() => setLogMode(m)}
+                  className={`px-2 py-0.5 text-[10px] font-display rounded capitalize ${logMode === m ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}>
+                  {m}
+                </button>
+              ))}
+            </div>
+          </div>
+          <h3 className="font-display font-bold text-lg mb-3">
+            {logMode === "log" ? "Today's journal" : "Capture a thought"}
+          </h3>
           <textarea
             value={quickLog}
             onChange={(e) => setQuickLog(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) saveLog(); }}
             rows={4}
-            placeholder="Capture it before it's gone…"
+            placeholder={logMode === "log" ? "Append to today's notes…" : "What's on your mind?"}
             className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
           />
           <button
@@ -477,9 +490,50 @@ const Today = () => {
             disabled={!quickLog.trim() || savingLog}
             className="mt-2 w-full px-3 py-2 rounded-md bg-foreground text-background text-xs font-display font-semibold disabled:opacity-40"
           >
-            {savingLog ? "Saving…" : "Save"}
+            {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
+          </button>
+          <button
+            onClick={() => navigate("/hq/log")}
+            className="mt-2 w-full text-xs font-display text-muted-foreground hover:text-accent flex items-center justify-center gap-1"
+          >
+            <BookOpen size={11} /> Open today's full log <ArrowUpRight size={11} />
           </button>
         </motion.section>
+      </div>
+
+      {recentCaptures.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.18 }}
+          className="mb-10"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">03.5 · RECENT CAPTURES</p>
+              <h3 className="font-display font-bold text-lg mt-1">Last 5 captures</h3>
+            </div>
+            <button onClick={() => navigate("/hq/notes")}
+              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1">
+              View all <ArrowRight size={12} />
+            </button>
+          </div>
+          <div className="grid gap-2">
+            {recentCaptures.map((c) => (
+              <button key={c.id} onClick={() => navigate("/hq/notes")}
+                className="text-left glass-card p-3 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="text-[9px] font-display font-semibold uppercase tracking-[0.12em] text-muted-foreground px-1.5 py-0.5 rounded border border-border/50 shrink-0">
+                    {c.kind}
+                  </span>
+                  <p className="text-sm truncate">{c.title || c.body.split("\n")[0].slice(0, 80)}</p>
+                </div>
+                <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                  {format(new Date(c.created_at), "MMM d")}
+                </span>
+              </button>
+            ))}
+          </div>
+        </motion.section>
+      )}
       </div>
 
       <motion.section
