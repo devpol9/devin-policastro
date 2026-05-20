@@ -291,7 +291,7 @@ const ContactSection = () => {
                         {opt.label}
                       </span>
                       <p className={`text-[9px] sm:text-[10px] mt-0.5 leading-tight ${
-                        isActive ? "text-muted-foreground" : "text-muted-foreground/40"
+                        isActive ? "text-muted-foreground" : "text-muted-foreground/80"
                       }`}>
                         {opt.description}
                       </p>
