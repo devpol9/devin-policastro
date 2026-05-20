@@ -132,12 +132,11 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton disabled className="opacity-50 cursor-not-allowed">
-                      <Settings className="h-4 w-4" />
-                      <span className="flex-1">Settings</span>
-                      <span className="text-[9px] font-display font-semibold tracking-[0.12em] text-muted-foreground border border-border/60 rounded px-1.5 py-0.5">
-                        Soon
-                      </span>
+                    <SidebarMenuButton asChild isActive={location.pathname.startsWith("/hq/settings")}>
+                      <NavLink to="/hq/settings/pillars" className="flex items-center gap-2">
+                        <Settings className="h-4 w-4" />
+                        <span className="flex-1">Settings</span>
+                      </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
