@@ -452,6 +452,12 @@ const ProjectDetail = () => {
             </div>
           </div>
         </div>
+
+        <ContentDialog
+          open={contentDialogOpen}
+          onOpenChange={setContentDialogOpen}
+          defaults={{ venture_id: project.venture_id ?? undefined, project_id: project.id }}
+        />
       </AdminShell>
     </AdminGuard>
   );
