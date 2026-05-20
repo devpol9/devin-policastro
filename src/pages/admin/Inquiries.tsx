@@ -183,75 +183,49 @@ const Inquiries = () => {
       ) : filtered.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground">No inquiries match the current filters.</div>
       ) : (
-        <div className="grid gap-3">
-          {filtered.map((inq, i) => {
+        <div className="panel divide-y divide-border/60 overflow-hidden">
+          {filtered.map((inq) => {
             const serviceColor = SERVICE_COLORS[inq.service_type] || "24 32% 52%";
             const statusColor = STATUS_COLORS[inq.status] || "24 32% 52%";
             return (
-              <motion.div
+              <div
                 key={inq.id}
-                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.02 }}
-                className="rounded-lg p-4 sm:p-5 cursor-pointer"
-                style={{
-                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                  border: `1px solid hsl(${serviceColor} / 0.2)`,
-                }}
                 onClick={() => navigate(`/hq/inquiries/${inq.id}`)}
+                className="group flex items-center gap-3 px-3 sm:px-4 h-11 cursor-pointer hover:bg-secondary/40 transition-colors min-w-0"
               >
-                <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span
-                        className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em]"
-                        style={{
-                          background: `hsl(${serviceColor} / 0.15)`,
-                          color: `hsl(${serviceColor})`,
-                          border: `1px solid hsl(${serviceColor} / 0.25)`,
-                        }}
-                      >
-                        {inq.service_type.replace(" Inquiry", "")}
-                      </span>
-                      {inq.converted_project_id && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); navigate(`/hq/projects/${inq.converted_project_id}`); }}
-                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] border border-accent/40 text-accent bg-accent/10 hover:bg-accent/20"
-                        >
-                          → project
-                        </button>
-                      )}
-                      {(inq.form_data as any)?.chat_session_id && (
-                        <span
-                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] border border-border bg-secondary text-muted-foreground"
-                          title="Converted from chat session"
-                        >
-                          💬 from chat
-                        </span>
-                      )}
-                      <select
-                        value={inq.status}
-                        onClick={(e) => e.stopPropagation()}
-                        onChange={(e) => updateStatus(inq.id, e.target.value)}
-                        className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] bg-transparent cursor-pointer"
-                        style={{
-                          color: `hsl(${statusColor})`,
-                          border: `1px solid hsl(${statusColor} / 0.3)`,
-                        }}
-                      >
-                        <option value="new">New</option>
-                        <option value="contacted">Contacted</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="closed">Closed</option>
-                      </select>
-                    </div>
-                    <h3 className="font-display font-black text-xl sm:text-2xl leading-[0.95] tracking-[-0.02em] mb-1" style={{ color: `hsl(${serviceColor})` }}>{inq.name}.</h3>
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1"><Mail size={12} /> {inq.email}</span>
-                      {inq.phone && <span className="flex items-center gap-1"><Phone size={12} /> {inq.phone}</span>}
-                      <span className="flex items-center gap-1"><Clock size={12} /> {format(new Date(inq.created_at), "MMM d, yyyy h:mm a")}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                <span
+                  className="h-2 w-2 rounded-full shrink-0"
+                  style={{ background: `hsl(${serviceColor})` }}
+                  title={inq.service_type.replace(" Inquiry", "")}
+                />
+                <span className="font-display font-semibold text-sm truncate min-w-0 flex-1 sm:flex-none sm:w-44">
+                  {inq.name}
+                </span>
+                <span className="hidden sm:inline text-xs text-muted-foreground truncate flex-1 min-w-0">
+                  {inq.email}
+                </span>
+                <span className="hidden md:inline text-[11px] text-muted-foreground shrink-0">
+                  {inq.service_type.replace(" Inquiry", "")}
+                </span>
+                {inq.converted_project_id && (
+                  <span className="hidden md:inline text-[10px] text-accent shrink-0">→ project</span>
+                )}
+                <select
+                  value={inq.status}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => updateStatus(inq.id, e.target.value)}
+                  className="text-[11px] bg-transparent cursor-pointer rounded-md border px-1.5 py-0.5 shrink-0"
+                  style={{ color: `hsl(${statusColor})`, borderColor: `hsl(${statusColor} / 0.3)` }}
+                >
+                  <option value="new">New</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="closed">Closed</option>
+                </select>
+                <span className="text-[11px] tabular-nums text-muted-foreground shrink-0 hidden sm:inline">
+                  {format(new Date(inq.created_at), "MMM d")}
+                </span>
+              </div>
             );
           })}
         </div>
