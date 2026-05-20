@@ -48,6 +48,16 @@ const VentureDetail = () => {
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState("");
 
+  const { projects: ventureProjects } = useProjects(
+    venture ? { venture_id: venture.id } : undefined
+  );
+  const activeProjects = ventureProjects.filter((p) => p.status !== "done" && p.status !== "archived");
+  const kanbanCols = [
+    { key: "backlog", label: "Backlog" },
+    { key: "in_progress", label: "In progress" },
+    { key: "blocked", label: "Blocked" },
+  ];
+
   const accent = venture?.accent_color ?? "hsl(24 32% 52%)";
   const Icon = getVentureIcon(venture?.icon);
 
