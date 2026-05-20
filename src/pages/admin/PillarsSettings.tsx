@@ -68,7 +68,7 @@ const PillarsSettings = () => {
           The themes you create around. Pillars color-code content across the app.
         </p>
 
-        <div className="glass-card p-5 mb-6">
+        <div className="panel p-5 mb-6">
           <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">NEW PILLAR</p>
           <div className="grid sm:grid-cols-[1fr_1fr_auto] gap-2 items-end">
             <div>
@@ -92,7 +92,7 @@ const PillarsSettings = () => {
           </div>
         </div>
 
-        <div className="glass-card p-5">
+        <div className="panel p-5">
           <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
             ALL PILLARS · {pillars.length}
           </p>

@@ -30,6 +30,18 @@ interface Priority {
   completed: boolean;
 }
 
+const SubHeader = ({ title, onView, viewLabel = "View all" }: { title: string; onView?: () => void; viewLabel?: string }) => (
+  <div className="flex items-center justify-between mb-3">
+    <h3 className="text-[13px] font-medium lowercase text-foreground">{title}</h3>
+    {onView && (
+      <button onClick={onView} className="text-[11px] text-muted-foreground hover:text-accent flex items-center gap-1">
+        {viewLabel} <ArrowRight size={11} />
+      </button>
+    )}
+  </div>
+);
+
+
 interface Inquiry {
   id: string;
   name: string;
@@ -72,7 +84,7 @@ const PrioritySlot = ({
   };
 
   return (
-    <div className="glass-card p-4 flex flex-col gap-3 min-h-[120px]">
+    <div className="panel p-4 flex flex-col gap-3 min-h-[120px]">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] text-muted-foreground">0{slot}</span>
         {value.title && (
@@ -336,18 +348,7 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
           className="mb-10"
         >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">In progress</p>
-              <h3 className="font-display font-bold text-lg mt-1">Active projects</h3>
-            </div>
-            <button
-              onClick={() => navigate("/hq/projects")}
-              className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-            >
-              View all <ArrowRight size={12} />
-            </button>
-          </div>
+          <SubHeader title="Active projects" onView={() => navigate("/hq/projects")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {topInProgress.map((p) => (
               <ProjectCard key={p.id} project={p} compact />
@@ -360,18 +361,7 @@ const Today = () => {
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
         className="mb-10"
       >
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-[11px] text-muted-foreground/70 font-medium">Pinned KPIs</p>
-            <h3 className="font-display font-bold text-lg mt-1">Metrics at a glance</h3>
-          </div>
-          <button
-            onClick={() => navigate("/hq/kpis")}
-            className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-          >
-            View all <ArrowRight size={12} />
-          </button>
-        </div>
+        <SubHeader title="Pinned KPIs" onView={() => navigate("/hq/kpis")} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {pinned.map((k) => (
             <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
@@ -380,7 +370,7 @@ const Today = () => {
             <button
               key={`empty-${i}`}
               onClick={() => navigate("/hq/kpis")}
-              className="glass-card p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs"
+              className="panel p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs"
             >
               <Pin size={12} /> Pin a KPI
             </button>
@@ -390,20 +380,9 @@ const Today = () => {
 
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-        className="glass-card p-5 mb-10"
+        className="panel p-5 mb-10"
       >
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-[11px] text-muted-foreground/70 font-medium">Inquiry pulse</p>
-            <h3 className="font-display font-bold text-lg mt-1">Last 7 days</h3>
-          </div>
-          <button
-            onClick={() => navigate("/hq/inquiries")}
-            className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-          >
-            View all <ArrowRight size={12} />
-          </button>
-        </div>
+        <SubHeader title="Inquiry pulse · last 7 days" onView={() => navigate("/hq/inquiries")} />
         <div className="h-32">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={pulse} onClick={() => navigate("/hq/inquiries")}>
@@ -430,10 +409,12 @@ const Today = () => {
       {tab === "capture" && (<>
         <motion.section
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-          className="glass-card p-5 mb-6"
+          className="panel p-5 mb-6"
         >
-          <div className="flex items-center justify-between mb-1">
-            <p className="text-[11px] text-muted-foreground/70 font-medium">Quick {logMode === "log" ? "log" : "capture"}</p>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-[13px] font-medium lowercase text-foreground">
+              {logMode === "log" ? "Today's journal" : "Capture a thought"}
+            </h3>
             <div className="flex gap-1">
               {(["log", "capture"] as const).map((m) => (
                 <button key={m} onClick={() => setLogMode(m)}
@@ -443,9 +424,6 @@ const Today = () => {
               ))}
             </div>
           </div>
-          <h3 className="font-display font-bold text-lg mb-3">
-            {logMode === "log" ? "Today's journal" : "Capture a thought"}
-          </h3>
           <textarea
             value={quickLog}
             onChange={(e) => setQuickLog(e.target.value)}
@@ -474,20 +452,11 @@ const Today = () => {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
             className="mb-10"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">Recent captures</p>
-                <h3 className="font-display font-bold text-lg mt-1">Last 5 captures</h3>
-              </div>
-              <button onClick={() => navigate("/hq/notes")}
-                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1">
-                View all <ArrowRight size={12} />
-              </button>
-            </div>
+            <SubHeader title="Recent captures" onView={() => navigate("/hq/notes")} />
             <div className="grid gap-2">
               {recentCaptures.map((c) => (
                 <button key={c.id} onClick={() => navigate("/hq/notes")}
-                  className="text-left glass-card p-3 flex items-center justify-between gap-3">
+                  className="text-left panel p-3 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="text-[10px] text-muted-foreground/70 font-medium px-1.5 py-0.5 rounded-md border border-border/50 shrink-0 capitalize">
                       {c.kind}
@@ -507,18 +476,7 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
           className="mb-10"
         >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">Inbox</p>
-              <h3 className="font-display font-bold text-lg mt-1">Recent inquiries</h3>
-            </div>
-            <button
-              onClick={() => navigate("/hq/inquiries")}
-              className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-            >
-              View all <ArrowRight size={12} />
-            </button>
-          </div>
+          <SubHeader title="Recent inquiries" onView={() => navigate("/hq/inquiries")} />
           {recent.length === 0 ? (
             <p className="text-sm text-muted-foreground">No inquiries yet.</p>
           ) : (
@@ -527,7 +485,7 @@ const Today = () => {
                 <button
                   key={r.id}
                   onClick={() => navigate(`/hq/inquiries/${r.id}`)}
-                  className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                  className="text-left panel p-3 flex items-center justify-between gap-3"
                 >
                   <div className="min-w-0">
                     <p className="font-display font-semibold text-sm truncate">{r.name}</p>
@@ -551,18 +509,7 @@ const Today = () => {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
             className="mb-10"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">Content this week</p>
-                <h3 className="font-display font-bold text-lg mt-1">Scheduled content</h3>
-              </div>
-              <button
-                onClick={() => navigate("/hq/content")}
-                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-              >
-                View calendar <ArrowRight size={12} />
-              </button>
-            </div>
+            <SubHeader title="Scheduled content" onView={() => navigate("/hq/content")} viewLabel="View calendar" />
             <div className="grid gap-2">
               {topContent.map((c) => {
                 const v = activeVentures.find((x) => x.id === c.venture_id);
@@ -572,7 +519,7 @@ const Today = () => {
                   <button
                     key={c.id}
                     onClick={() => navigate("/hq/content")}
-                    className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                    className="text-left panel p-3 flex items-center justify-between gap-3"
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="h-2 w-2 rounded-full shrink-0" style={{ background: accent }} />
@@ -599,21 +546,10 @@ const Today = () => {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
             className="mb-10"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">Chat</p>
-                <h3 className="font-display font-bold text-lg mt-1">Conversations today</h3>
-              </div>
-              <button
-                onClick={() => navigate("/hq/chats")}
-                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-              >
-                View all <ArrowRight size={12} />
-              </button>
-            </div>
+            <SubHeader title="Conversations today" onView={() => navigate("/hq/chats")} />
             <button
               onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
-              className="w-full text-left glass-card p-4 flex items-center gap-4"
+              className="w-full text-left panel p-4 flex items-center gap-4"
             >
               <div className="w-10 h-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
                 <MessageCircle size={16} />
@@ -646,7 +582,7 @@ const Today = () => {
         {pv24 > 0 && (
           <motion.section
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-            className="glass-card p-4"
+            className="panel p-4"
           >
             <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
               <div>

@@ -173,7 +173,7 @@ const InquiryDetail = () => {
               </div>
             </div>
 
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <h2 className="font-display font-bold text-lg mb-3">Details</h2>
               <dl className="space-y-2">
                 {Object.entries(inq.form_data || {}).map(([key, value]) => {
@@ -190,7 +190,7 @@ const InquiryDetail = () => {
           </div>
 
           <div className="space-y-5">
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <h2 className="font-display font-bold text-base mb-3">Notes</h2>
               <textarea
                 value={notes}
@@ -202,7 +202,7 @@ const InquiryDetail = () => {
               />
             </div>
 
-            <div className="glass-card p-5 space-y-2">
+            <div className="panel p-5 space-y-2">
               <h2 className="font-display font-bold text-base mb-2">Quick actions</h2>
               <button
                 onClick={() => updateField({ status: "contacted" }).then((ok) => ok && toast.success("Marked contacted"))}

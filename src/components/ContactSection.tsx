@@ -209,7 +209,7 @@ const ContactSection = () => {
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
                   onClick={() => trackEvent("link_clicked", { label: link.label, url: link.href, source: "contact_section" })}
-                  className="glass-card p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group"
+                  className="panel p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group"
                 >
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
                     <link.icon size={14} className="text-primary/70" />
@@ -221,7 +221,7 @@ const ContactSection = () => {
                   <ArrowUpRight size={14} className="text-muted-foreground/50 shrink-0" />
                 </a>
               ))}
-              <div className="glass-card p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
+              <div className="panel p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
                   <MapPin size={14} className="text-primary/70" />
                 </div>
@@ -239,7 +239,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-5 sm:p-8 space-y-4 sm:space-y-5 lg:col-span-3"
+            className="panel p-5 sm:p-8 space-y-4 sm:space-y-5 lg:col-span-3"
           >
             {/* Name / Email row */}
             <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">

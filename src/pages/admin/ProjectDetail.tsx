@@ -222,7 +222,7 @@ const ProjectDetail = () => {
         </div>
 
         {project.status === "done" && project.completed_at && (
-          <div className="glass-card p-3 mb-6 border-accent/30">
+          <div className="panel p-3 mb-6 border-accent/30">
             <p className="text-xs font-display text-accent">
               Completed {formatDistanceToNowStrict(new Date(project.completed_at))} ago ✓
             </p>
@@ -232,7 +232,7 @@ const ProjectDetail = () => {
         <div className="grid lg:grid-cols-5 gap-6">
           {/* Main */}
           <div className="lg:col-span-3 space-y-5">
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">DESCRIPTION</p>
                 <button
@@ -264,7 +264,7 @@ const ProjectDetail = () => {
               )}
             </div>
 
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">
                   SUBTASKS · {subtasks.filter((s) => s.completed).length}/{subtasks.length}
@@ -314,7 +314,7 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">
                   LINKED CONTENT · {linkedContent.length}
@@ -355,7 +355,7 @@ const ProjectDetail = () => {
 
           {/* Sidebar */}
           <div className="lg:col-span-2 space-y-5">
-            <div className="glass-card p-5 space-y-4">
+            <div className="panel p-5 space-y-4">
               <div>
                 <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">DUE DATE</p>
                 <Input
@@ -401,7 +401,7 @@ const ProjectDetail = () => {
             </div>
 
             {sourceInquiry && (
-              <div className="glass-card p-5">
+              <div className="panel p-5">
                 <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">LINKED INQUIRY</p>
                 <Link
                   to={`/hq/inquiries/${sourceInquiry.id}`}
@@ -413,7 +413,7 @@ const ProjectDetail = () => {
               </div>
             )}
 
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">LINKED KPIS</p>
               <p className="text-xs text-muted-foreground italic mb-3">Link KPIs to this project</p>
               <Button variant="outline" size="sm" className="w-full" disabled>
@@ -421,7 +421,7 @@ const ProjectDetail = () => {
               </Button>
             </div>
 
-            <div className="glass-card p-5 border-destructive/30">
+            <div className="panel p-5 border-destructive/30">
 
               <p className="font-mono text-[10px] text-destructive tracking-[0.18em] mb-3">DANGER ZONE</p>
               <div className="space-y-2">

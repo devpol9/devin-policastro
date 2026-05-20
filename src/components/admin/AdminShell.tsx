@@ -13,6 +13,7 @@ import {
   SidebarProvider, SidebarTrigger,
 } from "@/components/ui/sidebar";
 import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
+import MobileAdminNav from "@/components/admin/MobileAdminNav";
 
 type NavItem = {
   label: string;
@@ -123,7 +124,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
-        <Sidebar collapsible="icon">
+        <Sidebar collapsible="icon" className="hidden md:flex">
           <SidebarHeader className="px-4 py-5">
             <div className="font-display font-bold text-xl tracking-tight">
               Dev<span className="accent-headline">HQ.</span>
@@ -197,22 +198,26 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
 
         <div className="flex-1 flex flex-col min-w-0">
           <header className="sticky top-0 z-40 h-11 flex items-center gap-3 border-b border-border/40 bg-background/85 backdrop-blur-xl px-3 sm:px-6">
-            <SidebarTrigger />
-            <h1 className="font-display font-semibold text-sm tracking-tight">
+            <div className="hidden md:flex"><SidebarTrigger /></div>
+            <h1 className="font-display font-semibold text-sm tracking-tight md:hidden">
+              Dev<span className="accent-headline">HQ.</span>
+            </h1>
+            <h1 className="hidden md:block font-display font-semibold text-sm tracking-tight">
               {pageTitleFor(location.pathname)}
             </h1>
-            <span className="text-[10px] font-medium text-muted-foreground/70 tabular-nums px-1.5 py-0.5 rounded border border-border/40">
+            <span className="ml-auto md:ml-0 text-[10px] font-medium text-muted-foreground/70 tabular-nums px-1.5 py-0.5 rounded border border-border/40">
               {format(new Date(), "EEE MMM d")}
             </span>
           </header>
 
-          <main className="flex-1">
+          <main className="flex-1 pb-16 md:pb-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
               {children}
             </div>
           </main>
         </div>
       </div>
+      <MobileAdminNav />
       <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
     </SidebarProvider>
   );

@@ -42,7 +42,7 @@ const ProjectCard = ({ project, compact, onClick }: Props) => {
     <button
       type="button"
       onClick={handleClick}
-      className="w-full text-left glass-card p-3 sm:p-4 group transition-colors hover:border-foreground/20"
+      className="w-full text-left panel p-3 sm:p-4 group transition-colors hover:border-foreground/20"
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="flex items-center gap-2 min-w-0">

@@ -40,7 +40,7 @@ const CaptureCard = ({ capture, onClick }: { capture: Capture; onClick: () => vo
   return (
     <button
       onClick={onClick}
-      className="group text-left glass-card p-4 flex flex-col gap-2 hover:border-accent/40 transition-all"
+      className="group text-left panel p-4 flex flex-col gap-2 hover:border-accent/40 transition-all"
       style={{ borderLeft: `3px solid ${accent}` }}
     >
       <div className="flex items-center justify-between gap-2">
@@ -143,7 +143,7 @@ const NotesIdeasInner = () => {
         </div>
       </div>
 
-      <div className="glass-card p-3 mb-6 flex flex-wrap items-center gap-2">
+      <div className="panel p-3 mb-6 flex flex-wrap items-center gap-2">
         <div className="flex gap-1">
           {VIEWS.map((v) => (
             <button
@@ -203,7 +203,7 @@ const NotesIdeasInner = () => {
       {isLoading ? (
         <p className="text-sm text-muted-foreground">Loading…</p>
       ) : captures.length === 0 ? (
-        <div className="glass-card p-10 text-center">
+        <div className="panel p-10 text-center">
           <p className="text-sm text-muted-foreground mb-3">
             No captures yet. Capture anything — a quote, an idea, a link.
           </p>
@@ -216,7 +216,7 @@ const NotesIdeasInner = () => {
           ))}
         </div>
       ) : view === "list" ? (
-        <div className="glass-card overflow-hidden">
+        <div className="panel overflow-hidden">
           <table className="w-full text-xs">
             <thead className="bg-secondary/40 text-muted-foreground">
               <tr>

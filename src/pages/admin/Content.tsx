@@ -1,10 +1,11 @@
-import TabBar from "@/components/admin/TabBar";
 import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Plus, Search, Calendar as CalendarIcon, KanbanSquare, List as ListIcon,
-  ChevronLeft, ChevronRight,
+  ChevronLeft, ChevronRight, Filter,
 } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import TabBar from "@/components/admin/TabBar";
 import {
   format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays,
   isSameMonth, isSameDay, addMonths,
@@ -127,56 +128,86 @@ const Content = () => {
               className="bg-transparent text-xs outline-none flex-1"
             />
           </div>
-          <div className="flex flex-wrap gap-1">
-            {activeVentures.map((v) => (
-              <button
-                key={v.id}
-                onClick={() => toggle(ventureFilter, setVentureFilter, v.id)}
-                className="text-[10px] px-2 py-1 rounded-md border font-display"
-                style={{
-                  borderColor: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--border))",
-                  background: ventureFilter.has(v.id) ? `${v.accent_color}22` : "transparent",
-                  color: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--muted-foreground))",
-                }}
-              >{v.short_name ?? v.name}</button>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-1">
-            {PLATFORMS.map((p) => {
-              const Icon = PLATFORM_ICON[p];
-              const on = platformFilter.has(p);
-              return (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="sm" className="gap-2">
+                <Filter size={12} /> Filters
+                {(ventureFilter.size + platformFilter.size + pillarFilter.size) > 0 && (
+                  <span className="text-[10px] tabular-nums rounded-md bg-accent text-accent-foreground px-1.5 py-0.5">
+                    {ventureFilter.size + platformFilter.size + pillarFilter.size}
+                  </span>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-72 p-3 space-y-3">
+              <div>
+                <p className="text-[11px] text-muted-foreground lowercase mb-1.5">Ventures</p>
+                <div className="flex flex-wrap gap-1">
+                  {activeVentures.map((v) => (
+                    <button
+                      key={v.id}
+                      onClick={() => toggle(ventureFilter, setVentureFilter, v.id)}
+                      className="text-[10px] px-2 py-1 rounded-md border"
+                      style={{
+                        borderColor: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--border))",
+                        background: ventureFilter.has(v.id) ? `${v.accent_color}22` : "transparent",
+                        color: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--muted-foreground))",
+                      }}
+                    >{v.short_name ?? v.name}</button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-[11px] text-muted-foreground lowercase mb-1.5">Platforms</p>
+                <div className="flex flex-wrap gap-1">
+                  {PLATFORMS.map((p) => {
+                    const Icon = PLATFORM_ICON[p];
+                    const on = platformFilter.has(p);
+                    return (
+                      <button
+                        key={p}
+                        onClick={() => toggle(platformFilter, setPlatformFilter, p)}
+                        className={`text-[10px] px-1.5 py-1 rounded-md border ${on ? "border-accent text-accent bg-accent/10" : "border-border/40 text-muted-foreground"}`}
+                        title={PLATFORM_LABEL[p]}
+                      ><Icon size={11} /></button>
+                    );
+                  })}
+                </div>
+              </div>
+              {pillars.length > 0 && (
+                <div>
+                  <p className="text-[11px] text-muted-foreground lowercase mb-1.5">Pillars</p>
+                  <div className="flex flex-wrap gap-1">
+                    {pillars.map((p) => (
+                      <button
+                        key={p.id}
+                        onClick={() => toggle(pillarFilter, setPillarFilter, p.name)}
+                        className="text-[10px] px-2 py-1 rounded-md border"
+                        style={{
+                          borderColor: pillarFilter.has(p.name) ? p.color : "hsl(var(--border))",
+                          background: pillarFilter.has(p.name) ? `${p.color}22` : "transparent",
+                          color: pillarFilter.has(p.name) ? p.color : "hsl(var(--muted-foreground))",
+                        }}
+                      >{p.name}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {(ventureFilter.size + platformFilter.size + pillarFilter.size) > 0 && (
                 <button
-                  key={p}
-                  onClick={() => toggle(platformFilter, setPlatformFilter, p)}
-                  className={`text-[10px] px-1.5 py-1 rounded-md border ${on ? "border-accent text-accent bg-accent/10" : "border-border/40 text-muted-foreground"}`}
-                  title={PLATFORM_LABEL[p]}
-                ><Icon size={11} /></button>
-              );
-            })}
-          </div>
-          {pillars.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {pillars.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => toggle(pillarFilter, setPillarFilter, p.name)}
-                  className="text-[10px] px-2 py-1 rounded-md border font-display"
-                  style={{
-                    borderColor: pillarFilter.has(p.name) ? p.color : "hsl(var(--border))",
-                    background: pillarFilter.has(p.name) ? `${p.color}22` : "transparent",
-                    color: pillarFilter.has(p.name) ? p.color : "hsl(var(--muted-foreground))",
-                  }}
-                >{p.name}</button>
-              ))}
-            </div>
-          )}
+                  onClick={() => { setVentureFilter(new Set()); setPlatformFilter(new Set()); setPillarFilter(new Set()); }}
+                  className="text-[11px] text-muted-foreground hover:text-foreground w-full text-left pt-1 border-t border-border/60"
+                >Clear all</button>
+              )}
+            </PopoverContent>
+          </Popover>
         </div>
+
 
         {isLoading ? (
           <div className="text-center py-20 text-muted-foreground text-sm">Loading…</div>
         ) : items.length === 0 ? (
-          <div className="glass-card p-12 text-center">
+          <div className="panel p-12 text-center">
             <p className="text-sm text-muted-foreground mb-4">No content yet — start planning your first piece.</p>
             <Button onClick={() => openNew()}><Plus size={14} className="mr-1" /> New content</Button>
           </div>
@@ -231,7 +262,7 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
 
   return (
     <div className="grid lg:grid-cols-[1fr_240px] gap-4">
-      <div className="glass-card p-4">
+      <div className="panel p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-display font-bold text-lg">{format(cursor, "MMMM yyyy")}</h3>
           <div className="flex items-center gap-1">
@@ -284,8 +315,8 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
           })}
         </div>
       </div>
-      <div className="glass-card p-4">
-        <p className="font-mono text-[10px] text-muted-foreground tracking-[0.12em] mb-2">UNSCHEDULED · {unscheduled.length}</p>
+      <div className="panel p-4">
+        <p className="text-[11px] text-muted-foreground lowercase mb-2">Unscheduled · {unscheduled.length}</p>
         <div className="space-y-2 max-h-[60vh] overflow-y-auto">
           {unscheduled.length === 0 && <p className="text-xs text-muted-foreground italic">All scheduled.</p>}
           {unscheduled.map((it) => {
@@ -294,12 +325,12 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
             return (
               <button
                 key={it.id} onClick={() => onOpen(it.id)}
-                className="w-full text-left p-2 rounded border border-border/40 hover:border-accent/40 transition-colors"
-                style={{ borderLeft: `3px solid ${v?.accent_color ?? "hsl(30 8% 50%)"}` }}
+                className="w-full text-left p-2 rounded-md border border-border/40 hover:border-accent/40 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-1">
+                  <span className="h-2 w-2 rounded-full shrink-0" style={{ background: v?.accent_color ?? "hsl(30 8% 50%)" }} />
                   <Icon size={10} className="text-muted-foreground" />
-                  <span className="text-[9px] font-display uppercase text-muted-foreground tracking-wider">{it.status}</span>
+                  <span className="text-[10px] text-muted-foreground lowercase">{it.status}</span>
                 </div>
                 <p className="text-xs font-display font-semibold truncate">{it.title}</p>
               </button>
@@ -328,7 +359,7 @@ const SortableCard = ({ item, onOpen }: { item: ContentItem; onOpen: (id: string
       <button
         type="button"
         onClick={() => onOpen(item.id)}
-        className="w-full text-left glass-card p-2.5"
+        className="w-full text-left panel p-2.5"
         style={{ borderLeft: `3px solid ${v?.accent_color ?? "hsl(30 8% 50%)"}` }}
       >
         <div className="flex items-center gap-1.5 mb-1 text-[10px] text-muted-foreground">
@@ -374,10 +405,11 @@ const PipelineView = ({ items, onOpen, onMove }: {
           return (
             <div key={status} id={status} className="bg-secondary/30 rounded-md p-2 min-h-[120px]">
               <div className="flex items-center justify-between mb-2">
-                <span
-                  className="text-[10px] font-display font-bold tracking-[0.1em] uppercase"
-                  style={{ color: STATUS_COLOR[status] }}
-                >{STATUS_LABEL[status]} · {list.length}</span>
+                <span className="text-[11px] font-medium lowercase inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: STATUS_COLOR[status] }} />
+                  {STATUS_LABEL[status]}
+                  <span className="text-muted-foreground/70 tabular-nums">{list.length}</span>
+                </span>
                 {status === "archived" && (
                   <button onClick={() => setArchiveOpen(!archiveOpen)} className="text-[10px] text-muted-foreground">
                     {archiveOpen ? "Hide" : "Show"}
@@ -405,7 +437,7 @@ const ListView = ({ items, onOpen }: {
 }) => {
   const { activeVentures } = useVentures();
   return (
-    <div className="glass-card overflow-hidden">
+    <div className="panel overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow>

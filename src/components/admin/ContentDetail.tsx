@@ -380,7 +380,7 @@ const ContentDetail = ({ itemId, onOpenChange }: Props) => {
 
           {/* 10. Performance stats */}
           {item.status === "posted" && (
-            <div className="glass-card p-4">
+            <div className="panel p-4">
               <Label className="text-[10px] font-mono text-muted-foreground tracking-[0.12em] mb-2 block">
                 PERFORMANCE
               </Label>
@@ -431,7 +431,7 @@ const ContentDetail = ({ itemId, onOpenChange }: Props) => {
           </div>
 
           {/* Danger zone */}
-          <details className="glass-card p-4 border-destructive/30">
+          <details className="panel p-4 border-destructive/30">
             <summary className="cursor-pointer text-[10px] font-mono text-destructive tracking-[0.12em] inline-flex items-center gap-1">
               <ChevronDown size={12} /> DANGER ZONE
             </summary>

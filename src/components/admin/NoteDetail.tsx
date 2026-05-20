@@ -107,7 +107,7 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
 
           <div className="mt-6 space-y-5">
             {promoted && (
-              <div className="glass-card p-3 flex items-center justify-between">
+              <div className="panel p-3 flex items-center justify-between">
                 <div className="text-xs">
                   <p className="font-display font-semibold">Linked project</p>
                   <p className="text-muted-foreground">Promoted {capture.promoted_at && formatDistanceToNow(new Date(capture.promoted_at), { addSuffix: true })}</p>
@@ -120,7 +120,7 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
 
             {capture.kind === "link" && meta.url && (
               <a href={meta.url} target="_blank" rel="noreferrer"
-                className="glass-card p-3 flex items-center gap-2 text-xs hover:border-accent/40 transition-colors">
+                className="panel p-3 flex items-center gap-2 text-xs hover:border-accent/40 transition-colors">
                 <ExternalLink size={12} className="text-muted-foreground" />
                 <span className="font-mono truncate flex-1">{meta.url}</span>
               </a>
