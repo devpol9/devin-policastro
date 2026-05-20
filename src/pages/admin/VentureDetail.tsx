@@ -11,6 +11,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import VentureDialog from "@/components/admin/VentureDialog";
 import { getVentureIcon } from "@/components/admin/ventureIcons";
 import { invalidateVentures, useVenture } from "@/hooks/use-ventures";
+import { useProjects } from "@/hooks/use-projects";
+import ProjectCard from "@/components/admin/ProjectCard";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -45,6 +47,16 @@ const VentureDetail = () => {
   const [notes, setNotes] = useState("");
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState("");
+
+  const { projects: ventureProjects } = useProjects(
+    venture ? { venture_id: venture.id } : undefined
+  );
+  const activeProjects = ventureProjects.filter((p) => p.status !== "done" && p.status !== "archived");
+  const kanbanCols = [
+    { key: "backlog", label: "Backlog" },
+    { key: "in_progress", label: "In progress" },
+    { key: "blocked", label: "Blocked" },
+  ];
 
   const accent = venture?.accent_color ?? "hsl(24 32% 52%)";
   const Icon = getVentureIcon(venture?.icon);
@@ -187,7 +199,7 @@ const VentureDetail = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-          <Stat label="Active Projects" value={0} />
+          <Stat label="Active Projects" value={activeProjects.length} />
           <Stat label="Inquiries (30d)" value={inquiryCount} />
           <Stat label="Content Items" value={0} />
           <Stat label="Last activity" value={lastActivity} />
@@ -231,15 +243,37 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="glass-card p-5">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">ACTIVE PROJECTS</p>
-                <p className="text-xs text-muted-foreground italic">Coming in Phase 2B.</p>
+            <div className="glass-card p-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">PROJECTS</p>
+                <button
+                  onClick={() => navigate(`/hq/projects?venture=${venture.id}`)}
+                  className="text-xs font-display text-muted-foreground hover:text-accent"
+                >
+                  View all →
+                </button>
               </div>
-              <div className="glass-card p-5">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">UPCOMING CONTENT</p>
-                <p className="text-xs text-muted-foreground italic">Coming in Phase 2C.</p>
-              </div>
+              {ventureProjects.length === 0 ? (
+                <p className="text-xs text-muted-foreground italic">No projects yet. Create one from the Projects page.</p>
+              ) : (
+                <div className="grid md:grid-cols-3 gap-3">
+                  {kanbanCols.map((col) => {
+                    const items = ventureProjects.filter((p) => p.status === col.key).slice(0, 3);
+                    return (
+                      <div key={col.key} className="space-y-2">
+                        <p className="font-mono text-[10px] text-muted-foreground tracking-[0.14em] uppercase">
+                          {col.label} · {ventureProjects.filter((p) => p.status === col.key).length}
+                        </p>
+                        {items.length === 0 ? (
+                          <p className="text-[11px] text-muted-foreground/60 italic">Empty</p>
+                        ) : (
+                          items.map((p) => <ProjectCard key={p.id} project={p} compact />)
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </TabsContent>
 

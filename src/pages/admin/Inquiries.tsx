@@ -18,6 +18,7 @@ interface Inquiry {
   status: string;
   created_at: string;
   notes: string | null;
+  converted_project_id: string | null;
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -43,6 +44,7 @@ const Inquiries = () => {
   const [filter, setFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const [showConverted, setShowConverted] = useState(false);
 
   useEffect(() => { fetchInquiries(); }, []);
 
@@ -77,6 +79,7 @@ const Inquiries = () => {
   const weekCount = inquiries.filter((i) => new Date(i.created_at) >= weekAgo).length;
 
   const filtered = inquiries.filter((inq) => {
+    if (!showConverted && inq.converted_project_id) return false;
     if (filter !== "all" && inq.service_type !== filter) return false;
     if (statusFilter !== "all" && inq.status !== statusFilter) return false;
     if (search.trim()) {
@@ -164,6 +167,15 @@ const Inquiries = () => {
             {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
           </button>
         ))}
+        <label className="ml-4 inline-flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={showConverted}
+            onChange={(e) => setShowConverted(e.target.checked)}
+            className="accent-accent"
+          />
+          Show converted
+        </label>
       </div>
 
       {loading ? (
@@ -199,6 +211,14 @@ const Inquiries = () => {
                       >
                         {inq.service_type.replace(" Inquiry", "")}
                       </span>
+                      {inq.converted_project_id && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); navigate(`/hq/projects/${inq.converted_project_id}`); }}
+                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] border border-accent/40 text-accent bg-accent/10 hover:bg-accent/20"
+                        >
+                          → project
+                        </button>
+                      )}
                       <select
                         value={inq.status}
                         onClick={(e) => e.stopPropagation()}

@@ -10,6 +10,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
 import VenturePill from "@/components/admin/VenturePill";
 import { useVentures } from "@/hooks/use-ventures";
+import { useProjects } from "@/hooks/use-projects";
+import ProjectCard from "@/components/admin/ProjectCard";
 
 interface Priority {
   id?: string;
@@ -111,6 +113,8 @@ const PrioritySlot = ({
 const Today = () => {
   const navigate = useNavigate();
   const { activeVentures } = useVentures();
+  const { projects: inProgressProjects } = useProjects({ status: "in_progress" });
+  const topInProgress = inProgressProjects.slice(0, 5);
   const [userId, setUserId] = useState<string>("");
   const [priorities, setPriorities] = useState<Priority[]>([
     { slot: 1, title: "", completed: false },
@@ -283,6 +287,32 @@ const Today = () => {
           ))}
         </div>
       </motion.section>
+
+      {topInProgress.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.07 }}
+          className="mb-10"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.5 · IN PROGRESS</p>
+              <h3 className="font-display font-bold text-lg mt-1">Active projects</h3>
+            </div>
+            <button
+              onClick={() => navigate("/hq/projects")}
+              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+            >
+              View all <ArrowRight size={12} />
+            </button>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {topInProgress.map((p) => (
+              <ProjectCard key={p.id} project={p} compact />
+            ))}
+          </div>
+        </motion.section>
+      )}
+
 
       <div className="grid lg:grid-cols-3 gap-6 mb-10">
         <motion.section
