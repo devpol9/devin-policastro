@@ -20,6 +20,7 @@ const FloatingNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
+  const { isAdmin } = useIsAdmin();
 
   useEffect(() => {
     setMobileOpen(false);
