@@ -15,6 +15,9 @@ const AIChatbot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sessionTokenRef = useRef<string | null>(
+    typeof window !== "undefined" ? localStorage.getItem("chat_session_token") : null
+  );
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -39,8 +42,18 @@ const AIChatbot = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
-        body: JSON.stringify({ messages: allMessages }),
+        body: JSON.stringify({
+          messages: allMessages,
+          session_token: sessionTokenRef.current,
+          path: typeof window !== "undefined" ? window.location.pathname : null,
+        }),
       });
+
+      const newToken = resp.headers.get("X-Session-Token");
+      if (newToken && newToken !== sessionTokenRef.current) {
+        sessionTokenRef.current = newToken;
+        try { localStorage.setItem("chat_session_token", newToken); } catch { /* ignore */ }
+      }
 
       if (!resp.ok || !resp.body) {
         const errData = await resp.json().catch(() => ({}));

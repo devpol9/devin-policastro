@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 const homeNavItems = [
   { label: "Home", href: "#home" },
@@ -19,6 +20,7 @@ const FloatingNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
+  const { isAdmin } = useIsAdmin();
 
   useEffect(() => {
     setMobileOpen(false);
@@ -138,6 +140,15 @@ const FloatingNav = () => {
                   Contact
                 </button>
               </>
+            )}
+            {isAdmin && (
+              <a
+                href="https://admin.devinpolicastro.com/today"
+                className="ml-2 px-2.5 py-1 text-[10px] font-display font-semibold tracking-[0.12em] rounded-md border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
+                title="DevHQ"
+              >
+                DevHQ
+              </a>
             )}
           </div>
 
