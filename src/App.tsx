@@ -39,7 +39,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <SmoothScroll />
+        <ConditionalSmoothScroll />
         <Routes>
           {/* Public site */}
           <Route path="/" element={<Index />} />
