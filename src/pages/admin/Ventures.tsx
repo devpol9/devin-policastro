@@ -1,3 +1,4 @@
+import TabBar from "@/components/admin/TabBar";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
