@@ -1,8 +1,12 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /hq
+Disallow: /hq/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /hq
+Disallow: /hq/
 
 User-agent: Twitterbot
 Allow: /
@@ -12,5 +16,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /hq
+Disallow: /hq/
 
 Sitemap: https://devinpolicastro.com/sitemap.xml
