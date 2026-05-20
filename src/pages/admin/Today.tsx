@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
+import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
 import VenturePill from "@/components/admin/VenturePill";
 import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
@@ -317,6 +318,8 @@ const Today = () => {
           </div>
         </motion.section>
       )}
+
+      <CrossVentureInbox compact />
 
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}

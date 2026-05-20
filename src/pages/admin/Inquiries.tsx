@@ -7,6 +7,7 @@ import { format, subDays } from "date-fns";
 import { toast } from "sonner";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
+import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
 
 interface Inquiry {
   id: string;
@@ -100,6 +101,10 @@ const Inquiries = () => {
         title={<>Inquiry <span className="accent-headline">dashboard.</span></>}
         description={`${total} total across every service line. Filter, triage, and update status inline.`}
       />
+
+      <CrossVentureInbox />
+
+
 
       <div className="flex flex-wrap gap-3 mb-5">
         {[
