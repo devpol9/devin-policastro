@@ -364,18 +364,18 @@ const SessionCard = ({ session, active, onClick }: { session: ChatSessionWithPre
     >
       <div className="flex items-center justify-between gap-2 mb-1.5">
         <span
-          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold capitalize"
+          className="px-1.5 py-0.5 rounded text-[10px] font-medium capitalize tracking-tight"
           style={{ background: `${color}1f`, color, border: `1px solid ${color}55` }}
         >{statusKey}</span>
-        <span className="font-mono text-[10px] text-muted-foreground">
+        <span className="text-[10px] text-muted-foreground tabular-nums">
           {formatDistanceToNowStrict(new Date(session.last_message_at), { addSuffix: true })}
         </span>
       </div>
-      <p className="text-sm text-foreground line-clamp-2 leading-snug">
+      <p className="text-[13px] text-foreground line-clamp-2 leading-snug font-body">
         {session.first_user_message || <span className="italic text-muted-foreground">No user message yet</span>}
       </p>
       <div className="flex items-center justify-between gap-2 mt-2">
-        <span className="text-[10px] font-mono text-muted-foreground truncate">
+        <span className="text-[10px] text-muted-foreground truncate font-medium">
           {session.path ?? "/"} · {session.message_count} msgs
         </span>
         {session.reviewer_notes && <MessageSquare size={11} className="text-accent shrink-0" />}
