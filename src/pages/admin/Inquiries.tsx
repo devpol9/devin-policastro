@@ -107,7 +107,7 @@ const Inquiries = () => {
           { label: "New", value: newCount },
           { label: "This week", value: weekCount },
         ].map((m) => (
-          <div key={m.label} className="glass-card px-4 py-2 flex items-baseline gap-2">
+          <div key={m.label} className="panel px-4 py-2 flex items-baseline gap-2">
             <span className="font-display font-black text-lg tabular-nums">{m.value}</span>
             <span className="text-[10px] font-display tracking-[0.12em] text-muted-foreground">{m.label}</span>
           </div>

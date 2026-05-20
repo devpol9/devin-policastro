@@ -223,7 +223,7 @@ const ChatsInner = () => {
         </div>
 
         {/* Detail */}
-        <div className="glass-card p-4 min-h-[400px]">
+        <div className="panel p-4 min-h-[400px]">
           {!selectedId ? (
             <div className="h-full flex items-center justify-center text-center py-20">
               <div>

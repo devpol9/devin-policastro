@@ -72,7 +72,7 @@ const PrioritySlot = ({
   };
 
   return (
-    <div className="glass-card p-4 flex flex-col gap-3 min-h-[120px]">
+    <div className="panel p-4 flex flex-col gap-3 min-h-[120px]">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] text-muted-foreground">0{slot}</span>
         {value.title && (
@@ -380,7 +380,7 @@ const Today = () => {
             <button
               key={`empty-${i}`}
               onClick={() => navigate("/hq/kpis")}
-              className="glass-card p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs"
+              className="panel p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs"
             >
               <Pin size={12} /> Pin a KPI
             </button>
@@ -390,7 +390,7 @@ const Today = () => {
 
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-        className="glass-card p-5 mb-10"
+        className="panel p-5 mb-10"
       >
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -430,7 +430,7 @@ const Today = () => {
       {tab === "capture" && (<>
         <motion.section
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-          className="glass-card p-5 mb-6"
+          className="panel p-5 mb-6"
         >
           <div className="flex items-center justify-between mb-1">
             <p className="text-[11px] text-muted-foreground/70 font-medium">Quick {logMode === "log" ? "log" : "capture"}</p>
@@ -487,7 +487,7 @@ const Today = () => {
             <div className="grid gap-2">
               {recentCaptures.map((c) => (
                 <button key={c.id} onClick={() => navigate("/hq/notes")}
-                  className="text-left glass-card p-3 flex items-center justify-between gap-3">
+                  className="text-left panel p-3 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="text-[10px] text-muted-foreground/70 font-medium px-1.5 py-0.5 rounded-md border border-border/50 shrink-0 capitalize">
                       {c.kind}
@@ -527,7 +527,7 @@ const Today = () => {
                 <button
                   key={r.id}
                   onClick={() => navigate(`/hq/inquiries/${r.id}`)}
-                  className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                  className="text-left panel p-3 flex items-center justify-between gap-3"
                 >
                   <div className="min-w-0">
                     <p className="font-display font-semibold text-sm truncate">{r.name}</p>
@@ -572,7 +572,7 @@ const Today = () => {
                   <button
                     key={c.id}
                     onClick={() => navigate("/hq/content")}
-                    className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                    className="text-left panel p-3 flex items-center justify-between gap-3"
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="h-2 w-2 rounded-full shrink-0" style={{ background: accent }} />
@@ -613,7 +613,7 @@ const Today = () => {
             </div>
             <button
               onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
-              className="w-full text-left glass-card p-4 flex items-center gap-4"
+              className="w-full text-left panel p-4 flex items-center gap-4"
             >
               <div className="w-10 h-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
                 <MessageCircle size={16} />
@@ -646,7 +646,7 @@ const Today = () => {
         {pv24 > 0 && (
           <motion.section
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-            className="glass-card p-4"
+            className="panel p-4"
           >
             <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
               <div>

@@ -204,7 +204,7 @@ const Kpis = () => {
                 <button
                   key={`empty-${i}`}
                   onClick={() => toast.info("Pin a KPI from its detail view (Pin icon) to add it here.")}
-                  className="glass-card p-5 flex flex-col items-center justify-center text-center min-h-[180px] border-dashed border-2 border-border text-muted-foreground hover:text-foreground hover:border-accent/40 transition-colors"
+                  className="panel p-5 flex flex-col items-center justify-center text-center min-h-[180px] border-dashed border-2 border-border text-muted-foreground hover:text-foreground hover:border-accent/40 transition-colors"
                 >
                   <Plus size={20} className="mb-1" />
                   <span className="text-xs font-display">Pin a KPI</span>
@@ -220,7 +220,7 @@ const Kpis = () => {
           <p className="text-sm text-muted-foreground">Loading…</p>
         ) : !hasAnyKpis ? (
           <div className="space-y-6">
-            <div className="glass-card p-10 text-center">
+            <div className="panel p-10 text-center">
               <h3 className="font-display font-bold text-xl mb-2">No KPIs yet</h3>
               <p className="text-sm text-muted-foreground max-w-md mx-auto mb-5">
                 Track what matters. MRR, members, churn, signups — anything you want to know is moving.
@@ -231,7 +231,7 @@ const Kpis = () => {
             </div>
 
             {suggestions.length > 0 && (
-              <div className="glass-card p-6">
+              <div className="panel p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p className="text-[11px] text-muted-foreground/70 font-medium">SUGGESTIONS</p>
@@ -294,7 +294,7 @@ const Kpis = () => {
             ))}
           </div>
         ) : (
-          <div className="glass-card p-0 overflow-hidden">
+          <div className="panel p-0 overflow-hidden">
             <Table>
               <TableHeader>
                 <TableRow>

@@ -29,7 +29,7 @@ const VentureCard = ({ venture, index }: { venture: Venture; index: number }) =>
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       onClick={() => navigate(`/hq/ventures/${venture.slug}`)}
-      className="text-left glass-card p-5 flex flex-col gap-3 relative overflow-hidden border-l-4"
+      className="text-left panel p-5 flex flex-col gap-3 relative overflow-hidden border-l-4"
       style={{ borderLeftColor: color }}
     >
       <Icon size={28} style={{ color }} />
@@ -115,7 +115,7 @@ const Ventures = () => {
           <p className="text-sm text-muted-foreground">Loading…</p>
         ) : filtered.length === 0 ? (
           ventures.length === 0 ? (
-            <div className="glass-card p-10 text-center">
+            <div className="panel p-10 text-center">
               <p className="text-sm text-muted-foreground mb-4">No ventures yet.</p>
               <Button onClick={seedDefaults}>Seed default ventures</Button>
             </div>

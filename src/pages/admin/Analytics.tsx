@@ -40,7 +40,7 @@ const StatCard = ({ label, value, prev, sparkData }: {
   const d = delta(value, prev);
   const dColor = d > 1 ? "text-emerald-600" : d < -1 ? "text-destructive" : "text-muted-foreground";
   return (
-    <div className="glass-card p-4 flex flex-col gap-2">
+    <div className="panel p-4 flex flex-col gap-2">
       <p className="text-[11px] text-muted-foreground/70 font-medium">{label}</p>
       <div className="flex items-baseline gap-2">
         <span className="font-display font-black text-3xl tabular-nums">{value.toLocaleString()}</span>
@@ -156,7 +156,7 @@ const AnalyticsInner = () => {
       <div className="grid lg:grid-cols-2 gap-4 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-          className="glass-card p-4"
+          className="panel p-4"
         >
           <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
             Activity over time
@@ -216,7 +216,7 @@ const AnalyticsInner = () => {
 
         <motion.div
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
-          className="glass-card p-4"
+          className="panel p-4"
         >
           <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
             Top paths
@@ -249,7 +249,7 @@ const AnalyticsInner = () => {
       </div>
 
       {/* Section C — tabs */}
-      <div className="glass-card p-4 mb-8">
+      <div className="panel p-4 mb-8">
         <TabBar<"events" | "paths" | "sources">
           className="mb-4"
           value={tab}

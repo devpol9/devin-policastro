@@ -138,7 +138,7 @@ const Editor = ({ date }: { date: string }) => {
       </div>
 
       <div className="lg:col-span-2 space-y-5">
-        <div className="glass-card p-4 space-y-4">
+        <div className="panel p-4 space-y-4">
           <p className="text-[11px] text-muted-foreground/70 font-medium">Mood & energy</p>
           <Slider10 value={log?.mood ?? null} label="Mood" lowEmoji="😞" highEmoji="😊"
             onChange={(v) => persist({ mood: v })} />
@@ -146,7 +146,7 @@ const Editor = ({ date }: { date: string }) => {
             onChange={(v) => persist({ energy: v })} />
         </div>
 
-        <div className="glass-card p-4">
+        <div className="panel p-4">
           <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">Tags</p>
           <div className="flex flex-wrap gap-1.5 mb-2">
             {(log?.tags ?? []).map((t) => (
@@ -166,7 +166,7 @@ const Editor = ({ date }: { date: string }) => {
         </div>
 
         {ctx && (
-          <div className="glass-card p-4">
+          <div className="panel p-4">
             <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">Today's data</p>
             <ul className="space-y-1.5 text-xs">
               <li className="flex justify-between"><span className="text-muted-foreground">Priorities done</span><span className="font-mono">{ctx.prioritiesDone}/{ctx.prioritiesTotal || 3}</span></li>
@@ -183,7 +183,7 @@ const Editor = ({ date }: { date: string }) => {
 };
 
 const FeedCard = ({ log, onOpen }: { log: DailyLog; onOpen: () => void }) => (
-  <button onClick={onOpen} className="text-left glass-card p-4 w-full hover:border-accent/40 transition-colors">
+  <button onClick={onOpen} className="text-left panel p-4 w-full hover:border-accent/40 transition-colors">
     <div className="flex items-center justify-between mb-2">
       <h4 className="font-display font-bold text-base">{relativeDateLabel(log.log_date)}</h4>
       <span className="font-mono text-[10px] text-muted-foreground">{log.log_date}</span>
@@ -230,7 +230,7 @@ const DailyLogInner = () => {
         description="How today went. What tomorrow needs."
       />
 
-      <div className="glass-card p-3 mb-6 flex flex-wrap items-center gap-2">
+      <div className="panel p-3 mb-6 flex flex-wrap items-center gap-2">
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm" className={cn("text-xs", !date && "text-muted-foreground")}>
@@ -281,7 +281,7 @@ const DailyLogInner = () => {
       {view === "editor" ? (
         <Editor key={date} date={date} />
       ) : feed.length === 0 ? (
-        <div className="glass-card p-10 text-center">
+        <div className="panel p-10 text-center">
           <p className="text-sm text-muted-foreground mb-3">No journal entries yet. Today's a good day to start.</p>
           <Button onClick={() => { setDate(toISO(new Date())); setView("editor"); }}>Start today's entry</Button>
         </div>

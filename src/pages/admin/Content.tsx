@@ -176,7 +176,7 @@ const Content = () => {
         {isLoading ? (
           <div className="text-center py-20 text-muted-foreground text-sm">Loading…</div>
         ) : items.length === 0 ? (
-          <div className="glass-card p-12 text-center">
+          <div className="panel p-12 text-center">
             <p className="text-sm text-muted-foreground mb-4">No content yet — start planning your first piece.</p>
             <Button onClick={() => openNew()}><Plus size={14} className="mr-1" /> New content</Button>
           </div>
@@ -231,7 +231,7 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
 
   return (
     <div className="grid lg:grid-cols-[1fr_240px] gap-4">
-      <div className="glass-card p-4">
+      <div className="panel p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="font-display font-bold text-lg">{format(cursor, "MMMM yyyy")}</h3>
           <div className="flex items-center gap-1">
@@ -284,7 +284,7 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
           })}
         </div>
       </div>
-      <div className="glass-card p-4">
+      <div className="panel p-4">
         <p className="font-mono text-[10px] text-muted-foreground tracking-[0.12em] mb-2">UNSCHEDULED · {unscheduled.length}</p>
         <div className="space-y-2 max-h-[60vh] overflow-y-auto">
           {unscheduled.length === 0 && <p className="text-xs text-muted-foreground italic">All scheduled.</p>}
@@ -328,7 +328,7 @@ const SortableCard = ({ item, onOpen }: { item: ContentItem; onOpen: (id: string
       <button
         type="button"
         onClick={() => onOpen(item.id)}
-        className="w-full text-left glass-card p-2.5"
+        className="w-full text-left panel p-2.5"
         style={{ borderLeft: `3px solid ${v?.accent_color ?? "hsl(30 8% 50%)"}` }}
       >
         <div className="flex items-center gap-1.5 mb-1 text-[10px] text-muted-foreground">
@@ -405,7 +405,7 @@ const ListView = ({ items, onOpen }: {
 }) => {
   const { activeVentures } = useVentures();
   return (
-    <div className="glass-card overflow-hidden">
+    <div className="panel overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow>

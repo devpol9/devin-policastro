@@ -355,7 +355,7 @@ const Projects = () => {
         {isLoading ? (
           <p className="text-sm text-muted-foreground">Loading…</p>
         ) : filtered.length === 0 ? (
-          <div className="glass-card p-10 text-center">
+          <div className="panel p-10 text-center">
             <p className="text-sm text-muted-foreground mb-3">
               {ventureIds.size || priorities.size || statuses.size || debounced
                 ? "No projects match your filters."
@@ -440,7 +440,7 @@ const ListView = ({ projects }: { projects: Project[] }) => {
     if (ok) invalidateProjects(qc);
   };
   return (
-    <div className="glass-card overflow-x-auto">
+    <div className="panel overflow-x-auto">
       <Table>
         <TableHeader>
           <TableRow>

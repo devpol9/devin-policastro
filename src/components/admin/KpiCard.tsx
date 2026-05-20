@@ -46,7 +46,7 @@ const KpiCard = ({ kpi, rangeKey = "90d", compact = false, hero = false, onClick
     <button
       type="button"
       onClick={onClick}
-      className={`group text-left glass-card flex flex-col ${
+      className={`group text-left panel flex flex-col ${
         hero ? "p-5" : compact ? "p-3" : "p-4"
       } transition-all hover:-translate-y-0.5`}
       style={{

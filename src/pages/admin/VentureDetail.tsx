@@ -36,7 +36,7 @@ import { Input } from "@/components/ui/input";
 const STATUSES = ["active", "paused", "archived", "idea"];
 
 const Stat = ({ label, value }: { label: string; value: string | number }) => (
-  <div className="glass-card p-4">
+  <div className="panel p-4">
     <p className="text-[11px] text-muted-foreground/70 font-medium">{label}</p>
     <p className="font-display font-bold text-2xl mt-1">{value}</p>
   </div>
@@ -145,7 +145,7 @@ const VentureDetail = () => {
     return (
       <AdminGuard>
         <AdminShell>
-          <div className="glass-card p-10 text-center">
+          <div className="panel p-10 text-center">
             <p className="text-sm text-muted-foreground mb-4">Venture not found.</p>
             <Link to="/hq/ventures" className="text-sm font-display text-accent inline-flex items-center gap-1">
               <ArrowLeft size={14} /> Back to ventures
@@ -233,7 +233,7 @@ const VentureDetail = () => {
           </TabsList>
 
           <TabsContent value="overview" className="space-y-5 mt-5">
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">KPIS</p>
                 <div className="flex items-center gap-3">
@@ -263,11 +263,11 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">DESCRIPTION</p>
               <p className="text-sm">{venture.description || "No description."}</p>
             </div>
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
                 RECENT INQUIRIES (THIS VENTURE)
               </p>
@@ -293,7 +293,7 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">PROJECTS</p>
                 <button
@@ -325,7 +325,7 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">UPCOMING CONTENT</p>
                 <button
@@ -360,7 +360,7 @@ const VentureDetail = () => {
           </TabsContent>
 
           <TabsContent value="notes" className="mt-5">
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">NOTES</p>
                 {lastSaved && (
@@ -378,7 +378,7 @@ const VentureDetail = () => {
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-5 mt-5">
-            <div className="glass-card p-5">
+            <div className="panel p-5">
               <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">EDIT VENTURE</p>
               <Button onClick={() => setEditOpen(true)} variant="outline">
                 <Pencil size={12} className="mr-1" /> Open editor
@@ -387,7 +387,7 @@ const VentureDetail = () => {
                 Edit name, color, icon, website, sort order, and more.
               </p>
             </div>
-            <div className="glass-card p-5 border-destructive/40">
+            <div className="panel p-5 border-destructive/40">
               <p className="font-mono text-[10px] text-destructive tracking-[0.18em] mb-3">DANGER ZONE</p>
               <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-3">

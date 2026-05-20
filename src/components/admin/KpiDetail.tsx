@@ -252,7 +252,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 </div>
 
                 {/* 2. Current state */}
-                <div className="glass-card p-5">
+                <div className="panel p-5">
                   <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">CURRENT</p>
                   <p className="font-display font-black text-4xl tracking-tight" style={{ color: accent }}>
                     {formatKpiValue(kpi, summary?.current_value)}
@@ -295,7 +295,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 </div>
 
                 {/* 3. Quick log */}
-                <div className="glass-card p-5 space-y-3">
+                <div className="panel p-5 space-y-3">
                   <p className="text-[11px] text-muted-foreground/70 font-medium">QUICK LOG</p>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -328,7 +328,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 </div>
 
                 {/* 4. Trend chart */}
-                <div className="glass-card p-5">
+                <div className="panel p-5">
                   <div className="flex items-center justify-between mb-3">
                     <p className="text-[11px] text-muted-foreground/70 font-medium">TREND</p>
                     <div className="flex gap-1">
@@ -428,7 +428,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 </div>
 
                 {/* 5. Entries table */}
-                <div className="glass-card p-5">
+                <div className="panel p-5">
                   <div className="flex items-center justify-between mb-3">
                     <p className="text-[11px] text-muted-foreground/70 font-medium">
                       ENTRIES · {sortedAll.length}
@@ -502,7 +502,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 </div>
 
                 {/* 6. Metadata */}
-                <div className="glass-card p-5">
+                <div className="panel p-5">
                   <button
                     onClick={() => setMetaOpen((v) => !v)}
                     className="w-full flex items-center justify-between text-left"
@@ -522,7 +522,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 </div>
 
                 {/* Delete (danger) */}
-                <div className="glass-card p-5 border-destructive/30">
+                <div className="panel p-5 border-destructive/30">
                   <p className="font-mono text-[10px] text-destructive tracking-[0.18em] mb-2">DANGER ZONE</p>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
