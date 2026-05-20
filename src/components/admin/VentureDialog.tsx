@@ -129,7 +129,7 @@ const VentureDialog = ({ open, onOpenChange, venture }: Props) => {
       invalidateVentures(qc);
       toast.success("Venture created");
       onOpenChange(false);
-      if (data) navigate(`/ventures/${data.slug}`);
+      if (data) navigate(`/hq/ventures/${data.slug}`);
     }
   };
 

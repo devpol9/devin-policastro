@@ -13,7 +13,7 @@ const AdminGuard = ({ children }: { children: ReactNode }) => {
     const verify = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        navigate("/login", { replace: true });
+        navigate("/hq/login", { replace: true });
         return;
       }
       const { data: roles } = await supabase
@@ -24,7 +24,7 @@ const AdminGuard = ({ children }: { children: ReactNode }) => {
       if (!roles || roles.length === 0) {
         toast.error("Access denied. Admins only.");
         await supabase.auth.signOut();
-        navigate("/login", { replace: true });
+        navigate("/hq/login", { replace: true });
         return;
       }
       if (!cancelled) setReady(true);
@@ -33,7 +33,7 @@ const AdminGuard = ({ children }: { children: ReactNode }) => {
     verify();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "SIGNED_OUT") navigate("/login", { replace: true });
+      if (event === "SIGNED_OUT") navigate("/hq/login", { replace: true });
     });
 
     return () => {

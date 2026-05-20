@@ -184,7 +184,7 @@ const Inquiries = () => {
                   background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                   border: `1px solid hsl(${serviceColor} / 0.2)`,
                 }}
-                onClick={() => navigate(`/inquiries/${inq.id}`)}
+                onClick={() => navigate(`/hq/inquiries/${inq.id}`)}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
                   <div className="flex-1 min-w-0">

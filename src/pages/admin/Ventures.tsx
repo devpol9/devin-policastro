@@ -27,7 +27,7 @@ const VentureCard = ({ venture, index }: { venture: Venture; index: number }) =>
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      onClick={() => navigate(`/ventures/${venture.slug}`)}
+      onClick={() => navigate(`/hq/ventures/${venture.slug}`)}
       className="text-left glass-card p-5 flex flex-col gap-3 relative overflow-hidden border-l-4"
       style={{ borderLeftColor: color }}
     >

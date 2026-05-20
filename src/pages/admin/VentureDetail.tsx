@@ -95,7 +95,7 @@ const VentureDetail = () => {
     if (error) { toast.error(error.message); return; }
     invalidateVentures(qc);
     toast.success("Deleted");
-    navigate("/ventures");
+    navigate("/hq/ventures");
   };
 
   const lastActivity = useMemo(() => {
@@ -115,7 +115,7 @@ const VentureDetail = () => {
         <AdminShell>
           <div className="glass-card p-10 text-center">
             <p className="text-sm text-muted-foreground mb-4">Venture not found.</p>
-            <Link to="/ventures" className="text-sm font-display text-accent inline-flex items-center gap-1">
+            <Link to="/hq/ventures" className="text-sm font-display text-accent inline-flex items-center gap-1">
               <ArrowLeft size={14} /> Back to ventures
             </Link>
           </div>
@@ -128,7 +128,7 @@ const VentureDetail = () => {
     <AdminGuard>
       <AdminShell>
         <Link
-          to="/ventures"
+          to="/hq/ventures"
           className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground mb-6"
         >
           <ArrowLeft size={12} /> all ventures
@@ -216,7 +216,7 @@ const VentureDetail = () => {
                   {recentInquiries.map((r) => (
                     <button
                       key={r.id}
-                      onClick={() => navigate(`/inquiries/${r.id}`)}
+                      onClick={() => navigate(`/hq/inquiries/${r.id}`)}
                       className="w-full text-left flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
                     >
                       <div className="min-w-0">

@@ -21,23 +21,23 @@ type NavItem = {
 };
 
 const mainNav: NavItem[] = [
-  { label: "Today", icon: Home, to: "/today" },
-  { label: "Inquiries", icon: Mail, to: "/inquiries" },
-  { label: "Projects", icon: KanbanSquare, soon: true },
-  { label: "Ventures", icon: Building2, to: "/ventures" },
-  { label: "Content", icon: Calendar, soon: true },
-  { label: "Daily Log", icon: BookOpen, soon: true },
-  { label: "KPIs", icon: TrendingUp, soon: true },
-  { label: "Notes & Ideas", icon: Lightbulb, soon: true },
-  { label: "Analytics", icon: BarChart3, soon: true },
-  { label: "Chat Logs", icon: MessageSquare, soon: true },
+  { label: "Today", icon: Home, to: "/hq/today" },
+  { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
+  { label: "Projects", icon: KanbanSquare, to: "/hq/projects", soon: true },
+  { label: "Ventures", icon: Building2, to: "/hq/ventures" },
+  { label: "Content", icon: Calendar, to: "/hq/content", soon: true },
+  { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
+  { label: "KPIs", icon: TrendingUp, to: "/hq/kpis", soon: true },
+  { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes", soon: true },
+  { label: "Analytics", icon: BarChart3, to: "/hq/analytics", soon: true },
+  { label: "Chat Logs", icon: MessageSquare, to: "/hq/chat-logs", soon: true },
 ];
 
 const pageTitleFor = (pathname: string): string => {
-  if (pathname.startsWith("/today")) return "Today";
-  if (pathname.startsWith("/inquiries")) return "Inquiries";
-  if (pathname.startsWith("/ventures")) return "Ventures";
-  if (pathname.startsWith("/settings")) return "Settings";
+  if (pathname.startsWith("/hq/today")) return "Today";
+  if (pathname.startsWith("/hq/inquiries")) return "Inquiries";
+  if (pathname.startsWith("/hq/ventures")) return "Ventures";
+  if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";
 };
 
@@ -71,7 +71,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     await supabase.auth.signOut();
-    navigate("/login", { replace: true });
+    navigate("/hq/login", { replace: true });
   };
 
   return (
