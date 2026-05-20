@@ -1,5 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
-import { Plus, LayoutGrid, Table as TableIcon, Sparkles, ArrowUp, ArrowDown, Minus } from "lucide-react";
+import { Plus, LayoutGrid, Table as TableIcon, Sparkles, ArrowUp, ArrowDown, Minus, RefreshCw } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
