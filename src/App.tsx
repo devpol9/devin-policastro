@@ -24,6 +24,8 @@ import Today from "./pages/admin/Today";
 import Inquiries from "./pages/admin/Inquiries";
 import InquiryDetail from "./pages/admin/InquiryDetail";
 import AdminNotFound from "./pages/admin/NotFound";
+import Ventures from "./pages/admin/Ventures";
+import VentureDetail from "./pages/admin/VentureDetail";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,8 @@ const AdminApp = () => (
       <Route path="/today" element={<AdminGuard><Today /></AdminGuard>} />
       <Route path="/inquiries" element={<AdminGuard><Inquiries /></AdminGuard>} />
       <Route path="/inquiries/:id" element={<AdminGuard><InquiryDetail /></AdminGuard>} />
+      <Route path="/ventures" element={<Ventures />} />
+      <Route path="/ventures/:slug" element={<VentureDetail />} />
       <Route path="/" element={<Navigate to="/today" replace />} />
       <Route path="*" element={<AdminGuard><AdminNotFound /></AdminGuard>} />
     </Routes>

@@ -24,7 +24,7 @@ const mainNav: NavItem[] = [
   { label: "Today", icon: Home, to: "/today" },
   { label: "Inquiries", icon: Mail, to: "/inquiries" },
   { label: "Projects", icon: KanbanSquare, soon: true },
-  { label: "Ventures", icon: Building2, soon: true },
+  { label: "Ventures", icon: Building2, to: "/ventures" },
   { label: "Content", icon: Calendar, soon: true },
   { label: "Daily Log", icon: BookOpen, soon: true },
   { label: "KPIs", icon: TrendingUp, soon: true },
