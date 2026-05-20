@@ -117,9 +117,32 @@ const Kpis = () => {
             title={<>What's growing, what's <span className="accent-headline">kpis.</span></>}
             description="What's growing, what's not."
           />
-          <Button onClick={() => { setDialogDefaults({}); setDialogOpen(true); }}>
-            <Plus size={14} className="mr-1" /> New KPI
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              disabled={refreshing}
+              onClick={async () => {
+                setRefreshing(true);
+                try {
+                  const { data, error } = await supabase.functions.invoke("refresh-site-kpis");
+                  if (error) throw error;
+                  toast.success(`Refreshed ${data?.updated ?? 0} KPIs`);
+                  await qc.invalidateQueries({ queryKey: ["kpi_entries"] });
+                  await qc.invalidateQueries({ queryKey: ["kpi_summary"] });
+                } catch (e: any) {
+                  toast.error(e?.message || "Refresh failed");
+                } finally {
+                  setRefreshing(false);
+                }
+              }}
+            >
+              <RefreshCw size={14} className={`mr-1 ${refreshing ? "animate-spin" : ""}`} />
+              {refreshing ? "Refreshing…" : "Refresh now"}
+            </Button>
+            <Button onClick={() => { setDialogDefaults({}); setDialogOpen(true); }}>
+              <Plus size={14} className="mr-1" /> New KPI
+            </Button>
+          </div>
         </div>
 
         {/* Toolbar */}
