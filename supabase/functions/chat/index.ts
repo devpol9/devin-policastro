@@ -1,8 +1,10 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+  "Access-Control-Expose-Headers": "X-Session-Token",
 };
 
 const SYSTEM_PROMPT = `You are Dev — Devin Policastro's AI assistant on his personal brand website. You speak like Devin: direct, confident, no-BS, high energy, real. You're a closer — your job is to make every conversation lead somewhere. Capture interest, answer questions, and always guide people toward taking action (booking, buying, inquiring, connecting).
@@ -30,122 +32,89 @@ Devin operates as a connector across all his service verticals. For some service
 SERVICE VERTICALS (all accessible via the site)
 ═══════════════════════════════
 
-1. CONSULTING
-- Brand strategy, business consulting, growth advisory
-- Brand Clarity Calls: $150 / 30 min
-- Paid Introductions: $100-$500
-- Starting at $500 for consulting engagements
-- Page: /consulting
-
-2. MANUFACTURING (Creative Vision)
-- Custom apparel, accessories, hats, bags, branded merch
-- Gym & fitness equipment (jump ropes, mini bands, wrist wraps, resistance gear)
-- Custom formulation (supplements, beverages, wellness products)
-- Private label / white label products
-- Ecommerce & Amazon-ready products — build your next brand
-- Full-scale manufacturing: sourcing, prototyping, production, fulfillment
-- Product ideation & R&D
-- Page: /manufacturing
-
-3. CONTENT CREATION
-- Instagram reels, TikTok, YouTube content
-- Product reviews, business breakdowns, day-in-the-life, gym content, car builds
-- Brand collaborations & sponsored content
-- Influencer collabs starting at $250
-- Devin's handles: @devinpolicastro everywhere
-- Page: /content
-
-4. AUTOMOTIVE
-- Vinyl wraps (full/partial, any color/finish)
-- Paint Protection Film (PPF) — XPEL, 3M
-- Ceramic coating with paint correction
-- Window tinting (ceramic & carbon films)
-- Tuning & performance (ECU, downpipes, exhaust)
-- Powder coating (wheels, calipers, metal)
-- Custom interiors (leather, Alcantara, trim)
-- Exterior styling (aero kits, spoilers, lighting)
-- Full builds / complete customization
-- Devin connects you with the best shops in his network and personally oversees the process
-- Page: /automotive
-
-5. FINANCING
-- Business financing solutions and capital access
-- Help structuring and funding your next venture
-- Devin connects you with the right financial partners
-- Page: /financing
-
-6. NETWORKING
-- Strategic networking and relationship-driven growth
-- Connecting you with the right people to scale your business
-- Paid introductions available ($100-$500)
-- Page: /networking
-
-7. FITNESS & TRAINING
-- Personal training with Devin (1-on-1)
-- Get matched with a coach on Devin's team
-- Group programs & classes at Impact Zone
-- Lifestyle coaching, nutrition guidance, workout programming
-- Recovery: cold plunges, saunas, red light therapy
-- Book a session: https://calendar.app.google/2MSzLtJVX7GZ93Zs9
-- Classes: https://www.impactzonenj.com/classes
-- Page: /fitness
+1. CONSULTING - Brand strategy, business consulting, growth advisory. Brand Clarity Calls $150/30 min. Paid Introductions $100-$500. Page: /consulting
+2. MANUFACTURING (Creative Vision) - Custom apparel, gym equipment, custom formulation, private label. Page: /manufacturing
+3. CONTENT CREATION - IG reels, TikTok, YouTube, brand collabs $250+. @devinpolicastro. Page: /content
+4. AUTOMOTIVE - Wraps, PPF, ceramic, tint, tuning, powder coat, interiors, full builds. Page: /automotive
+5. FINANCING - Business financing & capital. Page: /financing
+6. NETWORKING - Strategic intros $100-$500. Page: /networking
+7. FITNESS & TRAINING - 1-on-1 with Devin, team coaches, Impact Zone classes. Book: https://calendar.app.google/2MSzLtJVX7GZ93Zs9. Page: /fitness
 
 ═══════════════════════════════
 BUSINESSES
 ═══════════════════════════════
 
-IMPACT ZONE FITNESS:
-- Bergen County's premier 51,000 sq ft gym at 335 Chestnut St, Norwood NJ
-- Since 2017, 3,000+ members, 60+ weekly classes
-- Features: 100+ machines, cold plunges, infrared saunas, hot yoga, red light therapy, basketball court, 5K sports turf, mezzanine training area
-- Membership: $139/mo, no contracts, month-to-month, welcome bag with enrollment
-- Book a tour: https://calendar.app.google/2MSzLtJVX7GZ93Zs9
-- Join online: https://onlinejoin.abcfitness.com/signup/plan?club=30591
-- Website: https://impactzonenj.com
+IMPACT ZONE FITNESS: 51,000 sq ft gym, 335 Chestnut St Norwood NJ. $139/mo, no contracts. Tour: https://calendar.app.google/2MSzLtJVX7GZ93Zs9. Join: https://onlinejoin.abcfitness.com/signup/plan?club=30591. https://impactzonenj.com
+2THIRTY: 5-in-1 hydration mixer, zero sugar. Code "DEV" 35% off + free shipping. https://drink2thirty.com/shop. Amazon: https://www.amazon.com/2THIRTY-Hydration-Precovery-Electrolyte-Raspberry/dp/B0DCW71LH8
+VALENCE: Gym software + manufacturing.
+CREATIVE VISION: Manufacturing arm.
 
-2THIRTY:
-- The only 5-in-1 hydration+ mixer — zero sugar, zero calories
-- Ingredients: NAC, L-Glutathione, Milk Thistle, Ginseng Root, electrolytes
-- 3x hydration vs sports drinks, 4.9 stars from 3,500+ reviews, 7,000+ packs sold
-- Flavors: Strawberry Lemonade, Limeade, Red Raspberry
-- Code "DEV" for 35% off + free shipping
-- Shop: https://drink2thirty.com/shop
-- Amazon: https://www.amazon.com/2THIRTY-Hydration-Precovery-Electrolyte-Raspberry/dp/B0DCW71LH8
-- Subscribe & save 20%: https://drink2thirty.com/subscribe
-- Learn more: https://www.drink2thirty.com/how-it-works
+PROMO CODES: 2THIRTY "DEV" 35% off; Fitrition "DEVIN10" 10% off; Impact Zone "DEVINFREE" free day pass.
 
-VALENCE:
-- Software solutions and manufacturing for the gym/fitness industry
-- Disrupting gym software (competing with ABC Fitness, Mindbody)
-- Connecting the dots between software solutions and manufacturing
-
-CREATIVE VISION:
-- Devin's dedicated manufacturing arm
-- From concept to shelf across all product categories
-
-PROMO CODES:
-- 2THIRTY: "DEV" — 35% off + free shipping
-- Fitrition: "DEVIN10" — 10% off
-- Impact Zone: "DEVINFREE" — Free day pass
-
-═══════════════════════════════
-PERSONALITY & TONE
-═══════════════════════════════
-- Talk like a real person, not a corporate bot
-- Confident, direct, high-energy but not corny
-- Short punchy responses (2-4 sentences usually)
-- Use links when relevant — always give people a next step
-- If someone is interested in ANYTHING, capture the lead: push them to the inquiry form, DM, email, or booking link
-- Never say "I can't help with that." Say "Let me connect you with the right person — hit the inquiry form on [page] or DM @devinpolicastro."
-- You represent Devin. Everything goes through him.`;
+PERSONALITY: Direct, confident, high-energy. Short punchy responses (2-4 sentences). Always give a next step. Never say "I can't help with that." Say "Let me connect you with the right person."`;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages } = await req.json();
+    const body = await req.json();
+    const { messages, session_token: incomingToken, path: clientPath } = body;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+    const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
+
+    const sessionToken = incomingToken && typeof incomingToken === "string"
+      ? incomingToken
+      : crypto.randomUUID();
+
+    // Upsert session
+    let sessionId: string | null = null;
+    try {
+      const userAgent = req.headers.get("user-agent") ?? null;
+      const { data: existing } = await supabase
+        .from("chat_sessions")
+        .select("id, message_count")
+        .eq("session_token", sessionToken)
+        .maybeSingle();
+
+      if (existing) {
+        sessionId = (existing as any).id;
+        await supabase
+          .from("chat_sessions")
+          .update({
+            last_message_at: new Date().toISOString(),
+            message_count: ((existing as any).message_count ?? 0) + 1,
+          })
+          .eq("id", sessionId);
+      } else {
+        const { data: created } = await supabase
+          .from("chat_sessions")
+          .insert({
+            session_token: sessionToken,
+            user_agent: userAgent,
+            path: clientPath ?? null,
+            message_count: 1,
+          })
+          .select("id")
+          .single();
+        sessionId = (created as any)?.id ?? null;
+      }
+    } catch (e) {
+      console.error("session upsert failed", e);
+    }
+
+    // Persist latest user message
+    const lastUser = [...(messages || [])].reverse().find((m: any) => m.role === "user");
+    if (sessionId && lastUser?.content) {
+      await supabase.from("chat_messages").insert({
+        session_id: sessionId,
+        role: "user",
+        content: lastUser.content,
+      }).then(() => {}, (err) => console.error("user msg insert", err));
+    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -155,10 +124,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         model: "google/gemini-3-flash-preview",
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          ...messages,
-        ],
+        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
         stream: true,
       }),
     });
@@ -166,26 +132,69 @@ serve(async (req) => {
     if (!response.ok) {
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: "I'm getting a lot of messages right now. Try again in a sec." }), {
-          status: 429,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 429, headers: { ...corsHeaders, "Content-Type": "application/json", "X-Session-Token": sessionToken },
         });
       }
       if (response.status === 402) {
         return new Response(JSON.stringify({ error: "AI credits exhausted. Try again later." }), {
-          status: 402,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 402, headers: { ...corsHeaders, "Content-Type": "application/json", "X-Session-Token": sessionToken },
         });
       }
       const t = await response.text();
       console.error("AI gateway error:", response.status, t);
       return new Response(JSON.stringify({ error: "AI gateway error" }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 500, headers: { ...corsHeaders, "Content-Type": "application/json", "X-Session-Token": sessionToken },
       });
     }
 
-    return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+    // Tee the stream: pass through to client AND accumulate assistant text
+    let assistantText = "";
+    let leftover = "";
+    const decoder = new TextDecoder();
+
+    const transformer = new TransformStream({
+      transform(chunk, controller) {
+        controller.enqueue(chunk);
+        try {
+          const text = decoder.decode(chunk, { stream: true });
+          leftover += text;
+          let nl;
+          while ((nl = leftover.indexOf("\n")) !== -1) {
+            let line = leftover.slice(0, nl);
+            leftover = leftover.slice(nl + 1);
+            if (line.endsWith("\r")) line = line.slice(0, -1);
+            if (!line.startsWith("data: ")) continue;
+            const jsonStr = line.slice(6).trim();
+            if (jsonStr === "[DONE]") continue;
+            try {
+              const parsed = JSON.parse(jsonStr);
+              const c = parsed?.choices?.[0]?.delta?.content;
+              if (typeof c === "string") assistantText += c;
+            } catch { /* skip */ }
+          }
+        } catch (e) { /* swallow */ }
+      },
+      async flush() {
+        if (sessionId && assistantText.trim()) {
+          try {
+            await supabase.from("chat_messages").insert({
+              session_id: sessionId,
+              role: "assistant",
+              content: assistantText,
+            });
+          } catch (e) {
+            console.error("assistant msg insert", e);
+          }
+        }
+      },
+    });
+
+    return new Response(response.body!.pipeThrough(transformer), {
+      headers: {
+        ...corsHeaders,
+        "Content-Type": "text/event-stream",
+        "X-Session-Token": sessionToken,
+      },
     });
   } catch (e) {
     console.error("chat error:", e);
