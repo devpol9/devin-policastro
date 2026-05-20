@@ -16,6 +16,7 @@ import ProjectCard from "@/components/admin/ProjectCard";
 import { useContentItems } from "@/hooks/use-content";
 import { useKpis } from "@/hooks/use-kpis";
 import { useImpactZoneInbox } from "@/hooks/use-impact-zone-inbox";
+import { useTwoThirtyAnalytics } from "@/hooks/use-twothirty-analytics";
 import { IZ_ADMIN_URL } from "@/integrations/impact-zone/client";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDialog from "@/components/admin/KpiDialog";
@@ -64,8 +65,11 @@ const VentureDetail = () => {
   );
   const topKpis = ventureKpis.slice(0, 4);
   const isImpactZone = venture?.slug === "impact-zone";
+  const is2thirty = venture?.slug === "2thirty";
   const { data: izInbox, isLoading: izLoading } = useImpactZoneInbox(isImpactZone);
   const izItems = izInbox || [];
+  const [shopifyDays, setShopifyDays] = useState(30);
+  const { data: shopify, isLoading: shopifyLoading } = useTwoThirtyAnalytics(shopifyDays, is2thirty);
 
   const { projects: ventureProjects } = useProjects(
     venture ? { venture_id: venture.id } : undefined
