@@ -15,6 +15,8 @@ import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useContentItems } from "@/hooks/use-content";
 import { useKpis } from "@/hooks/use-kpis";
+import { useImpactZoneInbox } from "@/hooks/use-impact-zone-inbox";
+import { IZ_ADMIN_URL } from "@/integrations/impact-zone/client";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDialog from "@/components/admin/KpiDialog";
 import KpiDetail from "@/components/admin/KpiDetail";
@@ -61,6 +63,9 @@ const VentureDetail = () => {
     venture ? { venture_ids: [venture.id], archived: false } : undefined
   );
   const topKpis = ventureKpis.slice(0, 4);
+  const isImpactZone = venture?.slug === "impact-zone";
+  const { data: izInbox, isLoading: izLoading } = useImpactZoneInbox(isImpactZone);
+  const izItems = izInbox || [];
 
   const { projects: ventureProjects } = useProjects(
     venture ? { venture_id: venture.id } : undefined
@@ -293,6 +298,69 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
+            {isImpactZone && (
+              <div className="panel p-5">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-[11px] text-muted-foreground/70 font-medium">
+                    IZ INBOX — LATEST 50
+                  </p>
+                  <a
+                    href={IZ_ADMIN_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-display text-muted-foreground hover:text-accent inline-flex items-center gap-1"
+                  >
+                    Open IZ admin <ExternalLink size={11} />
+                  </a>
+                </div>
+                {izLoading ? (
+                  <p className="text-sm text-muted-foreground">Loading…</p>
+                ) : izItems.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">No inquiries yet.</p>
+                ) : (
+                  <div className="space-y-2 max-h-[480px] overflow-y-auto" data-lenis-prevent>
+                    {izItems.map((r) => (
+                      <a
+                        key={r.id}
+                        href={IZ_ADMIN_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block p-2 rounded-md border border-border/40 hover:bg-secondary/40 transition-colors"
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <p className="font-display font-semibold text-sm truncate">
+                                {r.first_name} {r.last_name}
+                              </p>
+                              {r.reason === "assigned" && (
+                                <span
+                                  className="text-[9px] font-display font-bold tracking-wider px-1.5 py-0.5 rounded"
+                                  style={{ background: "hsl(24 32% 52% / 0.15)", color: "hsl(24 32% 52%)" }}
+                                >
+                                  Assigned
+                                </span>
+                              )}
+                              <span
+                                className="text-[9px] font-mono tracking-wider px-1.5 py-0.5 rounded border border-border/60 text-muted-foreground"
+                              >
+                                {r.status}
+                              </span>
+                            </div>
+                            <p className="text-xs text-muted-foreground truncate mt-0.5">
+                              {r.subject || r.inquiry_type}
+                            </p>
+                          </div>
+                          <span className="text-[10px] font-mono text-muted-foreground shrink-0 whitespace-nowrap">
+                            {format(new Date(r.created_at), "MMM d")}
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
                 <p className="text-[11px] text-muted-foreground/70 font-medium">PROJECTS</p>

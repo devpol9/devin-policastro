@@ -15,6 +15,16 @@ Deno.serve(async (req) => {
     });
   }
 
+  let all = false;
+  try {
+    if (req.method === 'POST') {
+      const body = await req.json().catch(() => ({}));
+      all = !!body?.all;
+    } else {
+      all = new URL(req.url).searchParams.get('all') === 'true';
+    }
+  } catch { /* ignore */ }
+
   try {
     const res = await fetch(IZ_ENDPOINT, { headers: { 'x-inbox-token': token } });
     if (!res.ok) {
@@ -30,6 +40,7 @@ Deno.serve(async (req) => {
 
     const filtered = raw
       .filter((r: any) => {
+        if (all) return true;
         const assigned = r.assigned_to_email === DEVIN_EMAIL;
         const inSubject = (r.subject || '').toLowerCase().includes(KEYWORD);
         const inMessage = (r.message || '').toLowerCase().includes(KEYWORD);
