@@ -45,6 +45,9 @@ const Kpis = () => {
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [selectedSuggestions, setSelectedSuggestions] = useState<Set<number>>(new Set());
 
+  const [refreshing, setRefreshing] = useState(false);
+  const qc = useQueryClient();
+
   const ventureIds = selectedVentures.size > 0 ? Array.from(selectedVentures) : undefined;
   const { kpis, isLoading } = useKpis({
     venture_ids: ventureIds,
