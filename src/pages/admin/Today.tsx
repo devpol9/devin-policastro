@@ -21,6 +21,7 @@ import KpiCard from "@/components/admin/KpiCard";
 import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import { MessageCircle, Pin, BookOpen, Zap, ArrowUpRight } from "lucide-react";
+import TabBar from "@/components/admin/TabBar";
 
 interface Priority {
   id?: string;
@@ -146,6 +147,7 @@ const Today = () => {
   const [savingLog, setSavingLog] = useState(false);
   const [topPaths, setTopPaths] = useState<{ path: string; count: number }[]>([]);
   const [pv24, setPv24] = useState(0);
+  const [tab, setTab] = useState<"pulse" | "capture" | "signal">("pulse");
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -316,19 +318,32 @@ const Today = () => {
         </div>
       </motion.section>
 
+      <div className="mb-6">
+        <TabBar
+          value={tab}
+          onChange={setTab}
+          items={[
+            { value: "pulse", label: "Pulse" },
+            { value: "capture", label: "Capture" },
+            { value: "signal", label: "Signal" },
+          ]}
+        />
+      </div>
+
+      {tab === "pulse" && (<>
       {topInProgress.length > 0 && (
         <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.07 }}
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
           className="mb-10"
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">01.5 · IN PROGRESS</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">In progress</p>
               <h3 className="font-display font-bold text-lg mt-1">Active projects</h3>
             </div>
             <button
               onClick={() => navigate("/hq/projects")}
-              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+              className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
             >
               View all <ArrowRight size={12} />
             </button>
@@ -342,17 +357,17 @@ const Today = () => {
       )}
 
       <motion.section
-        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.075 }}
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
         className="mb-10"
       >
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-[11px] text-muted-foreground/70 font-medium">01.7 · PINNED KPIS</p>
+            <p className="text-[11px] text-muted-foreground/70 font-medium">Pinned KPIs</p>
             <h3 className="font-display font-bold text-lg mt-1">Metrics at a glance</h3>
           </div>
           <button
             onClick={() => navigate("/hq/kpis")}
-            className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+            className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
           >
             View all <ArrowRight size={12} />
           </button>
@@ -365,13 +380,49 @@ const Today = () => {
             <button
               key={`empty-${i}`}
               onClick={() => navigate("/hq/kpis")}
-              className="glass-card p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs font-display"
+              className="glass-card p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs"
             >
               <Pin size={12} /> Pin a KPI
             </button>
           ))}
         </div>
       </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
+        className="glass-card p-5 mb-10"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="text-[11px] text-muted-foreground/70 font-medium">Inquiry pulse</p>
+            <h3 className="font-display font-bold text-lg mt-1">Last 7 days</h3>
+          </div>
+          <button
+            onClick={() => navigate("/hq/inquiries")}
+            className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
+          >
+            View all <ArrowRight size={12} />
+          </button>
+        </div>
+        <div className="h-32">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={pulse} onClick={() => navigate("/hq/inquiries")}>
+              <XAxis dataKey="day" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
+              <Tooltip
+                cursor={{ fill: "hsl(var(--accent) / 0.08)" }}
+                contentStyle={{
+                  background: "hsl(var(--card))",
+                  border: "1px solid hsl(var(--border))",
+                  fontSize: "12px",
+                  borderRadius: 6,
+                }}
+              />
+              <Bar dataKey="count" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </motion.section>
+      </>)}
 
 
 
