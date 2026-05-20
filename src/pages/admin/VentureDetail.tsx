@@ -11,6 +11,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import VentureDialog from "@/components/admin/VentureDialog";
 import { getVentureIcon } from "@/components/admin/ventureIcons";
 import { invalidateVentures, useVenture } from "@/hooks/use-ventures";
+import { useProjects } from "@/hooks/use-projects";
+import ProjectCard from "@/components/admin/ProjectCard";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
