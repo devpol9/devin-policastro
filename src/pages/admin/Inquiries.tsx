@@ -44,6 +44,7 @@ const Inquiries = () => {
   const [filter, setFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const [showConverted, setShowConverted] = useState(false);
 
   useEffect(() => { fetchInquiries(); }, []);
 
