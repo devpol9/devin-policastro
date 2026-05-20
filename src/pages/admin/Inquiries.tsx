@@ -18,6 +18,7 @@ interface Inquiry {
   status: string;
   created_at: string;
   notes: string | null;
+  converted_project_id: string | null;
 }
 
 const STATUS_COLORS: Record<string, string> = {
