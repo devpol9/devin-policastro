@@ -157,7 +157,7 @@ const ChatsInner = () => {
         as="h1"
         numeral="08"
         eyebrow="Conversations"
-        title={<>Every conversation with Dev's <span className="italic font-light text-accent">chat logs.</span></>}
+        title={<>Every conversation with Dev's <span className="accent-headline">chat logs.</span></>}
         description="Triage chats from the public site. Mark hot leads. Convert to inquiries."
       />
 

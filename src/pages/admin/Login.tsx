@@ -48,7 +48,7 @@ const Login = () => {
           numeral="00"
           eyebrow="Restricted"
           align="center"
-          title={<>Dev<span className="italic font-light text-accent">HQ.</span></>}
+          title={<>Dev<span className="accent-headline">HQ.</span></>}
           description="Authorized personnel only. Sign in to enter the command center."
         />
         <button

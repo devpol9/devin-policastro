@@ -157,7 +157,7 @@ const AIChatbot = () => {
                     <span className="text-foreground/60 text-[9px] font-display font-semibold tracking-[0.18em]">Live</span>
                   </div>
                   <h3 className="font-display font-black text-base tracking-[-0.02em] leading-none">
-                    Talk to <span className="italic font-light text-accent">Dev.</span>
+                    Talk to <span className="accent-headline">Dev.</span>
                   </h3>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />

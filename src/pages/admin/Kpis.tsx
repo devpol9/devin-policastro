@@ -114,7 +114,7 @@ const Kpis = () => {
           <SectionHeader
             numeral="06"
             eyebrow="Signal"
-            title={<>What's growing, what's <span className="italic font-light text-accent">kpis.</span></>}
+            title={<>What's growing, what's <span className="accent-headline">kpis.</span></>}
             description="What's growing, what's not."
           />
           <Button onClick={() => { setDialogDefaults({}); setDialogOpen(true); }}>

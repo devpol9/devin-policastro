@@ -129,7 +129,7 @@ const NotesIdeasInner = () => {
             as="h2"
             numeral="09"
             eyebrow="Capture"
-            title={<>Notes & <span className="italic font-light text-accent">ideas.</span></>}
+            title={<>Notes & <span className="accent-headline">ideas.</span></>}
             description="Everything worth keeping."
           />
         </div>

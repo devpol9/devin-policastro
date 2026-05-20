@@ -17,7 +17,7 @@ const MarqueeStrip = () => (
       {words.map((w, i) => (
         <span key={i} className="inline-flex items-center">
           <span
-            className={`font-display ${w.italic ? "italic font-light text-accent" : "font-bold text-foreground"} text-3xl sm:text-5xl lg:text-6xl tracking-[-0.025em] mx-6 sm:mx-10`}
+            className={`font-display ${w.italic ? "accent-headline" : "font-bold text-foreground"} text-3xl sm:text-5xl lg:text-6xl tracking-[-0.025em] mx-6 sm:mx-10`}
           >
             {w.text}
           </span>

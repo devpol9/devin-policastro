@@ -98,7 +98,7 @@ const AnalyticsInner = () => {
         as="h1"
         numeral="07"
         eyebrow="Signal"
-        title={<>What people do on <span className="italic font-light text-accent">analytics.</span></>}
+        title={<>What people do on <span className="accent-headline">analytics.</span></>}
         description="Real-time visitor signal from devinpolicastro.com. No cookies. No third parties."
       />
 

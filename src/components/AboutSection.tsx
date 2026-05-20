@@ -85,7 +85,7 @@ const AboutSection = () => {
       <SectionHeader
         numeral="01"
         eyebrow="My World"
-        title={<>I just <span className="italic font-light text-accent">build.</span></>}
+        title={<>I just <span className="accent-headline">build.</span></>}
         description="Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY, manufacturing through Creative Vision, and developing Valence."
       />
 

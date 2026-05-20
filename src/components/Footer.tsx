@@ -39,7 +39,7 @@ const Footer = () => (
         <h2 className="font-display font-black leading-[0.82] tracking-[-0.05em] text-[clamp(3rem,12vw,9rem)] text-foreground">
           Devin
           <br />
-          <span className="italic font-light text-accent">Policastro.</span>
+          <span className="accent-headline">Policastro.</span>
         </h2>
       </motion.div>
 

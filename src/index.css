@@ -144,6 +144,16 @@
     width: 0;
     height: 0;
   }
+
+  /* Modern small-caps accent — replaces old italic serif flourish */
+  .accent-headline {
+    color: hsl(var(--accent));
+    font-variant-caps: all-small-caps;
+    font-feature-settings: "smcp" 1, "c2sc" 1, "ss01" 1;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-style: normal;
+  }
 }
 
 @media (max-width: 767px) {

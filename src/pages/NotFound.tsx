@@ -31,7 +31,7 @@ const NotFound = () => {
             as="h1"
             numeral="404"
             eyebrow="Lost in transit"
-            title={<>Wrong <span className="italic font-light text-accent">turn.</span></>}
+            title={<>Wrong <span className="accent-headline">turn.</span></>}
             description={<>The page <span className="text-foreground/80 font-mono text-xs">{location.pathname}</span> doesn't exist — but everything else does. Head back home and pick a lane.</>}
           />
 

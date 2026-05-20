@@ -278,7 +278,7 @@ const Today = () => {
         className="mb-10"
       >
         <h2 className="font-display font-black leading-[0.95] tracking-[-0.03em] text-[clamp(2rem,5vw,3.25rem)]">
-          {greeting()}, <span className="italic font-light text-accent">Devin.</span>
+          {greeting()}, <span className="accent-headline">Devin.</span>
         </h2>
         <p className="font-mono text-xs text-muted-foreground mt-2 lowercase">
           {format(new Date(), "EEEE, MMMM d, yyyy")}
@@ -308,7 +308,7 @@ const Today = () => {
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
         className="mb-10"
       >
-        <SectionHeader as="h2" numeral="01" eyebrow="Priorities" title={<>Today's <span className="italic font-light text-accent">three.</span></>} />
+        <SectionHeader as="h2" numeral="01" eyebrow="Priorities" title={<>Today's <span className="accent-headline">three.</span></>} />
         <div className="grid sm:grid-cols-3 gap-4">
           {priorities.map((p) => (
             <PrioritySlot key={p.slot} slot={p.slot} value={p} onSave={savePriority} />
