@@ -141,15 +141,6 @@ const FloatingNav = () => {
                 </button>
               </>
             )}
-            {isAdmin && (
-              <button
-                onClick={() => navigate("/hq/today")}
-                className="ml-2 px-2.5 py-1 text-[10px] font-display font-semibold tracking-[0.12em] rounded-md border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
-                title="DevHQ"
-              >
-                DevHQ
-              </button>
-            )}
           </div>
 
           {/* Mobile toggle */}
