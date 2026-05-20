@@ -63,6 +63,9 @@ const VentureDetail = () => {
     venture ? { venture_ids: [venture.id], archived: false } : undefined
   );
   const topKpis = ventureKpis.slice(0, 4);
+  const isImpactZone = venture?.slug === "impact-zone";
+  const { data: izInbox, isLoading: izLoading } = useImpactZoneInbox(isImpactZone);
+  const izItems = izInbox || [];
 
   const { projects: ventureProjects } = useProjects(
     venture ? { venture_id: venture.id } : undefined
