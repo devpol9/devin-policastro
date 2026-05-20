@@ -47,6 +47,8 @@ import VenturesPage from "./pages/admin/Ventures";
 import VentureDetailPage from "./pages/admin/VentureDetail";
 import ProjectsPage from "./pages/admin/Projects";
 import ProjectDetailPage from "./pages/admin/ProjectDetail";
+import ContentPage from "./pages/admin/Content";
+import PillarsSettingsPage from "./pages/admin/PillarsSettings";
 import AdminNotFound from "./pages/admin/NotFound";
 
 const queryClient = new QueryClient();
@@ -89,6 +91,8 @@ const App = () => (
           <Route path="/hq/ventures/:slug" element={<VentureDetailPage />} />
           <Route path="/hq/projects" element={<ProjectsPage />} />
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
+          <Route path="/hq/content" element={<ContentPage />} />
+          <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
           <Route path="/hq/*" element={<AdminNotFound />} />
 
           {/* Public catch-all */}

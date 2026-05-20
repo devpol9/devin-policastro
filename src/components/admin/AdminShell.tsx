@@ -25,7 +25,7 @@ const mainNav: NavItem[] = [
   { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
   { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
   { label: "Ventures", icon: Building2, to: "/hq/ventures" },
-  { label: "Content", icon: Calendar, to: "/hq/content", soon: true },
+  { label: "Content", icon: Calendar, to: "/hq/content" },
   { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
   { label: "KPIs", icon: TrendingUp, to: "/hq/kpis", soon: true },
   { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes", soon: true },
