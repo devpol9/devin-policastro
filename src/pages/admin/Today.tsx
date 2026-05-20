@@ -12,6 +12,8 @@ import VenturePill from "@/components/admin/VenturePill";
 import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
+import { useScheduledThisWeek } from "@/hooks/use-content";
+import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 
 interface Priority {
   id?: string;
@@ -115,6 +117,11 @@ const Today = () => {
   const { activeVentures } = useVentures();
   const { projects: inProgressProjects } = useProjects({ status: "in-progress" });
   const topInProgress = inProgressProjects.slice(0, 5);
+  const { items: scheduledContent } = useScheduledThisWeek();
+  const topContent = scheduledContent
+    .filter((c) => c.scheduled_at)
+    .sort((a, b) => new Date(a.scheduled_at!).getTime() - new Date(b.scheduled_at!).getTime())
+    .slice(0, 5);
   const [userId, setUserId] = useState<string>("");
   const [priorities, setPriorities] = useState<Priority[]>([
     { slot: 1, title: "", completed: false },
