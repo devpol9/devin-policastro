@@ -167,6 +167,15 @@ const Inquiries = () => {
             {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
           </button>
         ))}
+        <label className="ml-4 inline-flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={showConverted}
+            onChange={(e) => setShowConverted(e.target.checked)}
+            className="accent-accent"
+          />
+          Show converted
+        </label>
       </div>
 
       {loading ? (
