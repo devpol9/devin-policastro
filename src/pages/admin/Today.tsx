@@ -124,6 +124,8 @@ const Today = () => {
   const topInProgress = inProgressProjects.slice(0, 5);
   const { items: scheduledContent } = useScheduledThisWeek();
   const { data: chatStats } = useChatTodayStats();
+  const { pinned } = usePinnedKpis();
+  const [openKpiId, setOpenKpiId] = useState<string | null>(null);
   const topContent = scheduledContent
     .filter((c) => c.scheduled_at)
     .sort((a, b) => new Date(a.scheduled_at!).getTime() - new Date(b.scheduled_at!).getTime())
