@@ -139,7 +139,7 @@ const ShopSection = () => {
                       />
                       <div className="absolute top-3 left-3 flex items-center gap-1.5">
                         <span
-                          className="px-2.5 py-1 rounded-full text-[9px] font-display font-semibold tracking-[0.12em] backdrop-blur-md"
+                          className="px-2.5 py-1 rounded-md text-[9px] font-display font-semibold tracking-[0.12em] backdrop-blur-md"
                           style={{
                             color: `hsl(${product.color})`,
                             background: `hsl(${product.color} / 0.12)`,
@@ -149,13 +149,13 @@ const ShopSection = () => {
                           {product.category}
                         </span>
                         {product.price && (
-                          <span className="px-2 py-1 rounded-full text-[9px] font-semibold bg-foreground text-background">
+                          <span className="px-2 py-1 rounded-md text-[9px] font-semibold bg-foreground text-background">
                             10% off
                           </span>
                         )}
                       </div>
                       {product.rating && (
-                        <div className="absolute top-3 right-3 px-2 py-1 rounded-full text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/40">
+                        <div className="absolute top-3 right-3 px-2 py-1 rounded-md text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/40">
                           ⭐ {product.rating} ({product.reviews})
                         </div>
                       )}

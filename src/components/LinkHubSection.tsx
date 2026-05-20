@@ -64,7 +64,7 @@ const LinkHubSection = () => {
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-display font-semibold tracking-[0.1em]  transition-all duration-500 ${
+              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 rounded-md text-[10px] sm:text-xs font-display font-semibold tracking-[0.1em]  transition-all duration-500 ${
                 activeCategory === cat.key
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
                   : "bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card border border-border/20"

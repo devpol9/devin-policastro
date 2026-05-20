@@ -151,7 +151,7 @@ const Editor = ({ date }: { date: string }) => {
           <div className="flex flex-wrap gap-1.5 mb-2">
             {(log?.tags ?? []).map((t) => (
               <button key={t} onClick={() => removeTag(t)}
-                className="text-[10px] px-2 py-0.5 rounded-full border border-accent/40 text-accent hover:bg-accent/10">
+                className="text-[10px] px-2 py-0.5 rounded-md border border-accent/40 text-accent hover:bg-accent/10">
                 #{t} ×
               </button>
             ))}
@@ -199,7 +199,7 @@ const FeedCard = ({ log, onOpen }: { log: DailyLog; onOpen: () => void }) => (
     {log.notes && <p className="text-xs text-muted-foreground line-clamp-3 mt-2">{log.notes.slice(0, 200)}{log.notes.length > 200 ? "…" : ""}</p>}
     {log.tags.length > 0 && (
       <div className="flex flex-wrap gap-1 mt-3">
-        {log.tags.map((t) => <span key={t} className="text-[10px] px-1.5 py-0.5 rounded-full border border-border/50 text-muted-foreground">#{t}</span>)}
+        {log.tags.map((t) => <span key={t} className="text-[10px] px-1.5 py-0.5 rounded-md border border-border/50 text-muted-foreground">#{t}</span>)}
       </div>
     )}
   </button>
@@ -265,7 +265,7 @@ const DailyLogInner = () => {
             {allTags.slice(0, 12).map((t) => (
               <button key={t}
                 onClick={() => setActiveTags((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t])}
-                className={`text-[10px] px-2 py-0.5 rounded-full border ${activeTags.includes(t) ? "bg-accent/15 border-accent text-accent" : "border-border/50 text-muted-foreground"}`}>
+                className={`text-[10px] px-2 py-0.5 rounded-md border ${activeTags.includes(t) ? "bg-accent/15 border-accent text-accent" : "border-border/50 text-muted-foreground"}`}>
                 #{t}
               </button>
             ))}

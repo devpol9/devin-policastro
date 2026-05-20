@@ -69,7 +69,7 @@ const CaptureCard = ({ capture, onClick }: { capture: Capture; onClick: () => vo
         <div className="flex items-center gap-1.5 flex-wrap">
           {venture && <VenturePill venture={venture} clickable={false} />}
           {capture.tags.slice(0, 3).map((t) => (
-            <span key={t} className="text-[10px] px-1.5 py-0.5 rounded-full border border-border/50 text-muted-foreground">#{t}</span>
+            <span key={t} className="text-[10px] px-1.5 py-0.5 rounded-md border border-border/50 text-muted-foreground">#{t}</span>
           ))}
           {capture.tags.length > 3 && (
             <span className="text-[10px] text-muted-foreground">+{capture.tags.length - 3}</span>
@@ -163,7 +163,7 @@ const NotesIdeasInner = () => {
             <button
               key={k.value}
               onClick={() => setKind(k.value)}
-              className={`px-2 py-1 text-[10px] font-display rounded-full border ${
+              className={`px-2 py-1 text-[10px] font-display rounded-md border ${
                 kind === k.value ? "bg-accent/15 border-accent text-accent" : "border-border/50 text-muted-foreground hover:text-foreground"
               }`}
             >

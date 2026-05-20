@@ -113,7 +113,7 @@ const AboutSection = () => {
                   <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-secondary border border-border">
                     <v.icon size={20} className="text-foreground" />
                   </div>
-                  <span className="text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.12em] px-2.5 py-1 rounded-full text-foreground/60 bg-secondary border border-border">
+                  <span className="text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.12em] px-2.5 py-1 rounded-md text-foreground/60 bg-secondary border border-border">
                     {v.label}
                   </span>
                 </div>

@@ -136,7 +136,7 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
             {capture.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {capture.tags.map((t) => (
-                  <span key={t} className="text-[10px] px-2 py-0.5 rounded-full border border-border/60 text-muted-foreground">#{t}</span>
+                  <span key={t} className="text-[10px] px-2 py-0.5 rounded-md border border-border/60 text-muted-foreground">#{t}</span>
                 ))}
               </div>
             )}

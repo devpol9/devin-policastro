@@ -104,7 +104,7 @@ const HeroSection = () => {
                   variant="default"
                   size="lg"
                   onClick={() => scrollTo("#services")}
-                  className="h-14 px-8 text-sm font-display font-semibold tracking-wide rounded-full"
+                  className="h-14 px-8 text-sm font-display font-semibold tracking-wide rounded-md"
                 >
                   Work With Me
                   <ArrowRight size={16} />

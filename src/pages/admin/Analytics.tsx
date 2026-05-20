@@ -107,7 +107,7 @@ const AnalyticsInner = () => {
           <button
             key={r.key}
             onClick={() => setRange(r.key)}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-display font-semibold tracking-[0.08em] transition-colors ${
+            className={`px-3 py-1.5 rounded-md text-[11px] font-display font-semibold tracking-[0.08em] transition-colors ${
               range === r.key ? "bg-foreground text-background" : "bg-card text-muted-foreground hover:text-foreground border border-border/50"
             }`}
           >{r.label}</button>

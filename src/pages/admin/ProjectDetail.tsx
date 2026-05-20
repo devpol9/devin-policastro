@@ -175,7 +175,7 @@ const ProjectDetail = () => {
           {project.source_type === "inquiry" && sourceInquiry && (
             <Link
               to={`/hq/inquiries/${sourceInquiry.id}`}
-              className="inline-flex items-center gap-1 text-[10px] font-display text-accent border border-accent/40 rounded-full px-2 py-0.5"
+              className="inline-flex items-center gap-1 text-[10px] font-display text-accent border border-accent/40 rounded-md px-2 py-0.5"
             >
               Converted from inquiry <ExternalLink size={10} />
             </Link>

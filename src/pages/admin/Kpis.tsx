@@ -127,7 +127,7 @@ const Kpis = () => {
           <div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={() => setSelectedVentures(new Set())}
-              className={`px-2.5 py-1 rounded-full border text-[11px] font-display ${
+              className={`px-2.5 py-1 rounded-md border text-[11px] font-display ${
                 selectedVentures.size === 0
                   ? "bg-foreground text-background border-foreground"
                   : "border-border text-muted-foreground"
@@ -141,7 +141,7 @@ const Kpis = () => {
                 <button
                   key={v.id}
                   onClick={() => toggleVenture(v.id)}
-                  className={`inline-flex items-center gap-1.5 rounded-full border whitespace-nowrap px-2.5 py-1 text-[11px] font-display transition-colors ${
+                  className={`inline-flex items-center gap-1.5 rounded-md border whitespace-nowrap px-2.5 py-1 text-[11px] font-display transition-colors ${
                     on ? "" : "opacity-60 hover:opacity-100"
                   }`}
                   style={{

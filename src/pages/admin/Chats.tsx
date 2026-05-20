@@ -270,7 +270,7 @@ const ChatsInner = () => {
                 </select>
                 <div className="flex items-center gap-1 flex-wrap">
                   {(detail.data.session.tags ?? []).map((t) => (
-                    <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-accent/10 text-accent border border-accent/30">
+                    <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] bg-accent/10 text-accent border border-accent/30">
                       <TagIcon size={10} /> {t}
                       <button onClick={() => removeTag(t)} className="opacity-60 hover:opacity-100"><X size={10} /></button>
                     </span>
@@ -280,7 +280,7 @@ const ChatsInner = () => {
                     onChange={(e) => setTagInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }}
                     placeholder="+ tag"
-                    className="bg-transparent border border-border/40 rounded-full px-2 py-0.5 text-[10px] w-20 outline-none focus:border-accent"
+                    className="bg-transparent border border-border/40 rounded-md px-2 py-0.5 text-[10px] w-20 outline-none focus:border-accent"
                   />
                 </div>
               </div>
@@ -383,7 +383,7 @@ const SessionCard = ({ session, active, onClick }: { session: ChatSessionWithPre
       {(session.tags?.length ?? 0) > 0 && (
         <div className="flex flex-wrap gap-1 mt-1.5">
           {session.tags.map((t) => (
-            <span key={t} className="text-[9px] px-1.5 py-0.5 rounded-full bg-accent/10 text-accent">{t}</span>
+            <span key={t} className="text-[9px] px-1.5 py-0.5 rounded-md bg-accent/10 text-accent">{t}</span>
           ))}
         </div>
       )}

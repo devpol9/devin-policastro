@@ -137,7 +137,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
                             <Icon className="h-4 w-4" />
                             <span className="flex-1">{item.label}</span>
                             {item.label === "Inquiries" && newCount > 0 && (
-                              <span className="text-[10px] font-display font-semibold rounded-full bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
+                              <span className="text-[10px] font-display font-semibold rounded-md bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
                                 {newCount}
                               </span>
                             )}
