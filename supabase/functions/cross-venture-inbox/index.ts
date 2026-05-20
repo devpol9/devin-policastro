@@ -40,6 +40,7 @@ Deno.serve(async (req) => {
 
     const filtered = raw
       .filter((r: any) => {
+        if (all) return true;
         const assigned = r.assigned_to_email === DEVIN_EMAIL;
         const inSubject = (r.subject || '').toLowerCase().includes(KEYWORD);
         const inMessage = (r.message || '').toLowerCase().includes(KEYWORD);
