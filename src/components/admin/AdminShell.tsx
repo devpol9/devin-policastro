@@ -36,6 +36,7 @@ const mainNav: NavItem[] = [
 const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/today")) return "Today";
   if (pathname.startsWith("/inquiries")) return "Inquiries";
+  if (pathname.startsWith("/ventures")) return "Ventures";
   if (pathname.startsWith("/settings")) return "Settings";
   return "DevHQ";
 };
