@@ -3,8 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Plus, Search, Calendar as CalendarIcon, KanbanSquare, List as ListIcon,
-  ChevronLeft, ChevronRight,
+  ChevronLeft, ChevronRight, Filter,
 } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import TabBar from "@/components/admin/TabBar";
 import {
   format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays,
   isSameMonth, isSameDay, addMonths,
@@ -127,51 +129,81 @@ const Content = () => {
               className="bg-transparent text-xs outline-none flex-1"
             />
           </div>
-          <div className="flex flex-wrap gap-1">
-            {activeVentures.map((v) => (
-              <button
-                key={v.id}
-                onClick={() => toggle(ventureFilter, setVentureFilter, v.id)}
-                className="text-[10px] px-2 py-1 rounded-md border font-display"
-                style={{
-                  borderColor: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--border))",
-                  background: ventureFilter.has(v.id) ? `${v.accent_color}22` : "transparent",
-                  color: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--muted-foreground))",
-                }}
-              >{v.short_name ?? v.name}</button>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-1">
-            {PLATFORMS.map((p) => {
-              const Icon = PLATFORM_ICON[p];
-              const on = platformFilter.has(p);
-              return (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="sm" className="gap-2">
+                <Filter size={12} /> Filters
+                {(ventureFilter.size + platformFilter.size + pillarFilter.size) > 0 && (
+                  <span className="text-[10px] tabular-nums rounded-md bg-accent text-accent-foreground px-1.5 py-0.5">
+                    {ventureFilter.size + platformFilter.size + pillarFilter.size}
+                  </span>
+                )}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-72 p-3 space-y-3">
+              <div>
+                <p className="text-[11px] text-muted-foreground lowercase mb-1.5">Ventures</p>
+                <div className="flex flex-wrap gap-1">
+                  {activeVentures.map((v) => (
+                    <button
+                      key={v.id}
+                      onClick={() => toggle(ventureFilter, setVentureFilter, v.id)}
+                      className="text-[10px] px-2 py-1 rounded-md border"
+                      style={{
+                        borderColor: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--border))",
+                        background: ventureFilter.has(v.id) ? `${v.accent_color}22` : "transparent",
+                        color: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--muted-foreground))",
+                      }}
+                    >{v.short_name ?? v.name}</button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-[11px] text-muted-foreground lowercase mb-1.5">Platforms</p>
+                <div className="flex flex-wrap gap-1">
+                  {PLATFORMS.map((p) => {
+                    const Icon = PLATFORM_ICON[p];
+                    const on = platformFilter.has(p);
+                    return (
+                      <button
+                        key={p}
+                        onClick={() => toggle(platformFilter, setPlatformFilter, p)}
+                        className={`text-[10px] px-1.5 py-1 rounded-md border ${on ? "border-accent text-accent bg-accent/10" : "border-border/40 text-muted-foreground"}`}
+                        title={PLATFORM_LABEL[p]}
+                      ><Icon size={11} /></button>
+                    );
+                  })}
+                </div>
+              </div>
+              {pillars.length > 0 && (
+                <div>
+                  <p className="text-[11px] text-muted-foreground lowercase mb-1.5">Pillars</p>
+                  <div className="flex flex-wrap gap-1">
+                    {pillars.map((p) => (
+                      <button
+                        key={p.id}
+                        onClick={() => toggle(pillarFilter, setPillarFilter, p.name)}
+                        className="text-[10px] px-2 py-1 rounded-md border"
+                        style={{
+                          borderColor: pillarFilter.has(p.name) ? p.color : "hsl(var(--border))",
+                          background: pillarFilter.has(p.name) ? `${p.color}22` : "transparent",
+                          color: pillarFilter.has(p.name) ? p.color : "hsl(var(--muted-foreground))",
+                        }}
+                      >{p.name}</button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {(ventureFilter.size + platformFilter.size + pillarFilter.size) > 0 && (
                 <button
-                  key={p}
-                  onClick={() => toggle(platformFilter, setPlatformFilter, p)}
-                  className={`text-[10px] px-1.5 py-1 rounded-md border ${on ? "border-accent text-accent bg-accent/10" : "border-border/40 text-muted-foreground"}`}
-                  title={PLATFORM_LABEL[p]}
-                ><Icon size={11} /></button>
-              );
-            })}
-          </div>
-          {pillars.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {pillars.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => toggle(pillarFilter, setPillarFilter, p.name)}
-                  className="text-[10px] px-2 py-1 rounded-md border font-display"
-                  style={{
-                    borderColor: pillarFilter.has(p.name) ? p.color : "hsl(var(--border))",
-                    background: pillarFilter.has(p.name) ? `${p.color}22` : "transparent",
-                    color: pillarFilter.has(p.name) ? p.color : "hsl(var(--muted-foreground))",
-                  }}
-                >{p.name}</button>
-              ))}
-            </div>
-          )}
+                  onClick={() => { setVentureFilter(new Set()); setPlatformFilter(new Set()); setPillarFilter(new Set()); }}
+                  className="text-[11px] text-muted-foreground hover:text-foreground w-full text-left pt-1 border-t border-border/60"
+                >Clear all</button>
+              )}
+            </PopoverContent>
+          </Popover>
         </div>
+
 
         {isLoading ? (
           <div className="text-center py-20 text-muted-foreground text-sm">Loading…</div>
