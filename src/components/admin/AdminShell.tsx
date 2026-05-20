@@ -12,6 +12,7 @@ import {
   SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
   SidebarProvider, SidebarTrigger,
 } from "@/components/ui/sidebar";
+import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 
 type NavItem = {
   label: string;
@@ -29,8 +30,8 @@ const mainNav: NavItem[] = [
   { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
   { label: "Chat Logs", icon: MessageSquare, to: "/hq/chats" },
   { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
-  { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
-  { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes", soon: true },
+  { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
+  { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
 ];
 
 const pageTitleFor = (pathname: string): string => {
