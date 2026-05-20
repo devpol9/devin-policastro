@@ -13,6 +13,8 @@ import { getVentureIcon } from "@/components/admin/ventureIcons";
 import { invalidateVentures, useVenture } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
+import { useContentItems } from "@/hooks/use-content";
+import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -52,6 +54,12 @@ const VentureDetail = () => {
     venture ? { venture_id: venture.id } : undefined
   );
   const activeProjects = ventureProjects.filter((p) => p.status !== "done" && p.status !== "archived");
+  const { items: ventureContent } = useContentItems(
+    venture ? { venture_ids: [venture.id], exclude_archived: true } : undefined
+  );
+  const upcomingContent = ventureContent
+    .filter((c) => c.scheduled_at && new Date(c.scheduled_at) >= new Date())
+    .slice(0, 5);
   const kanbanCols = [
     { key: "backlog", label: "Backlog" },
     { key: "in-progress", label: "In progress" },
@@ -201,7 +209,7 @@ const VentureDetail = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
           <Stat label="Active Projects" value={activeProjects.length} />
           <Stat label="Inquiries (30d)" value={inquiryCount} />
-          <Stat label="Content Items" value={0} />
+          <Stat label="Content Items" value={ventureContent.length} />
           <Stat label="Last activity" value={lastActivity} />
         </div>
 
