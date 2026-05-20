@@ -208,6 +208,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
           </main>
         </div>
       </div>
+      <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
     </SidebarProvider>
   );
 };
