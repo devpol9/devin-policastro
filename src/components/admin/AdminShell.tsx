@@ -28,8 +28,8 @@ const mainNav: NavItem[] = [
   { label: "Content", icon: Calendar, to: "/hq/content" },
   { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
   { label: "Chat Logs", icon: MessageSquare, to: "/hq/chats" },
+  { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
   { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
-  { label: "KPIs", icon: TrendingUp, to: "/hq/kpis", soon: true },
   { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes", soon: true },
 ];
 
@@ -41,6 +41,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/content")) return "Content";
   if (pathname.startsWith("/hq/analytics")) return "Analytics";
   if (pathname.startsWith("/hq/chats")) return "Chat Logs";
+  if (pathname.startsWith("/hq/kpis")) return "KPIs";
   if (pathname.startsWith("/hq/settings/pillars")) return "Pillars";
   if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";
