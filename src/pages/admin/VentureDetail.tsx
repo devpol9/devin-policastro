@@ -54,6 +54,13 @@ const VentureDetail = () => {
   const [notes, setNotes] = useState("");
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState("");
+  const [kpiDialogOpen, setKpiDialogOpen] = useState(false);
+  const [openKpiId, setOpenKpiId] = useState<string | null>(null);
+
+  const { kpis: ventureKpis } = useKpis(
+    venture ? { venture_ids: [venture.id], archived: false } : undefined
+  );
+  const topKpis = ventureKpis.slice(0, 4);
 
   const { projects: ventureProjects } = useProjects(
     venture ? { venture_id: venture.id } : undefined
