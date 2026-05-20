@@ -2,9 +2,26 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import SmoothScroll from "./components/effects/SmoothScroll";
+import { trackEvent } from "./lib/analytics";
+
+const PageViewTracker = () => {
+  const { pathname, search } = useLocation();
+  const last = useRef<string>("");
+  useEffect(() => {
+    const key = pathname + search;
+    if (last.current === key) return;
+    last.current = key;
+    if (pathname.startsWith("/hq")) return;
+    trackEvent("page_view", {
+      path: pathname,
+      referrer: typeof document !== "undefined" ? document.referrer || null : null,
+    });
+  }, [pathname, search]);
+  return null;
+};
 
 const ConditionalSmoothScroll = () => {
   const { pathname } = useLocation();
@@ -49,6 +66,8 @@ import ProjectsPage from "./pages/admin/Projects";
 import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
+import AnalyticsPage from "./pages/admin/Analytics";
+import ChatsPage from "./pages/admin/Chats";
 import AdminNotFound from "./pages/admin/NotFound";
 
 const queryClient = new QueryClient();
@@ -66,6 +85,7 @@ const App = () => (
         <ScrollToTop />
         <ConditionalSmoothScroll />
         <HqShortcut />
+        <PageViewTracker />
         <Routes>
           {/* Public site */}
           <Route path="/" element={<Index />} />
@@ -92,6 +112,8 @@ const App = () => (
           <Route path="/hq/projects" element={<ProjectsPage />} />
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/hq/content" element={<ContentPage />} />
+          <Route path="/hq/analytics" element={<AnalyticsPage />} />
+          <Route path="/hq/chats" element={<ChatsPage />} />
           <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
           <Route path="/hq/*" element={<AdminNotFound />} />
 
