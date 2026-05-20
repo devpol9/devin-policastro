@@ -259,7 +259,7 @@ const ChatsInner = () => {
                 <select
                   value={detail.data.session.lead_status ?? ""}
                   onChange={(e) => setLeadStatus((e.target.value || null) as LeadStatus | null)}
-                  className="bg-card border border-border/40 rounded-md px-2 py-1 text-xs font-display capitalize"
+                  className="bg-card border border-border/40 rounded-md px-2 py-1 text-xs font-medium font-body"
                 >
                   <option value="">Unreviewed</option>
                   <option value="hot">Hot</option>
