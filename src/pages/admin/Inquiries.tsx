@@ -79,6 +79,7 @@ const Inquiries = () => {
   const weekCount = inquiries.filter((i) => new Date(i.created_at) >= weekAgo).length;
 
   const filtered = inquiries.filter((inq) => {
+    if (!showConverted && inq.converted_project_id) return false;
     if (filter !== "all" && inq.service_type !== filter) return false;
     if (statusFilter !== "all" && inq.status !== statusFilter) return false;
     if (search.trim()) {
