@@ -1,0 +1,20 @@
+# Devin Policastro
+
+> Norwood, NJ entrepreneur, connector, and builder. Owns Impact Zone NJ (51,000 sq ft gym), 2THIRTY hydration mixer, Valence (gym SaaS), OnlyShitz (social casino), and Creative Vision (manufacturing & private label).
+
+Devin builds brands, connects people across industries, and turns introductions into deals. This site is the central hub for his ventures, professional services, shop, and direct contact.
+
+## Pages
+
+- [Home](/): Overview of Devin, his ventures, and how to work with him.
+- [Manufacturing](/manufacturing): Private label and product manufacturing through Creative Vision.
+- [Content & Collabs](/content): Sponsored content, partnerships, and brand collaborations.
+- [Automotive](/automotive): Automotive sourcing, sales, and consulting.
+- [Consulting](/consulting): Business consulting for founders, gyms, and consumer brands.
+- [Financing](/financing): Capital, lending intros, and deal structuring.
+- [Networking](/networking): Direct intros to investors, operators, and vendors in his network.
+- [Fitness](/fitness): Training, coaching, and Impact Zone NJ programs.
+
+## Optional
+
+- [Sitemap](/sitemap.xml): Machine-readable list of all public pages.
