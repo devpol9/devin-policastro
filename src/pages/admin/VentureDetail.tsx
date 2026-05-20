@@ -14,7 +14,12 @@ import { invalidateVentures, useVenture } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useContentItems } from "@/hooks/use-content";
+import { useKpis } from "@/hooks/use-kpis";
+import KpiCard from "@/components/admin/KpiCard";
+import KpiDialog from "@/components/admin/KpiDialog";
+import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
+import { Plus } from "lucide-react";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
