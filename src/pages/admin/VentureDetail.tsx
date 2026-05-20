@@ -16,6 +16,7 @@ import ProjectCard from "@/components/admin/ProjectCard";
 import { useContentItems } from "@/hooks/use-content";
 import { useKpis } from "@/hooks/use-kpis";
 import { useImpactZoneInbox } from "@/hooks/use-impact-zone-inbox";
+import { useTwoThirtyAnalytics } from "@/hooks/use-twothirty-analytics";
 import { IZ_ADMIN_URL } from "@/integrations/impact-zone/client";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDialog from "@/components/admin/KpiDialog";
@@ -64,8 +65,11 @@ const VentureDetail = () => {
   );
   const topKpis = ventureKpis.slice(0, 4);
   const isImpactZone = venture?.slug === "impact-zone";
+  const is2thirty = venture?.slug === "2thirty";
   const { data: izInbox, isLoading: izLoading } = useImpactZoneInbox(isImpactZone);
   const izItems = izInbox || [];
+  const [shopifyDays, setShopifyDays] = useState(30);
+  const { data: shopify, isLoading: shopifyLoading } = useTwoThirtyAnalytics(shopifyDays, is2thirty);
 
   const { projects: ventureProjects } = useProjects(
     venture ? { venture_id: venture.id } : undefined
@@ -358,7 +362,64 @@ const VentureDetail = () => {
                       </a>
                     ))}
                   </div>
+            )}
+            {is2thirty && (
+              <div className="panel p-5">
+                <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
+                  <p className="text-[11px] text-muted-foreground/70 font-medium">
+                    2THIRTY — SHOPIFY (PAID ORDERS)
+                  </p>
+                  <Select value={String(shopifyDays)} onValueChange={(v) => setShopifyDays(Number(v))}>
+                    <SelectTrigger className="h-8 w-28 text-xs"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="7">Last 7d</SelectItem>
+                      <SelectItem value="30">Last 30d</SelectItem>
+                      <SelectItem value="90">Last 90d</SelectItem>
+                      <SelectItem value="365">Last 1y</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                {shopifyLoading ? (
+                  <p className="text-sm text-muted-foreground">Loading…</p>
+                ) : !shopify ? (
+                  <p className="text-sm text-muted-foreground">Could not load Shopify data.</p>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                      <Stat label="Revenue" value={`$${shopify.revenue.toLocaleString()}`} />
+                      <Stat label="Orders" value={shopify.orders} />
+                      <Stat label="Units sold" value={shopify.units} />
+                      <Stat label="AOV" value={`$${shopify.aov.toLocaleString()}`} />
+                    </div>
+                    <p className="text-[10px] font-mono text-muted-foreground tracking-[0.14em] uppercase mb-2">
+                      Top products
+                    </p>
+                    {shopify.topProducts.length === 0 ? (
+                      <p className="text-xs text-muted-foreground italic">No paid orders in this window.</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {shopify.topProducts.map((p) => (
+                          <div
+                            key={p.title}
+                            className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
+                          >
+                            <p className="font-display font-semibold text-sm truncate min-w-0 flex-1">
+                              {p.title}
+                            </p>
+                            <span className="text-xs font-mono text-muted-foreground shrink-0">
+                              {p.units} units
+                            </span>
+                            <span className="text-xs font-mono shrink-0 w-20 text-right">
+                              ${p.revenue.toLocaleString()}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
+              </div>
+            )}
               </div>
             )}
             <div className="panel p-5">
