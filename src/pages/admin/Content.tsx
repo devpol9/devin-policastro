@@ -91,6 +91,9 @@ const Content = () => {
             description="Plan, draft, schedule, and ship content across every venture."
           />
           <div className="flex items-center gap-2 shrink-0">
+            <Button variant="ghost" size="sm" asChild>
+              <a href="/hq/settings/pillars">Pillars</a>
+            </Button>
             <Button variant="outline" size="sm" onClick={() => setQuickOpen(true)}>
               <Plus size={14} className="mr-1" /> Quick capture
             </Button>
