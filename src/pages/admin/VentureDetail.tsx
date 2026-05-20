@@ -37,7 +37,7 @@ const STATUSES = ["active", "paused", "archived", "idea"];
 
 const Stat = ({ label, value }: { label: string; value: string | number }) => (
   <div className="glass-card p-4">
-    <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase">{label}</p>
+    <p className="text-[11px] text-muted-foreground/70 font-medium">{label}</p>
     <p className="font-display font-bold text-2xl mt-1">{value}</p>
   </div>
 );
@@ -235,7 +235,7 @@ const VentureDetail = () => {
           <TabsContent value="overview" className="space-y-5 mt-5">
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">KPIS</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">KPIS</p>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => navigate(`/hq/kpis?venture=${venture.id}`)}
@@ -264,11 +264,11 @@ const VentureDetail = () => {
               )}
             </div>
             <div className="glass-card p-5">
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">DESCRIPTION</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">DESCRIPTION</p>
               <p className="text-sm">{venture.description || "No description."}</p>
             </div>
             <div className="glass-card p-5">
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-3">
+              <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
                 RECENT INQUIRIES (THIS VENTURE)
               </p>
               {recentInquiries.length === 0 ? (
@@ -295,7 +295,7 @@ const VentureDetail = () => {
             </div>
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">PROJECTS</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">PROJECTS</p>
                 <button
                   onClick={() => navigate(`/hq/projects?venture=${venture.id}`)}
                   className="text-xs font-display text-muted-foreground hover:text-accent"
@@ -327,7 +327,7 @@ const VentureDetail = () => {
             </div>
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">UPCOMING CONTENT</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">UPCOMING CONTENT</p>
                 <button
                   onClick={() => navigate("/hq/content")}
                   className="text-xs font-display text-muted-foreground hover:text-accent"
@@ -362,7 +362,7 @@ const VentureDetail = () => {
           <TabsContent value="notes" className="mt-5">
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">NOTES</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">NOTES</p>
                 {lastSaved && (
                   <p className="text-[10px] font-mono text-muted-foreground">Last saved: {lastSaved}</p>
                 )}
@@ -379,7 +379,7 @@ const VentureDetail = () => {
 
           <TabsContent value="settings" className="space-y-5 mt-5">
             <div className="glass-card p-5">
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-3">EDIT VENTURE</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">EDIT VENTURE</p>
               <Button onClick={() => setEditOpen(true)} variant="outline">
                 <Pencil size={12} className="mr-1" /> Open editor
               </Button>

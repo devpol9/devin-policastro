@@ -234,7 +234,7 @@ const ProjectDetail = () => {
           <div className="lg:col-span-3 space-y-5">
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">DESCRIPTION</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">DESCRIPTION</p>
                 <button
                   onClick={() => setDescEditing((v) => !v)}
                   className="text-[10px] font-display text-muted-foreground hover:text-foreground"
@@ -266,7 +266,7 @@ const ProjectDetail = () => {
 
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">
+                <p className="text-[11px] text-muted-foreground/70 font-medium">
                   SUBTASKS · {subtasks.filter((s) => s.completed).length}/{subtasks.length}
                 </p>
               </div>
@@ -316,7 +316,7 @@ const ProjectDetail = () => {
 
             <div className="glass-card p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">
+                <p className="text-[11px] text-muted-foreground/70 font-medium">
                   LINKED CONTENT · {linkedContent.length}
                 </p>
                 <Button size="sm" variant="outline" onClick={() => setContentDialogOpen(true)}>
@@ -357,7 +357,7 @@ const ProjectDetail = () => {
           <div className="lg:col-span-2 space-y-5">
             <div className="glass-card p-5 space-y-4">
               <div>
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-1">DUE DATE</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">DUE DATE</p>
                 <Input
                   type="date"
                   value={project.due_date ?? ""}
@@ -365,7 +365,7 @@ const ProjectDetail = () => {
                 />
               </div>
               <div>
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-1">TAGS</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">TAGS</p>
                 <Input
                   defaultValue={(project.tags ?? []).join(", ")}
                   onBlur={(e) => {
@@ -376,7 +376,7 @@ const ProjectDetail = () => {
                 />
               </div>
               <div>
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-1">
+                <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">
                   PROGRESS · {project.percent_complete}%
                 </p>
                 <Slider
@@ -402,7 +402,7 @@ const ProjectDetail = () => {
 
             {sourceInquiry && (
               <div className="glass-card p-5">
-                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">LINKED INQUIRY</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">LINKED INQUIRY</p>
                 <Link
                   to={`/hq/inquiries/${sourceInquiry.id}`}
                   className="block p-2 rounded border border-border/40 hover:border-accent/60"
@@ -414,7 +414,7 @@ const ProjectDetail = () => {
             )}
 
             <div className="glass-card p-5">
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">LINKED KPIS</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">LINKED KPIS</p>
               <p className="text-xs text-muted-foreground italic mb-3">Link KPIs to this project</p>
               <Button variant="outline" size="sm" className="w-full" disabled>
                 <Plus size={12} className="mr-1" /> Link KPI (coming soon)

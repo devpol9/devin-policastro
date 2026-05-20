@@ -40,7 +40,7 @@ const StatCard = ({ label, value, prev, sparkData }: {
   const dColor = d > 1 ? "text-emerald-600" : d < -1 ? "text-destructive" : "text-muted-foreground";
   return (
     <div className="glass-card p-4 flex flex-col gap-2">
-      <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase">{label}</p>
+      <p className="text-[11px] text-muted-foreground/70 font-medium">{label}</p>
       <div className="flex items-baseline gap-2">
         <span className="font-display font-black text-3xl tabular-nums">{value.toLocaleString()}</span>
         <span className={`text-[11px] font-mono ${dColor}`}>
@@ -157,7 +157,7 @@ const AnalyticsInner = () => {
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
           className="glass-card p-4"
         >
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase mb-3">
+          <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
             Activity over time
           </p>
           <div className="h-64">
@@ -217,7 +217,7 @@ const AnalyticsInner = () => {
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
           className="glass-card p-4"
         >
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase mb-3">
+          <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
             Top paths
           </p>
           <div className="h-64">

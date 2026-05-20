@@ -253,7 +253,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
 
                 {/* 2. Current state */}
                 <div className="glass-card p-5">
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">CURRENT</p>
+                  <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">CURRENT</p>
                   <p className="font-display font-black text-4xl tracking-tight" style={{ color: accent }}>
                     {formatKpiValue(kpi, summary?.current_value)}
                   </p>
@@ -296,7 +296,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
 
                 {/* 3. Quick log */}
                 <div className="glass-card p-5 space-y-3">
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">QUICK LOG</p>
+                  <p className="text-[11px] text-muted-foreground/70 font-medium">QUICK LOG</p>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <Label className="text-xs">Date</Label>
@@ -330,7 +330,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 {/* 4. Trend chart */}
                 <div className="glass-card p-5">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">TREND</p>
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">TREND</p>
                     <div className="flex gap-1">
                       {RANGE_KEYS.map((r) => (
                         <button
@@ -430,7 +430,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                 {/* 5. Entries table */}
                 <div className="glass-card p-5">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">
                       ENTRIES · {sortedAll.length}
                     </p>
                     <Button variant="outline" size="sm" onClick={exportCsv} disabled={sortedAll.length === 0}>
@@ -507,7 +507,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
                     onClick={() => setMetaOpen((v) => !v)}
                     className="w-full flex items-center justify-between text-left"
                   >
-                    <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">METADATA</p>
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">METADATA</p>
                     {metaOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
                   </button>
                   {metaOpen && (

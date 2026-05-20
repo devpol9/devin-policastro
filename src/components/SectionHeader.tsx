@@ -38,12 +38,12 @@ const SectionHeader = ({
       style={accentStyle}
     >
       <div className="relative z-10 w-full">
-        <div className={`flex items-center gap-3 mb-4 sm:mb-5 ${align === "center" ? "justify-center" : ""}`}>
-          <span className="font-mono text-[10px] sm:text-xs text-foreground/40 tabular-nums">
-            {numeral}
+        <div className={`flex items-center gap-2.5 mb-4 sm:mb-5 ${align === "center" ? "justify-center" : ""}`}>
+          <span className="font-mono text-[10px] text-foreground/50 tabular-nums tracking-tight">
+            [ {numeral} ]
           </span>
-          <span className="h-px w-6 bg-foreground/20" style={lineStyle} />
-          <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.18em]">
+          <span className="h-px w-5 bg-foreground/15" style={lineStyle} />
+          <span className="text-foreground/60 text-[11px] font-body font-medium lowercase tracking-tight">
             {eyebrow}
           </span>
         </div>

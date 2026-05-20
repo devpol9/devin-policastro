@@ -234,7 +234,7 @@ const Kpis = () => {
               <div className="glass-card p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">SUGGESTIONS</p>
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">SUGGESTIONS</p>
                     <h3 className="font-display font-bold text-lg mt-1 flex items-center gap-2">
                       <Sparkles size={14} className="text-accent" /> Based on your ventures
                     </h3>

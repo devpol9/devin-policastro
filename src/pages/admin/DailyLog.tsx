@@ -139,7 +139,7 @@ const Editor = ({ date }: { date: string }) => {
 
       <div className="lg:col-span-2 space-y-5">
         <div className="glass-card p-4 space-y-4">
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase">Mood & energy</p>
+          <p className="text-[11px] text-muted-foreground/70 font-medium">Mood & energy</p>
           <Slider10 value={log?.mood ?? null} label="Mood" lowEmoji="😞" highEmoji="😊"
             onChange={(v) => persist({ mood: v })} />
           <Slider10 value={log?.energy ?? null} label="Energy" lowEmoji="🪫" highEmoji="🔋"
@@ -147,7 +147,7 @@ const Editor = ({ date }: { date: string }) => {
         </div>
 
         <div className="glass-card p-4">
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase mb-2">Tags</p>
+          <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">Tags</p>
           <div className="flex flex-wrap gap-1.5 mb-2">
             {(log?.tags ?? []).map((t) => (
               <button key={t} onClick={() => removeTag(t)}
@@ -167,7 +167,7 @@ const Editor = ({ date }: { date: string }) => {
 
         {ctx && (
           <div className="glass-card p-4">
-            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase mb-2">Today's data</p>
+            <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">Today's data</p>
             <ul className="space-y-1.5 text-xs">
               <li className="flex justify-between"><span className="text-muted-foreground">Priorities done</span><span className="font-mono">{ctx.prioritiesDone}/{ctx.prioritiesTotal || 3}</span></li>
               <li className="flex justify-between"><span className="text-muted-foreground">Inquiries received</span><span className="font-mono">{ctx.inquiries}</span></li>

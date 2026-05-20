@@ -293,7 +293,7 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.03 }}
           className="mb-8"
         >
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2 lowercase">
+          <p className="text-[11px] text-muted-foreground/70 font-medium mb-2 lowercase">
             your ventures — {activeVentures.length} active
           </p>
           <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 scrollbar-thin">
@@ -323,7 +323,7 @@ const Today = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.5 · IN PROGRESS</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">01.5 · IN PROGRESS</p>
               <h3 className="font-display font-bold text-lg mt-1">Active projects</h3>
             </div>
             <button
@@ -347,7 +347,7 @@ const Today = () => {
       >
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.7 · PINNED KPIS</p>
+            <p className="text-[11px] text-muted-foreground/70 font-medium">01.7 · PINNED KPIS</p>
             <h3 className="font-display font-bold text-lg mt-1">Metrics at a glance</h3>
           </div>
           <button
@@ -383,7 +383,7 @@ const Today = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.6 · CONTENT THIS WEEK</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">01.6 · CONTENT THIS WEEK</p>
               <h3 className="font-display font-bold text-lg mt-1">Scheduled content</h3>
             </div>
             <button
@@ -430,7 +430,7 @@ const Today = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">02 · INQUIRY PULSE</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">02 · INQUIRY PULSE</p>
               <h3 className="font-display font-bold text-lg mt-1">Last 7 days</h3>
             </div>
             <button
@@ -464,7 +464,7 @@ const Today = () => {
           className="glass-card p-5"
         >
           <div className="flex items-center justify-between mb-1">
-            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">03 · QUICK {logMode === "log" ? "LOG" : "CAPTURE"}</p>
+            <p className="text-[11px] text-muted-foreground/70 font-medium">03 · QUICK {logMode === "log" ? "LOG" : "CAPTURE"}</p>
             <div className="flex gap-1">
               {(["log", "capture"] as const).map((m) => (
                 <button key={m} onClick={() => setLogMode(m)}
@@ -508,7 +508,7 @@ const Today = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">03.5 · RECENT CAPTURES</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">03.5 · RECENT CAPTURES</p>
               <h3 className="font-display font-bold text-lg mt-1">Last 5 captures</h3>
             </div>
             <button onClick={() => navigate("/hq/notes")}
@@ -543,7 +543,7 @@ const Today = () => {
       >
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">04 · INBOX</p>
+            <p className="text-[11px] text-muted-foreground/70 font-medium">04 · INBOX</p>
             <h3 className="font-display font-bold text-lg mt-1">Recent inquiries</h3>
           </div>
           <button
@@ -585,7 +585,7 @@ const Today = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">05 · CHAT</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">05 · CHAT</p>
               <h3 className="font-display font-bold text-lg mt-1">Conversations today</h3>
             </div>
             <button
@@ -634,11 +634,11 @@ const Today = () => {
         >
           <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
             <div>
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">24H TRAFFIC</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">24H TRAFFIC</p>
               <p className="font-display font-bold text-2xl">{pv24}</p>
             </div>
             <div className="flex-1 min-w-[200px]">
-              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-1">TOP PATHS</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">TOP PATHS</p>
               <div className="space-y-0.5">
                 {topPaths.map((tp) => (
                   <div key={tp.path} className="flex justify-between text-xs">

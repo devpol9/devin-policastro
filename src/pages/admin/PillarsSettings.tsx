@@ -69,7 +69,7 @@ const PillarsSettings = () => {
         </p>
 
         <div className="glass-card p-5 mb-6">
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-3">NEW PILLAR</p>
+          <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">NEW PILLAR</p>
           <div className="grid sm:grid-cols-[1fr_1fr_auto] gap-2 items-end">
             <div>
               <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name (e.g. Mindset)" />
@@ -93,7 +93,7 @@ const PillarsSettings = () => {
         </div>
 
         <div className="glass-card p-5">
-          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-3">
+          <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
             ALL PILLARS · {pillars.length}
           </p>
           {isLoading ? (
