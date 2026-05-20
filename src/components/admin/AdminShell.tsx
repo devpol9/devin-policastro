@@ -71,7 +71,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     await supabase.auth.signOut();
-    navigate("/login", { replace: true });
+    navigate("/hq/login", { replace: true });
   };
 
   return (
