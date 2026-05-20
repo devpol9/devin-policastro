@@ -348,18 +348,7 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
           className="mb-10"
         >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">In progress</p>
-              <h3 className="font-display font-bold text-lg mt-1">Active projects</h3>
-            </div>
-            <button
-              onClick={() => navigate("/hq/projects")}
-              className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-            >
-              View all <ArrowRight size={12} />
-            </button>
-          </div>
+          <SubHeader title="Active projects" onView={() => navigate("/hq/projects")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {topInProgress.map((p) => (
               <ProjectCard key={p.id} project={p} compact />
@@ -372,18 +361,7 @@ const Today = () => {
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
         className="mb-10"
       >
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-[11px] text-muted-foreground/70 font-medium">Pinned KPIs</p>
-            <h3 className="font-display font-bold text-lg mt-1">Metrics at a glance</h3>
-          </div>
-          <button
-            onClick={() => navigate("/hq/kpis")}
-            className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-          >
-            View all <ArrowRight size={12} />
-          </button>
-        </div>
+        <SubHeader title="Pinned KPIs" onView={() => navigate("/hq/kpis")} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {pinned.map((k) => (
             <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
@@ -404,18 +382,7 @@ const Today = () => {
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
         className="panel p-5 mb-10"
       >
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-[11px] text-muted-foreground/70 font-medium">Inquiry pulse</p>
-            <h3 className="font-display font-bold text-lg mt-1">Last 7 days</h3>
-          </div>
-          <button
-            onClick={() => navigate("/hq/inquiries")}
-            className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-          >
-            View all <ArrowRight size={12} />
-          </button>
-        </div>
+        <SubHeader title="Inquiry pulse · last 7 days" onView={() => navigate("/hq/inquiries")} />
         <div className="h-32">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={pulse} onClick={() => navigate("/hq/inquiries")}>
