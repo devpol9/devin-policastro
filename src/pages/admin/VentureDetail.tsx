@@ -234,6 +234,36 @@ const VentureDetail = () => {
 
           <TabsContent value="overview" className="space-y-5 mt-5">
             <div className="glass-card p-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">KPIS</p>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => navigate(`/hq/kpis?venture=${venture.id}`)}
+                    className="text-xs font-display text-muted-foreground hover:text-accent"
+                  >
+                    View all →
+                  </button>
+                  <Button size="sm" variant="outline" onClick={() => setKpiDialogOpen(true)}>
+                    <Plus size={12} className="mr-1" /> New KPI
+                  </Button>
+                </div>
+              </div>
+              {topKpis.length === 0 ? (
+                <div className="text-center py-6">
+                  <p className="text-sm text-muted-foreground italic mb-3">No KPIs tracked yet for this venture</p>
+                  <Button size="sm" variant="outline" onClick={() => setKpiDialogOpen(true)}>
+                    <Plus size={12} className="mr-1" /> New KPI
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {topKpis.map((k) => (
+                    <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="glass-card p-5">
               <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">DESCRIPTION</p>
               <p className="text-sm">{venture.description || "No description."}</p>
             </div>
