@@ -76,7 +76,7 @@ export default function CrossVentureInbox({ compact = false }: { compact?: boole
                   }}
                   title={i.reason === "assigned" ? "Assigned to you" : "Mentions Devin"}
                 >
-                  {i.reason === "assigned" ? "ASSIGNED" : "MENTION"}
+                  {i.reason === "assigned" ? "Assigned" : "Mention"}
                 </span>
                 <span className="text-[11px] tabular-nums text-muted-foreground shrink-0 hidden sm:inline">
                   {format(new Date(i.created_at), "MMM d")}
