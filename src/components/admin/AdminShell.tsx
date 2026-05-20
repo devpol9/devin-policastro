@@ -23,7 +23,7 @@ type NavItem = {
 const mainNav: NavItem[] = [
   { label: "Today", icon: Home, to: "/hq/today" },
   { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
-  { label: "Projects", icon: KanbanSquare, to: "/hq/projects", soon: true },
+  { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
   { label: "Ventures", icon: Building2, to: "/hq/ventures" },
   { label: "Content", icon: Calendar, to: "/hq/content", soon: true },
   { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
@@ -37,6 +37,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/today")) return "Today";
   if (pathname.startsWith("/hq/inquiries")) return "Inquiries";
   if (pathname.startsWith("/hq/ventures")) return "Ventures";
+  if (pathname.startsWith("/hq/projects")) return "Projects";
   if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";
 };
