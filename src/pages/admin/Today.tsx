@@ -546,18 +546,7 @@ const Today = () => {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
             className="mb-10"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">Chat</p>
-                <h3 className="font-display font-bold text-lg mt-1">Conversations today</h3>
-              </div>
-              <button
-                onClick={() => navigate("/hq/chats")}
-                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-              >
-                View all <ArrowRight size={12} />
-              </button>
-            </div>
+            <SubHeader title="Conversations today" onView={() => navigate("/hq/chats")} />
             <button
               onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
               className="w-full text-left panel p-4 flex items-center gap-4"
