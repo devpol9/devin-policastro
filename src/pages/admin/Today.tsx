@@ -476,18 +476,7 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
           className="mb-10"
         >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">Inbox</p>
-              <h3 className="font-display font-bold text-lg mt-1">Recent inquiries</h3>
-            </div>
-            <button
-              onClick={() => navigate("/hq/inquiries")}
-              className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-            >
-              View all <ArrowRight size={12} />
-            </button>
-          </div>
+          <SubHeader title="Recent inquiries" onView={() => navigate("/hq/inquiries")} />
           {recent.length === 0 ? (
             <p className="text-sm text-muted-foreground">No inquiries yet.</p>
           ) : (
@@ -520,18 +509,7 @@ const Today = () => {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
             className="mb-10"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">Content this week</p>
-                <h3 className="font-display font-bold text-lg mt-1">Scheduled content</h3>
-              </div>
-              <button
-                onClick={() => navigate("/hq/content")}
-                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
-              >
-                View calendar <ArrowRight size={12} />
-              </button>
-            </div>
+            <SubHeader title="Scheduled content" onView={() => navigate("/hq/content")} viewLabel="View calendar" />
             <div className="grid gap-2">
               {topContent.map((c) => {
                 const v = activeVentures.find((x) => x.id === c.venture_id);
