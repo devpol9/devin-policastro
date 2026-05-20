@@ -583,6 +583,8 @@ const Today = () => {
           </div>
         </motion.section>
       )}
+
+      <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
     </AdminShell>
   );
 };
