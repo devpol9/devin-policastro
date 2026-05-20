@@ -199,7 +199,7 @@ const VentureDetail = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-          <Stat label="Active Projects" value={0} />
+          <Stat label="Active Projects" value={activeProjects.length} />
           <Stat label="Inquiries (30d)" value={inquiryCount} />
           <Stat label="Content Items" value={0} />
           <Stat label="Last activity" value={lastActivity} />
