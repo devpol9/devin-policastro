@@ -54,7 +54,7 @@ const VentureDetail = () => {
   const activeProjects = ventureProjects.filter((p) => p.status !== "done" && p.status !== "archived");
   const kanbanCols = [
     { key: "backlog", label: "Backlog" },
-    { key: "in_progress", label: "In progress" },
+    { key: "in-progress", label: "In progress" },
     { key: "blocked", label: "Blocked" },
   ];
 

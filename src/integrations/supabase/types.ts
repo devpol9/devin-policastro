@@ -103,6 +103,161 @@ export type Database = {
         }
         Relationships: []
       }
+      content_attachments: {
+        Row: {
+          content_item_id: string
+          created_at: string
+          file_name: string
+          file_size_bytes: number | null
+          id: string
+          mime_type: string | null
+          sort_order: number
+          storage_path: string
+        }
+        Insert: {
+          content_item_id: string
+          created_at?: string
+          file_name: string
+          file_size_bytes?: number | null
+          id?: string
+          mime_type?: string | null
+          sort_order?: number
+          storage_path: string
+        }
+        Update: {
+          content_item_id?: string
+          created_at?: string
+          file_name?: string
+          file_size_bytes?: number | null
+          id?: string
+          mime_type?: string | null
+          sort_order?: number
+          storage_path?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_attachments_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      content_items: {
+        Row: {
+          caption: string | null
+          content_type: string
+          created_at: string
+          external_url: string | null
+          hashtags: string[]
+          hook: string | null
+          id: string
+          notes: string | null
+          performance_stats: Json
+          pillar: string | null
+          platform: string
+          posted_at: string | null
+          project_id: string | null
+          scheduled_at: string | null
+          status: string
+          tags: string[]
+          title: string
+          updated_at: string
+          user_id: string
+          venture_id: string | null
+        }
+        Insert: {
+          caption?: string | null
+          content_type: string
+          created_at?: string
+          external_url?: string | null
+          hashtags?: string[]
+          hook?: string | null
+          id?: string
+          notes?: string | null
+          performance_stats?: Json
+          pillar?: string | null
+          platform: string
+          posted_at?: string | null
+          project_id?: string | null
+          scheduled_at?: string | null
+          status?: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+          user_id: string
+          venture_id?: string | null
+        }
+        Update: {
+          caption?: string | null
+          content_type?: string
+          created_at?: string
+          external_url?: string | null
+          hashtags?: string[]
+          hook?: string | null
+          id?: string
+          notes?: string | null
+          performance_stats?: Json
+          pillar?: string | null
+          platform?: string
+          posted_at?: string | null
+          project_id?: string | null
+          scheduled_at?: string | null
+          status?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          user_id?: string
+          venture_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_items_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "content_items_venture_id_fkey"
+            columns: ["venture_id"]
+            isOneToOne: false
+            referencedRelation: "ventures"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      content_pillars: {
+        Row: {
+          color: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          sort_order: number
+          user_id: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          sort_order?: number
+          user_id: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          sort_order?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       daily_logs_quick: {
         Row: {
           content: string
