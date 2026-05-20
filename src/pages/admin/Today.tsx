@@ -613,6 +613,7 @@ const Today = () => {
 
       <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
     </AdminShell>
+    </AdminGuard>
   );
 };
 
