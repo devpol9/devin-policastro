@@ -1,10 +1,16 @@
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import SmoothScroll from "./components/effects/SmoothScroll";
+
+const ConditionalSmoothScroll = () => {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/hq")) return null;
+  return <SmoothScroll />;
+};
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Manufacturing from "./pages/Manufacturing";
