@@ -282,7 +282,7 @@ const ContactSection = () => {
                       <Icon
                         size={16}
                         className={`mb-1.5 transition-colors duration-300 ${
-                          isActive ? "text-primary" : "text-muted-foreground/50"
+                          isActive ? "text-primary" : "text-muted-foreground"
                         }`}
                       />
                       <span className={`font-display font-semibold text-[11px] sm:text-xs block leading-tight ${
@@ -291,7 +291,7 @@ const ContactSection = () => {
                         {opt.label}
                       </span>
                       <p className={`text-[9px] sm:text-[10px] mt-0.5 leading-tight ${
-                        isActive ? "text-muted-foreground" : "text-muted-foreground/40"
+                        isActive ? "text-muted-foreground" : "text-muted-foreground/80"
                       }`}>
                         {opt.description}
                       </p>
