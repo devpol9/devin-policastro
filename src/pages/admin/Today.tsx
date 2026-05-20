@@ -411,8 +411,10 @@ const Today = () => {
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
           className="panel p-5 mb-6"
         >
-          <div className="flex items-center justify-between mb-1">
-            <p className="text-[11px] text-muted-foreground/70 font-medium">Quick {logMode === "log" ? "log" : "capture"}</p>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-[13px] font-medium lowercase text-foreground">
+              {logMode === "log" ? "Today's journal" : "Capture a thought"}
+            </h3>
             <div className="flex gap-1">
               {(["log", "capture"] as const).map((m) => (
                 <button key={m} onClick={() => setLogMode(m)}
@@ -422,9 +424,6 @@ const Today = () => {
               ))}
             </div>
           </div>
-          <h3 className="font-display font-bold text-lg mb-3">
-            {logMode === "log" ? "Today's journal" : "Capture a thought"}
-          </h3>
           <textarea
             value={quickLog}
             onChange={(e) => setQuickLog(e.target.value)}
@@ -453,16 +452,7 @@ const Today = () => {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
             className="mb-10"
           >
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">Recent captures</p>
-                <h3 className="font-display font-bold text-lg mt-1">Last 5 captures</h3>
-              </div>
-              <button onClick={() => navigate("/hq/notes")}
-                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1">
-                View all <ArrowRight size={12} />
-              </button>
-            </div>
+            <SubHeader title="Recent captures" onView={() => navigate("/hq/notes")} />
             <div className="grid gap-2">
               {recentCaptures.map((c) => (
                 <button key={c.id} onClick={() => navigate("/hq/notes")}
