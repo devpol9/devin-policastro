@@ -94,7 +94,7 @@ const Ventures = () => {
               as="h2"
               numeral="02"
               eyebrow="Operations"
-              title={<>Your <span className="italic font-light text-accent">ventures.</span></>}
+              title={<>Your <span className="accent-headline">ventures.</span></>}
               description={`${activeCount} active ${activeCount === 1 ? "venture" : "ventures"}`}
             />
           </div>

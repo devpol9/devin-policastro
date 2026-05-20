@@ -105,7 +105,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
         <Sidebar collapsible="icon">
           <SidebarHeader className="px-4 py-5">
             <div className="font-display font-bold text-xl tracking-tight">
-              Dev<span className="italic font-light text-accent">HQ.</span>
+              Dev<span className="accent-headline">HQ.</span>
             </div>
           </SidebarHeader>
 

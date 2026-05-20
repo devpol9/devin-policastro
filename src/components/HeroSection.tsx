@@ -55,7 +55,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="block italic font-light text-accent"
+            className="block accent-headline"
             style={{ fontStyle: "italic" }}
           >
             Policastro.
@@ -96,7 +96,7 @@ const HeroSection = () => {
           >
             <p className="font-display text-foreground/80 text-xl sm:text-2xl md:text-3xl max-w-2xl mb-8 sm:mb-10 leading-[1.25] tracking-[-0.015em]">
               I build brands, connect people, and turn every handshake into a{" "}
-              <span className="italic text-accent">revenue stream</span>.
+              <span className="accent-headline">revenue stream</span>.
             </p>
 
             <div className="flex flex-wrap items-center gap-5">

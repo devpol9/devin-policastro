@@ -97,7 +97,7 @@ const Inquiries = () => {
         as="h1"
         numeral="00"
         eyebrow="Control Room"
-        title={<>Inquiry <span className="italic font-light text-accent">dashboard.</span></>}
+        title={<>Inquiry <span className="accent-headline">dashboard.</span></>}
         description={`${total} total across every service line. Filter, triage, and update status inline.`}
       />
 

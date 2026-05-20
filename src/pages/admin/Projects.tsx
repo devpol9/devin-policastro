@@ -230,7 +230,7 @@ const Projects = () => {
             as="h1"
             numeral="03"
             eyebrow="Execution"
-            title={<>Your <span className="italic font-light text-accent">projects.</span></>}
+            title={<>Your <span className="accent-headline">projects.</span></>}
             description={`${totalActive} active · ${weekCount} added this week`}
           />
           <Button onClick={() => openNew()} className="shrink-0">

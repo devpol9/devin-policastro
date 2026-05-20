@@ -226,7 +226,7 @@ const DailyLogInner = () => {
         as="h2"
         numeral="05"
         eyebrow="Reflection"
-        title={<>Daily <span className="italic font-light text-accent">log.</span></>}
+        title={<>Daily <span className="accent-headline">log.</span></>}
         description="How today went. What tomorrow needs."
       />
 

@@ -62,7 +62,7 @@ const PillarsSettings = () => {
         </Link>
 
         <h1 className="font-display font-black text-3xl tracking-tight mb-1">
-          Content <span className="italic font-light text-accent">pillars.</span>
+          Content <span className="accent-headline">pillars.</span>
         </h1>
         <p className="text-sm text-muted-foreground mb-8">
           The themes you create around. Pillars color-code content across the app.

@@ -47,7 +47,7 @@ const AdminLogin = () => {
           numeral="00"
           eyebrow="Restricted"
           align="center"
-          title={<>Admin <span className="italic font-light text-accent">access.</span></>}
+          title={<>Admin <span className="accent-headline">access.</span></>}
           description="Authorized personnel only. Sign in to manage inquiries."
         />
 

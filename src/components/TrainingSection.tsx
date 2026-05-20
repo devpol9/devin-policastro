@@ -70,7 +70,7 @@ const TrainingSection = () => {
               </span>
             </div>
             <h2 className="font-display font-black text-[clamp(2.6rem,9vw,6rem)] leading-[0.86] tracking-[-0.045em] text-foreground">
-              Move <span className="italic font-light text-accent">smarter.</span>
+              Move <span className="accent-headline">smarter.</span>
             </h2>
           </div>
         </div>

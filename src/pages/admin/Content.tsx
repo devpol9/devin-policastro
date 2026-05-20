@@ -87,7 +87,7 @@ const Content = () => {
         <div className="flex items-start justify-between gap-3 mb-6">
           <SectionHeader
             as="h1" numeral="04" eyebrow="Creative"
-            title={<>Your <span className="italic font-light text-accent">content.</span></>}
+            title={<>Your <span className="accent-headline">content.</span></>}
             description="Plan, draft, schedule, and ship content across every venture."
           />
           <div className="flex items-center gap-2 shrink-0">
