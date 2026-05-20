@@ -112,6 +112,8 @@ const App = () => (
           <Route path="/hq/projects" element={<ProjectsPage />} />
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/hq/content" element={<ContentPage />} />
+          <Route path="/hq/analytics" element={<AnalyticsPage />} />
+          <Route path="/hq/chats" element={<ChatsPage />} />
           <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
           <Route path="/hq/*" element={<AdminNotFound />} />
 
