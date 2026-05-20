@@ -73,7 +73,11 @@ const HeroSection = () => {
             <div className="relative w-40 h-52 sm:w-48 sm:h-60 md:w-full md:h-80 rounded-md overflow-hidden border border-border shadow-[0_30px_60px_-20px_hsl(30_20%_20%/0.25)]">
               <img
                 src="/images/devin-profile.jpg"
-                alt="Devin Policastro"
+                alt="Devin Policastro, Norwood NJ entrepreneur and founder"
+                width={480}
+                height={640}
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover grayscale-[0.15]"
               />
               <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
