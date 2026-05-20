@@ -18,24 +18,36 @@ import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 
 // DevHQ admin
-import AdminGuard from "./components/admin/AdminGuard";
 import AdminLoginPage from "./pages/admin/Login";
-import Today from "./pages/admin/Today";
-import Inquiries from "./pages/admin/Inquiries";
-import InquiryDetail from "./pages/admin/InquiryDetail";
+import TodayPage from "./pages/admin/Today";
+import InquiriesPage from "./pages/admin/Inquiries";
+import InquiryDetailPage from "./pages/admin/InquiryDetail";
+import VenturesPage from "./pages/admin/Ventures";
+import VentureDetailPage from "./pages/admin/VentureDetail";
 import AdminNotFound from "./pages/admin/NotFound";
-import Ventures from "./pages/admin/Ventures";
-import VentureDetail from "./pages/admin/VentureDetail";
 
 const queryClient = new QueryClient();
-
 const ADMIN_HOST = "admin.devinpolicastro.com";
+const HQ_KEY = "lovable_hq_mode";
 
-const isAdminHost = () => {
+const computeIsAdminHost = (): boolean => {
   if (typeof window === "undefined") return false;
   const host = window.location.hostname;
   const params = new URLSearchParams(window.location.search);
-  return host === ADMIN_HOST || host.startsWith("admin.") || params.get("hq") === "1";
+  if (host === ADMIN_HOST) return true;
+  if (host.startsWith("admin.")) return true;
+  if (params.get("hq") === "1") {
+    try { window.sessionStorage.setItem(HQ_KEY, "1"); } catch {}
+    return true;
+  }
+  if (params.get("hq") === "0") {
+    try { window.sessionStorage.removeItem(HQ_KEY); } catch {}
+    return false;
+  }
+  try {
+    if (window.sessionStorage.getItem(HQ_KEY) === "1") return true;
+  } catch {}
+  return false;
 };
 
 const ExternalRedirect = ({ to }: { to: string }) => {
@@ -48,13 +60,13 @@ const AdminApp = () => (
     <ScrollToTop />
     <Routes>
       <Route path="/login" element={<AdminLoginPage />} />
-      <Route path="/today" element={<AdminGuard><Today /></AdminGuard>} />
-      <Route path="/inquiries" element={<AdminGuard><Inquiries /></AdminGuard>} />
-      <Route path="/inquiries/:id" element={<AdminGuard><InquiryDetail /></AdminGuard>} />
-      <Route path="/ventures" element={<Ventures />} />
-      <Route path="/ventures/:slug" element={<VentureDetail />} />
       <Route path="/" element={<Navigate to="/today" replace />} />
-      <Route path="*" element={<AdminGuard><AdminNotFound /></AdminGuard>} />
+      <Route path="/today" element={<TodayPage />} />
+      <Route path="/inquiries" element={<InquiriesPage />} />
+      <Route path="/inquiries/:id" element={<InquiryDetailPage />} />
+      <Route path="/ventures" element={<VenturesPage />} />
+      <Route path="/ventures/:slug" element={<VentureDetailPage />} />
+      <Route path="*" element={<AdminNotFound />} />
     </Routes>
   </BrowserRouter>
 );
@@ -72,10 +84,8 @@ const PublicApp = () => (
       <Route path="/financing" element={<Financing />} />
       <Route path="/networking" element={<Networking />} />
       <Route path="/fitness" element={<Fitness />} />
-      {/* Legacy admin routes — redirect to subdomain */}
       <Route path="/admin-login" element={<ExternalRedirect to={`https://${ADMIN_HOST}/login`} />} />
       <Route path="/admin" element={<ExternalRedirect to={`https://${ADMIN_HOST}/today`} />} />
-      {/* Legacy fallbacks if subdomain isn't yet provisioned */}
       <Route path="/legacy-admin-login" element={<AdminLogin />} />
       <Route path="/legacy-admin" element={<Admin />} />
       <Route path="*" element={<NotFound />} />
@@ -83,13 +93,26 @@ const PublicApp = () => (
   </BrowserRouter>
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Sonner />
-      {isAdminHost() ? <AdminApp /> : <PublicApp />}
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const isAdminHost = computeIsAdminHost();
+  if (typeof window !== "undefined") {
+    // eslint-disable-next-line no-console
+    console.log("[DevHQ routing]", {
+      hostname: window.location.hostname,
+      pathname: window.location.pathname,
+      search: window.location.search,
+      isAdminHost,
+      tree: isAdminHost ? "admin" : "public",
+    });
+  }
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Sonner />
+        {isAdminHost ? <AdminApp /> : <PublicApp />}
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
