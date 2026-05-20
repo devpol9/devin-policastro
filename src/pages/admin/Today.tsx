@@ -319,7 +319,7 @@ const Today = () => {
       </motion.section>
 
       <div className="mb-6">
-        <TabBar
+        <TabBar<"pulse" | "capture" | "signal">
           value={tab}
           onChange={setTab}
           items={[
