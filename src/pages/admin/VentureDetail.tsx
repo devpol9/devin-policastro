@@ -283,6 +283,38 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
+            <div className="glass-card p-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">UPCOMING CONTENT</p>
+                <button
+                  onClick={() => navigate("/hq/content")}
+                  className="text-xs font-display text-muted-foreground hover:text-accent"
+                >View all →</button>
+              </div>
+              {upcomingContent.length === 0 ? (
+                <p className="text-xs text-muted-foreground italic">Nothing scheduled.</p>
+              ) : (
+                <div className="space-y-2">
+                  {upcomingContent.map((c) => {
+                    const Icon = PLATFORM_ICON[c.platform as Platform];
+                    return (
+                      <div
+                        key={c.id}
+                        className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Icon size={12} className="text-muted-foreground shrink-0" />
+                          <p className="text-sm font-display font-semibold truncate">{c.title}</p>
+                        </div>
+                        <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                          {format(new Date(c.scheduled_at!), "MMM d")}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </TabsContent>
 
           <TabsContent value="notes" className="mt-5">
