@@ -14,8 +14,11 @@ import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
 import { useChatTodayStats } from "@/hooks/use-chats";
+import { usePinnedKpis } from "@/hooks/use-kpis";
+import KpiCard from "@/components/admin/KpiCard";
+import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Pin } from "lucide-react";
 
 interface Priority {
   id?: string;
