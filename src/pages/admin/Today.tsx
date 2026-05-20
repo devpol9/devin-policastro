@@ -12,6 +12,8 @@ import VenturePill from "@/components/admin/VenturePill";
 import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
+import { useScheduledThisWeek } from "@/hooks/use-content";
+import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 
 interface Priority {
   id?: string;
@@ -115,6 +117,11 @@ const Today = () => {
   const { activeVentures } = useVentures();
   const { projects: inProgressProjects } = useProjects({ status: "in-progress" });
   const topInProgress = inProgressProjects.slice(0, 5);
+  const { items: scheduledContent } = useScheduledThisWeek();
+  const topContent = scheduledContent
+    .filter((c) => c.scheduled_at)
+    .sort((a, b) => new Date(a.scheduled_at!).getTime() - new Date(b.scheduled_at!).getTime())
+    .slice(0, 5);
   const [userId, setUserId] = useState<string>("");
   const [priorities, setPriorities] = useState<Priority[]>([
     { slot: 1, title: "", completed: false },
@@ -313,6 +320,53 @@ const Today = () => {
         </motion.section>
       )}
 
+
+      {topContent.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.08 }}
+          className="mb-10"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.6 · CONTENT THIS WEEK</p>
+              <h3 className="font-display font-bold text-lg mt-1">Scheduled content</h3>
+            </div>
+            <button
+              onClick={() => navigate("/hq/content")}
+              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+            >
+              View calendar <ArrowRight size={12} />
+            </button>
+          </div>
+          <div className="grid gap-2">
+            {topContent.map((c) => {
+              const v = activeVentures.find((x) => x.id === c.venture_id);
+              const Icon = PLATFORM_ICON[c.platform as Platform];
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => navigate("/hq/content")}
+                  className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                  style={{ borderLeft: `3px solid ${v?.accent_color ?? "hsl(30 8% 50%)"}` }}
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <Icon size={12} className="text-muted-foreground shrink-0" />
+                    <div className="min-w-0">
+                      <p className="font-display font-semibold text-sm truncate">{c.title}</p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {v?.short_name ?? v?.name ?? "—"} · {c.status}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                    {format(new Date(c.scheduled_at!), "EEE MMM d, p")}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </motion.section>
+      )}
 
       <div className="grid lg:grid-cols-3 gap-6 mb-10">
         <motion.section

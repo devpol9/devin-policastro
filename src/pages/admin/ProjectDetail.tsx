@@ -8,12 +8,15 @@ import ReactMarkdown from "react-markdown";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
 import VenturePill from "@/components/admin/VenturePill";
+import ContentDialog from "@/components/admin/ContentDialog";
 import { useVentures } from "@/hooks/use-ventures";
 import {
   useProject, useSubtasks, invalidateProjects,
   updateProject, deleteProject,
   createSubtask, updateSubtask, deleteSubtask,
 } from "@/hooks/use-projects";
+import { useContentItems } from "@/hooks/use-content";
+import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -46,6 +49,11 @@ const ProjectDetail = () => {
   const [newSub, setNewSub] = useState("");
   const [delConfirm, setDelConfirm] = useState("");
   const [sourceInquiry, setSourceInquiry] = useState<any>(null);
+  const [contentDialogOpen, setContentDialogOpen] = useState(false);
+
+  const { items: linkedContent } = useContentItems(
+    id ? { project_id: id, exclude_archived: true } : undefined
+  );
 
   useEffect(() => {
     if (project) {
@@ -305,6 +313,44 @@ const ProjectDetail = () => {
                 </div>
               </div>
             </div>
+
+            <div className="glass-card p-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">
+                  LINKED CONTENT · {linkedContent.length}
+                </p>
+                <Button size="sm" variant="outline" onClick={() => setContentDialogOpen(true)}>
+                  <Plus size={12} className="mr-1" /> Add content
+                </Button>
+              </div>
+              {linkedContent.length === 0 ? (
+                <p className="text-xs text-muted-foreground italic">No content linked yet.</p>
+              ) : (
+                <div className="space-y-2">
+                  {linkedContent.map((c) => {
+                    const Icon = PLATFORM_ICON[c.platform as Platform];
+                    return (
+                      <button
+                        key={c.id}
+                        onClick={() => navigate("/hq/content")}
+                        className="w-full text-left flex items-center justify-between gap-3 p-2 rounded-md border border-border/40 hover:border-accent/40"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Icon size={12} className="text-muted-foreground shrink-0" />
+                          <div className="min-w-0">
+                            <p className="text-sm font-display font-semibold truncate">{c.title}</p>
+                            <p className="text-[10px] text-muted-foreground">{c.status}</p>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                          {c.scheduled_at ? format(new Date(c.scheduled_at), "MMM d") : "—"}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Sidebar */}
@@ -406,6 +452,12 @@ const ProjectDetail = () => {
             </div>
           </div>
         </div>
+
+        <ContentDialog
+          open={contentDialogOpen}
+          onOpenChange={setContentDialogOpen}
+          defaults={{ venture_id: project.venture_id ?? undefined, project_id: project.id }}
+        />
       </AdminShell>
     </AdminGuard>
   );

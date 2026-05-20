@@ -13,6 +13,8 @@ import { getVentureIcon } from "@/components/admin/ventureIcons";
 import { invalidateVentures, useVenture } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
+import { useContentItems } from "@/hooks/use-content";
+import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -52,6 +54,12 @@ const VentureDetail = () => {
     venture ? { venture_id: venture.id } : undefined
   );
   const activeProjects = ventureProjects.filter((p) => p.status !== "done" && p.status !== "archived");
+  const { items: ventureContent } = useContentItems(
+    venture ? { venture_ids: [venture.id], exclude_archived: true } : undefined
+  );
+  const upcomingContent = ventureContent
+    .filter((c) => c.scheduled_at && new Date(c.scheduled_at) >= new Date())
+    .slice(0, 5);
   const kanbanCols = [
     { key: "backlog", label: "Backlog" },
     { key: "in-progress", label: "In progress" },
@@ -201,7 +209,7 @@ const VentureDetail = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
           <Stat label="Active Projects" value={activeProjects.length} />
           <Stat label="Inquiries (30d)" value={inquiryCount} />
-          <Stat label="Content Items" value={0} />
+          <Stat label="Content Items" value={ventureContent.length} />
           <Stat label="Last activity" value={lastActivity} />
         </div>
 
@@ -269,6 +277,38 @@ const VentureDetail = () => {
                         ) : (
                           items.map((p) => <ProjectCard key={p.id} project={p} compact />)
                         )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            <div className="glass-card p-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">UPCOMING CONTENT</p>
+                <button
+                  onClick={() => navigate("/hq/content")}
+                  className="text-xs font-display text-muted-foreground hover:text-accent"
+                >View all →</button>
+              </div>
+              {upcomingContent.length === 0 ? (
+                <p className="text-xs text-muted-foreground italic">Nothing scheduled.</p>
+              ) : (
+                <div className="space-y-2">
+                  {upcomingContent.map((c) => {
+                    const Icon = PLATFORM_ICON[c.platform as Platform];
+                    return (
+                      <div
+                        key={c.id}
+                        className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Icon size={12} className="text-muted-foreground shrink-0" />
+                          <p className="text-sm font-display font-semibold truncate">{c.title}</p>
+                        </div>
+                        <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                          {format(new Date(c.scheduled_at!), "MMM d")}
+                        </span>
                       </div>
                     );
                   })}

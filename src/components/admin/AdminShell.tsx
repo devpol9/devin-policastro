@@ -25,7 +25,7 @@ const mainNav: NavItem[] = [
   { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
   { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
   { label: "Ventures", icon: Building2, to: "/hq/ventures" },
-  { label: "Content", icon: Calendar, to: "/hq/content", soon: true },
+  { label: "Content", icon: Calendar, to: "/hq/content" },
   { label: "Daily Log", icon: BookOpen, to: "/hq/daily-log", soon: true },
   { label: "KPIs", icon: TrendingUp, to: "/hq/kpis", soon: true },
   { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes", soon: true },
@@ -38,6 +38,8 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/inquiries")) return "Inquiries";
   if (pathname.startsWith("/hq/ventures")) return "Ventures";
   if (pathname.startsWith("/hq/projects")) return "Projects";
+  if (pathname.startsWith("/hq/content")) return "Content";
+  if (pathname.startsWith("/hq/settings/pillars")) return "Pillars";
   if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";
 };
@@ -130,12 +132,11 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton disabled className="opacity-50 cursor-not-allowed">
-                      <Settings className="h-4 w-4" />
-                      <span className="flex-1">Settings</span>
-                      <span className="text-[9px] font-display font-semibold tracking-[0.12em] text-muted-foreground border border-border/60 rounded px-1.5 py-0.5">
-                        Soon
-                      </span>
+                    <SidebarMenuButton asChild isActive={location.pathname.startsWith("/hq/settings")}>
+                      <NavLink to="/hq/settings/pillars" className="flex items-center gap-2">
+                        <Settings className="h-4 w-4" />
+                        <span className="flex-1">Settings</span>
+                      </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
