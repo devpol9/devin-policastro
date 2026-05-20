@@ -21,7 +21,9 @@ const FloatingNav = () => {
   const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
   const navigate = useNavigate();
+  const { isAdmin } = useIsAdmin();
   const isHome = location.pathname === "/";
+
   
 
   useEffect(() => {
