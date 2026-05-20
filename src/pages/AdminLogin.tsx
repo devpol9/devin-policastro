@@ -12,12 +12,12 @@ const AdminLogin = () => {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        navigate("/admin");
+        navigate("/hq/today");
       }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) navigate("/admin");
+      if (session) navigate("/hq/today");
     });
 
     return () => subscription.unsubscribe();

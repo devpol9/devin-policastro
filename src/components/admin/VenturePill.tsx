@@ -42,7 +42,7 @@ const VenturePill = ({ venture, slug, clickable = true, size = "sm" }: Props) =>
   return (
     <button
       type="button"
-      onClick={() => navigate(`/ventures/${v.slug}`)}
+      onClick={() => navigate(`/hq/ventures/${v.slug}`)}
       className="snap-start shrink-0"
     >
       {content}

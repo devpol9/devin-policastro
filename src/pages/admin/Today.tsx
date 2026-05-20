@@ -295,7 +295,7 @@ const Today = () => {
               <h3 className="font-display font-bold text-lg mt-1">Last 7 days</h3>
             </div>
             <button
-              onClick={() => navigate("/inquiries")}
+              onClick={() => navigate("/hq/inquiries")}
               className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
             >
               View all <ArrowRight size={12} />
@@ -303,7 +303,7 @@ const Today = () => {
           </div>
           <div className="h-32">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={pulse} onClick={() => navigate("/inquiries")}>
+              <BarChart data={pulse} onClick={() => navigate("/hq/inquiries")}>
                 <XAxis dataKey="day" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
                 <Tooltip
                   cursor={{ fill: "hsl(var(--accent) / 0.08)" }}
@@ -353,7 +353,7 @@ const Today = () => {
             <h3 className="font-display font-bold text-lg mt-1">Recent inquiries</h3>
           </div>
           <button
-            onClick={() => navigate("/inquiries")}
+            onClick={() => navigate("/hq/inquiries")}
             className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
           >
             View all <ArrowRight size={12} />
@@ -366,7 +366,7 @@ const Today = () => {
             {recent.map((r) => (
               <button
                 key={r.id}
-                onClick={() => navigate(`/inquiries/${r.id}`)}
+                onClick={() => navigate(`/hq/inquiries/${r.id}`)}
                 className="text-left glass-card p-3 flex items-center justify-between gap-3"
               >
                 <div className="min-w-0">

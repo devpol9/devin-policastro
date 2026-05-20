@@ -82,7 +82,7 @@ const InquiryDetail = () => {
 
   return (
     <AdminShell>
-      <Link to="/inquiries" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground mb-6 font-display">
+      <Link to="/hq/inquiries" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground mb-6 font-display">
         <ArrowLeft size={14} /> Back to inquiries
       </Link>
 
