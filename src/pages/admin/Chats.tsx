@@ -161,49 +161,52 @@ const ChatsInner = () => {
         description="Triage chats from the public site. Mark hot leads. Convert to inquiries."
       />
 
-      {/* Toolbar */}
-      <div className="flex flex-col lg:flex-row gap-3 mb-5">
-        <div className="flex-1 flex items-center gap-2 bg-secondary/40 border border-border/40 rounded-md px-3 py-2">
-          <Search size={14} className="text-muted-foreground" />
+      {/* Toolbar — single condensed row */}
+      <div className="flex flex-wrap items-center gap-2 mb-4 font-body">
+        <div className="flex items-center gap-2 bg-secondary/40 border border-border/40 rounded-md px-2.5 py-1.5 min-w-[200px] flex-1 max-w-xs">
+          <Search size={13} className="text-muted-foreground" />
           <input
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search message content…"
-            className="bg-transparent text-sm outline-none flex-1"
+            placeholder="Search messages…"
+            className="bg-transparent text-[13px] outline-none flex-1 font-body"
           />
         </div>
-        <div className="flex flex-wrap gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           {STATUS_OPTIONS.map((s) => (
             <button
               key={s.key}
               onClick={() => setStatus(s.key)}
-              className={`px-2.5 py-1.5 rounded-md text-[11px] font-display font-semibold capitalize transition-colors ${
-                status === s.key ? "bg-foreground text-background" : "bg-card text-muted-foreground hover:text-foreground border border-border/40"
+              className={`px-2 py-1 rounded text-[11px] font-medium tracking-tight transition-colors ${
+                status === s.key ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
             >{s.label}</button>
           ))}
         </div>
-      </div>
-      <div className="flex flex-wrap gap-2 mb-5">
-        {RANGES.map((r) => (
-          <button
-            key={r.key}
-            onClick={() => setRange(r.key)}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-display font-semibold transition-colors ${
-              range === r.key ? "bg-accent text-accent-foreground" : "bg-card text-muted-foreground hover:text-foreground border border-border/40"
-            }`}
-          >{r.label}</button>
-        ))}
-        <span className="text-xs font-mono text-muted-foreground ml-auto self-center">
-          {sessions.length} session{sessions.length === 1 ? "" : "s"}
-        </span>
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value as any)}
-          className="bg-card border border-border/40 rounded-md px-2 py-1 text-xs font-display"
-        >
-          {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
-        </select>
+        <div className="h-5 w-px bg-border/60 mx-1" />
+        <div className="flex items-center gap-0.5">
+          {RANGES.map((r) => (
+            <button
+              key={r.key}
+              onClick={() => setRange(r.key)}
+              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors ${
+                range === r.key ? "bg-accent/15 text-accent" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >{r.label}</button>
+          ))}
+        </div>
+        <div className="ml-auto flex items-center gap-2">
+          <span className="text-[11px] text-muted-foreground tabular-nums">
+            {sessions.length} session{sessions.length === 1 ? "" : "s"}
+          </span>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as any)}
+            className="bg-transparent border border-border/40 rounded px-1.5 py-1 text-[11px] font-medium font-body cursor-pointer hover:border-border"
+          >
+            {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
+          </select>
+        </div>
       </div>
 
       {/* Two-pane */}
