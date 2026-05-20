@@ -438,6 +438,12 @@ const VentureDetail = () => {
         </Tabs>
 
         <VentureDialog open={editOpen} onOpenChange={setEditOpen} venture={venture} />
+        <KpiDialog
+          open={kpiDialogOpen}
+          onOpenChange={setKpiDialogOpen}
+          defaults={{ venture_id: venture.id }}
+        />
+        <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
       </AdminShell>
     </AdminGuard>
   );
