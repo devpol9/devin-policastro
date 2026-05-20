@@ -104,22 +104,16 @@ const Content = () => {
         </div>
 
         {/* View toggle */}
-        <div className="flex items-center gap-1 mb-4">
-          {(["calendar","pipeline","list"] as View[]).map((v) => {
-            const Icon = v === "calendar" ? CalendarIcon : v === "pipeline" ? KanbanSquare : ListIcon;
-            return (
-              <button
-                key={v}
-                onClick={() => setView(v)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-display capitalize transition-colors ${
-                  view === v ? "bg-foreground text-background" : "bg-secondary/60 text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Icon size={12} /> {v}
-              </button>
-            );
-          })}
-        </div>
+        <TabBar<View>
+          className="mb-4"
+          value={view}
+          onChange={setView}
+          items={[
+            { value: "calendar" as View, label: <span className="inline-flex items-center gap-1.5"><CalendarIcon size={12} /> Calendar</span> },
+            { value: "pipeline" as View, label: <span className="inline-flex items-center gap-1.5"><KanbanSquare size={12} /> Pipeline</span> },
+            { value: "list" as View, label: <span className="inline-flex items-center gap-1.5"><ListIcon size={12} /> List</span> },
+          ]}
+        />
 
         {/* Filter toolbar */}
         <div className="flex flex-wrap items-center gap-2 mb-5">
