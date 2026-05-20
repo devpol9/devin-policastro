@@ -66,6 +66,8 @@ import ProjectsPage from "./pages/admin/Projects";
 import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
+import AnalyticsPage from "./pages/admin/Analytics";
+import ChatsPage from "./pages/admin/Chats";
 import AdminNotFound from "./pages/admin/NotFound";
 
 const queryClient = new QueryClient();
