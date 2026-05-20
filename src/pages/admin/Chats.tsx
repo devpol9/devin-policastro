@@ -318,27 +318,27 @@ const ChatsInner = () => {
               {/* Notes + actions */}
               <div className="border-t border-border/40 pt-3 space-y-3">
                 <div>
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase mb-1">Reviewer notes</p>
+                  <p className="text-[10px] text-muted-foreground tracking-wide uppercase mb-1 font-medium">Reviewer notes</p>
                   <textarea
                     value={notesDraft}
                     onChange={(e) => setNotesDraft(e.target.value)}
                     onBlur={saveNotes}
                     rows={2}
                     placeholder="Quick triage notes…"
-                    className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
+                    className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none font-body"
                   />
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <button onClick={() => setLeadStatus("hot")} className="px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-destructive/10 text-destructive border border-destructive/30">
+                  <button onClick={() => setLeadStatus("hot")} className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-destructive/10 text-destructive border border-destructive/30">
                     Mark hot
                   </button>
-                  <button onClick={() => setLeadStatus("customer")} className="px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-emerald-500/10 text-emerald-700 border border-emerald-500/30">
+                  <button onClick={() => setLeadStatus("customer")} className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-emerald-500/10 text-emerald-700 border border-emerald-500/30">
                     Mark customer
                   </button>
-                  <button onClick={() => setLeadStatus("spam")} className="px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-card text-muted-foreground border border-border/40">
+                  <button onClick={() => setLeadStatus("spam")} className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-card text-muted-foreground border border-border/40">
                     Mark spam
                   </button>
-                  <button onClick={doConvert} disabled={convert.isPending} className="ml-auto px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-accent text-accent-foreground flex items-center gap-1 disabled:opacity-50">
+                  <button onClick={doConvert} disabled={convert.isPending} className="ml-auto px-2.5 py-1 rounded-md text-[11px] font-medium bg-accent text-accent-foreground flex items-center gap-1 disabled:opacity-50">
                     <ExternalLink size={11} /> Convert to inquiry
                   </button>
                 </div>
