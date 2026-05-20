@@ -427,99 +427,17 @@ const Today = () => {
 
 
 
-      {topContent.length > 0 && (
+      {tab === "capture" && (<>
         <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.08 }}
-          className="mb-10"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">01.6 · CONTENT THIS WEEK</p>
-              <h3 className="font-display font-bold text-lg mt-1">Scheduled content</h3>
-            </div>
-            <button
-              onClick={() => navigate("/hq/content")}
-              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
-            >
-              View calendar <ArrowRight size={12} />
-            </button>
-          </div>
-          <div className="grid gap-2">
-            {topContent.map((c) => {
-              const v = activeVentures.find((x) => x.id === c.venture_id);
-              const Icon = PLATFORM_ICON[c.platform as Platform];
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => navigate("/hq/content")}
-                  className="text-left glass-card p-3 flex items-center justify-between gap-3"
-                  style={{ borderLeft: `3px solid ${v?.accent_color ?? "hsl(30 8% 50%)"}` }}
-                >
-                  <div className="flex items-center gap-2 min-w-0">
-                    <Icon size={12} className="text-muted-foreground shrink-0" />
-                    <div className="min-w-0">
-                      <p className="font-display font-semibold text-sm truncate">{c.title}</p>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {v?.short_name ?? v?.name ?? "—"} · {c.status}
-                      </p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                    {format(new Date(c.scheduled_at!), "EEE MMM d, p")}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </motion.section>
-      )}
-
-      <div className="grid lg:grid-cols-3 gap-6 mb-10">
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-          className="lg:col-span-2 glass-card p-5"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">02 · INQUIRY PULSE</p>
-              <h3 className="font-display font-bold text-lg mt-1">Last 7 days</h3>
-            </div>
-            <button
-              onClick={() => navigate("/hq/inquiries")}
-              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
-            >
-              View all <ArrowRight size={12} />
-            </button>
-          </div>
-          <div className="h-32">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={pulse} onClick={() => navigate("/hq/inquiries")}>
-                <XAxis dataKey="day" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                <Tooltip
-                  cursor={{ fill: "hsl(var(--accent) / 0.08)" }}
-                  contentStyle={{
-                    background: "hsl(var(--card))",
-                    border: "1px solid hsl(var(--border))",
-                    fontSize: "12px",
-                    borderRadius: 6,
-                  }}
-                />
-                <Bar dataKey="count" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </motion.section>
-
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}
-          className="glass-card p-5"
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
+          className="glass-card p-5 mb-6"
         >
           <div className="flex items-center justify-between mb-1">
-            <p className="text-[11px] text-muted-foreground/70 font-medium">03 · QUICK {logMode === "log" ? "LOG" : "CAPTURE"}</p>
+            <p className="text-[11px] text-muted-foreground/70 font-medium">Quick {logMode === "log" ? "log" : "capture"}</p>
             <div className="flex gap-1">
               {(["log", "capture"] as const).map((m) => (
                 <button key={m} onClick={() => setLogMode(m)}
-                  className={`px-2 py-0.5 text-[10px] font-display rounded capitalize ${logMode === m ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}>
+                  className={`px-2 py-0.5 text-[10px] rounded capitalize ${logMode === m ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}>
                   {m}
                 </button>
               ))}
@@ -539,169 +457,218 @@ const Today = () => {
           <button
             onClick={saveLog}
             disabled={!quickLog.trim() || savingLog}
-            className="mt-2 w-full px-3 py-2 rounded-md bg-foreground text-background text-xs font-display font-semibold disabled:opacity-40"
+            className="mt-2 w-full px-3 py-2 rounded-md bg-foreground text-background text-xs font-semibold disabled:opacity-40"
           >
             {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
           </button>
           <button
             onClick={() => navigate("/hq/log")}
-            className="mt-2 w-full text-xs font-display text-muted-foreground hover:text-accent flex items-center justify-center gap-1"
+            className="mt-2 w-full text-xs text-muted-foreground hover:text-accent flex items-center justify-center gap-1"
           >
             <BookOpen size={11} /> Open today's full log <ArrowUpRight size={11} />
           </button>
         </motion.section>
-      </div>
 
-      {recentCaptures.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.18 }}
-          className="mb-10"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">03.5 · RECENT CAPTURES</p>
-              <h3 className="font-display font-bold text-lg mt-1">Last 5 captures</h3>
-            </div>
-            <button onClick={() => navigate("/hq/notes")}
-              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1">
-              View all <ArrowRight size={12} />
-            </button>
-          </div>
-          <div className="grid gap-2">
-            {recentCaptures.map((c) => (
-              <button key={c.id} onClick={() => navigate("/hq/notes")}
-                className="text-left glass-card p-3 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-[9px] font-display font-semibold uppercase tracking-[0.12em] text-muted-foreground px-1.5 py-0.5 rounded border border-border/50 shrink-0">
-                    {c.kind}
-                  </span>
-                  <p className="text-sm truncate">{c.title || c.body.split("\n")[0].slice(0, 80)}</p>
-                </div>
-                <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                  {format(new Date(c.created_at), "MMM d")}
-                </span>
-              </button>
-            ))}
-          </div>
-        </motion.section>
-      )}
-
-
-
-      <motion.section
-        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-        className="mb-10"
-      >
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-[11px] text-muted-foreground/70 font-medium">04 · INBOX</p>
-            <h3 className="font-display font-bold text-lg mt-1">Recent inquiries</h3>
-          </div>
-          <button
-            onClick={() => navigate("/hq/inquiries")}
-            className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+        {recentCaptures.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
+            className="mb-10"
           >
-            View all <ArrowRight size={12} />
-          </button>
-        </div>
-        {recent.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No inquiries yet.</p>
-        ) : (
-          <div className="grid gap-2">
-            {recent.map((r) => (
-              <button
-                key={r.id}
-                onClick={() => navigate(`/hq/inquiries/${r.id}`)}
-                className="text-left glass-card p-3 flex items-center justify-between gap-3"
-              >
-                <div className="min-w-0">
-                  <p className="font-display font-semibold text-sm truncate">{r.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">
-                    {r.service_type.replace(" Inquiry", "")} · {r.email}
-                  </p>
-                </div>
-                <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                  {format(new Date(r.created_at), "MMM d")}
-                </span>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">Recent captures</p>
+                <h3 className="font-display font-bold text-lg mt-1">Last 5 captures</h3>
+              </div>
+              <button onClick={() => navigate("/hq/notes")}
+                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1">
+                View all <ArrowRight size={12} />
               </button>
-            ))}
-          </div>
+            </div>
+            <div className="grid gap-2">
+              {recentCaptures.map((c) => (
+                <button key={c.id} onClick={() => navigate("/hq/notes")}
+                  className="text-left glass-card p-3 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-[10px] text-muted-foreground/70 font-medium px-1.5 py-0.5 rounded-md border border-border/50 shrink-0 capitalize">
+                      {c.kind}
+                    </span>
+                    <p className="text-sm truncate">{c.title || c.body.split("\n")[0].slice(0, 80)}</p>
+                  </div>
+                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                    {format(new Date(c.created_at), "MMM d")}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </motion.section>
         )}
-      </motion.section>
 
-      {chatStats && chatStats.total24h > 0 && (
         <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.22 }}
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
           className="mb-10"
         >
           <div className="flex items-center justify-between mb-4">
             <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">05 · CHAT</p>
-              <h3 className="font-display font-bold text-lg mt-1">Conversations today</h3>
+              <p className="text-[11px] text-muted-foreground/70 font-medium">Inbox</p>
+              <h3 className="font-display font-bold text-lg mt-1">Recent inquiries</h3>
             </div>
             <button
-              onClick={() => navigate("/hq/chats")}
-              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+              onClick={() => navigate("/hq/inquiries")}
+              className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
             >
               View all <ArrowRight size={12} />
             </button>
           </div>
-          <button
-            onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
-            className="w-full text-left glass-card p-4 flex items-center gap-4"
-          >
-            <div className="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
-              <MessageCircle size={16} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className="font-display font-bold text-base">{chatStats.total24h}</span>
-                <span className="text-xs text-muted-foreground">in last 24h</span>
-                {chatStats.unreviewed24h > 0 && (
-                  <span className="ml-auto px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] bg-accent/15 text-accent border border-accent/30">
-                    {chatStats.unreviewed24h} unreviewed
+          {recent.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No inquiries yet.</p>
+          ) : (
+            <div className="grid gap-2">
+              {recent.map((r) => (
+                <button
+                  key={r.id}
+                  onClick={() => navigate(`/hq/inquiries/${r.id}`)}
+                  className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                >
+                  <div className="min-w-0">
+                    <p className="font-display font-semibold text-sm truncate">{r.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {r.service_type.replace(" Inquiry", "")} · {r.email}
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                    {format(new Date(r.created_at), "MMM d")}
                   </span>
+                </button>
+              ))}
+            </div>
+          )}
+        </motion.section>
+      </>)}
+
+      {tab === "signal" && (<>
+        {topContent.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
+            className="mb-10"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">Content this week</p>
+                <h3 className="font-display font-bold text-lg mt-1">Scheduled content</h3>
+              </div>
+              <button
+                onClick={() => navigate("/hq/content")}
+                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
+              >
+                View calendar <ArrowRight size={12} />
+              </button>
+            </div>
+            <div className="grid gap-2">
+              {topContent.map((c) => {
+                const v = activeVentures.find((x) => x.id === c.venture_id);
+                const Icon = PLATFORM_ICON[c.platform as Platform];
+                const accent = v?.accent_color ?? "hsl(30 8% 50%)";
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => navigate("/hq/content")}
+                    className="text-left glass-card p-3 flex items-center justify-between gap-3"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="h-2 w-2 rounded-full shrink-0" style={{ background: accent }} />
+                      <Icon size={12} className="text-muted-foreground shrink-0" />
+                      <div className="min-w-0">
+                        <p className="font-display font-semibold text-sm truncate">{c.title}</p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {v?.short_name ?? v?.name ?? "—"} · {c.status}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                      {format(new Date(c.scheduled_at!), "EEE MMM d, p")}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.section>
+        )}
+
+        {chatStats && chatStats.total24h > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
+            className="mb-10"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">Chat</p>
+                <h3 className="font-display font-bold text-lg mt-1">Conversations today</h3>
+              </div>
+              <button
+                onClick={() => navigate("/hq/chats")}
+                className="text-xs text-muted-foreground hover:text-accent flex items-center gap-1"
+              >
+                View all <ArrowRight size={12} />
+              </button>
+            </div>
+            <button
+              onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
+              className="w-full text-left glass-card p-4 flex items-center gap-4"
+            >
+              <div className="w-10 h-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                <MessageCircle size={16} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="font-display font-bold text-base">{chatStats.total24h}</span>
+                  <span className="text-xs text-muted-foreground">in last 24h</span>
+                  {chatStats.unreviewed24h > 0 && (
+                    <span className="ml-auto px-2 py-0.5 rounded-md text-[10px] font-medium bg-accent/15 text-accent border border-accent/30">
+                      {chatStats.unreviewed24h} unreviewed
+                    </span>
+                  )}
+                </div>
+                {chatStats.latestPreview && (
+                  <p className="text-xs text-muted-foreground truncate italic">
+                    "{chatStats.latestPreview}"
+                  </p>
+                )}
+                {chatStats.latestPath && (
+                  <p className="text-[10px] font-mono text-muted-foreground/70 truncate mt-0.5">
+                    from {chatStats.latestPath}
+                  </p>
                 )}
               </div>
-              {chatStats.latestPreview && (
-                <p className="text-xs text-muted-foreground truncate italic">
-                  "{chatStats.latestPreview}"
-                </p>
-              )}
-              {chatStats.latestPath && (
-                <p className="text-[10px] font-mono text-muted-foreground/70 truncate mt-0.5">
-                  from {chatStats.latestPath}
-                </p>
-              )}
-            </div>
-          </button>
-        </motion.section>
-      )}
+            </button>
+          </motion.section>
+        )}
 
-      {pv24 > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}
-          className="glass-card p-4"
-        >
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
-            <div>
-              <p className="text-[11px] text-muted-foreground/70 font-medium">24H TRAFFIC</p>
-              <p className="font-display font-bold text-2xl">{pv24}</p>
-            </div>
-            <div className="flex-1 min-w-[200px]">
-              <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">TOP PATHS</p>
-              <div className="space-y-0.5">
-                {topPaths.map((tp) => (
-                  <div key={tp.path} className="flex justify-between text-xs">
-                    <span className="font-mono text-foreground/80 truncate">{tp.path}</span>
-                    <span className="font-mono text-muted-foreground tabular-nums">{tp.count}</span>
-                  </div>
-                ))}
+        {pv24 > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
+            className="glass-card p-4"
+          >
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+              <div>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">24h traffic</p>
+                <p className="font-display font-bold text-2xl">{pv24}</p>
+              </div>
+              <div className="flex-1 min-w-[200px]">
+                <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">Top paths</p>
+                <div className="space-y-0.5">
+                  {topPaths.map((tp) => (
+                    <div key={tp.path} className="flex justify-between text-xs">
+                      <span className="font-mono text-foreground/80 truncate">{tp.path}</span>
+                      <span className="font-mono text-muted-foreground tabular-nums">{tp.count}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </motion.section>
-      )}
+          </motion.section>
+        )}
+      </>)}
+
 
       <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
     </AdminShell>
