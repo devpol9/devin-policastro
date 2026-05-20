@@ -286,6 +286,7 @@ const Today = () => {
   };
 
   return (
+    <AdminGuard>
     <AdminShell>
       <motion.div
         initial={{ opacity: 0, y: 12 }}
