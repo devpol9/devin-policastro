@@ -161,49 +161,52 @@ const ChatsInner = () => {
         description="Triage chats from the public site. Mark hot leads. Convert to inquiries."
       />
 
-      {/* Toolbar */}
-      <div className="flex flex-col lg:flex-row gap-3 mb-5">
-        <div className="flex-1 flex items-center gap-2 bg-secondary/40 border border-border/40 rounded-md px-3 py-2">
-          <Search size={14} className="text-muted-foreground" />
+      {/* Toolbar — single condensed row */}
+      <div className="flex flex-wrap items-center gap-2 mb-4 font-body">
+        <div className="flex items-center gap-2 bg-secondary/40 border border-border/40 rounded-md px-2.5 py-1.5 min-w-[200px] flex-1 max-w-xs">
+          <Search size={13} className="text-muted-foreground" />
           <input
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search message content…"
-            className="bg-transparent text-sm outline-none flex-1"
+            placeholder="Search messages…"
+            className="bg-transparent text-[13px] outline-none flex-1 font-body"
           />
         </div>
-        <div className="flex flex-wrap gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           {STATUS_OPTIONS.map((s) => (
             <button
               key={s.key}
               onClick={() => setStatus(s.key)}
-              className={`px-2.5 py-1.5 rounded-md text-[11px] font-display font-semibold capitalize transition-colors ${
-                status === s.key ? "bg-foreground text-background" : "bg-card text-muted-foreground hover:text-foreground border border-border/40"
+              className={`px-2 py-1 rounded text-[11px] font-medium tracking-tight transition-colors ${
+                status === s.key ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               }`}
             >{s.label}</button>
           ))}
         </div>
-      </div>
-      <div className="flex flex-wrap gap-2 mb-5">
-        {RANGES.map((r) => (
-          <button
-            key={r.key}
-            onClick={() => setRange(r.key)}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-display font-semibold transition-colors ${
-              range === r.key ? "bg-accent text-accent-foreground" : "bg-card text-muted-foreground hover:text-foreground border border-border/40"
-            }`}
-          >{r.label}</button>
-        ))}
-        <span className="text-xs font-mono text-muted-foreground ml-auto self-center">
-          {sessions.length} session{sessions.length === 1 ? "" : "s"}
-        </span>
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value as any)}
-          className="bg-card border border-border/40 rounded-md px-2 py-1 text-xs font-display"
-        >
-          {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
-        </select>
+        <div className="h-5 w-px bg-border/60 mx-1" />
+        <div className="flex items-center gap-0.5">
+          {RANGES.map((r) => (
+            <button
+              key={r.key}
+              onClick={() => setRange(r.key)}
+              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors ${
+                range === r.key ? "bg-accent/15 text-accent" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >{r.label}</button>
+          ))}
+        </div>
+        <div className="ml-auto flex items-center gap-2">
+          <span className="text-[11px] text-muted-foreground tabular-nums">
+            {sessions.length} session{sessions.length === 1 ? "" : "s"}
+          </span>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as any)}
+            className="bg-transparent border border-border/40 rounded px-1.5 py-1 text-[11px] font-medium font-body cursor-pointer hover:border-border"
+          >
+            {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
+          </select>
+        </div>
       </div>
 
       {/* Two-pane */}
@@ -235,10 +238,10 @@ const ChatsInner = () => {
               {/* Header */}
               <div className="flex flex-wrap items-start justify-between gap-2 border-b border-border/40 pb-3">
                 <div className="min-w-0">
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase">
+                  <p className="text-[10px] text-muted-foreground tracking-wide uppercase font-medium">
                     Started {formatDistanceToNowStrict(new Date(detail.data.session.started_at), { addSuffix: true })}
                   </p>
-                  <p className="font-display font-bold text-sm mt-1">
+                  <p className="font-body font-semibold text-sm mt-1 tracking-tight">
                     {detail.data.session.path || "/"} · {detail.data.session.message_count} msgs · {parseUA(detail.data.session.user_agent)}
                   </p>
                 </div>
@@ -256,7 +259,7 @@ const ChatsInner = () => {
                 <select
                   value={detail.data.session.lead_status ?? ""}
                   onChange={(e) => setLeadStatus((e.target.value || null) as LeadStatus | null)}
-                  className="bg-card border border-border/40 rounded-md px-2 py-1 text-xs font-display capitalize"
+                  className="bg-card border border-border/40 rounded-md px-2 py-1 text-xs font-medium font-body"
                 >
                   <option value="">Unreviewed</option>
                   <option value="hot">Hot</option>
@@ -315,27 +318,27 @@ const ChatsInner = () => {
               {/* Notes + actions */}
               <div className="border-t border-border/40 pt-3 space-y-3">
                 <div>
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase mb-1">Reviewer notes</p>
+                  <p className="text-[10px] text-muted-foreground tracking-wide uppercase mb-1 font-medium">Reviewer notes</p>
                   <textarea
                     value={notesDraft}
                     onChange={(e) => setNotesDraft(e.target.value)}
                     onBlur={saveNotes}
                     rows={2}
                     placeholder="Quick triage notes…"
-                    className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
+                    className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none font-body"
                   />
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <button onClick={() => setLeadStatus("hot")} className="px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-destructive/10 text-destructive border border-destructive/30">
+                  <button onClick={() => setLeadStatus("hot")} className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-destructive/10 text-destructive border border-destructive/30">
                     Mark hot
                   </button>
-                  <button onClick={() => setLeadStatus("customer")} className="px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-emerald-500/10 text-emerald-700 border border-emerald-500/30">
+                  <button onClick={() => setLeadStatus("customer")} className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-emerald-500/10 text-emerald-700 border border-emerald-500/30">
                     Mark customer
                   </button>
-                  <button onClick={() => setLeadStatus("spam")} className="px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-card text-muted-foreground border border-border/40">
+                  <button onClick={() => setLeadStatus("spam")} className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-card text-muted-foreground border border-border/40">
                     Mark spam
                   </button>
-                  <button onClick={doConvert} disabled={convert.isPending} className="ml-auto px-2.5 py-1 rounded-md text-[11px] font-display font-semibold bg-accent text-accent-foreground flex items-center gap-1 disabled:opacity-50">
+                  <button onClick={doConvert} disabled={convert.isPending} className="ml-auto px-2.5 py-1 rounded-md text-[11px] font-medium bg-accent text-accent-foreground flex items-center gap-1 disabled:opacity-50">
                     <ExternalLink size={11} /> Convert to inquiry
                   </button>
                 </div>
@@ -361,18 +364,18 @@ const SessionCard = ({ session, active, onClick }: { session: ChatSessionWithPre
     >
       <div className="flex items-center justify-between gap-2 mb-1.5">
         <span
-          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold capitalize"
+          className="px-1.5 py-0.5 rounded text-[10px] font-medium capitalize tracking-tight"
           style={{ background: `${color}1f`, color, border: `1px solid ${color}55` }}
         >{statusKey}</span>
-        <span className="font-mono text-[10px] text-muted-foreground">
+        <span className="text-[10px] text-muted-foreground tabular-nums">
           {formatDistanceToNowStrict(new Date(session.last_message_at), { addSuffix: true })}
         </span>
       </div>
-      <p className="text-sm text-foreground line-clamp-2 leading-snug">
+      <p className="text-[13px] text-foreground line-clamp-2 leading-snug font-body">
         {session.first_user_message || <span className="italic text-muted-foreground">No user message yet</span>}
       </p>
       <div className="flex items-center justify-between gap-2 mt-2">
-        <span className="text-[10px] font-mono text-muted-foreground truncate">
+        <span className="text-[10px] text-muted-foreground truncate font-medium">
           {session.path ?? "/"} · {session.message_count} msgs
         </span>
         {session.reviewer_notes && <MessageSquare size={11} className="text-accent shrink-0" />}
