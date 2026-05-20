@@ -152,7 +152,7 @@ const InquiryDetail = () => {
                 {inq.converted_project_id && (
                   <Link
                     to={`/hq/projects/${inq.converted_project_id}`}
-                    className="text-[10px] font-display text-accent border border-accent/40 rounded-full px-2 py-0.5"
+                    className="text-[10px] font-display text-accent border border-accent/40 rounded-md px-2 py-0.5"
                   >
                     → project
                   </Link>

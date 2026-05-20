@@ -42,20 +42,23 @@ const ProjectCard = ({ project, compact, onClick }: Props) => {
     <button
       type="button"
       onClick={handleClick}
-      className="w-full text-left glass-card p-3 sm:p-4 group transition-all hover:-translate-y-0.5"
-      style={{
-        borderLeft: `3px solid ${accent}`,
-        boxShadow: `0 0 0 1px hsl(var(--border) / 0.4)`,
-      }}
+      className="w-full text-left glass-card p-3 sm:p-4 group transition-colors hover:border-foreground/20"
     >
       <div className="flex items-start justify-between gap-2 mb-2">
-        {venture ? (
-          <VenturePill venture={venture} clickable={false} />
-        ) : (
-          <span className="text-[10px] font-mono text-muted-foreground">unassigned</span>
-        )}
+        <div className="flex items-center gap-2 min-w-0">
+          <span
+            className="h-2 w-2 rounded-full shrink-0"
+            style={{ background: accent }}
+            aria-hidden
+          />
+          {venture ? (
+            <VenturePill venture={venture} clickable={false} />
+          ) : (
+            <span className="text-[11px] text-muted-foreground">unassigned</span>
+          )}
+        </div>
         <span
-          className={`text-[9px] font-display font-semibold tracking-[0.12em] px-1.5 py-0.5 rounded border ${PRIORITY_STYLES[project.priority] ?? PRIORITY_STYLES.medium}`}
+          className={`text-[10px] font-medium px-1.5 py-0.5 rounded-md border ${PRIORITY_STYLES[project.priority] ?? PRIORITY_STYLES.medium}`}
         >
           {project.priority}
         </span>

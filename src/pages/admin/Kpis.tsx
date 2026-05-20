@@ -127,7 +127,7 @@ const Kpis = () => {
           <div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={() => setSelectedVentures(new Set())}
-              className={`px-2.5 py-1 rounded-full border text-[11px] font-display ${
+              className={`px-2.5 py-1 rounded-md border text-[11px] font-display ${
                 selectedVentures.size === 0
                   ? "bg-foreground text-background border-foreground"
                   : "border-border text-muted-foreground"
@@ -141,7 +141,7 @@ const Kpis = () => {
                 <button
                   key={v.id}
                   onClick={() => toggleVenture(v.id)}
-                  className={`inline-flex items-center gap-1.5 rounded-full border whitespace-nowrap px-2.5 py-1 text-[11px] font-display transition-colors ${
+                  className={`inline-flex items-center gap-1.5 rounded-md border whitespace-nowrap px-2.5 py-1 text-[11px] font-display transition-colors ${
                     on ? "" : "opacity-60 hover:opacity-100"
                   }`}
                   style={{
@@ -234,7 +234,7 @@ const Kpis = () => {
               <div className="glass-card p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">SUGGESTIONS</p>
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">SUGGESTIONS</p>
                     <h3 className="font-display font-bold text-lg mt-1 flex items-center gap-2">
                       <Sparkles size={14} className="text-accent" /> Based on your ventures
                     </h3>

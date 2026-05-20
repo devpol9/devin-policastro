@@ -137,7 +137,7 @@ const Content = () => {
               <button
                 key={v.id}
                 onClick={() => toggle(ventureFilter, setVentureFilter, v.id)}
-                className="text-[10px] px-2 py-1 rounded-full border font-display"
+                className="text-[10px] px-2 py-1 rounded-md border font-display"
                 style={{
                   borderColor: ventureFilter.has(v.id) ? v.accent_color : "hsl(var(--border))",
                   background: ventureFilter.has(v.id) ? `${v.accent_color}22` : "transparent",
@@ -166,7 +166,7 @@ const Content = () => {
                 <button
                   key={p.id}
                   onClick={() => toggle(pillarFilter, setPillarFilter, p.name)}
-                  className="text-[10px] px-2 py-1 rounded-full border font-display"
+                  className="text-[10px] px-2 py-1 rounded-md border font-display"
                   style={{
                     borderColor: pillarFilter.has(p.name) ? p.color : "hsl(var(--border))",
                     background: pillarFilter.has(p.name) ? `${p.color}22` : "transparent",

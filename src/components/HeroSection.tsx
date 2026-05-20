@@ -42,7 +42,7 @@ const HeroSection = () => {
         </motion.div>
 
         {/* Massive headline */}
-        <h1 className="font-display font-black leading-[0.82] tracking-[-0.05em] mb-10 sm:mb-12 text-[clamp(3.5rem,15vw,12rem)]">
+        <h1 className="font-display font-bold leading-[0.78] tracking-[-0.06em] mb-10 sm:mb-12 text-[clamp(3.5rem,14vw,11rem)]">
           <motion.span
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,6 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="block accent-headline"
-            style={{ fontStyle: "italic" }}
           >
             Policastro.
           </motion.span>
@@ -105,7 +104,7 @@ const HeroSection = () => {
                   variant="default"
                   size="lg"
                   onClick={() => scrollTo("#services")}
-                  className="h-14 px-8 text-sm font-display font-semibold tracking-wide rounded-full"
+                  className="h-14 px-8 text-sm font-display font-semibold tracking-wide rounded-md"
                 >
                   Work With Me
                   <ArrowRight size={16} />

@@ -50,7 +50,7 @@ const Manufacturing = () => {
           <div className="mb-10 sm:mb-12">
             <button
               onClick={() => setInquiryOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-display font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all"
             >
               Start a project
               <ArrowRight size={14} />

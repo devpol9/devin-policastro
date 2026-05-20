@@ -43,7 +43,7 @@ const VentureCard = ({ venture, index }: { venture: Venture; index: number }) =>
       )}
       <div className="flex items-center justify-between mt-auto pt-2">
         <span
-          className="text-[10px] font-display font-semibold px-2 py-0.5 rounded-full border"
+          className="text-[10px] font-display font-semibold px-2 py-0.5 rounded-md border"
           style={{
             background: `color-mix(in oklch, ${color} 12%, transparent)`,
             borderColor: `color-mix(in oklch, ${color} 40%, transparent)`,
@@ -108,7 +108,7 @@ const Ventures = () => {
             <button
               key={s}
               onClick={() => setFilter(s)}
-              className={`text-[11px] font-display font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+              className={`text-[11px] font-display font-semibold px-3 py-1.5 rounded-md border transition-colors ${
                 filter === s
                   ? "bg-foreground text-background border-foreground"
                   : "bg-transparent text-muted-foreground border-border/60"

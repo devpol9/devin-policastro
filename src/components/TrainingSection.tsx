@@ -86,7 +86,7 @@ const TrainingSection = () => {
               <button
                 key={tab.id}
                 onClick={() => setActive(tab.id)}
-                className="relative flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full font-display text-[10px] sm:text-xs font-bold tracking-[0.15em]  whitespace-nowrap transition-all duration-300"
+                className="relative flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-md font-display text-[10px] sm:text-xs font-bold tracking-[0.15em]  whitespace-nowrap transition-all duration-300"
                 style={{
                   color: isActive ? `hsl(${tab.color})` : "hsl(var(--muted-foreground))",
                   background: isActive ? `hsl(${tab.color} / 0.12)` : "hsl(var(--card))",
