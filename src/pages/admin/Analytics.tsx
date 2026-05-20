@@ -1,3 +1,4 @@
+import TabBar from "@/components/admin/TabBar";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { format, formatDistanceToNowStrict } from "date-fns";
