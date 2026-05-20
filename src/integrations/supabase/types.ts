@@ -338,6 +338,109 @@ export type Database = {
           },
         ]
       }
+      kpi_entries: {
+        Row: {
+          created_at: string
+          entry_date: string
+          id: string
+          kpi_id: string
+          note: string | null
+          updated_at: string
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          entry_date: string
+          id?: string
+          kpi_id: string
+          note?: string | null
+          updated_at?: string
+          value: number
+        }
+        Update: {
+          created_at?: string
+          entry_date?: string
+          id?: string
+          kpi_id?: string
+          note?: string | null
+          updated_at?: string
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kpi_entries_kpi_id_fkey"
+            columns: ["kpi_id"]
+            isOneToOne: false
+            referencedRelation: "kpis"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      kpis: {
+        Row: {
+          archived: boolean
+          created_at: string
+          currency_code: string | null
+          custom_unit_label: string | null
+          description: string | null
+          direction: string
+          entry_cadence: string
+          id: string
+          meta: Json
+          name: string
+          sort_order: number
+          target_value: number | null
+          unit: string
+          updated_at: string
+          user_id: string
+          venture_id: string | null
+        }
+        Insert: {
+          archived?: boolean
+          created_at?: string
+          currency_code?: string | null
+          custom_unit_label?: string | null
+          description?: string | null
+          direction?: string
+          entry_cadence?: string
+          id?: string
+          meta?: Json
+          name: string
+          sort_order?: number
+          target_value?: number | null
+          unit: string
+          updated_at?: string
+          user_id: string
+          venture_id?: string | null
+        }
+        Update: {
+          archived?: boolean
+          created_at?: string
+          currency_code?: string | null
+          custom_unit_label?: string | null
+          description?: string | null
+          direction?: string
+          entry_cadence?: string
+          id?: string
+          meta?: Json
+          name?: string
+          sort_order?: number
+          target_value?: number | null
+          unit?: string
+          updated_at?: string
+          user_id?: string
+          venture_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kpis_venture_id_fkey"
+            columns: ["venture_id"]
+            isOneToOne: false
+            referencedRelation: "ventures"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       priorities_today: {
         Row: {
           completed: boolean
@@ -605,6 +708,15 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      kpi_summary: {
+        Args: { p_kpi_id: string; p_range_days: number }
+        Returns: {
+          current_value: number
+          entry_count: number
+          latest_entry_date: string
+          prior_value: number
+        }[]
       }
       seed_default_ventures: {
         Args: { target_user_id: string }
