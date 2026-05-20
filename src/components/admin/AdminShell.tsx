@@ -3,13 +3,13 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Home, Mail, KanbanSquare, Building2, Calendar, BookOpen,
   TrendingUp, Lightbulb, BarChart3, MessageSquare, Settings,
-  LogOut, Search,
+  LogOut,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import {
   Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent,
-  SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
+  SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
   SidebarProvider, SidebarTrigger,
 } from "@/components/ui/sidebar";
 import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
@@ -17,21 +17,40 @@ import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 type NavItem = {
   label: string;
   icon: typeof Home;
-  to?: string;
-  soon?: boolean;
+  to: string;
 };
 
-const mainNav: NavItem[] = [
-  { label: "Today", icon: Home, to: "/hq/today" },
-  { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
-  { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
-  { label: "Ventures", icon: Building2, to: "/hq/ventures" },
-  { label: "Content", icon: Calendar, to: "/hq/content" },
-  { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
-  { label: "Chat Logs", icon: MessageSquare, to: "/hq/chats" },
-  { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
-  { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
-  { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
+type NavGroup = {
+  label: string;
+  items: NavItem[];
+};
+
+const navGroups: NavGroup[] = [
+  {
+    label: "work",
+    items: [
+      { label: "Today", icon: Home, to: "/hq/today" },
+      { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
+      { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
+      { label: "Ventures", icon: Building2, to: "/hq/ventures" },
+    ],
+  },
+  {
+    label: "output",
+    items: [
+      { label: "Content", icon: Calendar, to: "/hq/content" },
+      { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
+      { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
+      { label: "Chat Logs", icon: MessageSquare, to: "/hq/chats" },
+    ],
+  },
+  {
+    label: "capture",
+    items: [
+      { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
+      { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
+    ],
+  },
 ];
 
 const pageTitleFor = (pathname: string): string => {
@@ -43,6 +62,8 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/analytics")) return "Analytics";
   if (pathname.startsWith("/hq/chats")) return "Chat Logs";
   if (pathname.startsWith("/hq/kpis")) return "KPIs";
+  if (pathname.startsWith("/hq/log")) return "Daily Log";
+  if (pathname.startsWith("/hq/notes")) return "Notes & Ideas";
   if (pathname.startsWith("/hq/settings/pillars")) return "Pillars";
   if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";
@@ -110,45 +131,37 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
           </SidebarHeader>
 
           <SidebarContent>
-            <SidebarGroup>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {mainNav.map((item) => {
-                    const Icon = item.icon;
-                    if (item.soon) {
+            {navGroups.map((group) => (
+              <SidebarGroup key={group.label}>
+                <SidebarGroupLabel className="text-[10px] font-medium lowercase tracking-tight text-muted-foreground/60">
+                  {group.label}
+                </SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {group.items.map((item) => {
+                      const Icon = item.icon;
+                      const active = location.pathname === item.to ||
+                        (item.to !== "/" && location.pathname.startsWith(item.to));
                       return (
                         <SidebarMenuItem key={item.label}>
-                          <SidebarMenuButton disabled className="opacity-50 cursor-not-allowed">
-                            <Icon className="h-4 w-4" />
-                            <span className="flex-1">{item.label}</span>
-                            <span className="text-[9px] font-display font-semibold tracking-[0.12em] text-muted-foreground border border-border/60 rounded px-1.5 py-0.5">
-                              Soon
-                            </span>
+                          <SidebarMenuButton asChild isActive={active}>
+                            <NavLink to={item.to} className="flex items-center gap-2">
+                              <Icon className="h-4 w-4" />
+                              <span className="flex-1">{item.label}</span>
+                              {item.label === "Inquiries" && newCount > 0 && (
+                                <span className="text-[10px] font-medium rounded-md bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
+                                  {newCount}
+                                </span>
+                              )}
+                            </NavLink>
                           </SidebarMenuButton>
                         </SidebarMenuItem>
                       );
-                    }
-                    const active = location.pathname === item.to ||
-                      (item.to !== "/" && location.pathname.startsWith(item.to!));
-                    return (
-                      <SidebarMenuItem key={item.label}>
-                        <SidebarMenuButton asChild isActive={active}>
-                          <NavLink to={item.to!} className="flex items-center gap-2">
-                            <Icon className="h-4 w-4" />
-                            <span className="flex-1">{item.label}</span>
-                            {item.label === "Inquiries" && newCount > 0 && (
-                              <span className="text-[10px] font-display font-semibold rounded-md bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
-                                {newCount}
-                              </span>
-                            )}
-                          </NavLink>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    );
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
+                    })}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            ))}
 
             <SidebarGroup className="mt-auto">
               <SidebarGroupContent>
@@ -169,7 +182,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
           <SidebarFooter className="border-t border-sidebar-border px-3 py-3">
             <div className="flex items-center gap-2 min-w-0">
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-mono text-muted-foreground truncate">{email}</p>
+                <p className="text-[11px] text-muted-foreground truncate">{email}</p>
               </div>
               <button
                 onClick={logout}
@@ -183,21 +196,13 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
         </Sidebar>
 
         <div className="flex-1 flex flex-col min-w-0">
-          <header className="sticky top-0 z-40 h-14 flex items-center gap-3 border-b border-border/40 bg-background/85 backdrop-blur-xl px-3 sm:px-6">
+          <header className="sticky top-0 z-40 h-11 flex items-center gap-3 border-b border-border/40 bg-background/85 backdrop-blur-xl px-3 sm:px-6">
             <SidebarTrigger />
             <h1 className="font-display font-semibold text-sm tracking-tight">
               {pageTitleFor(location.pathname)}
             </h1>
-            <div className="flex-1 max-w-md mx-auto hidden md:flex items-center gap-2 bg-secondary/50 border border-border/40 rounded-lg px-3 py-1.5">
-              <Search size={14} className="text-muted-foreground" />
-              <input
-                disabled
-                placeholder="Quick search (coming soon)"
-                className="bg-transparent text-xs outline-none flex-1 placeholder:text-muted-foreground/60"
-              />
-            </div>
-            <span className="hidden sm:inline text-xs font-display text-muted-foreground tabular-nums">
-              {format(new Date(), "EEE, MMM d")}
+            <span className="text-[10px] font-medium text-muted-foreground/70 tabular-nums px-1.5 py-0.5 rounded border border-border/40">
+              {format(new Date(), "EEE MMM d")}
             </span>
           </header>
 
