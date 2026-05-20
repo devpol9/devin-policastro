@@ -12,6 +12,7 @@ import {
 import MagneticButton from "@/components/effects/MagneticButton";
 import SectionHeader from "@/components/SectionHeader";
 import { supabase } from "@/integrations/supabase/client";
+import { trackEvent } from "@/lib/analytics";
 
 type SubjectKey = "" | "gym-tour" | "membership" | "training" | "wholesale" | "brand-consulting" | "collab" | "general";
 
@@ -160,6 +161,11 @@ const ContactSection = () => {
 
       if (error) throw error;
       toast.success(data?.message || "Message sent! Devin will get back to you.");
+      trackEvent("inquiry_submitted", {
+        subject: selectedSubject?.label || formData.subject,
+        source: "contact_section",
+        referrer: typeof document !== "undefined" ? document.referrer : null,
+      });
       setFormData({ name: "", email: "", subject: "", fields: {} });
     } catch (err) {
       console.error(err);
@@ -202,6 +208,7 @@ const ContactSection = () => {
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
+                  onClick={() => trackEvent("link_clicked", { label: link.label, url: link.href, source: "contact_section" })}
                   className="glass-card p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group"
                 >
                   <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
