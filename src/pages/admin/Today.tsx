@@ -10,6 +10,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
 import VenturePill from "@/components/admin/VenturePill";
 import { useVentures } from "@/hooks/use-ventures";
+import { useProjects } from "@/hooks/use-projects";
+import ProjectCard from "@/components/admin/ProjectCard";
 
 interface Priority {
   id?: string;
