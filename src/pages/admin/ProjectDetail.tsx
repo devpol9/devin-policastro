@@ -8,12 +8,15 @@ import ReactMarkdown from "react-markdown";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
 import VenturePill from "@/components/admin/VenturePill";
+import ContentDialog from "@/components/admin/ContentDialog";
 import { useVentures } from "@/hooks/use-ventures";
 import {
   useProject, useSubtasks, invalidateProjects,
   updateProject, deleteProject,
   createSubtask, updateSubtask, deleteSubtask,
 } from "@/hooks/use-projects";
+import { useContentItems } from "@/hooks/use-content";
+import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -46,6 +49,11 @@ const ProjectDetail = () => {
   const [newSub, setNewSub] = useState("");
   const [delConfirm, setDelConfirm] = useState("");
   const [sourceInquiry, setSourceInquiry] = useState<any>(null);
+  const [contentDialogOpen, setContentDialogOpen] = useState(false);
+
+  const { items: linkedContent } = useContentItems(
+    id ? { project_id: id, exclude_archived: true } : undefined
+  );
 
   useEffect(() => {
     if (project) {
