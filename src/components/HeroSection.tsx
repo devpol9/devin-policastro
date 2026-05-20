@@ -76,8 +76,8 @@ const HeroSection = () => {
                 alt="Devin Policastro"
                 className="w-full h-full object-cover grayscale-[0.15]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.14em] text-background mix-blend-difference whitespace-nowrap">
+              <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.14em] text-white whitespace-nowrap">
                 <span>— Founder</span>
                 <span>Norwood, NJ</span>
               </div>
