@@ -249,17 +249,16 @@ const AnalyticsInner = () => {
 
       {/* Section C — tabs */}
       <div className="glass-card p-4 mb-8">
-        <div className="flex gap-1 mb-4">
-          {(["events", "paths", "sources"] as const).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`px-3 py-1.5 rounded-md text-xs font-display font-semibold capitalize transition-colors ${
-                tab === t ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >{t}</button>
-          ))}
-        </div>
+        <TabBar<"events" | "paths" | "sources">
+          className="mb-4"
+          value={tab}
+          onChange={setTab}
+          items={[
+            { value: "events", label: "Events" },
+            { value: "paths", label: "Paths" },
+            { value: "sources", label: "Sources" },
+          ]}
+        />
 
         {tab === "events" && (
           <EventsTable rows={topEvents.data ?? []} total={Number(cur?.page_views ?? 0)} />

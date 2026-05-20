@@ -103,21 +103,12 @@ const Ventures = () => {
           </Button>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-6">
-          {STATUSES.map((s) => (
-            <button
-              key={s}
-              onClick={() => setFilter(s)}
-              className={`text-[11px] font-display font-semibold px-3 py-1.5 rounded-md border transition-colors ${
-                filter === s
-                  ? "bg-foreground text-background border-foreground"
-                  : "bg-transparent text-muted-foreground border-border/60"
-              }`}
-            >
-              {statusLabel(s)}
-            </button>
-          ))}
-        </div>
+        <TabBar
+          className="mb-6"
+          value={filter}
+          onChange={(v) => setFilter(v as any)}
+          items={STATUSES.map((s) => ({ value: s as string, label: statusLabel(s) }))}
+        />
 
         {isLoading ? (
           <p className="text-sm text-muted-foreground">Loading…</p>
