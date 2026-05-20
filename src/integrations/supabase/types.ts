@@ -211,6 +211,57 @@ export type Database = {
         }
         Relationships: []
       }
+      ventures: {
+        Row: {
+          accent_color: string
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          meta: Json
+          name: string
+          short_name: string | null
+          slug: string
+          sort_order: number
+          status: string
+          updated_at: string
+          user_id: string
+          website_url: string | null
+        }
+        Insert: {
+          accent_color?: string
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          meta?: Json
+          name: string
+          short_name?: string | null
+          slug: string
+          sort_order?: number
+          status?: string
+          updated_at?: string
+          user_id: string
+          website_url?: string | null
+        }
+        Update: {
+          accent_color?: string
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          meta?: Json
+          name?: string
+          short_name?: string | null
+          slug?: string
+          sort_order?: number
+          status?: string
+          updated_at?: string
+          user_id?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -222,6 +273,10 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      seed_default_ventures: {
+        Args: { target_user_id: string }
+        Returns: undefined
       }
     }
     Enums: {
