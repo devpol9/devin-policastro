@@ -126,6 +126,7 @@ export type Database = {
       }
       inquiries: {
         Row: {
+          converted_project_id: string | null
           created_at: string
           email: string
           form_data: Json
@@ -137,6 +138,7 @@ export type Database = {
           status: string
         }
         Insert: {
+          converted_project_id?: string | null
           created_at?: string
           email: string
           form_data?: Json
@@ -148,6 +150,7 @@ export type Database = {
           status?: string
         }
         Update: {
+          converted_project_id?: string | null
           created_at?: string
           email?: string
           form_data?: Json
@@ -158,7 +161,15 @@ export type Database = {
           service_type?: string
           status?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "inquiries_converted_project_id_fkey"
+            columns: ["converted_project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       priorities_today: {
         Row: {
@@ -192,6 +203,112 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      projects: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          due_date: string | null
+          id: string
+          meta: Json
+          percent_complete: number
+          priority: string
+          sort_order: number
+          source_id: string | null
+          source_type: string | null
+          status: string
+          tags: string[]
+          title: string
+          updated_at: string
+          user_id: string
+          venture_id: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          meta?: Json
+          percent_complete?: number
+          priority?: string
+          sort_order?: number
+          source_id?: string | null
+          source_type?: string | null
+          status?: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+          user_id: string
+          venture_id?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          meta?: Json
+          percent_complete?: number
+          priority?: string
+          sort_order?: number
+          source_id?: string | null
+          source_type?: string | null
+          status?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          user_id?: string
+          venture_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_venture_id_fkey"
+            columns: ["venture_id"]
+            isOneToOne: false
+            referencedRelation: "ventures"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subtasks: {
+        Row: {
+          completed: boolean
+          created_at: string
+          id: string
+          project_id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          project_id: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          id?: string
+          project_id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subtasks_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
