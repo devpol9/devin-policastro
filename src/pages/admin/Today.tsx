@@ -14,8 +14,11 @@ import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
 import { useChatTodayStats } from "@/hooks/use-chats";
+import { usePinnedKpis } from "@/hooks/use-kpis";
+import KpiCard from "@/components/admin/KpiCard";
+import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Pin } from "lucide-react";
 
 interface Priority {
   id?: string;
@@ -121,6 +124,8 @@ const Today = () => {
   const topInProgress = inProgressProjects.slice(0, 5);
   const { items: scheduledContent } = useScheduledThisWeek();
   const { data: chatStats } = useChatTodayStats();
+  const { pinned } = usePinnedKpis();
+  const [openKpiId, setOpenKpiId] = useState<string | null>(null);
   const topContent = scheduledContent
     .filter((c) => c.scheduled_at)
     .sort((a, b) => new Date(a.scheduled_at!).getTime() - new Date(b.scheduled_at!).getTime())
@@ -322,6 +327,40 @@ const Today = () => {
           </div>
         </motion.section>
       )}
+
+      <motion.section
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.075 }}
+        className="mb-10"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">01.7 · PINNED KPIS</p>
+            <h3 className="font-display font-bold text-lg mt-1">Metrics at a glance</h3>
+          </div>
+          <button
+            onClick={() => navigate("/hq/kpis")}
+            className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+          >
+            View all <ArrowRight size={12} />
+          </button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {pinned.map((k) => (
+            <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
+          ))}
+          {Array.from({ length: Math.max(0, 4 - pinned.length) }).map((_, i) => (
+            <button
+              key={`empty-${i}`}
+              onClick={() => navigate("/hq/kpis")}
+              className="glass-card p-3 min-h-[90px] flex items-center justify-center gap-2 border-dashed border-border/40 text-muted-foreground/60 hover:text-accent hover:border-accent/40 transition-colors text-xs font-display"
+            >
+              <Pin size={12} /> Pin a KPI
+            </button>
+          ))}
+        </div>
+      </motion.section>
+
+
 
 
       {topContent.length > 0 && (
@@ -544,6 +583,8 @@ const Today = () => {
           </div>
         </motion.section>
       )}
+
+      <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
     </AdminShell>
   );
 };

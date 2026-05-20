@@ -14,7 +14,12 @@ import { invalidateVentures, useVenture } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useContentItems } from "@/hooks/use-content";
+import { useKpis } from "@/hooks/use-kpis";
+import KpiCard from "@/components/admin/KpiCard";
+import KpiDialog from "@/components/admin/KpiDialog";
+import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
+import { Plus } from "lucide-react";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -49,6 +54,13 @@ const VentureDetail = () => {
   const [notes, setNotes] = useState("");
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState("");
+  const [kpiDialogOpen, setKpiDialogOpen] = useState(false);
+  const [openKpiId, setOpenKpiId] = useState<string | null>(null);
+
+  const { kpis: ventureKpis } = useKpis(
+    venture ? { venture_ids: [venture.id], archived: false } : undefined
+  );
+  const topKpis = ventureKpis.slice(0, 4);
 
   const { projects: ventureProjects } = useProjects(
     venture ? { venture_id: venture.id } : undefined
@@ -221,6 +233,36 @@ const VentureDetail = () => {
           </TabsList>
 
           <TabsContent value="overview" className="space-y-5 mt-5">
+            <div className="glass-card p-5">
+              <div className="flex items-center justify-between mb-3">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">KPIS</p>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => navigate(`/hq/kpis?venture=${venture.id}`)}
+                    className="text-xs font-display text-muted-foreground hover:text-accent"
+                  >
+                    View all →
+                  </button>
+                  <Button size="sm" variant="outline" onClick={() => setKpiDialogOpen(true)}>
+                    <Plus size={12} className="mr-1" /> New KPI
+                  </Button>
+                </div>
+              </div>
+              {topKpis.length === 0 ? (
+                <div className="text-center py-6">
+                  <p className="text-sm text-muted-foreground italic mb-3">No KPIs tracked yet for this venture</p>
+                  <Button size="sm" variant="outline" onClick={() => setKpiDialogOpen(true)}>
+                    <Plus size={12} className="mr-1" /> New KPI
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {topKpis.map((k) => (
+                    <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
+                  ))}
+                </div>
+              )}
+            </div>
             <div className="glass-card p-5">
               <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">DESCRIPTION</p>
               <p className="text-sm">{venture.description || "No description."}</p>
@@ -396,6 +438,12 @@ const VentureDetail = () => {
         </Tabs>
 
         <VentureDialog open={editOpen} onOpenChange={setEditOpen} venture={venture} />
+        <KpiDialog
+          open={kpiDialogOpen}
+          onOpenChange={setKpiDialogOpen}
+          defaults={{ venture_id: venture.id }}
+        />
+        <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
       </AdminShell>
     </AdminGuard>
   );

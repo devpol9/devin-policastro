@@ -413,7 +413,16 @@ const ProjectDetail = () => {
               </div>
             )}
 
+            <div className="glass-card p-5">
+              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2">LINKED KPIS</p>
+              <p className="text-xs text-muted-foreground italic mb-3">Link KPIs to this project</p>
+              <Button variant="outline" size="sm" className="w-full" disabled>
+                <Plus size={12} className="mr-1" /> Link KPI (coming soon)
+              </Button>
+            </div>
+
             <div className="glass-card p-5 border-destructive/30">
+
               <p className="font-mono text-[10px] text-destructive tracking-[0.18em] mb-3">DANGER ZONE</p>
               <div className="space-y-2">
                 <Button variant="outline" size="sm" className="w-full" onClick={handleArchive}>
