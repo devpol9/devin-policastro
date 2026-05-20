@@ -35,7 +35,7 @@ const InquiryDetail = () => {
       .then(({ data, error }) => {
         if (error || !data) {
           toast.error("Inquiry not found");
-          navigate("/inquiries", { replace: true });
+          navigate("/hq/inquiries", { replace: true });
           return;
         }
         setInq(data);
