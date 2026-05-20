@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
+import VenturePill from "@/components/admin/VenturePill";
+import { useVentures } from "@/hooks/use-ventures";
 
 interface Priority {
   id?: string;
@@ -108,6 +110,7 @@ const PrioritySlot = ({
 
 const Today = () => {
   const navigate = useNavigate();
+  const { activeVentures } = useVentures();
   const [userId, setUserId] = useState<string>("");
   const [priorities, setPriorities] = useState<Priority[]>([
     { slot: 1, title: "", completed: false },
@@ -252,6 +255,22 @@ const Today = () => {
           {newCount} new {newCount === 1 ? "inquiry" : "inquiries"} · {weekTotal} this week
         </p>
       </motion.div>
+
+      {activeVentures.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.03 }}
+          className="mb-8"
+        >
+          <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] mb-2 lowercase">
+            your ventures — {activeVentures.length} active
+          </p>
+          <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 scrollbar-thin">
+            {activeVentures.map((v) => (
+              <VenturePill key={v.id} venture={v} size="md" />
+            ))}
+          </div>
+        </motion.section>
+      )}
 
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}

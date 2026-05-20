@@ -24,7 +24,7 @@ const mainNav: NavItem[] = [
   { label: "Today", icon: Home, to: "/today" },
   { label: "Inquiries", icon: Mail, to: "/inquiries" },
   { label: "Projects", icon: KanbanSquare, soon: true },
-  { label: "Ventures", icon: Building2, soon: true },
+  { label: "Ventures", icon: Building2, to: "/ventures" },
   { label: "Content", icon: Calendar, soon: true },
   { label: "Daily Log", icon: BookOpen, soon: true },
   { label: "KPIs", icon: TrendingUp, soon: true },
@@ -36,6 +36,7 @@ const mainNav: NavItem[] = [
 const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/today")) return "Today";
   if (pathname.startsWith("/inquiries")) return "Inquiries";
+  if (pathname.startsWith("/ventures")) return "Ventures";
   if (pathname.startsWith("/settings")) return "Settings";
   return "DevHQ";
 };
