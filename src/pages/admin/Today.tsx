@@ -112,7 +112,8 @@ const PrioritySlot = ({
 
 const Today = () => {
   const navigate = useNavigate();
-  const { activeVentures } = useVentures();
+  const { projects: inProgressProjects } = useProjects({ status: "in_progress" });
+  const topInProgress = inProgressProjects.slice(0, 5);
   const [userId, setUserId] = useState<string>("");
   const [priorities, setPriorities] = useState<Priority[]>([
     { slot: 1, title: "", completed: false },
