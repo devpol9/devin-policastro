@@ -61,6 +61,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <ConditionalSmoothScroll />
+        <HqShortcut />
         <Routes>
           {/* Public site */}
           <Route path="/" element={<Index />} />
