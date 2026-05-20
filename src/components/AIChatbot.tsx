@@ -218,7 +218,7 @@ const AIChatbot = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Dev anything..."
-                className="flex-1 bg-secondary/40 rounded-xl px-3 sm:px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-primary/30 placeholder:text-muted-foreground/50"
+                className="flex-1 bg-secondary/40 rounded-xl px-3 sm:px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-primary/30 placeholder:text-muted-foreground"
                 disabled={isLoading}
               />
               <button
