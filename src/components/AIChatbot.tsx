@@ -119,7 +119,14 @@ const AIChatbot = () => {
     <>
       {/* Floating trigger — above mobile bottom nav */}
       <motion.button
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (!open) {
+            import("@/lib/analytics").then(({ trackEvent }) =>
+              trackEvent("chatbot_engaged", { action: "opened" })
+            );
+          }
+          setOpen(!open);
+        }}
         className="fixed bottom-[5.5rem] md:bottom-6 right-4 md:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/30 transition-transform"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}

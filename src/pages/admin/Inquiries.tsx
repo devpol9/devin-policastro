@@ -219,6 +219,14 @@ const Inquiries = () => {
                           → project
                         </button>
                       )}
+                      {(inq.form_data as any)?.chat_session_id && (
+                        <span
+                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] border border-border bg-secondary text-muted-foreground"
+                          title="Converted from chat session"
+                        >
+                          💬 from chat
+                        </span>
+                      )}
                       <select
                         value={inq.status}
                         onClick={(e) => e.stopPropagation()}

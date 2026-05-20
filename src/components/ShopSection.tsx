@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { toast } from "sonner";
 import TiltCard from "@/components/effects/TiltCard";
 import SectionHeader from "@/components/SectionHeader";
+import { trackEvent } from "@/lib/analytics";
 
 interface Product {
   name: string;
@@ -94,6 +95,7 @@ const ShopSection = () => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
     toast.success(`Code copied: ${code}`);
+    trackEvent("promo_code_copied", { code });
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
@@ -202,6 +204,7 @@ const ShopSection = () => {
                           href={product.link}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => trackEvent("shop_clicked", { product: product.name, url: product.link })}
                           className="ml-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wide transition-all duration-500"
                           style={{ background: `hsl(${product.color})`, color: `hsl(36 30% 98%)` }}
                         >

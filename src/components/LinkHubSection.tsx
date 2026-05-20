@@ -101,6 +101,11 @@ const LinkHubSection = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        import("@/lib/analytics").then(({ trackEvent }) =>
+                          trackEvent("link_clicked", { label: link.title, url: link.url, source: "link_hub" })
+                        );
+                      }}
                       className="p-2 rounded-lg shrink-0 text-foreground/40 hover:text-accent hover:bg-accent/5 transition-all duration-300"
                       aria-label={`Open ${link.title}`}
                     >

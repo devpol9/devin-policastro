@@ -13,7 +13,9 @@ import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
+import { useChatTodayStats } from "@/hooks/use-chats";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
+import { MessageCircle } from "lucide-react";
 
 interface Priority {
   id?: string;
@@ -118,6 +120,7 @@ const Today = () => {
   const { projects: inProgressProjects } = useProjects({ status: "in-progress" });
   const topInProgress = inProgressProjects.slice(0, 5);
   const { items: scheduledContent } = useScheduledThisWeek();
+  const { data: chatStats } = useChatTodayStats();
   const topContent = scheduledContent
     .filter((c) => c.scheduled_at)
     .sort((a, b) => new Date(a.scheduled_at!).getTime() - new Date(b.scheduled_at!).getTime())
@@ -467,6 +470,55 @@ const Today = () => {
           </div>
         )}
       </motion.section>
+
+      {chatStats && chatStats.total24h > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.22 }}
+          className="mb-10"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em]">05 · CHAT</p>
+              <h3 className="font-display font-bold text-lg mt-1">Conversations today</h3>
+            </div>
+            <button
+              onClick={() => navigate("/hq/chats")}
+              className="text-xs font-display text-muted-foreground hover:text-accent flex items-center gap-1"
+            >
+              View all <ArrowRight size={12} />
+            </button>
+          </div>
+          <button
+            onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
+            className="w-full text-left glass-card p-4 flex items-center gap-4"
+          >
+            <div className="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
+              <MessageCircle size={16} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="font-display font-bold text-base">{chatStats.total24h}</span>
+                <span className="text-xs text-muted-foreground">in last 24h</span>
+                {chatStats.unreviewed24h > 0 && (
+                  <span className="ml-auto px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] bg-accent/15 text-accent border border-accent/30">
+                    {chatStats.unreviewed24h} unreviewed
+                  </span>
+                )}
+              </div>
+              {chatStats.latestPreview && (
+                <p className="text-xs text-muted-foreground truncate italic">
+                  "{chatStats.latestPreview}"
+                </p>
+              )}
+              {chatStats.latestPath && (
+                <p className="text-[10px] font-mono text-muted-foreground/70 truncate mt-0.5">
+                  from {chatStats.latestPath}
+                </p>
+              )}
+            </div>
+          </button>
+        </motion.section>
+      )}
 
       {pv24 > 0 && (
         <motion.section
