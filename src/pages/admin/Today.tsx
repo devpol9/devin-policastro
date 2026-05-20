@@ -7,6 +7,7 @@ import { Check, Pencil, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import AdminShell from "@/components/admin/AdminShell";
+import AdminGuard from "@/components/admin/AdminGuard";
 import SectionHeader from "@/components/SectionHeader";
 import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
 import VenturePill from "@/components/admin/VenturePill";
