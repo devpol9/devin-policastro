@@ -238,10 +238,10 @@ const ChatsInner = () => {
               {/* Header */}
               <div className="flex flex-wrap items-start justify-between gap-2 border-b border-border/40 pb-3">
                 <div className="min-w-0">
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-[0.18em] uppercase">
+                  <p className="text-[10px] text-muted-foreground tracking-wide uppercase font-medium">
                     Started {formatDistanceToNowStrict(new Date(detail.data.session.started_at), { addSuffix: true })}
                   </p>
-                  <p className="font-display font-bold text-sm mt-1">
+                  <p className="font-body font-semibold text-sm mt-1 tracking-tight">
                     {detail.data.session.path || "/"} · {detail.data.session.message_count} msgs · {parseUA(detail.data.session.user_agent)}
                   </p>
                 </div>
