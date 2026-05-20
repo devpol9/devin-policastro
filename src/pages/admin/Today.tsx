@@ -15,10 +15,12 @@ import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
 import { useChatTodayStats } from "@/hooks/use-chats";
 import { usePinnedKpis } from "@/hooks/use-kpis";
+import { useRecentCaptures, useCreateCapture } from "@/hooks/use-captures";
+import { useSaveDailyLog, useDailyLog } from "@/hooks/use-daily-log";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
-import { MessageCircle, Pin } from "lucide-react";
+import { MessageCircle, Pin, BookOpen, Zap, ArrowUpRight } from "lucide-react";
 
 interface Priority {
   id?: string;
@@ -240,19 +242,30 @@ const Today = () => {
     );
   };
 
+  const saveLogMut = useSaveDailyLog();
+  const createCapture = useCreateCapture();
+  const { data: todayLog } = useDailyLog(todayISO());
+  const [logMode, setLogMode] = useState<"log" | "capture">("log");
+  const { data: recentCaptures = [] } = useRecentCaptures(5);
+
   const saveLog = async () => {
     if (!quickLog.trim() || !userId) return;
     setSavingLog(true);
-    const { error } = await supabase.from("daily_logs_quick").insert({
-      user_id: userId,
-      content: quickLog.trim(),
-    });
-    setSavingLog(false);
-    if (error) {
-      toast.error("Couldn't save");
-    } else {
+    try {
+      if (logMode === "log") {
+        const existing = (todayLog?.notes ?? "").trim();
+        const next = existing ? `${existing}\n\n---\n\n${quickLog.trim()}` : quickLog.trim();
+        await saveLogMut.mutateAsync({ date: todayISO(), partial: { notes: next } });
+        toast.success("Logged.");
+      } else {
+        await createCapture.mutateAsync({ kind: "note", body: quickLog.trim() });
+        toast.success("Captured.");
+      }
       setQuickLog("");
-      toast.success("Logged.");
+    } catch (e: any) {
+      toast.error(e.message ?? "Couldn't save");
+    } finally {
+      setSavingLog(false);
     }
   };
 
