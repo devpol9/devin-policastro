@@ -319,6 +319,8 @@ const Today = () => {
         </motion.section>
       )}
 
+      <CrossVentureInbox compact />
+
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
         className="mb-10"
