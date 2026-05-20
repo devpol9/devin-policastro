@@ -15,6 +15,8 @@ import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useContentItems } from "@/hooks/use-content";
 import { useKpis } from "@/hooks/use-kpis";
+import { useImpactZoneInbox } from "@/hooks/use-impact-zone-inbox";
+import { IZ_ADMIN_URL } from "@/integrations/impact-zone/client";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDialog from "@/components/admin/KpiDialog";
 import KpiDetail from "@/components/admin/KpiDetail";
