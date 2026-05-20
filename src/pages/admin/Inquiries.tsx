@@ -7,6 +7,7 @@ import { format, subDays } from "date-fns";
 import { toast } from "sonner";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
+import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
 
 interface Inquiry {
   id: string;
