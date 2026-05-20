@@ -211,6 +211,14 @@ const Inquiries = () => {
                       >
                         {inq.service_type.replace(" Inquiry", "")}
                       </span>
+                      {inq.converted_project_id && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); navigate(`/hq/projects/${inq.converted_project_id}`); }}
+                          className="px-2 py-0.5 rounded text-[10px] font-display font-semibold tracking-[0.06em] border border-accent/40 text-accent bg-accent/10 hover:bg-accent/20"
+                        >
+                          → project
+                        </button>
+                      )}
                       <select
                         value={inq.status}
                         onClick={(e) => e.stopPropagation()}
