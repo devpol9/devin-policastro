@@ -53,6 +53,24 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [newCount, setNewCount] = useState<number>(0);
+  const [quickOpen, setQuickOpen] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const mod = e.metaKey || e.ctrlKey;
+      if (mod && e.shiftKey && (e.key === "N" || e.key === "n")) {
+        e.preventDefault();
+        setQuickOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    const onCustom = () => setQuickOpen(true);
+    window.addEventListener("devhq:open-quick-capture", onCustom as EventListener);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("devhq:open-quick-capture", onCustom as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
