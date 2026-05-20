@@ -102,6 +102,10 @@ const Inquiries = () => {
         description={`${total} total across every service line. Filter, triage, and update status inline.`}
       />
 
+      <CrossVentureInbox />
+
+
+
       <div className="flex flex-wrap gap-3 mb-5">
         {[
           { label: "Total", value: total },
