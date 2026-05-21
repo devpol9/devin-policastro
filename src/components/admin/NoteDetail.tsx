@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -9,11 +9,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
-import { Archive, ArchiveRestore, Pencil, Pin, PinOff, Sparkles, Trash2, ExternalLink } from "lucide-react";
+import { Archive, ArchiveRestore, Check, Loader2, Pencil, Pin, PinOff, Sparkles, Trash2, ExternalLink, X } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import VenturePill from "@/components/admin/VenturePill";
 import NoteDialog from "@/components/admin/NoteDialog";
 import ProjectDialog from "@/components/admin/ProjectDialog";
+import MarkdownEditor from "@/components/admin/MarkdownEditor";
 import {
   useCapture, useUpdateCapture, useDeleteCapture, type Capture,
 } from "@/hooks/use-captures";
@@ -39,6 +40,42 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
   const [editOpen, setEditOpen] = useState(false);
   const [promoteOpen, setPromoteOpen] = useState(false);
   const [confirmTitle, setConfirmTitle] = useState("");
+
+  // Inline body editor
+  const [editingBody, setEditingBody] = useState(false);
+  const [draft, setDraft] = useState("");
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastSaved = useRef<string>("");
+
+  useEffect(() => {
+    if (capture) {
+      setDraft(capture.body);
+      lastSaved.current = capture.body;
+    }
+    setEditingBody(false);
+    setSaveState("idle");
+  }, [capture?.id]);
+
+  // Debounced autosave while editing
+  useEffect(() => {
+    if (!editingBody || !capture) return;
+    if (draft === lastSaved.current) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    setSaveState("saving");
+    saveTimer.current = setTimeout(async () => {
+      try {
+        await update.mutateAsync({ id: capture.id, patch: { body: draft } });
+        lastSaved.current = draft;
+        setSaveState("saved");
+        setTimeout(() => setSaveState((s) => (s === "saved" ? "idle" : s)), 1500);
+      } catch (e: any) {
+        toast.error(e?.message ?? "Couldn't save");
+        setSaveState("idle");
+      }
+    }, 700);
+    return () => { if (saveTimer.current) clearTimeout(saveTimer.current); };
+  }, [draft, editingBody, capture, update]);
 
   if (!capture) {
     return (
@@ -129,8 +166,53 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
               <p className="text-xs text-muted-foreground italic">— {meta.source}</p>
             )}
 
-            <div className="prose prose-sm max-w-none prose-headings:font-display prose-p:text-foreground/90">
-              <ReactMarkdown>{capture.body}</ReactMarkdown>
+            <div>
+              <div className="flex items-center justify-between mb-2 h-5">
+                <span className="text-[10px] font-display font-semibold tracking-[0.12em] uppercase text-muted-foreground">
+                  Body
+                </span>
+                {editingBody ? (
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
+                    {saveState === "saving" && (<><Loader2 size={11} className="animate-spin" /> Saving…</>)}
+                    {saveState === "saved" && (<><Check size={11} className="text-accent" /> Saved</>)}
+                    <button
+                      onClick={() => { setDraft(capture.body); setEditingBody(false); setSaveState("idle"); }}
+                      className="ml-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-secondary/60"
+                      title="Done editing"
+                    >
+                      <X size={11} /> Done
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setEditingBody(true)}
+                    className="inline-flex items-center gap-1 text-[10px] font-display text-muted-foreground hover:text-accent"
+                    title="Edit body (autosaves)"
+                  >
+                    <Pencil size={11} /> Edit
+                  </button>
+                )}
+              </div>
+              {editingBody ? (
+                <MarkdownEditor
+                  value={draft}
+                  onChange={setDraft}
+                  minHeight={320}
+                  preview="live"
+                  autoFocus
+                  placeholder="Write freely — autosaves as you type."
+                />
+              ) : (
+                <div
+                  className="prose prose-sm max-w-none prose-headings:font-display prose-p:text-foreground/90 cursor-text rounded -mx-2 px-2 py-1 hover:bg-secondary/30"
+                  onClick={() => setEditingBody(true)}
+                  title="Click to edit"
+                >
+                  {capture.body.trim()
+                    ? <ReactMarkdown>{capture.body}</ReactMarkdown>
+                    : <p className="text-muted-foreground italic">Empty — click to start writing.</p>}
+                </div>
+              )}
             </div>
 
             {capture.tags.length > 0 && (

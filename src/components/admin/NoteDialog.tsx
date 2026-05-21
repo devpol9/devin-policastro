@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogD
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import MarkdownEditor from "@/components/admin/MarkdownEditor";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useVentures } from "@/hooks/use-ventures";
@@ -118,7 +118,7 @@ const NoteDialog = ({ open, onOpenChange, capture, onCreated }: Props) => {
           </div>
           <div>
             <Label className="text-xs">Body</Label>
-            <Textarea value={body} onChange={(e) => setBody(e.target.value)} rows={6} placeholder="Markdown supported" />
+            <MarkdownEditor value={body} onChange={setBody} minHeight={260} placeholder="Markdown supported — # heading, **bold**, - list, [link](url)" />
           </div>
           {kind === "link" && (
             <div>
