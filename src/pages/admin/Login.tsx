@@ -33,11 +33,8 @@ const Login = () => {
   }, [navigate]);
 
   const handleGoogleLogin = async () => {
-    try {
-      sessionStorage.setItem(RETURN_TO_KEY, resolveDestination());
-    } catch {}
     const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+      redirect_uri: window.location.origin + "/hq/login",
       extraParams: { prompt: "select_account" },
     });
     if (result.error) {
