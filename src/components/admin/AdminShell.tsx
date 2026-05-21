@@ -15,6 +15,7 @@ import {
 import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 import MobileAdminNav from "@/components/admin/MobileAdminNav";
 import HqCommandBar from "@/components/admin/HqCommandBar";
+import InstallPwaBanner from "@/components/admin/InstallPwaBanner";
 
 type NavItem = {
   label: string;
@@ -235,6 +236,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
       <MobileAdminNav />
       <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
       <HqCommandBar open={cmdOpen} onOpenChange={setCmdOpen} />
+      <InstallPwaBanner />
     </SidebarProvider>
   );
 };
