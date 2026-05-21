@@ -373,7 +373,7 @@ const Today = () => {
         className="mb-10"
       >
         <SectionHeader as="h2" numeral="01" eyebrow="Priorities" title={<>Today's <span className="accent-headline">three.</span></>} />
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
           {priorities.map((p) => (
             <PrioritySlot key={p.slot} slot={p.slot} value={p} onSave={savePriority} />
           ))}
