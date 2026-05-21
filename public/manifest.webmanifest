@@ -1,0 +1,22 @@
+{
+  "name": "DevHQ — Devin Policastro",
+  "short_name": "DevHQ",
+  "description": "Devin Policastro's HQ — projects, KPIs, notes, people, daily log.",
+  "start_url": "/hq/today",
+  "id": "/hq",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f0e8",
+  "theme_color": "#c4654a",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Today", "url": "/hq/today" },
+    { "name": "Notes", "url": "/hq/notes" },
+    { "name": "Inquiries", "url": "/hq/inquiries" }
+  ]
+}
