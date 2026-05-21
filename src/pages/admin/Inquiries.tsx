@@ -65,6 +65,28 @@ const Inquiries = () => {
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState(false);
   const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  const toggleSelect = (id: string) =>
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+
+  const bulkUpdateStatus = async (newStatus: string) => {
+    const ids = Array.from(selected);
+    if (ids.length === 0) return;
+    const { error } = await supabase.from("inquiries").update({ status: newStatus }).in("id", ids);
+    if (error) {
+      toast.error("Bulk update failed");
+    } else {
+      setInquiries((prev) => prev.map((i) => (selected.has(i.id) ? { ...i, status: newStatus } : i)));
+      toast.success(`Updated ${ids.length} inquiries`);
+      setSelected(new Set());
+    }
+  };
+
 
 
   useEffect(() => { fetchInquiries(); }, []);
