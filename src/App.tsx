@@ -117,7 +117,7 @@ const App = () => (
           <Route path="/hq/content" element={<ContentPage />} />
           <Route path="/hq/analytics" element={<Navigate to="/hq/kpis" replace />} />
           
-          <Route path="/hq/people" element={<Navigate to="/hq/today" replace />} />
+          <Route path="/hq/people" element={<PeoplePage />} />
 
           <Route path="/hq/kpis" element={<KpisPage />} />
           <Route path="/hq/log" element={<Navigate to="/hq/notes" replace />} />
