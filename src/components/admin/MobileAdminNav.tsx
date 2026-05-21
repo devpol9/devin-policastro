@@ -22,7 +22,7 @@ const groups: Group[] = [
       { label: "Content", icon: Calendar, to: "/hq/content" },
       { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
       { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
-      { label: "Chat Logs", icon: MessageSquare, to: "/hq/chats" },
+      
     ],
   },
   {
