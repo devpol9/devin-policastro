@@ -24,6 +24,7 @@ import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import { MessageCircle, Pin, BookOpen, Zap, ArrowUpRight } from "lucide-react";
 import TabBar from "@/components/admin/TabBar";
+import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
 
 interface Priority {
   id?: string;
@@ -437,13 +438,16 @@ const Today = () => {
             placeholder={logMode === "log" ? "Append to today's notes…" : "What's on your mind?"}
             className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
           />
-          <button
-            onClick={saveLog}
-            disabled={!quickLog.trim() || savingLog}
-            className="mt-2 w-full px-3 py-2 rounded-md bg-foreground text-background text-xs font-semibold disabled:opacity-40"
-          >
-            {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
-          </button>
+          <div className="flex items-center gap-2 mt-2">
+            <button
+              onClick={saveLog}
+              disabled={!quickLog.trim() || savingLog}
+              className="flex-1 px-3 py-2 rounded-md bg-foreground text-background text-xs font-semibold disabled:opacity-40"
+            >
+              {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
+            </button>
+            <VoiceCaptureButton />
+          </div>
           <button
             onClick={() => navigate("/hq/log")}
             className="mt-2 w-full text-xs text-muted-foreground hover:text-accent flex items-center justify-center gap-1"
