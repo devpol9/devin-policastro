@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Inbox, Layers, CalendarDays, StickyNote,
-  LineChart, Newspaper, Settings, LogOut, ClipboardCheck,
+  LineChart, Newspaper, Settings, LogOut, ClipboardCheck, Users,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
   { label: "Today", icon: LayoutDashboard, to: "/hq/today" },
   { label: "Inbox", icon: Inbox, to: "/hq/inquiries" },
   { label: "Ventures", icon: Layers, to: "/hq/ventures" },
+  { label: "People", icon: Users, to: "/hq/people" },
   { label: "Content", icon: CalendarDays, to: "/hq/content" },
   { label: "KPIs", icon: LineChart, to: "/hq/kpis" },
   { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
@@ -42,6 +43,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/inquiries")) return "Inbox";
   if (pathname.startsWith("/hq/ventures")) return "Ventures";
   if (pathname.startsWith("/hq/projects")) return "Ventures";
+  if (pathname.startsWith("/hq/people")) return "People";
   if (pathname.startsWith("/hq/content")) return "Content";
   if (pathname.startsWith("/hq/analytics")) return "Analytics";
   if (pathname.startsWith("/hq/kpis")) return "KPIs";
