@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { Mail, Phone, Clock, Filter, RefreshCw, Search, FolderPlus, CheckSquare, Square, X } from "lucide-react";
@@ -57,6 +57,8 @@ const inferVentureId = (
 const Inquiries = () => {
   const navigate = useNavigate();
   const { activeVentures } = useVentures();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlVenture = searchParams.get("venture");
   const SAVED_KEY = "hq:inbox:filters";
   const saved = (() => {
     try { return JSON.parse(localStorage.getItem(SAVED_KEY) || "{}"); } catch { return {}; }
@@ -65,7 +67,16 @@ const Inquiries = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>(saved.filter ?? "all");
   const [statusFilter, setStatusFilter] = useState<string>(saved.statusFilter ?? "all");
-  const [ventureFilter, setVentureFilter] = useState<string>(saved.ventureFilter ?? "all");
+  const [ventureFilter, setVentureFilter] = useState<string>(urlVenture ?? saved.ventureFilter ?? "all");
+
+  // If URL had ?venture=, clear it after applying (so back/forward feels right)
+  useEffect(() => {
+    if (urlVenture) {
+      searchParams.delete("venture");
+      setSearchParams(searchParams, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState<boolean>(saved.showConverted ?? false);
   const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);

@@ -283,9 +283,15 @@ const VentureDetail = () => {
               {/* LEFT — Inbox / activity */}
               <div className="space-y-5">
                 <div className="panel p-5">
-                  <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
-                    Recent inquiries
-                  </p>
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">Recent inquiries</p>
+                    <button
+                      onClick={() => navigate(`/hq/inquiries?venture=${venture.id}`)}
+                      className="text-xs font-display text-muted-foreground hover:text-accent"
+                    >
+                      View in Inbox →
+                    </button>
+                  </div>
                   {recentInquiries.length === 0 ? (
                     <p className="text-sm text-muted-foreground">No matching inquiries in the last 30 days.</p>
                   ) : (

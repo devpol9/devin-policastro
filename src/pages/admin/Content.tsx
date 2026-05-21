@@ -240,12 +240,22 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
 }) => {
   const { activeVentures } = useVentures();
   const [cursor, setCursor] = useState(new Date());
-  const monthStart = startOfMonth(cursor);
-  const monthEnd = endOfMonth(cursor);
-  const start = startOfWeek(monthStart);
-  const end = endOfWeek(monthEnd);
+  const [mode, setMode] = useState<"month" | "week">(() => {
+    try { return (localStorage.getItem("devhq.content.calmode") as any) || "month"; } catch { return "month"; }
+  });
+  useEffect(() => { try { localStorage.setItem("devhq.content.calmode", mode); } catch {} }, [mode]);
+
   const days: Date[] = [];
-  for (let d = start; d <= end; d = addDays(d, 1)) days.push(d);
+  if (mode === "month") {
+    const monthStart = startOfMonth(cursor);
+    const monthEnd = endOfMonth(cursor);
+    const start = startOfWeek(monthStart);
+    const end = endOfWeek(monthEnd);
+    for (let d = start; d <= end; d = addDays(d, 1)) days.push(d);
+  } else {
+    const start = startOfWeek(cursor);
+    for (let i = 0; i < 7; i++) days.push(addDays(start, i));
+  }
 
   const byDay = useMemo(() => {
     const m = new Map<string, ContentItem[]>();
@@ -259,16 +269,32 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
   }, [items]);
 
   const unscheduled = items.filter((i) => !i.scheduled_at && !["posted","archived"].includes(i.status));
+  const headerLabel = mode === "month"
+    ? format(cursor, "MMMM yyyy")
+    : `${format(days[0], "MMM d")} – ${format(days[6], "MMM d, yyyy")}`;
+  const shiftBy = mode === "month" ? 30 : 7;
+  const shift = (dir: number) =>
+    mode === "month" ? setCursor(addMonths(cursor, dir)) : setCursor(addDays(cursor, dir * 7));
 
   return (
     <div className="grid lg:grid-cols-[1fr_240px] gap-4">
       <div className="panel p-4">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-display font-bold text-lg">{format(cursor, "MMMM yyyy")}</h3>
+        <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
+          <h3 className="font-display font-bold text-lg">{headerLabel}</h3>
           <div className="flex items-center gap-1">
-            <Button size="sm" variant="outline" onClick={() => setCursor(addMonths(cursor, -1))}><ChevronLeft size={14} /></Button>
+            <div className="flex rounded-md border border-border/60 overflow-hidden mr-2">
+              <button
+                onClick={() => setMode("month")}
+                className={`px-2 py-1 text-[11px] font-display ${mode === "month" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              >Month</button>
+              <button
+                onClick={() => setMode("week")}
+                className={`px-2 py-1 text-[11px] font-display ${mode === "week" ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              >Week</button>
+            </div>
+            <Button size="sm" variant="outline" onClick={() => shift(-1)}><ChevronLeft size={14} /></Button>
             <Button size="sm" variant="outline" onClick={() => setCursor(new Date())}>Today</Button>
-            <Button size="sm" variant="outline" onClick={() => setCursor(addMonths(cursor, 1))}><ChevronRight size={14} /></Button>
+            <Button size="sm" variant="outline" onClick={() => shift(1)}><ChevronRight size={14} /></Button>
           </div>
         </div>
         <div className="grid grid-cols-7 gap-px text-[10px] font-mono text-muted-foreground mb-1">
@@ -276,22 +302,24 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
         </div>
         <div className="grid grid-cols-7 gap-px bg-border/30 rounded overflow-hidden">
           {days.map((d) => {
-            const inMonth = isSameMonth(d, cursor);
+            const inMonth = mode === "week" ? true : isSameMonth(d, cursor);
             const isToday = isSameDay(d, new Date());
             const dayItems = byDay.get(format(d, "yyyy-MM-dd")) ?? [];
+            const cap = mode === "week" ? 8 : 3;
+            const cellHeight = mode === "week" ? "min-h-[220px]" : "min-h-[88px]";
             return (
               <button
                 key={d.toISOString()}
                 onClick={() => onCreateOn(d)}
-                className={`min-h-[88px] p-1.5 text-left flex flex-col gap-1 transition-colors ${
+                className={`${cellHeight} p-1.5 text-left flex flex-col gap-1 transition-colors ${
                   inMonth ? "bg-background hover:bg-secondary/40" : "bg-secondary/20 text-muted-foreground/40"
                 }`}
               >
                 <span className={`text-[10px] font-mono ${isToday ? "text-accent font-bold" : ""}`}>
-                  {format(d, "d")}
+                  {format(d, mode === "week" ? "EEE d" : "d")}
                 </span>
                 <div className="flex flex-col gap-0.5">
-                  {dayItems.slice(0, 3).map((it) => {
+                  {dayItems.slice(0, cap).map((it) => {
                     const v = activeVentures.find((x) => x.id === it.venture_id);
                     const Icon = PLATFORM_ICON[it.platform as Platform];
                     return (
@@ -306,8 +334,8 @@ const CalendarView = ({ items, onOpen, onCreateOn }: {
                       ><Icon size={9} /><span className="truncate">{it.title}</span></span>
                     );
                   })}
-                  {dayItems.length > 3 && (
-                    <span className="text-[9px] text-muted-foreground">+{dayItems.length - 3} more</span>
+                  {dayItems.length > cap && (
+                    <span className="text-[9px] text-muted-foreground">+{dayItems.length - cap} more</span>
                   )}
                 </div>
               </button>

@@ -21,6 +21,8 @@ import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
 import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
 import VenturePill from "@/components/admin/VenturePill";
+import DailyDigest from "@/components/admin/DailyDigest";
+import StaleInquiriesCard from "@/components/admin/StaleInquiriesCard";
 
 interface Priority {
   id?: string;
@@ -281,6 +283,13 @@ const Today = () => {
 
       {/* Cross-venture inbox (assigned / mentions you) */}
       <CrossVentureInbox compact />
+
+      {/* Yesterday digest */}
+      <DailyDigest />
+
+      {/* Stale inquiries needing follow-up */}
+      <StaleInquiriesCard />
+
 
       {/* Venture quick-jump row */}
       {activeVentures.length > 0 && (
