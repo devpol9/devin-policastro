@@ -166,8 +166,53 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
               <p className="text-xs text-muted-foreground italic">— {meta.source}</p>
             )}
 
-            <div className="prose prose-sm max-w-none prose-headings:font-display prose-p:text-foreground/90">
-              <ReactMarkdown>{capture.body}</ReactMarkdown>
+            <div>
+              <div className="flex items-center justify-between mb-2 h-5">
+                <span className="text-[10px] font-display font-semibold tracking-[0.12em] uppercase text-muted-foreground">
+                  Body
+                </span>
+                {editingBody ? (
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
+                    {saveState === "saving" && (<><Loader2 size={11} className="animate-spin" /> Saving…</>)}
+                    {saveState === "saved" && (<><Check size={11} className="text-accent" /> Saved</>)}
+                    <button
+                      onClick={() => { setDraft(capture.body); setEditingBody(false); setSaveState("idle"); }}
+                      className="ml-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-secondary/60"
+                      title="Done editing"
+                    >
+                      <X size={11} /> Done
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setEditingBody(true)}
+                    className="inline-flex items-center gap-1 text-[10px] font-display text-muted-foreground hover:text-accent"
+                    title="Edit body (autosaves)"
+                  >
+                    <Pencil size={11} /> Edit
+                  </button>
+                )}
+              </div>
+              {editingBody ? (
+                <MarkdownEditor
+                  value={draft}
+                  onChange={setDraft}
+                  minHeight={320}
+                  preview="live"
+                  autoFocus
+                  placeholder="Write freely — autosaves as you type."
+                />
+              ) : (
+                <div
+                  className="prose prose-sm max-w-none prose-headings:font-display prose-p:text-foreground/90 cursor-text rounded -mx-2 px-2 py-1 hover:bg-secondary/30"
+                  onClick={() => setEditingBody(true)}
+                  title="Click to edit"
+                >
+                  {capture.body.trim()
+                    ? <ReactMarkdown>{capture.body}</ReactMarkdown>
+                    : <p className="text-muted-foreground italic">Empty — click to start writing.</p>}
+                </div>
+              )}
             </div>
 
             {capture.tags.length > 0 && (
