@@ -94,6 +94,23 @@ const tools = [
   {
     type: "function",
     function: {
+      name: "convert_inquiry",
+      description: "Convert a recent inbound inquiry into a project. Match by person's name and/or service type.",
+      parameters: {
+        type: "object",
+        properties: {
+          match: { type: "string", description: "Name, email, or service type to fuzzy-match the inquiry." },
+          venture_slug: { type: "string" },
+          priority: { type: "string", enum: ["low","medium","high","urgent"] },
+          title: { type: "string", description: "Optional override for project title." },
+        },
+        required: ["match"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
       name: "answer",
       description: "Respond with text only — for questions or when no action fits.",
       parameters: {
