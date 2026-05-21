@@ -268,7 +268,7 @@ const PeoplePage = () => {
         <PersonDrawer
           personId={detailId}
           people={people}
-          onClose={() => setDetailId(null)}
+          onClose={() => { setDetailId(null); if (searchParams.get("person")) { searchParams.delete("person"); setSearchParams(searchParams, { replace: true }); } }}
         />
       </AdminShell>
     </AdminGuard>
