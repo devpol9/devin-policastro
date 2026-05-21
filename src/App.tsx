@@ -70,6 +70,7 @@ import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
 
 import BriefingsPage from "./pages/admin/Briefings";
+import ReviewPage from "./pages/admin/Review";
 import InstallPwaBanner from "./components/admin/InstallPwaBanner";
 
 const queryClient = new QueryClient();
