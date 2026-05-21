@@ -14,6 +14,7 @@ import {
 import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 import MobileAdminNav from "@/components/admin/MobileAdminNav";
 import HqCommandBar from "@/components/admin/HqCommandBar";
+import ShortcutsSheet from "@/components/admin/ShortcutsSheet";
 
 
 type NavItem = {
