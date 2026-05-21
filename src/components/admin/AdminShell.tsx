@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
   { label: "Today", icon: LayoutDashboard, to: "/hq/today" },
   { label: "Inbox", icon: Inbox, to: "/hq/inquiries" },
   { label: "Ventures", icon: Layers, to: "/hq/ventures" },
+  { label: "People", icon: Users, to: "/hq/people" },
   { label: "Content", icon: CalendarDays, to: "/hq/content" },
   { label: "KPIs", icon: LineChart, to: "/hq/kpis" },
   { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
