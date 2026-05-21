@@ -99,6 +99,10 @@ const ServiceInquiryDialog = ({
       if (formData[f.key]) customFields[f.label] = formData[f.key];
     });
 
+    const ventureLabel =
+      VENTURE_OPTIONS.find((v) => v.slug === formData.venture_slug)?.label ?? null;
+    if (ventureLabel) customFields["Related to"] = ventureLabel;
+
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -106,7 +110,10 @@ const ServiceInquiryDialog = ({
           email: formData.email,
           phone: formData.phone,
           subject: emailSubject,
-          formData: customFields,
+          formData: {
+            ...customFields,
+            venture_slug: formData.venture_slug || null,
+          },
         },
       });
 
@@ -115,8 +122,9 @@ const ServiceInquiryDialog = ({
       trackEvent("inquiry_submit", {
         subject: emailSubject,
         service: formData.service || null,
+        venture: formData.venture_slug || null,
       });
-      setFormData({ name: "", email: "", phone: "" });
+      setFormData({ name: "", email: "", phone: "", venture_slug: defaultVenture ?? "" });
       onOpenChange(false);
     } catch (err) {
       console.error(err);
