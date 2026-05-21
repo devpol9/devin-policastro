@@ -112,12 +112,13 @@ const App = () => (
           <Route path="/hq/inquiries/:id" element={<InquiryDetailPage />} />
           <Route path="/hq/ventures" element={<VenturesPage />} />
           <Route path="/hq/ventures/:slug" element={<VentureDetailPage />} />
-          <Route path="/hq/projects" element={<ProjectsPage />} />
+          <Route path="/hq/projects" element={<Navigate to="/hq/ventures" replace />} />
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/hq/content" element={<ContentPage />} />
           <Route path="/hq/analytics" element={<AnalyticsPage />} />
           
-          <Route path="/hq/people" element={<PeoplePage />} />
+          <Route path="/hq/people" element={<Navigate to="/hq/today" replace />} />
+
           <Route path="/hq/kpis" element={<KpisPage />} />
           <Route path="/hq/log" element={<DailyLogPage />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />
