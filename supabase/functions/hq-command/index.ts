@@ -160,12 +160,14 @@ Deno.serve(async (req) => {
     if (!LOVABLE_API_KEY) throw new Error('LOVABLE_API_KEY missing');
 
     // Context for fuzzy matches
-    const [{ data: kpis }, { data: ventures }] = await Promise.all([
+    const [{ data: kpis }, { data: ventures }, { data: recentInquiries }] = await Promise.all([
       supabase.from('kpis').select('id,name').eq('user_id', user.id).eq('archived', false),
-      supabase.from('ventures').select('id,slug,name').eq('user_id', user.id),
+      supabase.from('ventures').select('id,slug,name,short_name').eq('user_id', user.id),
+      supabase.from('inquiries').select('id,name,email,service_type,status,converted_project_id,created_at,form_data').is('converted_project_id', null).order('created_at', { ascending: false }).limit(25),
     ]);
 
-    const ctx = `\nAvailable KPIs: ${(kpis||[]).map(k=>k.name).join(', ') || 'none'}\nVentures: ${(ventures||[]).map(v=>`${v.slug}=${v.name}`).join(', ') || 'none'}`;
+    const inqList = (recentInquiries||[]).map(i => `${i.id} | ${i.name} | ${i.email} | ${i.service_type} | ${i.status}`).join('\n');
+    const ctx = `\nAvailable KPIs: ${(kpis||[]).map(k=>k.name).join(', ') || 'none'}\nVentures: ${(ventures||[]).map(v=>`${v.slug}=${v.name}`).join(', ') || 'none'}\nRecent open inquiries (id | name | email | service | status):\n${inqList || 'none'}`;
 
     const aiRes = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
