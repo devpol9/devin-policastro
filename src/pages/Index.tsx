@@ -15,7 +15,7 @@ import ServicesSection from "@/components/ServicesSection";
 import TrainingSection from "@/components/TrainingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import AIChatbot from "@/components/AIChatbot";
+
 
 const Index = () => {
   return (
