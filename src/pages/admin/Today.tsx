@@ -89,7 +89,7 @@ const PrioritySlot = ({
   };
 
   return (
-    <div className="panel p-4 flex flex-col gap-3 min-h-[120px]">
+    <div className="panel p-3 sm:p-4 flex flex-col gap-2 sm:gap-3 min-h-[88px] sm:min-h-[120px]">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] text-muted-foreground">0{slot}</span>
         {value.title && (
