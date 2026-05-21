@@ -267,11 +267,14 @@ const VentureDetail = () => {
                   </Button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {topKpis.map((k) => (
-                    <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
-                  ))}
-                </div>
+                <>
+                  <KpiQuickLog kpis={ventureKpis} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {topKpis.map((k) => (
+                      <KpiCard key={k.id} kpi={k} compact onClick={() => setOpenKpiId(k.id)} />
+                    ))}
+                  </div>
+                </>
               )}
             </div>
 
