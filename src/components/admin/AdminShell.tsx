@@ -56,6 +56,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
   const [newCount, setNewCount] = useState<number>(0);
   const [quickOpen, setQuickOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -67,6 +68,16 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
       if (mod && !e.shiftKey && (e.key === "k" || e.key === "K")) {
         e.preventDefault();
         setCmdOpen(true);
+      }
+      // "?" — only fire when not typing in an input/textarea/contentEditable
+      if (
+        !mod && e.key === "?" &&
+        !(e.target instanceof HTMLInputElement) &&
+        !(e.target instanceof HTMLTextAreaElement) &&
+        !(e.target as HTMLElement)?.isContentEditable
+      ) {
+        e.preventDefault();
+        setShortcutsOpen(true);
       }
     };
     window.addEventListener("keydown", onKey);
