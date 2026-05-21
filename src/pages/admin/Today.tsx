@@ -482,7 +482,7 @@ const Today = () => {
             placeholder={logMode === "log" ? "Append to today's notes…" : "What's on your mind?"}
             className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
           />
-          <div className="flex items-center gap-2 mt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2">
             <button
               onClick={saveLog}
               disabled={!quickLog.trim() || savingLog}
@@ -490,7 +490,7 @@ const Today = () => {
             >
               {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
             </button>
-            <VoiceCaptureButton />
+            <VoiceCaptureButton fullWidth onCaptured={(c) => setVoiceCapture(c)} />
           </div>
           <button
             onClick={() => navigate("/hq/log")}
