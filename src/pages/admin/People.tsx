@@ -501,6 +501,33 @@ const PersonDrawer = ({ personId, people, onClose }: {
           </div>
         )}
 
+        {tab === "inquiries" && (
+          <div className="mt-5 space-y-2">
+            {linkedInquiries.length === 0 ? (
+              <p className="text-xs text-muted-foreground text-center py-8">
+                No inquiries from this email. New inquiries auto-link here.
+              </p>
+            ) : (
+              linkedInquiries.map((inq: any) => (
+                <Link
+                  key={inq.id}
+                  to={`/hq/inquiries/${inq.id}`}
+                  className="block border border-border/40 rounded-md p-3 text-xs hover:border-accent/60 hover:bg-accent/5 transition-colors"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="font-medium font-display">{inq.service_type.replace(" Inquiry", "")}</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-secondary text-secondary-foreground">{inq.status}</span>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground">
+                    {format(new Date(inq.created_at), "MMM d, yyyy")} · {formatDistanceToNowStrict(new Date(inq.created_at), { addSuffix: true })}
+                  </p>
+                </Link>
+              ))
+            )}
+          </div>
+        )}
+
+
         <MakeIntroDialog
           open={introOpen}
           onOpenChange={setIntroOpen}
