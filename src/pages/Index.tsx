@@ -35,7 +35,7 @@ const Index = () => {
       <ContactSection />
       <Footer />
       <MobileBottomNav />
-      <AIChatbot />
+      
     </div>
   );
 };
