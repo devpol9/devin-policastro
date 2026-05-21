@@ -71,6 +71,7 @@ import DailyLogPage from "./pages/admin/DailyLog";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
 import PeoplePage from "./pages/admin/People";
+import BriefingsPage from "./pages/admin/Briefings";
 
 const queryClient = new QueryClient();
 
@@ -119,6 +120,7 @@ const App = () => (
           <Route path="/hq/kpis" element={<KpisPage />} />
           <Route path="/hq/log" element={<DailyLogPage />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />
+          <Route path="/hq/briefings" element={<BriefingsPage />} />
           <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
           <Route path="/hq/*" element={<AdminNotFound />} />
 

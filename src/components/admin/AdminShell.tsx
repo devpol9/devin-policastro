@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Home, Mail, KanbanSquare, Building2, Calendar, BookOpen,
   TrendingUp, Lightbulb, BarChart3, MessageSquare, Settings,
-  LogOut, Users,
+  LogOut, Users, Newspaper,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -45,7 +45,7 @@ const navGroups: NavGroup[] = [
       { label: "Content", icon: Calendar, to: "/hq/content" },
       { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
       { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
-      
+      { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
     ],
   },
   {
@@ -68,6 +68,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/kpis")) return "KPIs";
   if (pathname.startsWith("/hq/log")) return "Daily Log";
   if (pathname.startsWith("/hq/notes")) return "Notes & Ideas";
+  if (pathname.startsWith("/hq/briefings")) return "Briefings";
   if (pathname.startsWith("/hq/settings/pillars")) return "Pillars";
   if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";

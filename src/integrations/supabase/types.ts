@@ -341,33 +341,39 @@ export type Database = {
       }
       intros: {
         Row: {
+          context: string | null
           created_at: string
           follow_up_at: string | null
           from_person_id: string | null
           id: string
           note: string | null
+          outcome: string | null
           status: string
           to_person_id: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          context?: string | null
           created_at?: string
           follow_up_at?: string | null
           from_person_id?: string | null
           id?: string
           note?: string | null
+          outcome?: string | null
           status?: string
           to_person_id?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          context?: string | null
           created_at?: string
           follow_up_at?: string | null
           from_person_id?: string | null
           id?: string
           note?: string | null
+          outcome?: string | null
           status?: string
           to_person_id?: string | null
           updated_at?: string
@@ -505,6 +511,7 @@ export type Database = {
           name: string
           notes: string | null
           phone: string | null
+          relationship_strength: number | null
           role: string | null
           source: string | null
           tags: string[]
@@ -522,6 +529,7 @@ export type Database = {
           name: string
           notes?: string | null
           phone?: string | null
+          relationship_strength?: number | null
           role?: string | null
           source?: string | null
           tags?: string[]
@@ -539,6 +547,7 @@ export type Database = {
           name?: string
           notes?: string | null
           phone?: string | null
+          relationship_strength?: number | null
           role?: string | null
           source?: string | null
           tags?: string[]
