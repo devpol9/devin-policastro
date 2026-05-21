@@ -251,8 +251,10 @@ const Today = () => {
         await saveLogMut.mutateAsync({ date: todayISO(), partial: { notes: next } });
         toast.success("Logged.");
       } else {
-        await createCapture.mutateAsync({ kind: "note", body: quickLog.trim() });
+        const text = quickLog.trim();
+        const created = await createCapture.mutateAsync({ kind: "note", body: text });
         toast.success("Captured.");
+        setTriageFor({ id: (created as any).id, body: text });
       }
       setQuickLog("");
     } catch (e: any) {
@@ -509,6 +511,7 @@ const Today = () => {
 
       <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
       <VoicePostCaptureSheet capture={voiceCapture} onClose={() => setVoiceCapture(null)} />
+      <TriageSuggestionSheet captureId={triageFor?.id ?? null} body={triageFor?.body} onClose={() => setTriageFor(null)} />
     </AdminShell>
     </AdminGuard>
   );
