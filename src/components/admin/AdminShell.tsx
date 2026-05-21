@@ -126,7 +126,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
                       <SidebarMenuItem key={item.label}>
                         <SidebarMenuButton asChild isActive={active}>
                           <NavLink to={item.to} className="flex items-center gap-2">
-                            <Icon className="h-4 w-4" />
+                            <Icon className="h-4 w-4" strokeWidth={1.5} />
                             <span className="flex-1">{item.label}</span>
                             {item.label === "Inbox" && newCount > 0 && (
                               <span className="text-[10px] font-medium rounded-md bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
