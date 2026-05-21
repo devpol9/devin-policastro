@@ -63,22 +63,23 @@ const VoiceCaptureButton = ({ ventureSlug, onCaptured, fullWidth }: { ventureSlu
 
   const stop = () => recRef.current?.stop();
 
+  const baseLayout = fullWidth ? "w-full justify-center" : "";
   if (state === "processing") {
     return (
-      <button disabled className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-xs font-medium">
+      <button disabled className={`inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-xs font-medium ${baseLayout}`}>
         <Loader2 size={14} className="animate-spin" /> Transcribing…
       </button>
     );
   }
   if (state === "recording") {
     return (
-      <button onClick={stop} className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-destructive text-destructive-foreground text-xs font-medium animate-pulse">
+      <button onClick={stop} className={`inline-flex items-center gap-2 px-3 py-2 rounded-md bg-destructive text-destructive-foreground text-xs font-medium animate-pulse ${baseLayout}`}>
         <Square size={12} fill="currentColor" /> Stop · {secs}s
       </button>
     );
   }
   return (
-    <button onClick={start} className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-foreground text-background text-xs font-medium hover:opacity-90">
+    <button onClick={start} className={`inline-flex items-center gap-2 px-3 py-2 rounded-md bg-foreground text-background text-xs font-medium hover:opacity-90 ${baseLayout}`}>
       <Mic size={14} /> Voice note
     </button>
   );
