@@ -60,17 +60,15 @@ import InquiriesPage from "./pages/admin/Inquiries";
 import InquiryDetailPage from "./pages/admin/InquiryDetail";
 import VenturesPage from "./pages/admin/Ventures";
 import VentureDetailPage from "./pages/admin/VentureDetail";
-import ProjectsPage from "./pages/admin/Projects";
 import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
 import AnalyticsPage from "./pages/admin/Analytics";
 
 import KpisPage from "./pages/admin/Kpis";
-import DailyLogPage from "./pages/admin/DailyLog";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
-import PeoplePage from "./pages/admin/People";
+
 import BriefingsPage from "./pages/admin/Briefings";
 import InstallPwaBanner from "./components/admin/InstallPwaBanner";
 
@@ -112,14 +110,15 @@ const App = () => (
           <Route path="/hq/inquiries/:id" element={<InquiryDetailPage />} />
           <Route path="/hq/ventures" element={<VenturesPage />} />
           <Route path="/hq/ventures/:slug" element={<VentureDetailPage />} />
-          <Route path="/hq/projects" element={<ProjectsPage />} />
+          <Route path="/hq/projects" element={<Navigate to="/hq/ventures" replace />} />
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/hq/content" element={<ContentPage />} />
           <Route path="/hq/analytics" element={<AnalyticsPage />} />
           
-          <Route path="/hq/people" element={<PeoplePage />} />
+          <Route path="/hq/people" element={<Navigate to="/hq/today" replace />} />
+
           <Route path="/hq/kpis" element={<KpisPage />} />
-          <Route path="/hq/log" element={<DailyLogPage />} />
+          <Route path="/hq/log" element={<Navigate to="/hq/notes" replace />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />
           <Route path="/hq/briefings" element={<BriefingsPage />} />
           <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
