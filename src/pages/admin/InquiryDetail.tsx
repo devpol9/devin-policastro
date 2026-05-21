@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
 import ProjectDialog from "@/components/admin/ProjectDialog";
+import LinkedPersonCard from "@/components/admin/LinkedPersonCard";
 import { useVentures } from "@/hooks/use-ventures";
 
 const SERVICE_COLORS: Record<string, string> = {
