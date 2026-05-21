@@ -282,7 +282,63 @@ const KpiDialog = ({ open, onOpenChange, editing, defaults, onCreated }: Props) 
               ))}
             </div>
           </div>
+
+          <div className="border-t border-border pt-3 mt-1">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Globe size={14} className="text-accent" />
+                <Label className="text-xs font-medium">Show on public homepage</Label>
+              </div>
+              <Switch checked={isPublic} onCheckedChange={setIsPublic} />
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-1.5 leading-relaxed">
+              When on, this KPI's latest value appears in the "Receipts" stats bar on devinpolicastro.com. Top 5 by order shown.
+            </p>
+
+            {isPublic && (
+              <div className="grid gap-2.5 mt-3">
+                <div>
+                  <Label className="text-xs">Public label</Label>
+                  <Input
+                    value={publicLabel}
+                    onChange={(e) => setPublicLabel(e.target.value)}
+                    placeholder={name || "e.g. Happy Members"}
+                    maxLength={40}
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div>
+                    <Label className="text-xs">Prefix</Label>
+                    <Input
+                      value={publicPrefix}
+                      onChange={(e) => setPublicPrefix(e.target.value)}
+                      placeholder="$"
+                      maxLength={4}
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs">Suffix</Label>
+                    <Input
+                      value={publicSuffix}
+                      onChange={(e) => setPublicSuffix(e.target.value)}
+                      placeholder="+"
+                      maxLength={4}
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs">Order</Label>
+                    <Input
+                      type="number"
+                      value={publicSortOrder}
+                      onChange={(e) => setPublicSortOrder(e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)} disabled={saving}>Cancel</Button>
