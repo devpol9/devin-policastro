@@ -65,7 +65,7 @@ import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
 import AnalyticsPage from "./pages/admin/Analytics";
-import ChatsPage from "./pages/admin/Chats";
+
 import KpisPage from "./pages/admin/Kpis";
 import DailyLogPage from "./pages/admin/DailyLog";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
