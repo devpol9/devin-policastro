@@ -555,10 +555,111 @@ const Today = () => {
       </>)}
 
       {tab === "signal" && (<>
-        {topContent.length > 0 && (
+        {newCount > 0 && (
           <motion.section
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-            className="mb-10"
+            className="mb-8"
+          >
+            <SubHeader title={`New inquiries · ${newCount}`} onView={() => navigate("/hq/inquiries")} />
+            <div className="grid gap-2">
+              {recent.filter((r) => r.status === "new").slice(0, 5).map((r) => (
+                <button
+                  key={r.id}
+                  onClick={() => navigate(`/hq/inquiries/${r.id}`)}
+                  className="text-left panel p-3 flex items-center justify-between gap-3"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <MailIcon size={12} className="text-accent shrink-0" />
+                    <div className="min-w-0">
+                      <p className="font-display font-semibold text-sm truncate">{r.name}</p>
+                      <p className="text-xs text-muted-foreground truncate">{r.service_type.replace(" Inquiry", "")}</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                    {formatDistanceToNowStrict(new Date(r.created_at), { addSuffix: true })}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {signalIntros.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
+            className="mb-8"
+          >
+            <SubHeader title={`Intros needing follow-up · ${signalIntros.length}`} onView={() => navigate("/hq/people")} />
+            <div className="grid gap-2">
+              {signalIntros.map((i: any) => {
+                const fromName = signalPeopleMap[i.from_person_id] ?? "—";
+                const toName = signalPeopleMap[i.to_person_id] ?? "—";
+                const overdue = i.follow_up_at && new Date(i.follow_up_at) < new Date();
+                return (
+                  <button
+                    key={i.id}
+                    onClick={() => navigate("/hq/people")}
+                    className="text-left panel p-3 flex items-center justify-between gap-3"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <Sparkles size={12} className={overdue ? "text-destructive shrink-0" : "text-accent shrink-0"} />
+                      <div className="min-w-0">
+                        <p className="font-display font-semibold text-sm truncate">
+                          {fromName} <ArrowRight size={10} className="inline mx-1 text-muted-foreground" /> {toName}
+                        </p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {i.status} {i.context ? `· ${i.context}` : ""}
+                        </p>
+                      </div>
+                    </div>
+                    {i.follow_up_at && (
+                      <span className={`text-[10px] font-mono whitespace-nowrap ${overdue ? "text-destructive" : "text-muted-foreground"}`}>
+                        {overdue ? "overdue" : `due ${format(new Date(i.follow_up_at), "MMM d")}`}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.section>
+        )}
+
+        {signalStale.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
+            className="mb-8"
+          >
+            <SubHeader title="Key relationships gone cold" onView={() => navigate("/hq/people")} />
+            <div className="grid gap-2">
+              {signalStale.map((p: any) => {
+                const last = p.last_contacted_at ? formatDistanceToNowStrict(new Date(p.last_contacted_at), { addSuffix: true }) : "never";
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => navigate("/hq/people")}
+                    className="text-left panel p-3 flex items-center justify-between gap-3"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <StarIcon size={12} className="text-accent shrink-0" fill="currentColor" />
+                      <div className="min-w-0">
+                        <p className="font-display font-semibold text-sm truncate">{p.name}</p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {[p.role, p.company].filter(Boolean).join(" · ") || "Key contact"}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">{last}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.section>
+        )}
+
+        {topContent.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
+            className="mb-8"
           >
             <SubHeader title="Scheduled content" onView={() => navigate("/hq/content")} viewLabel="View calendar" />
             <div className="grid gap-2">
@@ -592,10 +693,9 @@ const Today = () => {
           </motion.section>
         )}
 
-
         {pv24 > 0 && (
           <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}
             className="panel p-4"
           >
             <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
@@ -616,6 +716,13 @@ const Today = () => {
               </div>
             </div>
           </motion.section>
+        )}
+
+        {newCount === 0 && signalIntros.length === 0 && signalStale.length === 0 && topContent.length === 0 && pv24 === 0 && (
+          <div className="text-center py-12 border border-dashed border-border/40 rounded-lg">
+            <AlertCircle className="mx-auto mb-2 text-muted-foreground" size={24} />
+            <p className="text-sm text-muted-foreground">All quiet. No urgent signals right now.</p>
+          </div>
         )}
       </>)}
 
