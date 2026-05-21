@@ -128,6 +128,7 @@ const App = () => (
           {/* Public catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <InstallPwaBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
