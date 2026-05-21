@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { Mail, Phone, Clock, Filter, RefreshCw, Search } from "lucide-react";
+import { Mail, Phone, Clock, Filter, RefreshCw, Search, FolderPlus } from "lucide-react";
 import { format, subDays } from "date-fns";
 import { toast } from "sonner";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
 import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
+import ProjectDialog from "@/components/admin/ProjectDialog";
+import { useVentures } from "@/hooks/use-ventures";
 
 interface Inquiry {
   id: string;
