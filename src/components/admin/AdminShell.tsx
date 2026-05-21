@@ -33,6 +33,7 @@ const navItems: NavItem[] = [
   { label: "Content", icon: CalendarDays, to: "/hq/content" },
   { label: "KPIs", icon: LineChart, to: "/hq/kpis" },
   { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
+  { label: "Review", icon: ClipboardCheck, to: "/hq/review" },
   { label: "Notes", icon: StickyNote, to: "/hq/notes" },
 ];
 
