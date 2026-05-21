@@ -1,8 +1,8 @@
 import { ReactNode, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
-  Home, Inbox, Building2, Calendar, Lightbulb,
-  TrendingUp, Newspaper, Settings, LogOut,
+  LayoutDashboard, Inbox, Layers, CalendarDays, StickyNote,
+  LineChart, Newspaper, Settings, LogOut,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -18,18 +18,18 @@ import HqCommandBar from "@/components/admin/HqCommandBar";
 
 type NavItem = {
   label: string;
-  icon: typeof Home;
+  icon: typeof LayoutDashboard;
   to: string;
 };
 
 const navItems: NavItem[] = [
-  { label: "Today", icon: Home, to: "/hq/today" },
+  { label: "Today", icon: LayoutDashboard, to: "/hq/today" },
   { label: "Inbox", icon: Inbox, to: "/hq/inquiries" },
-  { label: "Ventures", icon: Building2, to: "/hq/ventures" },
-  { label: "Content", icon: Calendar, to: "/hq/content" },
-  { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
+  { label: "Ventures", icon: Layers, to: "/hq/ventures" },
+  { label: "Content", icon: CalendarDays, to: "/hq/content" },
+  { label: "KPIs", icon: LineChart, to: "/hq/kpis" },
   { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
-  { label: "Notes", icon: Lightbulb, to: "/hq/notes" },
+  { label: "Notes", icon: StickyNote, to: "/hq/notes" },
 ];
 
 const pageTitleFor = (pathname: string): string => {
