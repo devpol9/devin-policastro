@@ -149,7 +149,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild isActive={location.pathname.startsWith("/hq/settings")}>
                       <NavLink to="/hq/settings/pillars" className="flex items-center gap-2">
-                        <Settings className="h-4 w-4" />
+                        <Settings className="h-4 w-4" strokeWidth={1.5} />
                         <span className="flex-1">Settings</span>
                       </NavLink>
                     </SidebarMenuButton>
