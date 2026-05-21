@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
@@ -80,12 +80,18 @@ const Stars = ({ value, onChange, size = 14 }: { value: number | null; onChange?
 
 const PeoplePage = () => {
   const qc = useQueryClient();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [q, setQ] = useState("");
   const [tagFilter, setTagFilter] = useState<string | null>(null);
   const [stale, setStale] = useState<0 | 30 | 60 | 90>(0);
   const [addOpen, setAddOpen] = useState(false);
   const [form, setForm] = useState<Partial<Person>>({});
-  const [detailId, setDetailId] = useState<string | null>(null);
+  const [detailId, setDetailId] = useState<string | null>(searchParams.get("person"));
+
+  useEffect(() => {
+    const p = searchParams.get("person");
+    if (p && p !== detailId) setDetailId(p);
+  }, [searchParams, detailId]);
 
   const { data: people = [], isLoading } = useQuery({
     queryKey: ["people"],
