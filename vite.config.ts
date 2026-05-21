@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => ({
       devOptions: { enabled: false },
       manifest: false, // using static public/manifest.webmanifest
       workbox: {
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: "/index.html",
         navigateFallbackDenylist: [/^\/~oauth/, /^\/api/, /^\/auth/],
         globPatterns: ["**/*.{js,css,html,svg,png,ico,woff2}"],
