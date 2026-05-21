@@ -15,6 +15,9 @@ import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 import MobileAdminNav from "@/components/admin/MobileAdminNav";
 import HqCommandBar from "@/components/admin/HqCommandBar";
 import ShortcutsSheet from "@/components/admin/ShortcutsSheet";
+import QuickActionsFab from "@/components/admin/QuickActionsFab";
+import QuickKpiDialog from "@/components/admin/QuickKpiDialog";
+import QuickVoiceDialog from "@/components/admin/QuickVoiceDialog";
 
 
 type NavItem = {
@@ -57,6 +60,8 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
   const [quickOpen, setQuickOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
+  const [kpiOpen, setKpiOpen] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -220,7 +225,14 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
       <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
       <HqCommandBar open={cmdOpen} onOpenChange={setCmdOpen} />
       <ShortcutsSheet open={shortcutsOpen} onOpenChange={setShortcutsOpen} />
-      
+      <QuickKpiDialog open={kpiOpen} onOpenChange={setKpiOpen} />
+      <QuickVoiceDialog open={voiceOpen} onOpenChange={setVoiceOpen} />
+      <QuickActionsFab
+        onOpenCmd={() => setCmdOpen(true)}
+        onOpenNote={() => setQuickOpen(true)}
+        onOpenVoice={() => setVoiceOpen(true)}
+        onOpenKpi={() => setKpiOpen(true)}
+      />
     </SidebarProvider>
   );
 };
