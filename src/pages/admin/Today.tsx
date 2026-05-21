@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { format, subDays, startOfDay } from "date-fns";
-import { Check, Pencil, ArrowRight } from "lucide-react";
+import { format, subDays, startOfDay, formatDistanceToNowStrict } from "date-fns";
+import { Check, Pencil, ArrowRight, Sparkles, AlertCircle, Mail as MailIcon, Star as StarIcon } from "lucide-react";
 import { toast } from "sonner";
 import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import AdminShell from "@/components/admin/AdminShell";
