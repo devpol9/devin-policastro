@@ -233,6 +233,9 @@ const ServiceInquiryDialog = ({
                   <option key={v.slug} value={v.slug}>{v.label}</option>
                 ))}
               </select>
+            </div>
+
+
 
             {fields.map((field, i) => {
               const err = showError(field.key);
