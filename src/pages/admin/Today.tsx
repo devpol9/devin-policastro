@@ -284,6 +284,13 @@ const Today = () => {
       {/* Cross-venture inbox (assigned / mentions you) */}
       <CrossVentureInbox compact />
 
+      {/* Yesterday digest */}
+      <DailyDigest />
+
+      {/* Stale inquiries needing follow-up */}
+      <StaleInquiriesCard />
+
+
       {/* Venture quick-jump row */}
       {activeVentures.length > 0 && (
         <motion.div
