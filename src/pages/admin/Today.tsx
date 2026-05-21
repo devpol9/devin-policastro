@@ -15,7 +15,7 @@ import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
-import { useChatTodayStats } from "@/hooks/use-chats";
+
 import { usePinnedKpis } from "@/hooks/use-kpis";
 import { useRecentCaptures, useCreateCapture } from "@/hooks/use-captures";
 import { useSaveDailyLog, useDailyLog } from "@/hooks/use-daily-log";
