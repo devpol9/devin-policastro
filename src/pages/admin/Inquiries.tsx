@@ -247,6 +247,55 @@ const Inquiries = () => {
           })}
         </div>
       )}
+
+      {convertTarget && (() => {
+        const inq = convertTarget;
+        const st = (inq.service_type || "").toLowerCase();
+        const matches = activeVentures.filter(
+          (v) =>
+            st.includes(v.name.toLowerCase()) ||
+            (v.short_name && st.includes(v.short_name.toLowerCase()))
+        );
+        const matchVentureId = matches.length === 1 ? matches[0].id : undefined;
+        const descMarkdown = Object.entries(inq.form_data || {})
+          .filter(([, v]) => v)
+          .map(([k, v]) => `- **${k}**: ${String(v)}`)
+          .join("\n");
+        return (
+          <ProjectDialog
+            open={!!convertTarget}
+            onOpenChange={(o) => !o && setConvertTarget(null)}
+            stayOnCreate
+            onCreated={async (project) => {
+              await supabase
+                .from("inquiries")
+                .update({
+                  converted_project_id: project.id,
+                  status: ["new", "contacted"].includes(inq.status) ? "in-progress" : inq.status,
+                })
+                .eq("id", inq.id);
+              setInquiries((prev) =>
+                prev.map((i) =>
+                  i.id === inq.id
+                    ? { ...i, converted_project_id: project.id, status: ["new", "contacted"].includes(i.status) ? "in-progress" : i.status }
+                    : i
+                )
+              );
+              setConvertTarget(null);
+              toast.success("Inquiry converted to project");
+            }}
+            defaults={{
+              title: `${inq.name} — ${inq.service_type}`,
+              description: descMarkdown,
+              venture_id: matchVentureId,
+              status: "planning",
+              priority: "medium",
+              source_type: "inquiry",
+              source_id: inq.id,
+            }}
+          />
+        );
+      })()}
     </AdminShell>
   );
 };
