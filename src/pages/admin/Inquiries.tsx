@@ -57,15 +57,26 @@ const inferVentureId = (
 const Inquiries = () => {
   const navigate = useNavigate();
   const { activeVentures } = useVentures();
+  const SAVED_KEY = "hq:inbox:filters";
+  const saved = (() => {
+    try { return JSON.parse(localStorage.getItem(SAVED_KEY) || "{}"); } catch { return {}; }
+  })();
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState("all");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [ventureFilter, setVentureFilter] = useState<string>("all");
+  const [filter, setFilter] = useState<string>(saved.filter ?? "all");
+  const [statusFilter, setStatusFilter] = useState<string>(saved.statusFilter ?? "all");
+  const [ventureFilter, setVentureFilter] = useState<string>(saved.ventureFilter ?? "all");
   const [search, setSearch] = useState("");
-  const [showConverted, setShowConverted] = useState(false);
+  const [showConverted, setShowConverted] = useState<boolean>(saved.showConverted ?? false);
   const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    localStorage.setItem(
+      SAVED_KEY,
+      JSON.stringify({ filter, statusFilter, ventureFilter, showConverted })
+    );
+  }, [filter, statusFilter, ventureFilter, showConverted]);
 
   const toggleSelect = (id: string) =>
     setSelected((prev) => {
