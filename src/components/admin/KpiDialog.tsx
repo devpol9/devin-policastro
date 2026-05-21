@@ -162,14 +162,14 @@ const KpiDialog = ({ open, onOpenChange, editing, defaults, onCreated }: Props) 
                   key={u.value}
                   type="button"
                   onClick={() => setUnit(u.value)}
-                  className={`flex flex-col items-center justify-center gap-0.5 px-2 py-2 rounded-md border text-[10px] font-display transition-colors ${
+                  className={`flex flex-col items-center justify-center gap-1 px-1 py-2 rounded-md border text-[10px] leading-none font-display transition-colors ${
                     unit === u.value
                       ? "border-accent bg-accent/10 text-accent"
                       : "border-border bg-secondary/30 text-muted-foreground hover:border-border-foreground/40"
                   }`}
                   title={u.hint}
                 >
-                  <span className="text-sm font-mono">{u.icon}</span>
+                  <span className="text-[13px] font-mono leading-none">{u.icon}</span>
                   <span>{u.label}</span>
                 </button>
               ))}
