@@ -18,7 +18,8 @@ import {
   type KpiUnit, type KpiDirection, type KpiCadence,
 } from "@/lib/kpi-utils";
 import { toast } from "sonner";
-import { ArrowUp, ArrowDown } from "lucide-react";
+import { ArrowUp, ArrowDown, Globe } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 interface Props {
   open: boolean;
@@ -42,6 +43,11 @@ const KpiDialog = ({ open, onOpenChange, editing, defaults, onCreated }: Props) 
   const [target, setTarget] = useState<string>("");
   const [direction, setDirection] = useState<KpiDirection>("up");
   const [cadence, setCadence] = useState<KpiCadence>("manual");
+  const [isPublic, setIsPublic] = useState(false);
+  const [publicLabel, setPublicLabel] = useState("");
+  const [publicPrefix, setPublicPrefix] = useState("");
+  const [publicSuffix, setPublicSuffix] = useState("");
+  const [publicSortOrder, setPublicSortOrder] = useState<string>("0");
 
   useEffect(() => {
     if (!open) return;
@@ -55,6 +61,11 @@ const KpiDialog = ({ open, onOpenChange, editing, defaults, onCreated }: Props) 
       setTarget(editing.target_value !== null ? String(editing.target_value) : "");
       setDirection((editing.direction as KpiDirection) ?? "up");
       setCadence((editing.entry_cadence as KpiCadence) ?? "manual");
+      setIsPublic((editing as any).is_public ?? false);
+      setPublicLabel((editing as any).public_label ?? "");
+      setPublicPrefix((editing as any).public_prefix ?? "");
+      setPublicSuffix((editing as any).public_suffix ?? "");
+      setPublicSortOrder(String((editing as any).public_sort_order ?? 0));
     } else {
       setName("");
       setVentureId(defaults?.venture_id ?? "__none");
@@ -65,6 +76,11 @@ const KpiDialog = ({ open, onOpenChange, editing, defaults, onCreated }: Props) 
       setTarget("");
       setDirection("up");
       setCadence("manual");
+      setIsPublic(false);
+      setPublicLabel("");
+      setPublicPrefix("");
+      setPublicSuffix("");
+      setPublicSortOrder("0");
     }
   }, [open, editing, defaults?.venture_id]);
 
@@ -86,7 +102,12 @@ const KpiDialog = ({ open, onOpenChange, editing, defaults, onCreated }: Props) 
       target_value: target.trim() ? Number(target) : null,
       direction,
       entry_cadence: cadence,
-    };
+      is_public: isPublic,
+      public_label: isPublic ? (publicLabel.trim() || null) : null,
+      public_prefix: isPublic ? (publicPrefix || null) : null,
+      public_suffix: isPublic ? (publicSuffix || null) : null,
+      public_sort_order: Number.isFinite(Number(publicSortOrder)) ? Number(publicSortOrder) : 0,
+    } as any;
 
     try {
       if (editing) {
