@@ -10,6 +10,7 @@ import SectionHeader from "@/components/SectionHeader";
 import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
 import ProjectDialog from "@/components/admin/ProjectDialog";
 import { useVentures } from "@/hooks/use-ventures";
+import { getVentureIcon } from "@/components/admin/ventureIcons";
 
 interface Inquiry {
   id: string;
@@ -40,6 +41,19 @@ const SERVICE_COLORS: Record<string, string> = {
   "Networking Inquiry": "160 60% 45%",
 };
 
+const inferVentureId = (
+  inq: Pick<Inquiry, "service_type">,
+  ventures: { id: string; name: string; short_name: string | null }[]
+): string | null => {
+  const st = (inq.service_type || "").toLowerCase();
+  const match = ventures.find(
+    (v) =>
+      st.includes(v.name.toLowerCase()) ||
+      (v.short_name && st.includes(v.short_name.toLowerCase()))
+  );
+  return match?.id ?? null;
+};
+
 const Inquiries = () => {
   const navigate = useNavigate();
   const { activeVentures } = useVentures();
@@ -47,9 +61,11 @@ const Inquiries = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [ventureFilter, setVentureFilter] = useState<string>("all");
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState(false);
   const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
+
 
   useEffect(() => { fetchInquiries(); }, []);
 
@@ -87,12 +103,30 @@ const Inquiries = () => {
     if (!showConverted && inq.converted_project_id) return false;
     if (filter !== "all" && inq.service_type !== filter) return false;
     if (statusFilter !== "all" && inq.status !== statusFilter) return false;
+    if (ventureFilter !== "all") {
+      const vId = inferVentureId(inq, activeVentures);
+      if (ventureFilter === "none" ? !!vId : vId !== ventureFilter) return false;
+    }
     if (search.trim()) {
       const q = search.toLowerCase();
       if (!inq.name.toLowerCase().includes(q) && !inq.email.toLowerCase().includes(q)) return false;
     }
     return true;
   });
+
+  const ventureCounts = (() => {
+    const counts: Record<string, number> = { all: 0, none: 0 };
+    activeVentures.forEach((v) => (counts[v.id] = 0));
+    inquiries.forEach((inq) => {
+      if (!showConverted && inq.converted_project_id) return;
+      counts.all++;
+      const vId = inferVentureId(inq, activeVentures);
+      if (vId) counts[vId] = (counts[vId] || 0) + 1;
+      else counts.none++;
+    });
+    return counts;
+  })();
+
 
   const serviceTypes = [...new Set(inquiries.map((i) => i.service_type))];
 
@@ -140,7 +174,61 @@ const Inquiries = () => {
         />
       </div>
 
+      {/* Venture pill row — primary axis */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        <button
+          onClick={() => setVentureFilter("all")}
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-display border transition-colors ${
+            ventureFilter === "all"
+              ? "bg-foreground text-background border-foreground"
+              : "bg-card text-muted-foreground border-border/60 hover:text-foreground"
+          }`}
+        >
+          All ventures
+          <span className="font-mono opacity-70">{ventureCounts.all}</span>
+        </button>
+        {activeVentures.map((v) => {
+          const Icon = getVentureIcon(v.icon);
+          const active = ventureFilter === v.id;
+          const count = ventureCounts[v.id] || 0;
+          return (
+            <button
+              key={v.id}
+              onClick={() => setVentureFilter(active ? "all" : v.id)}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-display border transition-colors"
+              style={{
+                background: active
+                  ? `color-mix(in oklch, ${v.accent_color} 18%, transparent)`
+                  : "transparent",
+                borderColor: active
+                  ? v.accent_color
+                  : `color-mix(in oklch, ${v.accent_color} 30%, transparent)`,
+                color: active ? v.accent_color : `color-mix(in oklch, ${v.accent_color} 80%, hsl(var(--muted-foreground)))`,
+              }}
+            >
+              <Icon size={12} />
+              {v.short_name || v.name}
+              <span className="font-mono opacity-70">{count}</span>
+            </button>
+          );
+        })}
+        {ventureCounts.none > 0 && (
+          <button
+            onClick={() => setVentureFilter(ventureFilter === "none" ? "all" : "none")}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-display border transition-colors ${
+              ventureFilter === "none"
+                ? "bg-secondary text-foreground border-border"
+                : "bg-card text-muted-foreground border-border/60 hover:text-foreground"
+            }`}
+          >
+            Unmatched
+            <span className="font-mono opacity-70">{ventureCounts.none}</span>
+          </button>
+        )}
+      </div>
+
       <div className="flex flex-wrap gap-2 mb-6">
+
         <div className="flex items-center gap-2 mr-2">
           <Filter size={14} className="text-muted-foreground" />
           <span className="text-xs text-muted-foreground font-display tracking-[0.06em]">Service:</span>
