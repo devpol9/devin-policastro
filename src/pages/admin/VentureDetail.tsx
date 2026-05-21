@@ -228,9 +228,9 @@ const VentureDetail = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-          <Stat label="Active Projects" value={activeProjects.length} />
+          <Stat label="Active projects" value={activeProjects.length} />
           <Stat label="Inquiries (30d)" value={inquiryCount} />
-          <Stat label="Content Items" value={ventureContent.length} />
+          <Stat label="Content items" value={ventureContent.length} />
           <Stat label="Last activity" value={lastActivity} />
         </div>
 
@@ -241,10 +241,11 @@ const VentureDetail = () => {
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="overview" className="space-y-5 mt-5">
-            <div className="panel p-5">
+          <TabsContent value="overview" className="mt-5">
+            {/* KPIs — full width hero */}
+            <div className="panel p-5 mb-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[11px] text-muted-foreground/70 font-medium">KPIS</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">KPIs</p>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => navigate(`/hq/kpis?venture=${venture.id}`)}
@@ -272,221 +273,241 @@ const VentureDetail = () => {
                 </div>
               )}
             </div>
-            <div className="panel p-5">
-              <p className="text-[11px] text-muted-foreground/70 font-medium mb-2">DESCRIPTION</p>
-              <p className="text-sm">{venture.description || "No description."}</p>
-            </div>
-            <div className="panel p-5">
-              <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
-                RECENT INQUIRIES (THIS VENTURE)
-              </p>
-              {recentInquiries.length === 0 ? (
-                <p className="text-sm text-muted-foreground">No matching inquiries in the last 30 days.</p>
-              ) : (
-                <div className="space-y-2">
-                  {recentInquiries.map((r) => (
-                    <button
-                      key={r.id}
-                      onClick={() => navigate(`/hq/inquiries/${r.id}`)}
-                      className="w-full text-left flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
-                    >
-                      <div className="min-w-0">
-                        <p className="font-display font-semibold text-sm truncate">{r.name}</p>
-                        <p className="text-xs text-muted-foreground truncate">{r.service_type}</p>
-                      </div>
-                      <span className="text-[10px] font-mono text-muted-foreground">
-                        {format(new Date(r.created_at), "MMM d")}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            {isImpactZone && (
-              <div className="panel p-5">
-                <div className="flex items-center justify-between mb-3">
-                  <p className="text-[11px] text-muted-foreground/70 font-medium">
-                    IZ INBOX — LATEST 50
+
+            {/* Two-column command center */}
+            <div className="grid lg:grid-cols-2 gap-5">
+              {/* LEFT — Inbox / activity */}
+              <div className="space-y-5">
+                <div className="panel p-5">
+                  <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">
+                    Recent inquiries
                   </p>
-                  <a
-                    href={IZ_ADMIN_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-xs font-display text-muted-foreground hover:text-accent inline-flex items-center gap-1"
-                  >
-                    Open IZ admin <ExternalLink size={11} />
-                  </a>
+                  {recentInquiries.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">No matching inquiries in the last 30 days.</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {recentInquiries.map((r) => (
+                        <button
+                          key={r.id}
+                          onClick={() => navigate(`/hq/inquiries/${r.id}`)}
+                          className="w-full text-left flex items-center justify-between gap-3 p-2 rounded-md border border-border/40 hover:bg-secondary/40 transition-colors"
+                        >
+                          <div className="min-w-0">
+                            <p className="font-display font-semibold text-sm truncate">{r.name}</p>
+                            <p className="text-xs text-muted-foreground truncate">{r.service_type}</p>
+                          </div>
+                          <span className="text-[10px] font-mono text-muted-foreground">
+                            {format(new Date(r.created_at), "MMM d")}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                {izLoading ? (
-                  <p className="text-sm text-muted-foreground">Loading…</p>
-                ) : izItems.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No inquiries yet.</p>
-                ) : (
-                  <div className="space-y-2 max-h-[480px] overflow-y-auto" data-lenis-prevent>
-                    {izItems.map((r) => (
+
+                {isImpactZone && (
+                  <div className="panel p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <p className="text-[11px] text-muted-foreground/70 font-medium">
+                        IZ inbox — latest 50
+                      </p>
                       <a
-                        key={r.id}
                         href={IZ_ADMIN_URL}
                         target="_blank"
                         rel="noreferrer"
-                        className="block p-2 rounded-md border border-border/40 hover:bg-secondary/40 transition-colors"
+                        className="text-xs font-display text-muted-foreground hover:text-accent inline-flex items-center gap-1"
                       >
-                        <div className="flex items-center justify-between gap-3">
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <p className="font-display font-semibold text-sm truncate">
-                                {r.first_name} {r.last_name}
-                              </p>
-                              {r.reason === "assigned" && (
-                                <span
-                                  className="text-[9px] font-display font-bold tracking-wider px-1.5 py-0.5 rounded"
-                                  style={{ background: "hsl(24 32% 52% / 0.15)", color: "hsl(24 32% 52%)" }}
-                                >
-                                  Assigned
-                                </span>
-                              )}
-                              <span
-                                className="text-[9px] font-mono tracking-wider px-1.5 py-0.5 rounded border border-border/60 text-muted-foreground"
-                              >
-                                {r.status}
+                        Open IZ admin <ExternalLink size={11} />
+                      </a>
+                    </div>
+                    {izLoading ? (
+                      <p className="text-sm text-muted-foreground">Loading…</p>
+                    ) : izItems.length === 0 ? (
+                      <p className="text-sm text-muted-foreground">No inquiries yet.</p>
+                    ) : (
+                      <div className="space-y-2 max-h-[480px] overflow-y-auto" data-lenis-prevent>
+                        {izItems.map((r) => (
+                          <a
+                            key={r.id}
+                            href={IZ_ADMIN_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="block p-2 rounded-md border border-border/40 hover:bg-secondary/40 transition-colors"
+                          >
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <p className="font-display font-semibold text-sm truncate">
+                                    {r.first_name} {r.last_name}
+                                  </p>
+                                  {r.reason === "assigned" && (
+                                    <span
+                                      className="text-[9px] font-display font-bold px-1.5 py-0.5 rounded"
+                                      style={{ background: `color-mix(in oklch, ${accent} 18%, transparent)`, color: accent }}
+                                    >
+                                      Assigned
+                                    </span>
+                                  )}
+                                  <span className="text-[9px] font-mono px-1.5 py-0.5 rounded border border-border/60 text-muted-foreground">
+                                    {r.status}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-muted-foreground truncate mt-0.5">
+                                  {r.subject || r.inquiry_type}
+                                </p>
+                              </div>
+                              <span className="text-[10px] font-mono text-muted-foreground shrink-0 whitespace-nowrap">
+                                {format(new Date(r.created_at), "MMM d")}
                               </span>
                             </div>
-                            <p className="text-xs text-muted-foreground truncate mt-0.5">
-                              {r.subject || r.inquiry_type}
-                            </p>
-                          </div>
-                          <span className="text-[10px] font-mono text-muted-foreground shrink-0 whitespace-nowrap">
-                            {format(new Date(r.created_at), "MMM d")}
-                          </span>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-            )}
-            {is2thirty && (
-              <div className="panel p-5">
-                <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
-                  <p className="text-[11px] text-muted-foreground/70 font-medium">
-                    2THIRTY — SHOPIFY (PAID ORDERS)
-                  </p>
-                  <Select value={String(shopifyDays)} onValueChange={(v) => setShopifyDays(Number(v))}>
-                    <SelectTrigger className="h-8 w-28 text-xs"><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="7">Last 7d</SelectItem>
-                      <SelectItem value="30">Last 30d</SelectItem>
-                      <SelectItem value="90">Last 90d</SelectItem>
-                      <SelectItem value="365">Last 1y</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                {shopifyLoading ? (
-                  <p className="text-sm text-muted-foreground">Loading…</p>
-                ) : !shopify ? (
-                  <p className="text-sm text-muted-foreground">Could not load Shopify data.</p>
-                ) : (
-                  <>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-                      <Stat label="Revenue" value={`$${shopify.revenue.toLocaleString()}`} />
-                      <Stat label="Orders" value={shopify.orders} />
-                      <Stat label="Units sold" value={shopify.units} />
-                      <Stat label="AOV" value={`$${shopify.aov.toLocaleString()}`} />
-                    </div>
-                    <p className="text-[10px] font-mono text-muted-foreground tracking-[0.14em] uppercase mb-2">
-                      Top products
-                    </p>
-                    {shopify.topProducts.length === 0 ? (
-                      <p className="text-xs text-muted-foreground italic">No paid orders in this window.</p>
-                    ) : (
-                      <div className="space-y-2">
-                        {shopify.topProducts.map((p) => (
-                          <div
-                            key={p.title}
-                            className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
-                          >
-                            <p className="font-display font-semibold text-sm truncate min-w-0 flex-1">
-                              {p.title}
-                            </p>
-                            <span className="text-xs font-mono text-muted-foreground shrink-0">
-                              {p.units} units
-                            </span>
-                            <span className="text-xs font-mono shrink-0 w-20 text-right">
-                              ${p.revenue.toLocaleString()}
-                            </span>
-                          </div>
+                          </a>
                         ))}
                       </div>
                     )}
-                  </>
+                  </div>
+                )}
+
+                {is2thirty && (
+                  <div className="panel p-5">
+                    <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
+                      <p className="text-[11px] text-muted-foreground/70 font-medium">
+                        2THIRTY — Shopify (paid orders)
+                      </p>
+                      <Select value={String(shopifyDays)} onValueChange={(v) => setShopifyDays(Number(v))}>
+                        <SelectTrigger className="h-8 w-28 text-xs"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="7">Last 7d</SelectItem>
+                          <SelectItem value="30">Last 30d</SelectItem>
+                          <SelectItem value="90">Last 90d</SelectItem>
+                          <SelectItem value="365">Last 1y</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    {shopifyLoading ? (
+                      <p className="text-sm text-muted-foreground">Loading…</p>
+                    ) : !shopify ? (
+                      <p className="text-sm text-muted-foreground">Could not load Shopify data.</p>
+                    ) : (
+                      <>
+                        <div className="grid grid-cols-2 gap-3 mb-5">
+                          <Stat label="Revenue" value={`$${shopify.revenue.toLocaleString()}`} />
+                          <Stat label="Orders" value={shopify.orders} />
+                          <Stat label="Units sold" value={shopify.units} />
+                          <Stat label="AOV" value={`$${shopify.aov.toLocaleString()}`} />
+                        </div>
+                        <p className="text-[10px] font-mono text-muted-foreground mb-2">
+                          Top products
+                        </p>
+                        {shopify.topProducts.length === 0 ? (
+                          <p className="text-xs text-muted-foreground italic">No paid orders in this window.</p>
+                        ) : (
+                          <div className="space-y-2">
+                            {shopify.topProducts.map((p) => (
+                              <div
+                                key={p.title}
+                                className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
+                              >
+                                <p className="font-display font-semibold text-sm truncate min-w-0 flex-1">
+                                  {p.title}
+                                </p>
+                                <span className="text-xs font-mono text-muted-foreground shrink-0">
+                                  {p.units} units
+                                </span>
+                                <span className="text-xs font-mono shrink-0 w-20 text-right">
+                                  ${p.revenue.toLocaleString()}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
-              </div>
-            )}
-            <div className="panel p-5">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-[11px] text-muted-foreground/70 font-medium">PROJECTS</p>
-                <button
-                  onClick={() => navigate(`/hq/projects?venture=${venture.id}`)}
-                  className="text-xs font-display text-muted-foreground hover:text-accent"
-                >
-                  View all →
-                </button>
-              </div>
-              {ventureProjects.length === 0 ? (
-                <p className="text-xs text-muted-foreground italic">No projects yet. Create one from the Projects page.</p>
-              ) : (
-                <div className="grid md:grid-cols-3 gap-3">
-                  {kanbanCols.map((col) => {
-                    const items = ventureProjects.filter((p) => p.status === col.key).slice(0, 3);
-                    return (
-                      <div key={col.key} className="space-y-2">
-                        <p className="font-mono text-[10px] text-muted-foreground tracking-[0.14em] uppercase">
-                          {col.label} · {ventureProjects.filter((p) => p.status === col.key).length}
-                        </p>
-                        {items.length === 0 ? (
-                          <p className="text-[11px] text-muted-foreground/60 italic">Empty</p>
-                        ) : (
-                          items.map((p) => <ProjectCard key={p.id} project={p} compact />)
-                        )}
-                      </div>
-                    );
-                  })}
+
+              {/* RIGHT — Work in flight */}
+              <div className="space-y-5">
+                <div className="panel p-5">
+                  <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">Projects</p>
+                  {ventureProjects.length === 0 ? (
+                    <p className="text-xs text-muted-foreground italic">No projects yet.</p>
+                  ) : (
+                    <div className="space-y-4">
+                      {kanbanCols.map((col) => {
+                        const items = ventureProjects.filter((p) => p.status === col.key).slice(0, 3);
+                        const total = ventureProjects.filter((p) => p.status === col.key).length;
+                        return (
+                          <div key={col.key} className="space-y-2">
+                            <p className="font-mono text-[10px] text-muted-foreground">
+                              {col.label} · {total}
+                            </p>
+                            {items.length === 0 ? (
+                              <p className="text-[11px] text-muted-foreground/60 italic">Empty</p>
+                            ) : (
+                              <div className="space-y-2">
+                                {items.map((p) => <ProjectCard key={p.id} project={p} compact />)}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            <div className="panel p-5">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-[11px] text-muted-foreground/70 font-medium">UPCOMING CONTENT</p>
-                <button
-                  onClick={() => navigate("/hq/content")}
-                  className="text-xs font-display text-muted-foreground hover:text-accent"
-                >View all →</button>
-              </div>
-              {upcomingContent.length === 0 ? (
-                <p className="text-xs text-muted-foreground italic">Nothing scheduled.</p>
-              ) : (
-                <div className="space-y-2">
-                  {upcomingContent.map((c) => {
-                    const Icon = PLATFORM_ICON[c.platform as Platform];
-                    return (
-                      <div
-                        key={c.id}
-                        className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
-                      >
-                        <div className="flex items-center gap-2 min-w-0">
-                          <Icon size={12} className="text-muted-foreground shrink-0" />
-                          <p className="text-sm font-display font-semibold truncate">{c.title}</p>
-                        </div>
-                        <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                          {format(new Date(c.scheduled_at!), "MMM d")}
-                        </span>
-                      </div>
-                    );
-                  })}
+
+                <div className="panel p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">Upcoming content</p>
+                    <button
+                      onClick={() => navigate("/hq/content")}
+                      className="text-xs font-display text-muted-foreground hover:text-accent"
+                    >View all →</button>
+                  </div>
+                  {upcomingContent.length === 0 ? (
+                    <p className="text-xs text-muted-foreground italic">Nothing scheduled.</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {upcomingContent.map((c) => {
+                        const Icon = PLATFORM_ICON[c.platform as Platform];
+                        return (
+                          <div
+                            key={c.id}
+                            className="flex items-center justify-between gap-3 p-2 rounded-md border border-border/40"
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Icon size={12} className="text-muted-foreground shrink-0" />
+                              <p className="text-sm font-display font-semibold truncate">{c.title}</p>
+                            </div>
+                            <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                              {format(new Date(c.scheduled_at!), "MMM d")}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              )}
+
+                <div className="panel p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-[11px] text-muted-foreground/70 font-medium">Notes</p>
+                    {lastSaved && (
+                      <p className="text-[10px] font-mono text-muted-foreground">Saved {lastSaved}</p>
+                    )}
+                  </div>
+                  <Textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    onBlur={saveNotes}
+                    rows={5}
+                    placeholder="Quick thoughts on this venture…"
+                  />
+                </div>
+              </div>
             </div>
           </TabsContent>
+
 
           <TabsContent value="notes" className="mt-5">
             <div className="panel p-5">
