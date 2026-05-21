@@ -165,6 +165,7 @@ const Today = () => {
   const [topPaths, setTopPaths] = useState<{ path: string; count: number }[]>([]);
   const [pv24, setPv24] = useState(0);
   const [tab, setTab] = useState<"pulse" | "capture" | "signal">("pulse");
+  const [voiceCapture, setVoiceCapture] = useState<VoiceCaptured | null>(null);
 
   // ===== Signal feed data =====
   const { data: signalIntros = [] } = useQuery({
