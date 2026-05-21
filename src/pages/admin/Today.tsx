@@ -165,6 +165,47 @@ const Today = () => {
   const [pv24, setPv24] = useState(0);
   const [tab, setTab] = useState<"pulse" | "capture" | "signal">("pulse");
 
+  // ===== Signal feed data =====
+  const { data: signalIntros = [] } = useQuery({
+    queryKey: ["signal", "intros"],
+    queryFn: async () => {
+      const today = format(new Date(), "yyyy-MM-dd");
+      const { data } = await supabase
+        .from("intros")
+        .select("id, from_person_id, to_person_id, status, context, follow_up_at, created_at")
+        .in("status", ["proposed", "sent"])
+        .or(`follow_up_at.lte.${today},follow_up_at.is.null`)
+        .order("created_at", { ascending: false })
+        .limit(8);
+      return data ?? [];
+    },
+  });
+
+  const { data: signalStale = [] } = useQuery({
+    queryKey: ["signal", "stale-key"],
+    queryFn: async () => {
+      const cutoff = subDays(new Date(), 30).toISOString();
+      const { data } = await supabase
+        .from("people")
+        .select("id, name, company, role, last_contacted_at, relationship_strength")
+        .gte("relationship_strength", 4)
+        .or(`last_contacted_at.lte.${cutoff},last_contacted_at.is.null`)
+        .order("relationship_strength", { ascending: false })
+        .limit(5);
+      return data ?? [];
+    },
+  });
+
+  const { data: signalPeopleMap = {} } = useQuery({
+    queryKey: ["signal", "people-map"],
+    queryFn: async () => {
+      const { data } = await supabase.from("people").select("id, name");
+      const map: Record<string, string> = {};
+      (data ?? []).forEach((p: any) => { map[p.id] = p.name; });
+      return map;
+    },
+  });
+
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) setUserId(data.user.id);
