@@ -21,6 +21,7 @@ import { IZ_ADMIN_URL } from "@/integrations/impact-zone/client";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDialog from "@/components/admin/KpiDialog";
 import KpiDetail from "@/components/admin/KpiDetail";
+import KpiQuickLog from "@/components/admin/KpiQuickLog";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import { Plus } from "lucide-react";
 import {
