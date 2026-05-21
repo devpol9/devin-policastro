@@ -512,9 +512,9 @@ const VentureDetail = () => {
           <TabsContent value="notes" className="mt-5">
             <div className="panel p-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[11px] text-muted-foreground/70 font-medium">NOTES</p>
+                <p className="text-[11px] text-muted-foreground/70 font-medium">Notes</p>
                 {lastSaved && (
-                  <p className="text-[10px] font-mono text-muted-foreground">Last saved: {lastSaved}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground">Saved {lastSaved}</p>
                 )}
               </div>
               <Textarea
@@ -529,7 +529,7 @@ const VentureDetail = () => {
 
           <TabsContent value="settings" className="space-y-5 mt-5">
             <div className="panel p-5">
-              <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">EDIT VENTURE</p>
+              <p className="text-[11px] text-muted-foreground/70 font-medium mb-3">Edit venture</p>
               <Button onClick={() => setEditOpen(true)} variant="outline">
                 <Pencil size={12} className="mr-1" /> Open editor
               </Button>
@@ -538,7 +538,8 @@ const VentureDetail = () => {
               </p>
             </div>
             <div className="panel p-5 border-destructive/40">
-              <p className="font-mono text-[10px] text-destructive tracking-[0.18em] mb-3">DANGER ZONE</p>
+              <p className="font-mono text-[10px] text-destructive mb-3">Danger zone</p>
+
               <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between gap-3">
                   <div>
