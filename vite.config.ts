@@ -39,8 +39,7 @@ export default defineConfig(({ mode }) => ({
             },
           },
           {
-            urlPattern: ({ url }) =>
-              url.origin === self.location.origin && /\/(images|assets)\//.test(url.pathname),
+            urlPattern: /\/(images|assets)\/.*\.(png|jpg|jpeg|svg|webp|woff2)$/,
             handler: "StaleWhileRevalidate",
             options: {
               cacheName: "static-assets",
