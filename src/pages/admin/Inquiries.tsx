@@ -216,8 +216,16 @@ const Inquiries = () => {
                 <span className="hidden md:inline text-[11px] text-muted-foreground shrink-0">
                   {inq.service_type.replace(" Inquiry", "")}
                 </span>
-                {inq.converted_project_id && (
+                {inq.converted_project_id ? (
                   <span className="hidden md:inline text-[10px] text-accent shrink-0">→ project</span>
+                ) : (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setConvertTarget(inq); }}
+                    title="Convert to project"
+                    className="hidden md:inline-flex items-center justify-center h-6 w-6 rounded-md border border-border/40 text-muted-foreground hover:text-accent hover:border-accent/40 shrink-0"
+                  >
+                    <FolderPlus size={12} />
+                  </button>
                 )}
                 <select
                   value={inq.status}
