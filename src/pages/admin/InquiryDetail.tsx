@@ -191,6 +191,7 @@ const InquiryDetail = () => {
           </div>
 
           <div className="space-y-5">
+            <LinkedPersonCard email={inq.email} personIdHint={inq.form_data?.person_id} />
             <div className="panel p-5">
               <h2 className="font-display font-bold text-base mb-3">Notes</h2>
               <textarea
