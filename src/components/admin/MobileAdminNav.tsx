@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Briefcase, BarChart3, BookOpen, type LucideIcon, Home, Mail, KanbanSquare, Building2, Calendar, TrendingUp, Lightbulb, MessageSquare, Users } from "lucide-react";
+import { Briefcase, BarChart3, BookOpen, type LucideIcon, Home, Mail, KanbanSquare, Building2, Calendar, TrendingUp, Lightbulb, MessageSquare, Users, Inbox } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
 type Item = { label: string; icon: LucideIcon; to: string };
@@ -31,6 +31,7 @@ const groups: Group[] = [
     items: [
       { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
       { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
+      { label: "Briefings", icon: Inbox, to: "/hq/briefings" },
     ],
   },
 ];

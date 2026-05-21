@@ -23,7 +23,7 @@ const TabBar = <T extends string>({ items, value, onChange, size = "md", classNa
   const padY = size === "sm" ? "py-1.5" : "py-2";
   const text = size === "sm" ? "text-[12px]" : "text-[13px]";
   return (
-    <div className={`flex items-center gap-1 border-b border-border/60 ${className}`}>
+    <div className={`flex items-center gap-1 border-b border-border/60 overflow-x-auto scrollbar-thin -mx-1 px-1 ${className}`}>
       {items.map((it) => {
         const active = it.value === value;
         return (
@@ -31,7 +31,7 @@ const TabBar = <T extends string>({ items, value, onChange, size = "md", classNa
             key={it.value}
             type="button"
             onClick={() => onChange(it.value)}
-            className={`relative px-3 ${padY} ${text} font-medium transition-colors -mb-px border-b-2 ${
+            className={`relative shrink-0 whitespace-nowrap px-3 ${padY} ${text} font-medium transition-colors -mb-px border-b-2 ${
               active
                 ? "text-foreground border-foreground"
                 : "text-muted-foreground border-transparent hover:text-foreground"

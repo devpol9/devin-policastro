@@ -4,7 +4,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 
-const VoiceCaptureButton = ({ ventureSlug }: { ventureSlug?: string }) => {
+interface VoiceCapturedPayload {
+  id: string;
+  title: string | null;
+  body: string;
+}
+
+const VoiceCaptureButton = ({ ventureSlug, onCaptured, fullWidth }: { ventureSlug?: string; onCaptured?: (c: VoiceCapturedPayload) => void; fullWidth?: boolean }) => {
   const [state, setState] = useState<"idle" | "recording" | "processing">("idle");
   const [secs, setSecs] = useState(0);
   const recRef = useRef<MediaRecorder | null>(null);
@@ -41,6 +47,9 @@ const VoiceCaptureButton = ({ ventureSlug }: { ventureSlug?: string }) => {
         if (error || data?.error) { toast.error(error?.message || data?.error || "Failed"); return; }
         toast.success(data?.title || "Voice captured");
         qc.invalidateQueries({ queryKey: ["captures"] });
+        if (data?.capture && onCaptured) {
+          onCaptured({ id: data.capture.id, title: data.capture.title ?? null, body: data.capture.body ?? data.transcript ?? "" });
+        }
       };
       rec.start();
       recRef.current = rec;
@@ -54,22 +63,23 @@ const VoiceCaptureButton = ({ ventureSlug }: { ventureSlug?: string }) => {
 
   const stop = () => recRef.current?.stop();
 
+  const baseLayout = fullWidth ? "w-full justify-center" : "";
   if (state === "processing") {
     return (
-      <button disabled className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-xs font-medium">
+      <button disabled className={`inline-flex items-center gap-2 px-3 py-2 rounded-md bg-secondary text-xs font-medium ${baseLayout}`}>
         <Loader2 size={14} className="animate-spin" /> Transcribing…
       </button>
     );
   }
   if (state === "recording") {
     return (
-      <button onClick={stop} className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-destructive text-destructive-foreground text-xs font-medium animate-pulse">
+      <button onClick={stop} className={`inline-flex items-center gap-2 px-3 py-2 rounded-md bg-destructive text-destructive-foreground text-xs font-medium animate-pulse ${baseLayout}`}>
         <Square size={12} fill="currentColor" /> Stop · {secs}s
       </button>
     );
   }
   return (
-    <button onClick={start} className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-foreground text-background text-xs font-medium hover:opacity-90">
+    <button onClick={start} className={`inline-flex items-center gap-2 px-3 py-2 rounded-md bg-foreground text-background text-xs font-medium hover:opacity-90 ${baseLayout}`}>
       <Mic size={14} /> Voice note
     </button>
   );

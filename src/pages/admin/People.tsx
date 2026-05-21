@@ -199,31 +199,31 @@ const PeoplePage = () => {
                   <button
                     key={p.id}
                     onClick={() => setDetailId(p.id)}
-                    className="text-left border border-border/40 rounded-lg p-4 hover:border-accent/60 transition-colors"
+                    className="text-left border border-border/40 rounded-lg p-3 sm:p-4 hover:border-accent/60 transition-colors"
                   >
                     <div className="flex items-start justify-between gap-2 mb-1">
-                      <div className="font-medium text-sm flex-1">{p.name}</div>
+                      <div className="font-medium text-sm flex-1 truncate">{p.name}</div>
                       <Stars value={p.relationship_strength} size={11} />
                     </div>
                     {(p.role || p.company) && (
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-xs text-muted-foreground truncate">
                         {[p.role, p.company].filter(Boolean).join(" · ")}
                       </div>
                     )}
-                    <div className="mt-3 space-y-1">
-                      {p.email && <span className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Mail size={10} />{p.email}</span>}
-                      {p.phone && <span className="text-[11px] text-muted-foreground flex items-center gap-1.5"><Phone size={10} />{p.phone}</span>}
+                    <div className="mt-2 space-y-0.5">
+                      {p.email && <span className="text-[11px] text-muted-foreground flex items-center gap-1.5 truncate"><Mail size={10} className="shrink-0" />{p.email}</span>}
+                      {p.phone && <span className="text-[11px] text-muted-foreground flex items-center gap-1.5 truncate"><Phone size={10} className="shrink-0" />{p.phone}</span>}
                     </div>
                     {(p.tags ?? []).length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1">
-                        {p.tags.slice(0, 4).map((t) => (
+                        {p.tags.slice(0, 3).map((t) => (
                           <span key={t} className="text-[9px] px-1.5 py-0.5 rounded bg-secondary text-muted-foreground">{t}</span>
                         ))}
                       </div>
                     )}
-                    <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-1 text-[10px] text-muted-foreground">
+                    <div className="mt-2 pt-2 border-t border-border/30 flex items-center gap-1 text-[10px] text-muted-foreground">
                       <Clock size={10} />
-                      <span>
+                      <span className="truncate">
                         {days === 0 ? "Touched today" : `${days}d since ${p.last_contacted_at ? "contact" : "added"}`}
                       </span>
                     </div>

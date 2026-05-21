@@ -26,6 +26,7 @@ import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import { MessageCircle, Pin, BookOpen, Zap, ArrowUpRight } from "lucide-react";
 import TabBar from "@/components/admin/TabBar";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
+import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
 
 interface Priority {
   id?: string;
@@ -88,7 +89,7 @@ const PrioritySlot = ({
   };
 
   return (
-    <div className="panel p-4 flex flex-col gap-3 min-h-[120px]">
+    <div className="panel p-3 sm:p-4 flex flex-col gap-2 sm:gap-3 min-h-[88px] sm:min-h-[120px]">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] text-muted-foreground">0{slot}</span>
         {value.title && (
@@ -164,6 +165,7 @@ const Today = () => {
   const [topPaths, setTopPaths] = useState<{ path: string; count: number }[]>([]);
   const [pv24, setPv24] = useState(0);
   const [tab, setTab] = useState<"pulse" | "capture" | "signal">("pulse");
+  const [voiceCapture, setVoiceCapture] = useState<VoiceCaptured | null>(null);
 
   // ===== Signal feed data =====
   const { data: signalIntros = [] } = useQuery({
@@ -371,7 +373,7 @@ const Today = () => {
         className="mb-10"
       >
         <SectionHeader as="h2" numeral="01" eyebrow="Priorities" title={<>Today's <span className="accent-headline">three.</span></>} />
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
           {priorities.map((p) => (
             <PrioritySlot key={p.slot} slot={p.slot} value={p} onSave={savePriority} />
           ))}
@@ -480,7 +482,7 @@ const Today = () => {
             placeholder={logMode === "log" ? "Append to today's notes…" : "What's on your mind?"}
             className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
           />
-          <div className="flex items-center gap-2 mt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2">
             <button
               onClick={saveLog}
               disabled={!quickLog.trim() || savingLog}
@@ -488,7 +490,7 @@ const Today = () => {
             >
               {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
             </button>
-            <VoiceCaptureButton />
+            <VoiceCaptureButton fullWidth onCaptured={(c) => setVoiceCapture(c)} />
           </div>
           <button
             onClick={() => navigate("/hq/log")}
@@ -728,6 +730,7 @@ const Today = () => {
 
 
       <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
+      <VoicePostCaptureSheet capture={voiceCapture} onClose={() => setVoiceCapture(null)} />
     </AdminShell>
     </AdminGuard>
   );

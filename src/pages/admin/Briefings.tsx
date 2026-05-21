@@ -84,19 +84,19 @@ const BriefingsPage = () => {
           </div>
         ) : (
           <div className="grid lg:grid-cols-[260px_1fr] gap-4">
-            <aside className="space-y-1.5">
+            <aside className="lg:space-y-1.5 flex lg:block gap-2 overflow-x-auto lg:overflow-visible -mx-4 px-4 lg:mx-0 lg:px-0 pb-2 lg:pb-0 scrollbar-thin snap-x snap-mandatory">
               {briefings.map((b) => {
                 const active = b.id === selectedId;
                 return (
                   <button
                     key={b.id}
                     onClick={() => setSelectedId(b.id)}
-                    className={`w-full text-left p-3 rounded-lg border transition-colors ${
+                    className={`shrink-0 lg:w-full snap-start min-w-[180px] lg:min-w-0 text-left p-3 rounded-lg border transition-colors ${
                       active ? "border-accent bg-accent/5" : "border-border/40 hover:border-border"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <span className="text-xs font-display font-semibold">
+                      <span className="text-xs font-display font-semibold whitespace-nowrap">
                         Week of {format(new Date(b.week_start), "MMM d")}
                       </span>
                       {b.emailed_at ? (
@@ -107,7 +107,7 @@ const BriefingsPage = () => {
                         <span className="text-[9px] text-muted-foreground">draft</span>
                       )}
                     </div>
-                    <p className="text-[10px] text-muted-foreground">
+                    <p className="text-[10px] text-muted-foreground whitespace-nowrap">
                       {formatDistanceToNowStrict(new Date(b.created_at), { addSuffix: true })}
                     </p>
                   </button>
@@ -115,7 +115,7 @@ const BriefingsPage = () => {
               })}
             </aside>
 
-            <main className="panel p-5 sm:p-6 min-h-[60vh]">
+            <main className="panel p-4 sm:p-5 lg:p-6 min-h-[60vh]">
               {selected ? (
                 <>
                   <div className="flex items-start justify-between gap-3 mb-4 pb-4 border-b border-border/40">
