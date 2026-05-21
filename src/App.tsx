@@ -52,8 +52,6 @@ import Consulting from "./pages/Consulting";
 import Financing from "./pages/Financing";
 import Networking from "./pages/Networking";
 import Fitness from "./pages/Fitness";
-import AdminLogin from "./pages/AdminLogin";
-import Admin from "./pages/Admin";
 
 // DevHQ admin
 import AdminLoginPage from "./pages/admin/Login";
