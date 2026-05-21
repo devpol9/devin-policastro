@@ -28,7 +28,18 @@ interface ServiceInquiryDialogProps {
   color: string;
   fields: InquiryField[];
   emailSubject: string;
+  defaultVenture?: string;
 }
+
+const VENTURE_OPTIONS = [
+  { slug: "impact-zone", label: "Impact Zone NJ — Gym / fitness" },
+  { slug: "2thirty", label: "2THIRTY — Hydration mixer" },
+  { slug: "valence", label: "Valence — Gym SaaS" },
+  { slug: "onlyshitz", label: "OnlyShitz — Social casino" },
+  { slug: "creative-vision", label: "Creative Vision — Manufacturing / private label" },
+  { slug: "personal", label: "Devin (personal brand / consulting)" },
+  { slug: "new-projects", label: "Something new" },
+];
 
 const ServiceInquiryDialog = ({
   open,
@@ -38,10 +49,11 @@ const ServiceInquiryDialog = ({
   color,
   fields,
   emailSubject,
+  defaultVenture,
 }: ServiceInquiryDialogProps) => {
   const [sending, setSending] = useState(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const initial: Record<string, string> = { name: "", email: "", phone: "" };
+  const initial: Record<string, string> = { name: "", email: "", phone: "", venture_slug: defaultVenture ?? "" };
   fields.forEach((f) => {
     if (f.defaultValue) initial[f.key] = f.defaultValue;
   });
@@ -87,6 +99,10 @@ const ServiceInquiryDialog = ({
       if (formData[f.key]) customFields[f.label] = formData[f.key];
     });
 
+    const ventureLabel =
+      VENTURE_OPTIONS.find((v) => v.slug === formData.venture_slug)?.label ?? null;
+    if (ventureLabel) customFields["Related to"] = ventureLabel;
+
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
@@ -94,7 +110,10 @@ const ServiceInquiryDialog = ({
           email: formData.email,
           phone: formData.phone,
           subject: emailSubject,
-          formData: customFields,
+          formData: {
+            ...customFields,
+            venture_slug: formData.venture_slug || null,
+          },
         },
       });
 
@@ -103,8 +122,9 @@ const ServiceInquiryDialog = ({
       trackEvent("inquiry_submit", {
         subject: emailSubject,
         service: formData.service || null,
+        venture: formData.venture_slug || null,
       });
-      setFormData({ name: "", email: "", phone: "" });
+      setFormData({ name: "", email: "", phone: "", venture_slug: defaultVenture ?? "" });
       onOpenChange(false);
     } catch (err) {
       console.error(err);
@@ -198,6 +218,24 @@ const ServiceInquiryDialog = ({
                 className="bg-background border-border/60 h-11 text-sm rounded-lg"
               />
             </div>
+
+            <div>
+              <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+                Related to
+              </label>
+              <select
+                value={formData.venture_slug || ""}
+                onChange={(e) => setFormData((p) => ({ ...p, venture_slug: e.target.value }))}
+                className="w-full bg-background border border-border/60 h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
+              >
+                <option value="">Pick a venture (optional)</option>
+                {VENTURE_OPTIONS.map((v) => (
+                  <option key={v.slug} value={v.slug}>{v.label}</option>
+                ))}
+              </select>
+            </div>
+
+
 
             {fields.map((field, i) => {
               const err = showError(field.key);

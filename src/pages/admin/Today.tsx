@@ -1,30 +1,23 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { format, subDays, startOfDay, formatDistanceToNowStrict } from "date-fns";
-import { Check, Pencil, ArrowRight, Sparkles, AlertCircle, Mail as MailIcon, Star as StarIcon } from "lucide-react";
+import { format, subDays } from "date-fns";
+import { Check, Pencil, ArrowRight, BookOpen, Pin, ArrowUpRight, Mail as MailIcon } from "lucide-react";
 import { toast } from "sonner";
-import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminGuard from "@/components/admin/AdminGuard";
 import SectionHeader from "@/components/SectionHeader";
 import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
-import VenturePill from "@/components/admin/VenturePill";
 import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
-import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
-
 import { usePinnedKpis } from "@/hooks/use-kpis";
 import { useRecentCaptures, useCreateCapture } from "@/hooks/use-captures";
 import { useSaveDailyLog, useDailyLog } from "@/hooks/use-daily-log";
 import KpiCard from "@/components/admin/KpiCard";
 import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
-import { MessageCircle, Pin, BookOpen, Zap, ArrowUpRight } from "lucide-react";
-import TabBar from "@/components/admin/TabBar";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
 import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
 
@@ -35,18 +28,6 @@ interface Priority {
   completed: boolean;
 }
 
-const SubHeader = ({ title, onView, viewLabel = "View all" }: { title: string; onView?: () => void; viewLabel?: string }) => (
-  <div className="flex items-center justify-between mb-3">
-    <h3 className="text-[13px] font-medium lowercase text-foreground">{title}</h3>
-    {onView && (
-      <button onClick={onView} className="text-[11px] text-muted-foreground hover:text-accent flex items-center gap-1">
-        {viewLabel} <ArrowRight size={11} />
-      </button>
-    )}
-  </div>
-);
-
-
 interface Inquiry {
   id: string;
   name: string;
@@ -54,6 +35,7 @@ interface Inquiry {
   email: string;
   created_at: string;
   status: string;
+  form_data: any;
 }
 
 const greeting = () => {
@@ -64,6 +46,17 @@ const greeting = () => {
 };
 
 const todayISO = () => format(new Date(), "yyyy-MM-dd");
+
+const SubHeader = ({ title, onView, viewLabel = "View all" }: { title: string; onView?: () => void; viewLabel?: string }) => (
+  <div className="flex items-center justify-between mb-3">
+    <h3 className="text-[13px] font-medium text-foreground">{title}</h3>
+    {onView && (
+      <button onClick={onView} className="text-[11px] text-muted-foreground hover:text-accent flex items-center gap-1">
+        {viewLabel} <ArrowRight size={11} />
+      </button>
+    )}
+  </div>
+);
 
 const PrioritySlot = ({
   slot, value, onSave,
@@ -89,7 +82,7 @@ const PrioritySlot = ({
   };
 
   return (
-    <div className="panel p-3 sm:p-4 flex flex-col gap-2 sm:gap-3 min-h-[88px] sm:min-h-[120px]">
+    <div className="panel p-4 sm:p-5 flex flex-col gap-3 min-h-[110px]">
       <div className="flex items-center justify-between">
         <span className="font-mono text-[10px] text-muted-foreground">0{slot}</span>
         {value.title && (
@@ -116,12 +109,12 @@ const PrioritySlot = ({
             if (e.key === "Escape") { setText(value.title); setEditing(false); }
           }}
           placeholder={`Set priority ${slot}`}
-          className="bg-transparent border-b border-border/60 focus:border-accent outline-none text-sm font-display py-1"
+          className="bg-transparent border-b border-border/60 focus:border-accent outline-none text-base font-display py-1"
         />
       ) : (
         <button
           onClick={() => setEditing(true)}
-          className={`text-left text-sm font-display flex-1 ${
+          className={`text-left text-base font-display flex-1 ${
             value.title
               ? value.completed
                 ? "line-through text-muted-foreground"
@@ -137,76 +130,47 @@ const PrioritySlot = ({
   );
 };
 
+const VENTURE_SLUG_LABEL: Record<string, string> = {
+  "impact-zone": "IZ",
+  "2thirty": "230",
+  valence: "VLC",
+  onlyshitz: "OS",
+  "creative-vision": "CV",
+  personal: "DP",
+  "new-projects": "NEW",
+};
+
 const Today = () => {
   const navigate = useNavigate();
   const { activeVentures } = useVentures();
   const { projects: inProgressProjects } = useProjects({ status: "in-progress" });
-  const topInProgress = inProgressProjects.slice(0, 5);
+  const topInProgress = inProgressProjects.slice(0, 3);
   const { items: scheduledContent } = useScheduledThisWeek();
-  
   const { pinned } = usePinnedKpis();
   const [openKpiId, setOpenKpiId] = useState<string | null>(null);
   const topContent = scheduledContent
     .filter((c) => c.scheduled_at)
     .sort((a, b) => new Date(a.scheduled_at!).getTime() - new Date(b.scheduled_at!).getTime())
-    .slice(0, 5);
+    .slice(0, 4);
+
   const [userId, setUserId] = useState<string>("");
   const [priorities, setPriorities] = useState<Priority[]>([
     { slot: 1, title: "", completed: false },
     { slot: 2, title: "", completed: false },
     { slot: 3, title: "", completed: false },
   ]);
-  const [pulse, setPulse] = useState<{ day: string; count: number }[]>([]);
   const [weekTotal, setWeekTotal] = useState(0);
   const [newCount, setNewCount] = useState(0);
   const [recent, setRecent] = useState<Inquiry[]>([]);
   const [quickLog, setQuickLog] = useState("");
   const [savingLog, setSavingLog] = useState(false);
-  const [topPaths, setTopPaths] = useState<{ path: string; count: number }[]>([]);
-  const [pv24, setPv24] = useState(0);
-  const [tab, setTab] = useState<"pulse" | "capture" | "signal">("pulse");
   const [voiceCapture, setVoiceCapture] = useState<VoiceCaptured | null>(null);
+  const [logMode, setLogMode] = useState<"log" | "capture">("capture");
 
-  // ===== Signal feed data =====
-  const { data: signalIntros = [] } = useQuery({
-    queryKey: ["signal", "intros"],
-    queryFn: async () => {
-      const today = format(new Date(), "yyyy-MM-dd");
-      const { data } = await supabase
-        .from("intros")
-        .select("id, from_person_id, to_person_id, status, context, follow_up_at, created_at")
-        .in("status", ["proposed", "sent"])
-        .or(`follow_up_at.lte.${today},follow_up_at.is.null`)
-        .order("created_at", { ascending: false })
-        .limit(8);
-      return data ?? [];
-    },
-  });
-
-  const { data: signalStale = [] } = useQuery({
-    queryKey: ["signal", "stale-key"],
-    queryFn: async () => {
-      const cutoff = subDays(new Date(), 30).toISOString();
-      const { data } = await supabase
-        .from("people")
-        .select("id, name, company, role, last_contacted_at, relationship_strength")
-        .gte("relationship_strength", 4)
-        .or(`last_contacted_at.lte.${cutoff},last_contacted_at.is.null`)
-        .order("relationship_strength", { ascending: false })
-        .limit(5);
-      return data ?? [];
-    },
-  });
-
-  const { data: signalPeopleMap = {} } = useQuery({
-    queryKey: ["signal", "people-map"],
-    queryFn: async () => {
-      const { data } = await supabase.from("people").select("id, name");
-      const map: Record<string, string> = {};
-      (data ?? []).forEach((p: any) => { map[p.id] = p.name; });
-      return map;
-    },
-  });
+  const saveLogMut = useSaveDailyLog();
+  const createCapture = useCreateCapture();
+  const { data: todayLog } = useDailyLog(todayISO());
+  const { data: recentCaptures = [] } = useRecentCaptures(3);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -231,51 +195,20 @@ const Today = () => {
     (pri ?? []).forEach((p: any) => map.set(p.slot, { id: p.id, slot: p.slot, title: p.title ?? "", completed: p.completed }));
     setPriorities([1, 2, 3].map((s) => map.get(s) ?? { slot: s, title: "", completed: false }));
 
-    const since = subDays(startOfDay(new Date()), 6).toISOString();
+    const since = subDays(new Date(), 7).toISOString();
     const { data: inq } = await supabase
       .from("inquiries")
       .select("created_at, status")
       .gte("created_at", since);
-    const buckets: Record<string, number> = {};
-    for (let i = 6; i >= 0; i--) {
-      const d = format(subDays(new Date(), i), "MMM d");
-      buckets[d] = 0;
-    }
-    (inq ?? []).forEach((row: any) => {
-      const d = format(new Date(row.created_at), "MMM d");
-      if (d in buckets) buckets[d]++;
-    });
-    setPulse(Object.entries(buckets).map(([day, count]) => ({ day, count })));
     setWeekTotal(inq?.length ?? 0);
     setNewCount((inq ?? []).filter((r: any) => r.status === "new").length);
 
     const { data: recentRows } = await supabase
       .from("inquiries")
-      .select("id, name, service_type, email, created_at, status")
+      .select("id, name, service_type, email, created_at, status, form_data")
       .order("created_at", { ascending: false })
       .limit(5);
     setRecent((recentRows as any[]) ?? []);
-
-    const since24 = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
-    const { data: ev } = await supabase
-      .from("analytics_events")
-      .select("path")
-      .eq("event_name", "page_view")
-      .gte("created_at", since24);
-    if (ev && ev.length > 0) {
-      setPv24(ev.length);
-      const counts: Record<string, number> = {};
-      ev.forEach((e: any) => {
-        const p = e.path || "/";
-        counts[p] = (counts[p] ?? 0) + 1;
-      });
-      setTopPaths(
-        Object.entries(counts)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 3)
-          .map(([path, count]) => ({ path, count }))
-      );
-    }
   };
 
   const savePriority = async (next: Priority) => {
@@ -303,12 +236,6 @@ const Today = () => {
     );
   };
 
-  const saveLogMut = useSaveDailyLog();
-  const createCapture = useCreateCapture();
-  const { data: todayLog } = useDailyLog(todayISO());
-  const [logMode, setLogMode] = useState<"log" | "capture">("log");
-  const { data: recentCaptures = [] } = useRecentCaptures(5);
-
   const saveLog = async () => {
     if (!quickLog.trim() || !userId) return;
     setSavingLog(true);
@@ -333,6 +260,7 @@ const Today = () => {
   return (
     <AdminGuard>
     <AdminShell>
+      {/* Hero */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -342,7 +270,7 @@ const Today = () => {
         <h2 className="font-display font-black leading-[0.95] tracking-[-0.03em] text-[clamp(2rem,5vw,3.25rem)]">
           {greeting()}, <span className="accent-headline">Devin.</span>
         </h2>
-        <p className="font-mono text-xs text-muted-foreground mt-2 lowercase">
+        <p className="font-mono text-xs text-muted-foreground mt-2">
           {format(new Date(), "EEEE, MMMM d, yyyy")}
         </p>
         <p className="text-sm text-muted-foreground mt-1">
@@ -350,66 +278,26 @@ const Today = () => {
         </p>
       </motion.div>
 
-      {activeVentures.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.03 }}
-          className="mb-8"
-        >
-          <p className="text-[11px] text-muted-foreground/70 font-medium mb-2 lowercase">
-            your ventures — {activeVentures.length} active
-          </p>
-          <div className="flex gap-2 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 scrollbar-thin">
-            {activeVentures.map((v) => (
-              <VenturePill key={v.id} venture={v} size="md" />
-            ))}
-          </div>
-        </motion.section>
-      )}
-
+      {/* Cross-venture inbox (assigned / mentions you) */}
       <CrossVentureInbox compact />
 
+      {/* Today's three */}
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
-        className="mb-10"
+        className="mb-12"
       >
         <SectionHeader as="h2" numeral="01" eyebrow="Priorities" title={<>Today's <span className="accent-headline">three.</span></>} />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {priorities.map((p) => (
             <PrioritySlot key={p.slot} slot={p.slot} value={p} onSave={savePriority} />
           ))}
         </div>
       </motion.section>
 
-      <div className="mb-6">
-        <TabBar<"pulse" | "capture" | "signal">
-          value={tab}
-          onChange={setTab}
-          items={[
-            { value: "pulse", label: "Pulse" },
-            { value: "capture", label: "Capture" },
-            { value: "signal", label: "Signal" },
-          ]}
-        />
-      </div>
-
-      {tab === "pulse" && (<>
-      {topInProgress.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-          className="mb-10"
-        >
-          <SubHeader title="Active projects" onView={() => navigate("/hq/projects")} />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {topInProgress.map((p) => (
-              <ProjectCard key={p.id} project={p} compact />
-            ))}
-          </div>
-        </motion.section>
-      )}
-
+      {/* Pinned KPIs */}
       <motion.section
-        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-        className="mb-10"
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.08 }}
+        className="mb-12"
       >
         <SubHeader title="Pinned KPIs" onView={() => navigate("/hq/kpis")} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -428,242 +316,140 @@ const Today = () => {
         </div>
       </motion.section>
 
+      {/* Quick capture */}
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-        className="panel p-5 mb-10"
+        className="panel p-5 mb-12"
       >
-        <SubHeader title="Inquiry pulse · last 7 days" onView={() => navigate("/hq/inquiries")} />
-        <div className="h-32">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={pulse} onClick={() => navigate("/hq/inquiries")}>
-              <XAxis dataKey="day" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-              <Tooltip
-                cursor={{ fill: "hsl(var(--accent) / 0.08)" }}
-                contentStyle={{
-                  background: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
-                  fontSize: "12px",
-                  borderRadius: 6,
-                }}
-              />
-              <Bar dataKey="count" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-[13px] font-medium text-foreground">
+            {logMode === "log" ? "Today's journal" : "Capture a thought"}
+          </h3>
+          <div className="flex gap-1">
+            {(["capture", "log"] as const).map((m) => (
+              <button key={m} onClick={() => setLogMode(m)}
+                className={`px-2 py-0.5 text-[10px] rounded capitalize ${logMode === m ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}>
+                {m}
+              </button>
+            ))}
+          </div>
         </div>
-      </motion.section>
-      </>)}
-
-
-
-
-      {tab === "capture" && (<>
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-          className="panel p-5 mb-6"
-        >
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-[13px] font-medium lowercase text-foreground">
-              {logMode === "log" ? "Today's journal" : "Capture a thought"}
-            </h3>
-            <div className="flex gap-1">
-              {(["log", "capture"] as const).map((m) => (
-                <button key={m} onClick={() => setLogMode(m)}
-                  className={`px-2 py-0.5 text-[10px] rounded capitalize ${logMode === m ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"}`}>
-                  {m}
-                </button>
-              ))}
-            </div>
-          </div>
-          <textarea
-            value={quickLog}
-            onChange={(e) => setQuickLog(e.target.value)}
-            onKeyDown={(e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) saveLog(); }}
-            rows={4}
-            placeholder={logMode === "log" ? "Append to today's notes…" : "What's on your mind?"}
-            className="w-full bg-secondary/40 border border-border/40 rounded-md p-2 text-sm outline-none focus:border-accent resize-none"
-          />
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2">
-            <button
-              onClick={saveLog}
-              disabled={!quickLog.trim() || savingLog}
-              className="flex-1 px-3 py-2 rounded-md bg-foreground text-background text-xs font-semibold disabled:opacity-40"
-            >
-              {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
-            </button>
-            <VoiceCaptureButton fullWidth onCaptured={(c) => setVoiceCapture(c)} />
-          </div>
+        <textarea
+          value={quickLog}
+          onChange={(e) => setQuickLog(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) saveLog(); }}
+          rows={3}
+          placeholder={logMode === "log" ? "Append to today's notes…" : "What's on your mind? (⌘+Enter to save)"}
+          className="w-full bg-secondary/40 border border-border/40 rounded-md p-3 text-sm outline-none focus:border-accent resize-none"
+        />
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-2">
           <button
-            onClick={() => navigate("/hq/log")}
-            className="mt-2 w-full text-xs text-muted-foreground hover:text-accent flex items-center justify-center gap-1"
+            onClick={saveLog}
+            disabled={!quickLog.trim() || savingLog}
+            className="flex-1 px-3 py-2 rounded-md bg-foreground text-background text-xs font-semibold disabled:opacity-40"
           >
-            <BookOpen size={11} /> Open today's full log <ArrowUpRight size={11} />
+            {savingLog ? "Saving…" : logMode === "log" ? "Add to log" : "Capture"}
           </button>
-        </motion.section>
+          <VoiceCaptureButton fullWidth onCaptured={(c) => setVoiceCapture(c)} />
+          <button
+            onClick={() => navigate("/hq/notes")}
+            className="text-xs text-muted-foreground hover:text-accent flex items-center justify-center gap-1 px-3 py-2"
+          >
+            <BookOpen size={11} /> All notes <ArrowUpRight size={11} />
+          </button>
+        </div>
 
         {recentCaptures.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-            className="mb-10"
-          >
-            <SubHeader title="Recent captures" onView={() => navigate("/hq/notes")} />
-            <div className="grid gap-2">
-              {recentCaptures.map((c) => (
-                <button key={c.id} onClick={() => navigate("/hq/notes")}
-                  className="text-left panel p-3 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[10px] text-muted-foreground/70 font-medium px-1.5 py-0.5 rounded-md border border-border/50 shrink-0 capitalize">
-                      {c.kind}
-                    </span>
-                    <p className="text-sm truncate">{c.title || c.body.split("\n")[0].slice(0, 80)}</p>
-                  </div>
-                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                    {format(new Date(c.created_at), "MMM d")}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </motion.section>
+          <div className="mt-4 pt-4 border-t border-border/40 space-y-1.5">
+            {recentCaptures.map((c) => (
+              <button key={c.id} onClick={() => navigate("/hq/notes")}
+                className="w-full text-left flex items-center justify-between gap-3 text-xs hover:text-accent transition-colors">
+                <span className="truncate text-muted-foreground">
+                  {c.title || c.body.split("\n")[0].slice(0, 70)}
+                </span>
+                <span className="font-mono text-[10px] text-muted-foreground/60 whitespace-nowrap">
+                  {format(new Date(c.created_at), "MMM d")}
+                </span>
+              </button>
+            ))}
+          </div>
         )}
+      </motion.section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-          className="mb-10"
-        >
-          <SubHeader title="Recent inquiries" onView={() => navigate("/hq/inquiries")} />
-          {recent.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No inquiries yet.</p>
-          ) : (
-            <div className="grid gap-2">
-              {recent.map((r) => (
+      {/* Recent inquiries */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.12 }}
+        className="mb-12"
+      >
+        <SubHeader title="Recent inbox" onView={() => navigate("/hq/inquiries")} />
+        {recent.length === 0 ? (
+          <p className="text-sm text-muted-foreground">No inquiries yet.</p>
+        ) : (
+          <div className="grid gap-2">
+            {recent.map((r) => {
+              const ventureSlug = r.form_data?.venture_slug as string | undefined;
+              const ventureLabel = ventureSlug ? VENTURE_SLUG_LABEL[ventureSlug] : null;
+              const isNew = r.status === "new";
+              return (
                 <button
                   key={r.id}
                   onClick={() => navigate(`/hq/inquiries/${r.id}`)}
-                  className="text-left panel p-3 flex items-center justify-between gap-3"
+                  className="text-left panel p-3 flex items-center gap-3 hover:border-accent/40 transition-colors"
                 >
-                  <div className="min-w-0">
+                  {isNew && <MailIcon size={12} className="text-accent shrink-0" />}
+                  {ventureLabel && (
+                    <span className="text-[9px] font-display font-black tracking-wider px-1.5 py-0.5 rounded shrink-0 bg-accent/15 text-accent">
+                      {ventureLabel}
+                    </span>
+                  )}
+                  <div className="min-w-0 flex-1">
                     <p className="font-display font-semibold text-sm truncate">{r.name}</p>
                     <p className="text-xs text-muted-foreground truncate">
                       {r.service_type.replace(" Inquiry", "")} · {r.email}
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
+                  <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap shrink-0">
                     {format(new Date(r.created_at), "MMM d")}
                   </span>
                 </button>
-              ))}
-            </div>
-          )}
-        </motion.section>
-      </>)}
+              );
+            })}
+          </div>
+        )}
+      </motion.section>
 
-      {tab === "signal" && (<>
-        {newCount > 0 && (
+      {/* Active projects + Scheduled content side by side */}
+      <div className="grid lg:grid-cols-2 gap-6 mb-12">
+        {topInProgress.length > 0 && (
           <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-            className="mb-8"
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.14 }}
           >
-            <SubHeader title={`New inquiries · ${newCount}`} onView={() => navigate("/hq/inquiries")} />
+            <SubHeader title="In progress" onView={() => navigate("/hq/ventures")} />
             <div className="grid gap-2">
-              {recent.filter((r) => r.status === "new").slice(0, 5).map((r) => (
+              {topInProgress.map((p) => (
                 <button
-                  key={r.id}
-                  onClick={() => navigate(`/hq/inquiries/${r.id}`)}
-                  className="text-left panel p-3 flex items-center justify-between gap-3"
+                  key={p.id}
+                  onClick={() => navigate(`/hq/projects/${p.id}`)}
+                  className="text-left panel p-3 flex items-center justify-between gap-3 hover:border-accent/40 transition-colors"
                 >
-                  <div className="flex items-center gap-2 min-w-0">
-                    <MailIcon size={12} className="text-accent shrink-0" />
-                    <div className="min-w-0">
-                      <p className="font-display font-semibold text-sm truncate">{r.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">{r.service_type.replace(" Inquiry", "")}</p>
-                    </div>
+                  <div className="min-w-0">
+                    <p className="font-display font-semibold text-sm truncate">{p.title}</p>
+                    <p className="text-xs text-muted-foreground truncate">{p.status}</p>
                   </div>
                   <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                    {formatDistanceToNowStrict(new Date(r.created_at), { addSuffix: true })}
+                    {p.percent_complete}%
                   </span>
                 </button>
               ))}
-            </div>
-          </motion.section>
-        )}
-
-        {signalIntros.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-            className="mb-8"
-          >
-            <SubHeader title={`Intros needing follow-up · ${signalIntros.length}`} onView={() => navigate("/hq/people")} />
-            <div className="grid gap-2">
-              {signalIntros.map((i: any) => {
-                const fromName = signalPeopleMap[i.from_person_id] ?? "—";
-                const toName = signalPeopleMap[i.to_person_id] ?? "—";
-                const overdue = i.follow_up_at && new Date(i.follow_up_at) < new Date();
-                return (
-                  <button
-                    key={i.id}
-                    onClick={() => navigate("/hq/people")}
-                    className="text-left panel p-3 flex items-center justify-between gap-3"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <Sparkles size={12} className={overdue ? "text-destructive shrink-0" : "text-accent shrink-0"} />
-                      <div className="min-w-0">
-                        <p className="font-display font-semibold text-sm truncate">
-                          {fromName} <ArrowRight size={10} className="inline mx-1 text-muted-foreground" /> {toName}
-                        </p>
-                        <p className="text-xs text-muted-foreground truncate">
-                          {i.status} {i.context ? `· ${i.context}` : ""}
-                        </p>
-                      </div>
-                    </div>
-                    {i.follow_up_at && (
-                      <span className={`text-[10px] font-mono whitespace-nowrap ${overdue ? "text-destructive" : "text-muted-foreground"}`}>
-                        {overdue ? "overdue" : `due ${format(new Date(i.follow_up_at), "MMM d")}`}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </motion.section>
-        )}
-
-        {signalStale.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}
-            className="mb-8"
-          >
-            <SubHeader title="Key relationships gone cold" onView={() => navigate("/hq/people")} />
-            <div className="grid gap-2">
-              {signalStale.map((p: any) => {
-                const last = p.last_contacted_at ? formatDistanceToNowStrict(new Date(p.last_contacted_at), { addSuffix: true }) : "never";
-                return (
-                  <button
-                    key={p.id}
-                    onClick={() => navigate("/hq/people")}
-                    className="text-left panel p-3 flex items-center justify-between gap-3"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <StarIcon size={12} className="text-accent shrink-0" fill="currentColor" />
-                      <div className="min-w-0">
-                        <p className="font-display font-semibold text-sm truncate">{p.name}</p>
-                        <p className="text-xs text-muted-foreground truncate">
-                          {[p.role, p.company].filter(Boolean).join(" · ") || "Key contact"}
-                        </p>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">{last}</span>
-                  </button>
-                );
-              })}
             </div>
           </motion.section>
         )}
 
         {topContent.length > 0 && (
           <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 }}
-            className="mb-8"
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.16 }}
           >
-            <SubHeader title="Scheduled content" onView={() => navigate("/hq/content")} viewLabel="View calendar" />
+            <SubHeader title="Scheduled content" onView={() => navigate("/hq/content")} viewLabel="Calendar" />
             <div className="grid gap-2">
               {topContent.map((c) => {
                 const v = activeVentures.find((x) => x.id === c.venture_id);
@@ -673,7 +459,7 @@ const Today = () => {
                   <button
                     key={c.id}
                     onClick={() => navigate("/hq/content")}
-                    className="text-left panel p-3 flex items-center justify-between gap-3"
+                    className="text-left panel p-3 flex items-center justify-between gap-3 hover:border-accent/40 transition-colors"
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="h-2 w-2 rounded-full shrink-0" style={{ background: accent }} />
@@ -685,8 +471,8 @@ const Today = () => {
                         </p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap">
-                      {format(new Date(c.scheduled_at!), "EEE MMM d, p")}
+                    <span className="text-[10px] font-mono text-muted-foreground whitespace-nowrap shrink-0">
+                      {format(new Date(c.scheduled_at!), "EEE p")}
                     </span>
                   </button>
                 );
@@ -694,40 +480,7 @@ const Today = () => {
             </div>
           </motion.section>
         )}
-
-        {pv24 > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}
-            className="panel p-4"
-          >
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
-              <div>
-                <p className="text-[11px] text-muted-foreground/70 font-medium">24h traffic</p>
-                <p className="font-display font-bold text-2xl">{pv24}</p>
-              </div>
-              <div className="flex-1 min-w-[200px]">
-                <p className="text-[11px] text-muted-foreground/70 font-medium mb-1">Top paths</p>
-                <div className="space-y-0.5">
-                  {topPaths.map((tp) => (
-                    <div key={tp.path} className="flex justify-between text-xs">
-                      <span className="font-mono text-foreground/80 truncate">{tp.path}</span>
-                      <span className="font-mono text-muted-foreground tabular-nums">{tp.count}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.section>
-        )}
-
-        {newCount === 0 && signalIntros.length === 0 && signalStale.length === 0 && topContent.length === 0 && pv24 === 0 && (
-          <div className="text-center py-12 border border-dashed border-border/40 rounded-lg">
-            <AlertCircle className="mx-auto mb-2 text-muted-foreground" size={24} />
-            <p className="text-sm text-muted-foreground">All quiet. No urgent signals right now.</p>
-          </div>
-        )}
-      </>)}
-
+      </div>
 
       <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
       <VoicePostCaptureSheet capture={voiceCapture} onClose={() => setVoiceCapture(null)} />
