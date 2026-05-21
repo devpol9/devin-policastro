@@ -99,8 +99,6 @@ const App = () => (
           <Route path="/fitness" element={<Fitness />} />
           <Route path="/admin-login" element={<PathRedirect to="/hq/login" />} />
           <Route path="/admin" element={<PathRedirect to="/hq/today" />} />
-          <Route path="/legacy-admin-login" element={<AdminLogin />} />
-          <Route path="/legacy-admin" element={<Admin />} />
 
           {/* DevHQ admin */}
           <Route path="/hq" element={<Navigate to="/hq/today" replace />} />
