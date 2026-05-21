@@ -47,6 +47,9 @@ const VoiceCaptureButton = ({ ventureSlug, onCaptured, fullWidth }: { ventureSlu
         if (error || data?.error) { toast.error(error?.message || data?.error || "Failed"); return; }
         toast.success(data?.title || "Voice captured");
         qc.invalidateQueries({ queryKey: ["captures"] });
+        if (data?.capture && onCaptured) {
+          onCaptured({ id: data.capture.id, title: data.capture.title ?? null, body: data.capture.body ?? data.transcript ?? "" });
+        }
       };
       rec.start();
       recRef.current = rec;
