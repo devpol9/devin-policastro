@@ -72,6 +72,7 @@ import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
 import PeoplePage from "./pages/admin/People";
 import BriefingsPage from "./pages/admin/Briefings";
+import InstallPwaBanner from "./components/admin/InstallPwaBanner";
 
 const queryClient = new QueryClient();
 
@@ -127,6 +128,7 @@ const App = () => (
           {/* Public catch-all */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <InstallPwaBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

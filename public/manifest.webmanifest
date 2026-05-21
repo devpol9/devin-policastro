@@ -1,9 +1,9 @@
 {
-  "name": "DevHQ — Devin Policastro",
-  "short_name": "DevHQ",
-  "description": "Devin Policastro's HQ — projects, KPIs, notes, people, daily log.",
-  "start_url": "/hq/today",
-  "id": "/hq",
+  "name": "Devin Policastro",
+  "short_name": "Devin",
+  "description": "Devin Policastro — ventures, services, and connections.",
+  "start_url": "/",
+  "id": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -15,8 +15,8 @@
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "Today", "url": "/hq/today" },
-    { "name": "Notes", "url": "/hq/notes" },
-    { "name": "Inquiries", "url": "/hq/inquiries" }
+    { "name": "Services", "url": "/#services" },
+    { "name": "Shop", "url": "/#shop" },
+    { "name": "Contact", "url": "/#contact" }
   ]
 }
