@@ -41,6 +41,42 @@ const NoteDetail = ({ captureId, onOpenChange }: Props) => {
   const [promoteOpen, setPromoteOpen] = useState(false);
   const [confirmTitle, setConfirmTitle] = useState("");
 
+  // Inline body editor
+  const [editingBody, setEditingBody] = useState(false);
+  const [draft, setDraft] = useState("");
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastSaved = useRef<string>("");
+
+  useEffect(() => {
+    if (capture) {
+      setDraft(capture.body);
+      lastSaved.current = capture.body;
+    }
+    setEditingBody(false);
+    setSaveState("idle");
+  }, [capture?.id]);
+
+  // Debounced autosave while editing
+  useEffect(() => {
+    if (!editingBody || !capture) return;
+    if (draft === lastSaved.current) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    setSaveState("saving");
+    saveTimer.current = setTimeout(async () => {
+      try {
+        await update.mutateAsync({ id: capture.id, patch: { body: draft } });
+        lastSaved.current = draft;
+        setSaveState("saved");
+        setTimeout(() => setSaveState((s) => (s === "saved" ? "idle" : s)), 1500);
+      } catch (e: any) {
+        toast.error(e?.message ?? "Couldn't save");
+        setSaveState("idle");
+      }
+    }, 700);
+    return () => { if (saveTimer.current) clearTimeout(saveTimer.current); };
+  }, [draft, editingBody, capture, update]);
+
   if (!capture) {
     return (
       <Sheet open={open} onOpenChange={onOpenChange}>
