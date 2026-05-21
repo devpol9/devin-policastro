@@ -31,6 +31,7 @@ const groups: Group[] = [
     items: [
       { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
       { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
+      { label: "Briefings", icon: Inbox, to: "/hq/briefings" },
     ],
   },
 ];
