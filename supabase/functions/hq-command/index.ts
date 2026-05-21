@@ -243,6 +243,42 @@ Deno.serve(async (req) => {
         venture_id: ventureBySlug(args.venture_slug), priority: args.priority ?? 'medium',
       });
       if (error) result.error = error.message; else result.message = `Project "${args.title}" created.`;
+    } else if (name === 'convert_inquiry') {
+      const m = String(args.match || '').toLowerCase();
+      const inq = (recentInquiries||[]).find(i =>
+        i.name?.toLowerCase().includes(m) ||
+        i.email?.toLowerCase().includes(m) ||
+        i.service_type?.toLowerCase().includes(m)
+      );
+      if (!inq) { result.error = `No open inquiry matching "${args.match}"`; }
+      else {
+        let ventureId = ventureBySlug(args.venture_slug);
+        if (!ventureId) {
+          const st = (inq.service_type || '').toLowerCase();
+          const match = (ventures||[]).find(v => st.includes(v.name.toLowerCase()) || (v.short_name && st.includes(v.short_name.toLowerCase())));
+          ventureId = match?.id ?? null;
+        }
+        const descMarkdown = Object.entries(inq.form_data || {})
+          .filter(([, v]) => v).map(([k, v]) => `- **${k}**: ${String(v)}`).join('\n');
+        const { data: project, error } = await supabase.from('projects').insert({
+          user_id: user.id,
+          title: args.title || `${inq.name} — ${inq.service_type}`,
+          description: descMarkdown || null,
+          venture_id: ventureId,
+          status: 'planning',
+          priority: args.priority || 'medium',
+          source_type: 'inquiry',
+          source_id: inq.id,
+        }).select().single();
+        if (error) { result.error = error.message; }
+        else {
+          await supabase.from('inquiries').update({
+            converted_project_id: project.id,
+            status: ['new','contacted'].includes(inq.status) ? 'in-progress' : inq.status,
+          }).eq('id', inq.id);
+          result.message = `Converted ${inq.name}'s inquiry → project.`;
+        }
+      }
     } else if (name === 'answer') {
       result.message = args.text;
     }
