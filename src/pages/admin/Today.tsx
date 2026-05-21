@@ -21,6 +21,8 @@ import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
 import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
 import VenturePill from "@/components/admin/VenturePill";
+import DailyDigest from "@/components/admin/DailyDigest";
+import StaleInquiriesCard from "@/components/admin/StaleInquiriesCard";
 
 interface Priority {
   id?: string;
