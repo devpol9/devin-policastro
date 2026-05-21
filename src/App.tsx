@@ -70,6 +70,7 @@ import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
 
 import BriefingsPage from "./pages/admin/Briefings";
+import ReviewPage from "./pages/admin/Review";
 import InstallPwaBanner from "./components/admin/InstallPwaBanner";
 
 const queryClient = new QueryClient();
@@ -121,6 +122,7 @@ const App = () => (
           <Route path="/hq/log" element={<Navigate to="/hq/notes" replace />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />
           <Route path="/hq/briefings" element={<BriefingsPage />} />
+          <Route path="/hq/review" element={<ReviewPage />} />
           <Route path="/hq/settings/pillars" element={<PillarsSettingsPage />} />
           <Route path="/hq/*" element={<AdminNotFound />} />
 

@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Inbox, Layers, CalendarDays, StickyNote,
-  LineChart, Newspaper, Settings, LogOut,
+  LineChart, Newspaper, Settings, LogOut, ClipboardCheck,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -33,6 +33,7 @@ const navItems: NavItem[] = [
   { label: "Content", icon: CalendarDays, to: "/hq/content" },
   { label: "KPIs", icon: LineChart, to: "/hq/kpis" },
   { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
+  { label: "Review", icon: ClipboardCheck, to: "/hq/review" },
   { label: "Notes", icon: StickyNote, to: "/hq/notes" },
 ];
 
@@ -47,6 +48,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/log")) return "Notes";
   if (pathname.startsWith("/hq/notes")) return "Notes";
   if (pathname.startsWith("/hq/briefings")) return "Briefings";
+  if (pathname.startsWith("/hq/review")) return "Weekly review";
   if (pathname.startsWith("/hq/settings/pillars")) return "Pillars";
   if (pathname.startsWith("/hq/settings")) return "Settings";
   return "DevHQ";
