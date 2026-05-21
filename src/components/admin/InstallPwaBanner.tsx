@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Download, X, Share } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -13,12 +14,16 @@ const InstallPwaBanner = () => {
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
   const [show, setShow] = useState(false);
   const [iosHint, setIosHint] = useState(false);
+  const tracked = useRef(false);
 
   useEffect(() => {
     const standalone =
       window.matchMedia("(display-mode: standalone)").matches ||
       (window.navigator as any).standalone === true;
-    if (standalone) return;
+    if (standalone) {
+      trackEvent("pwa_already_installed", {});
+      return;
+    }
 
     try {
       const raw = localStorage.getItem(DISMISS_KEY);
@@ -41,19 +46,37 @@ const InstallPwaBanner = () => {
       setDeferred(e as BeforeInstallPromptEvent);
       setShow(true);
     };
+    const onInstalled = () => {
+      trackEvent("pwa_installed", {});
+      setShow(false);
+    };
     window.addEventListener("beforeinstallprompt", onBeforeInstall);
-    return () => window.removeEventListener("beforeinstallprompt", onBeforeInstall);
+    window.addEventListener("appinstalled", onInstalled);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", onBeforeInstall);
+      window.removeEventListener("appinstalled", onInstalled);
+    };
   }, []);
+
+  useEffect(() => {
+    if (show && !tracked.current) {
+      tracked.current = true;
+      trackEvent("install_banner_shown", { platform: iosHint ? "ios" : "native" });
+    }
+  }, [show, iosHint]);
 
   const dismiss = () => {
     try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch {}
+    trackEvent("install_banner_dismissed", { platform: iosHint ? "ios" : "native" });
     setShow(false);
   };
 
   const install = async () => {
     if (!deferred) return;
+    trackEvent("install_banner_clicked", {});
     await deferred.prompt();
     const choice = await deferred.userChoice;
+    trackEvent(`install_banner_${choice.outcome}`, {});
     if (choice.outcome === "accepted") {
       setShow(false);
     } else {
