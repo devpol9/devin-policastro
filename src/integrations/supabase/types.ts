@@ -444,8 +444,13 @@ export type Database = {
           direction: string
           entry_cadence: string
           id: string
+          is_public: boolean
           meta: Json
           name: string
+          public_label: string | null
+          public_prefix: string | null
+          public_sort_order: number
+          public_suffix: string | null
           sort_order: number
           target_value: number | null
           unit: string
@@ -462,8 +467,13 @@ export type Database = {
           direction?: string
           entry_cadence?: string
           id?: string
+          is_public?: boolean
           meta?: Json
           name: string
+          public_label?: string | null
+          public_prefix?: string | null
+          public_sort_order?: number
+          public_suffix?: string | null
           sort_order?: number
           target_value?: number | null
           unit: string
@@ -480,8 +490,13 @@ export type Database = {
           direction?: string
           entry_cadence?: string
           id?: string
+          is_public?: boolean
           meta?: Json
           name?: string
+          public_label?: string | null
+          public_prefix?: string | null
+          public_sort_order?: number
+          public_suffix?: string | null
           sort_order?: number
           target_value?: number | null
           unit?: string
@@ -891,6 +906,21 @@ export type Database = {
           entry_count: number
           latest_entry_date: string
           prior_value: number
+        }[]
+      }
+      public_kpis_with_latest: {
+        Args: never
+        Returns: {
+          currency_code: string
+          custom_unit_label: string
+          id: string
+          label: string
+          latest_entry_date: string
+          latest_value: number
+          prefix: string
+          sort_order: number
+          suffix: string
+          unit: string
         }[]
       }
       seed_default_ventures: {
