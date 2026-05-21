@@ -112,7 +112,7 @@ const App = () => (
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/hq/content" element={<ContentPage />} />
           <Route path="/hq/analytics" element={<AnalyticsPage />} />
-          <Route path="/hq/chats" element={<ChatsPage />} />
+          
           <Route path="/hq/kpis" element={<KpisPage />} />
           <Route path="/hq/log" element={<DailyLogPage />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />
