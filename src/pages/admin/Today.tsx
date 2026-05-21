@@ -140,7 +140,7 @@ const Today = () => {
   const { projects: inProgressProjects } = useProjects({ status: "in-progress" });
   const topInProgress = inProgressProjects.slice(0, 5);
   const { items: scheduledContent } = useScheduledThisWeek();
-  const { data: chatStats } = useChatTodayStats();
+  
   const { pinned } = usePinnedKpis();
   const [openKpiId, setOpenKpiId] = useState<string | null>(null);
   const topContent = scheduledContent
