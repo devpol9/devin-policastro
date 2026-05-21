@@ -60,17 +60,15 @@ import InquiriesPage from "./pages/admin/Inquiries";
 import InquiryDetailPage from "./pages/admin/InquiryDetail";
 import VenturesPage from "./pages/admin/Ventures";
 import VentureDetailPage from "./pages/admin/VentureDetail";
-import ProjectsPage from "./pages/admin/Projects";
 import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
 import AnalyticsPage from "./pages/admin/Analytics";
 
 import KpisPage from "./pages/admin/Kpis";
-import DailyLogPage from "./pages/admin/DailyLog";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
-import PeoplePage from "./pages/admin/People";
+
 import BriefingsPage from "./pages/admin/Briefings";
 import InstallPwaBanner from "./components/admin/InstallPwaBanner";
 
