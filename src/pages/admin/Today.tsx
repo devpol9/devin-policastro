@@ -20,6 +20,7 @@ import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
 import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
+import VenturePill from "@/components/admin/VenturePill";
 
 interface Priority {
   id?: string;
