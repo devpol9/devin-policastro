@@ -20,6 +20,7 @@ import KpiDetail from "@/components/admin/KpiDetail";
 import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
 import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
+import TriageSuggestionSheet from "@/components/admin/TriageSuggestionSheet";
 import VenturePill from "@/components/admin/VenturePill";
 import DailyDigest from "@/components/admin/DailyDigest";
 import StaleInquiriesCard from "@/components/admin/StaleInquiriesCard";
@@ -168,6 +169,7 @@ const Today = () => {
   const [quickLog, setQuickLog] = useState("");
   const [savingLog, setSavingLog] = useState(false);
   const [voiceCapture, setVoiceCapture] = useState<VoiceCaptured | null>(null);
+  const [triageFor, setTriageFor] = useState<{ id: string; body: string } | null>(null);
   const [logMode, setLogMode] = useState<"log" | "capture">("capture");
 
   const saveLogMut = useSaveDailyLog();
