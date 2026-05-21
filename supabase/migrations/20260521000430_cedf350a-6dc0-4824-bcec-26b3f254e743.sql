@@ -1,0 +1,3 @@
+DROP FUNCTION IF EXISTS public.chat_search(TEXT, TEXT, TIMESTAMPTZ);
+DROP TABLE IF EXISTS public.chat_messages CASCADE;
+DROP TABLE IF EXISTS public.chat_sessions CASCADE;

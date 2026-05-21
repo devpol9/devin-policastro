@@ -15,7 +15,7 @@ import { useVentures } from "@/hooks/use-ventures";
 import { useProjects } from "@/hooks/use-projects";
 import ProjectCard from "@/components/admin/ProjectCard";
 import { useScheduledThisWeek } from "@/hooks/use-content";
-import { useChatTodayStats } from "@/hooks/use-chats";
+
 import { usePinnedKpis } from "@/hooks/use-kpis";
 import { useRecentCaptures, useCreateCapture } from "@/hooks/use-captures";
 import { useSaveDailyLog, useDailyLog } from "@/hooks/use-daily-log";
@@ -140,7 +140,7 @@ const Today = () => {
   const { projects: inProgressProjects } = useProjects({ status: "in-progress" });
   const topInProgress = inProgressProjects.slice(0, 5);
   const { items: scheduledContent } = useScheduledThisWeek();
-  const { data: chatStats } = useChatTodayStats();
+  
   const { pinned } = usePinnedKpis();
   const [openKpiId, setOpenKpiId] = useState<string | null>(null);
   const topContent = scheduledContent
@@ -546,43 +546,6 @@ const Today = () => {
           </motion.section>
         )}
 
-        {chatStats && chatStats.total24h > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }}
-            className="mb-10"
-          >
-            <SubHeader title="Conversations today" onView={() => navigate("/hq/chats")} />
-            <button
-              onClick={() => navigate(chatStats.latestSessionId ? `/hq/chats?session=${chatStats.latestSessionId}` : "/hq/chats")}
-              className="w-full text-left panel p-4 flex items-center gap-4"
-            >
-              <div className="w-10 h-10 rounded-md bg-accent/10 text-accent flex items-center justify-center shrink-0">
-                <MessageCircle size={16} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <span className="font-display font-bold text-base">{chatStats.total24h}</span>
-                  <span className="text-xs text-muted-foreground">in last 24h</span>
-                  {chatStats.unreviewed24h > 0 && (
-                    <span className="ml-auto px-2 py-0.5 rounded-md text-[10px] font-medium bg-accent/15 text-accent border border-accent/30">
-                      {chatStats.unreviewed24h} unreviewed
-                    </span>
-                  )}
-                </div>
-                {chatStats.latestPreview && (
-                  <p className="text-xs text-muted-foreground truncate italic">
-                    "{chatStats.latestPreview}"
-                  </p>
-                )}
-                {chatStats.latestPath && (
-                  <p className="text-[10px] font-mono text-muted-foreground/70 truncate mt-0.5">
-                    from {chatStats.latestPath}
-                  </p>
-                )}
-              </div>
-            </button>
-          </motion.section>
-        )}
 
         {pv24 > 0 && (
           <motion.section

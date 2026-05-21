@@ -52,8 +52,6 @@ import Consulting from "./pages/Consulting";
 import Financing from "./pages/Financing";
 import Networking from "./pages/Networking";
 import Fitness from "./pages/Fitness";
-import AdminLogin from "./pages/AdminLogin";
-import Admin from "./pages/Admin";
 
 // DevHQ admin
 import AdminLoginPage from "./pages/admin/Login";
@@ -67,7 +65,7 @@ import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
 import AnalyticsPage from "./pages/admin/Analytics";
-import ChatsPage from "./pages/admin/Chats";
+
 import KpisPage from "./pages/admin/Kpis";
 import DailyLogPage from "./pages/admin/DailyLog";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
@@ -101,8 +99,6 @@ const App = () => (
           <Route path="/fitness" element={<Fitness />} />
           <Route path="/admin-login" element={<PathRedirect to="/hq/login" />} />
           <Route path="/admin" element={<PathRedirect to="/hq/today" />} />
-          <Route path="/legacy-admin-login" element={<AdminLogin />} />
-          <Route path="/legacy-admin" element={<Admin />} />
 
           {/* DevHQ admin */}
           <Route path="/hq" element={<Navigate to="/hq/today" replace />} />
@@ -116,7 +112,7 @@ const App = () => (
           <Route path="/hq/projects/:id" element={<ProjectDetailPage />} />
           <Route path="/hq/content" element={<ContentPage />} />
           <Route path="/hq/analytics" element={<AnalyticsPage />} />
-          <Route path="/hq/chats" element={<ChatsPage />} />
+          
           <Route path="/hq/kpis" element={<KpisPage />} />
           <Route path="/hq/log" element={<DailyLogPage />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />

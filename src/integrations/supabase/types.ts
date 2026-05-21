@@ -41,80 +41,6 @@ export type Database = {
         }
         Relationships: []
       }
-      chat_messages: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          role: string
-          session_id: string
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          id?: string
-          role: string
-          session_id: string
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          role?: string
-          session_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "chat_messages_session_id_fkey"
-            columns: ["session_id"]
-            isOneToOne: false
-            referencedRelation: "chat_sessions"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      chat_sessions: {
-        Row: {
-          id: string
-          last_message_at: string
-          lead_score: number | null
-          lead_status: string | null
-          message_count: number
-          path: string | null
-          reviewer_notes: string | null
-          session_token: string
-          started_at: string
-          tags: string[]
-          user_agent: string | null
-        }
-        Insert: {
-          id?: string
-          last_message_at?: string
-          lead_score?: number | null
-          lead_status?: string | null
-          message_count?: number
-          path?: string | null
-          reviewer_notes?: string | null
-          session_token: string
-          started_at?: string
-          tags?: string[]
-          user_agent?: string | null
-        }
-        Update: {
-          id?: string
-          last_message_at?: string
-          lead_score?: number | null
-          lead_status?: string | null
-          message_count?: number
-          path?: string | null
-          reviewer_notes?: string | null
-          session_token?: string
-          started_at?: string
-          tags?: string[]
-          user_agent?: string | null
-        }
-        Relationships: []
-      }
       content_attachments: {
         Row: {
           content_item_id: string
@@ -805,12 +731,6 @@ export type Database = {
           inquiries: number
           sessions: number
           source: string
-        }[]
-      }
-      chat_search: {
-        Args: { p_from?: string; p_lead_status?: string; p_query: string }
-        Returns: {
-          session_id: string
         }[]
       }
       has_role: {
