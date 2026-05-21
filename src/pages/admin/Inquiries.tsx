@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { Mail, Phone, Clock, Filter, RefreshCw, Search, FolderPlus } from "lucide-react";
+import { Mail, Phone, Clock, Filter, RefreshCw, Search, FolderPlus, CheckSquare, Square, X } from "lucide-react";
 import { format, subDays } from "date-fns";
 import { toast } from "sonner";
 import AdminShell from "@/components/admin/AdminShell";
@@ -65,6 +65,28 @@ const Inquiries = () => {
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState(false);
   const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  const toggleSelect = (id: string) =>
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+
+  const bulkUpdateStatus = async (newStatus: string) => {
+    const ids = Array.from(selected);
+    if (ids.length === 0) return;
+    const { error } = await supabase.from("inquiries").update({ status: newStatus }).in("id", ids);
+    if (error) {
+      toast.error("Bulk update failed");
+    } else {
+      setInquiries((prev) => prev.map((i) => (selected.has(i.id) ? { ...i, status: newStatus } : i)));
+      toast.success(`Updated ${ids.length} inquiries`);
+      setSelected(new Set());
+    }
+  };
+
 
 
   useEffect(() => { fetchInquiries(); }, []);
@@ -280,61 +302,103 @@ const Inquiries = () => {
       ) : filtered.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground">No inquiries match the current filters.</div>
       ) : (
-        <div className="panel divide-y divide-border/60 overflow-hidden">
-          {filtered.map((inq) => {
-            const serviceColor = SERVICE_COLORS[inq.service_type] || "24 32% 52%";
-            const statusColor = STATUS_COLORS[inq.status] || "24 32% 52%";
-            return (
-              <div
-                key={inq.id}
-                onClick={() => navigate(`/hq/inquiries/${inq.id}`)}
-                className="group flex items-center gap-3 px-3 sm:px-4 h-11 cursor-pointer hover:bg-secondary/40 transition-colors min-w-0"
-              >
-                <span
-                  className="h-2 w-2 rounded-full shrink-0"
-                  style={{ background: `hsl(${serviceColor})` }}
-                  title={inq.service_type.replace(" Inquiry", "")}
-                />
-                <span className="font-display font-semibold text-sm truncate min-w-0 flex-1 sm:flex-none sm:w-44">
-                  {inq.name}
-                </span>
-                <span className="hidden sm:inline text-xs text-muted-foreground truncate flex-1 min-w-0">
-                  {inq.email}
-                </span>
-                <span className="hidden md:inline text-[11px] text-muted-foreground shrink-0">
-                  {inq.service_type.replace(" Inquiry", "")}
-                </span>
-                {inq.converted_project_id ? (
-                  <span className="hidden md:inline text-[10px] text-accent shrink-0">→ project</span>
-                ) : (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setConvertTarget(inq); }}
-                    title="Convert to project"
-                    className="hidden md:inline-flex items-center justify-center h-6 w-6 rounded-md border border-border/40 text-muted-foreground hover:text-accent hover:border-accent/40 shrink-0"
-                  >
-                    <FolderPlus size={12} />
-                  </button>
-                )}
-                <select
-                  value={inq.status}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => updateStatus(inq.id, e.target.value)}
-                  className="text-[11px] bg-transparent cursor-pointer rounded-md border px-1.5 py-0.5 shrink-0"
-                  style={{ color: `hsl(${statusColor})`, borderColor: `hsl(${statusColor} / 0.3)` }}
-                >
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="in-progress">In Progress</option>
-                  <option value="closed">Closed</option>
-                </select>
-                <span className="text-[11px] tabular-nums text-muted-foreground shrink-0 hidden sm:inline">
-                  {format(new Date(inq.created_at), "MMM d")}
-                </span>
+        <>
+          {/* Bulk action bar */}
+          <div className="flex items-center gap-2 mb-2 px-1">
+            <button
+              onClick={() => {
+                const allSelected = filtered.every((i) => selected.has(i.id));
+                setSelected(allSelected ? new Set() : new Set(filtered.map((i) => i.id)));
+              }}
+              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {filtered.length > 0 && filtered.every((i) => selected.has(i.id)) ? (
+                <CheckSquare size={14} />
+              ) : (
+                <Square size={14} />
+              )}
+              Select all ({filtered.length})
+            </button>
+            {selected.size > 0 && (
+              <div className="ml-auto flex items-center gap-2 text-xs">
+                <span className="text-muted-foreground">{selected.size} selected</span>
+                <button onClick={() => bulkUpdateStatus("contacted")} className="px-2.5 py-1 rounded-md border border-border/60 hover:border-foreground/40 hover:text-foreground text-muted-foreground transition-colors">Mark contacted</button>
+                <button onClick={() => bulkUpdateStatus("in-progress")} className="px-2.5 py-1 rounded-md border border-border/60 hover:border-foreground/40 hover:text-foreground text-muted-foreground transition-colors">In progress</button>
+                <button onClick={() => bulkUpdateStatus("closed")} className="px-2.5 py-1 rounded-md border border-accent/40 text-accent hover:bg-accent/10 transition-colors">Archive</button>
+                <button onClick={() => setSelected(new Set())} className="p-1 text-muted-foreground hover:text-foreground" title="Clear">
+                  <X size={14} />
+                </button>
               </div>
-            );
-          })}
-        </div>
+            )}
+          </div>
+
+          <div className="panel divide-y divide-border/60 overflow-hidden">
+            {filtered.map((inq) => {
+              const serviceColor = SERVICE_COLORS[inq.service_type] || "24 32% 52%";
+              const statusColor = STATUS_COLORS[inq.status] || "24 32% 52%";
+              const isSelected = selected.has(inq.id);
+              return (
+                <div
+                  key={inq.id}
+                  onClick={() => navigate(`/hq/inquiries/${inq.id}`)}
+                  className={`group flex items-center gap-3 px-3 sm:px-4 h-11 cursor-pointer transition-colors min-w-0 ${
+                    isSelected ? "bg-secondary/60" : "hover:bg-secondary/40"
+                  }`}
+                >
+                  <button
+                    onClick={(e) => { e.stopPropagation(); toggleSelect(inq.id); }}
+                    className="shrink-0 text-muted-foreground hover:text-foreground"
+                    title={isSelected ? "Deselect" : "Select"}
+                  >
+                    {isSelected ? <CheckSquare size={14} className="text-accent" /> : <Square size={14} />}
+                  </button>
+                  <span
+                    className="h-2 w-2 rounded-full shrink-0"
+                    style={{ background: `hsl(${serviceColor})` }}
+                    title={inq.service_type.replace(" Inquiry", "")}
+                  />
+                  <span className="font-display font-semibold text-sm truncate min-w-0 flex-1 sm:flex-none sm:w-44">
+                    {inq.name}
+                  </span>
+                  <span className="hidden sm:inline text-xs text-muted-foreground truncate flex-1 min-w-0">
+                    {inq.email}
+                  </span>
+                  <span className="hidden md:inline text-[11px] text-muted-foreground shrink-0">
+                    {inq.service_type.replace(" Inquiry", "")}
+                  </span>
+                  {inq.converted_project_id ? (
+                    <span className="hidden md:inline text-[10px] text-accent shrink-0">→ project</span>
+                  ) : (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setConvertTarget(inq); }}
+                      title="Convert to project"
+                      className="hidden md:inline-flex items-center justify-center h-6 w-6 rounded-md border border-border/40 text-muted-foreground hover:text-accent hover:border-accent/40 shrink-0"
+                    >
+                      <FolderPlus size={12} />
+                    </button>
+                  )}
+                  <select
+                    value={inq.status}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={(e) => updateStatus(inq.id, e.target.value)}
+                    className="text-[11px] bg-transparent cursor-pointer rounded-md border px-1.5 py-0.5 shrink-0"
+                    style={{ color: `hsl(${statusColor})`, borderColor: `hsl(${statusColor} / 0.3)` }}
+                  >
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                  <span className="text-[11px] tabular-nums text-muted-foreground shrink-0 hidden sm:inline">
+                    {format(new Date(inq.created_at), "MMM d")}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </>
       )}
+
 
       {convertTarget && (() => {
         const inq = convertTarget;
