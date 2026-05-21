@@ -349,12 +349,13 @@ const PersonDrawer = ({ personId, people, onClose }: {
         </SheetHeader>
 
         <div className="mt-3">
-          <TabBar<"overview" | "intros">
+          <TabBar<"overview" | "intros" | "inquiries">
             value={tab}
             onChange={setTab}
             items={[
               { value: "overview", label: "Overview" },
               { value: "intros", label: "Intros", count: intros.length },
+              { value: "inquiries", label: "Inquiries", count: linkedInquiries.length },
             ]}
           />
         </div>
