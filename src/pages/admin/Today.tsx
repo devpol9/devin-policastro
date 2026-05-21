@@ -730,6 +730,7 @@ const Today = () => {
 
 
       <KpiDetail kpiId={openKpiId} onOpenChange={(o) => !o && setOpenKpiId(null)} />
+      <VoicePostCaptureSheet capture={voiceCapture} onClose={() => setVoiceCapture(null)} />
     </AdminShell>
     </AdminGuard>
   );
