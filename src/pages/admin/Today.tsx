@@ -281,13 +281,26 @@ const Today = () => {
       {/* Cross-venture inbox (assigned / mentions you) */}
       <CrossVentureInbox compact />
 
+      {/* Venture quick-jump row */}
+      {activeVentures.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.03 }}
+          className="flex gap-2 overflow-x-auto pb-2 mb-8 -mx-1 px-1 snap-x"
+          data-lenis-prevent
+        >
+          {activeVentures.map((v) => (
+            <VenturePill key={v.id} venture={v} size="md" />
+          ))}
+        </motion.div>
+      )}
+
       {/* Today's three */}
       <motion.section
         initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}
         className="mb-12"
       >
         <SectionHeader as="h2" numeral="01" eyebrow="Priorities" title={<>Today's <span className="accent-headline">three.</span></>} />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {priorities.map((p) => (
             <PrioritySlot key={p.slot} slot={p.slot} value={p} onSave={savePriority} />
           ))}
