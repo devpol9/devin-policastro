@@ -118,7 +118,7 @@ const NoteDialog = ({ open, onOpenChange, capture, onCreated }: Props) => {
           </div>
           <div>
             <Label className="text-xs">Body</Label>
-            <Textarea value={body} onChange={(e) => setBody(e.target.value)} rows={6} placeholder="Markdown supported" />
+            <MarkdownEditor value={body} onChange={setBody} minHeight={260} placeholder="Markdown supported — # heading, **bold**, - list, [link](url)" />
           </div>
           {kind === "link" && (
             <div>
