@@ -174,7 +174,61 @@ const Inquiries = () => {
         />
       </div>
 
+      {/* Venture pill row — primary axis */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        <button
+          onClick={() => setVentureFilter("all")}
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-display border transition-colors ${
+            ventureFilter === "all"
+              ? "bg-foreground text-background border-foreground"
+              : "bg-card text-muted-foreground border-border/60 hover:text-foreground"
+          }`}
+        >
+          All ventures
+          <span className="font-mono opacity-70">{ventureCounts.all}</span>
+        </button>
+        {activeVentures.map((v) => {
+          const Icon = getVentureIcon(v.icon);
+          const active = ventureFilter === v.id;
+          const count = ventureCounts[v.id] || 0;
+          return (
+            <button
+              key={v.id}
+              onClick={() => setVentureFilter(active ? "all" : v.id)}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-display border transition-colors"
+              style={{
+                background: active
+                  ? `color-mix(in oklch, ${v.accent_color} 18%, transparent)`
+                  : "transparent",
+                borderColor: active
+                  ? v.accent_color
+                  : `color-mix(in oklch, ${v.accent_color} 30%, transparent)`,
+                color: active ? v.accent_color : `color-mix(in oklch, ${v.accent_color} 80%, hsl(var(--muted-foreground)))`,
+              }}
+            >
+              <Icon size={12} />
+              {v.short_name || v.name}
+              <span className="font-mono opacity-70">{count}</span>
+            </button>
+          );
+        })}
+        {ventureCounts.none > 0 && (
+          <button
+            onClick={() => setVentureFilter(ventureFilter === "none" ? "all" : "none")}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-display border transition-colors ${
+              ventureFilter === "none"
+                ? "bg-secondary text-foreground border-border"
+                : "bg-card text-muted-foreground border-border/60 hover:text-foreground"
+            }`}
+          >
+            Unmatched
+            <span className="font-mono opacity-70">{ventureCounts.none}</span>
+          </button>
+        )}
+      </div>
+
       <div className="flex flex-wrap gap-2 mb-6">
+
         <div className="flex items-center gap-2 mr-2">
           <Filter size={14} className="text-muted-foreground" />
           <span className="text-xs text-muted-foreground font-display tracking-[0.06em]">Service:</span>
