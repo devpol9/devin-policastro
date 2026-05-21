@@ -93,8 +93,6 @@ Deno.serve(async (req) => {
   const values: Record<string, number> = {
     "Weekly page views": pv.count ?? 0,
     "Weekly site visitors": uniqueVisitors,
-    "Chatbot conversations / wk": chats.count ?? 0,
-    "Qualified chat leads / wk": qual.count ?? 0,
     "IZ contact inquiries / wk": izInq.count ?? 0,
     "IZ free-trial signups / wk": izComp.count ?? 0,
     "IZ freeze + cancel / wk": izFC.count ?? 0,
