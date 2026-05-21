@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -9,11 +9,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
-import { Archive, ArchiveRestore, Pencil, Pin, PinOff, Sparkles, Trash2, ExternalLink } from "lucide-react";
+import { Archive, ArchiveRestore, Check, Loader2, Pencil, Pin, PinOff, Sparkles, Trash2, ExternalLink, X } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 import VenturePill from "@/components/admin/VenturePill";
 import NoteDialog from "@/components/admin/NoteDialog";
 import ProjectDialog from "@/components/admin/ProjectDialog";
+import MarkdownEditor from "@/components/admin/MarkdownEditor";
 import {
   useCapture, useUpdateCapture, useDeleteCapture, type Capture,
 } from "@/hooks/use-captures";
