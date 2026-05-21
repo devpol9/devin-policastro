@@ -63,7 +63,7 @@ import VentureDetailPage from "./pages/admin/VentureDetail";
 import ProjectDetailPage from "./pages/admin/ProjectDetail";
 import ContentPage from "./pages/admin/Content";
 import PillarsSettingsPage from "./pages/admin/PillarsSettings";
-import AnalyticsPage from "./pages/admin/Analytics";
+
 
 import KpisPage from "./pages/admin/Kpis";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
