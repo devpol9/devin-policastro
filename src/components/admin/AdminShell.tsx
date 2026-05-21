@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Home, Mail, KanbanSquare, Building2, Calendar, BookOpen,
   TrendingUp, Lightbulb, BarChart3, MessageSquare, Settings,
-  LogOut,
+  LogOut, Users,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -35,6 +35,7 @@ const navGroups: NavGroup[] = [
       { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
       { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
       { label: "Ventures", icon: Building2, to: "/hq/ventures" },
+      { label: "People", icon: Users, to: "/hq/people" },
     ],
   },
   {
