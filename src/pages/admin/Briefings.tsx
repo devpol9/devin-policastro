@@ -115,7 +115,7 @@ const BriefingsPage = () => {
               })}
             </aside>
 
-            <main className="panel p-5 sm:p-6 min-h-[60vh]">
+            <main className="panel p-4 sm:p-5 lg:p-6 min-h-[60vh]">
               {selected ? (
                 <>
                   <div className="flex items-start justify-between gap-3 mb-4 pb-4 border-b border-border/40">
