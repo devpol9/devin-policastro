@@ -28,7 +28,18 @@ interface ServiceInquiryDialogProps {
   color: string;
   fields: InquiryField[];
   emailSubject: string;
+  defaultVenture?: string;
 }
+
+const VENTURE_OPTIONS = [
+  { slug: "impact-zone", label: "Impact Zone NJ — Gym / fitness" },
+  { slug: "2thirty", label: "2THIRTY — Hydration mixer" },
+  { slug: "valence", label: "Valence — Gym SaaS" },
+  { slug: "onlyshitz", label: "OnlyShitz — Social casino" },
+  { slug: "creative-vision", label: "Creative Vision — Manufacturing / private label" },
+  { slug: "personal", label: "Devin (personal brand / consulting)" },
+  { slug: "new-projects", label: "Something new" },
+];
 
 const ServiceInquiryDialog = ({
   open,
@@ -38,10 +49,11 @@ const ServiceInquiryDialog = ({
   color,
   fields,
   emailSubject,
+  defaultVenture,
 }: ServiceInquiryDialogProps) => {
   const [sending, setSending] = useState(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const initial: Record<string, string> = { name: "", email: "", phone: "" };
+  const initial: Record<string, string> = { name: "", email: "", phone: "", venture_slug: defaultVenture ?? "" };
   fields.forEach((f) => {
     if (f.defaultValue) initial[f.key] = f.defaultValue;
   });
