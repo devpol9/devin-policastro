@@ -278,7 +278,7 @@ const PersonDrawer = ({ personId, people, onClose }: {
 }) => {
   const qc = useQueryClient();
   const person = people.find((p) => p.id === personId) ?? null;
-  const [tab, setTab] = useState<"overview" | "intros">("overview");
+  const [tab, setTab] = useState<"overview" | "intros" | "inquiries">("overview");
   const [introOpen, setIntroOpen] = useState(false);
   const [editingTags, setEditingTags] = useState(false);
   const [tagInput, setTagInput] = useState("");
@@ -294,6 +294,20 @@ const PersonDrawer = ({ personId, people, onClose }: {
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data || []) as Intro[];
+    },
+  });
+
+  const { data: linkedInquiries = [] } = useQuery({
+    queryKey: ["person-inquiries", personId, person?.email],
+    enabled: !!personId && !!person?.email,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("inquiries")
+        .select("id, name, email, service_type, status, created_at")
+        .ilike("email", person!.email!)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data ?? [];
     },
   });
 
