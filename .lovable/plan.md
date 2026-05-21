@@ -1,57 +1,80 @@
-# DevHQ Phase 1 Plan
+## Scope: all four HQ upgrades
 
-Large scope — I'll execute in this order. First, a database migration needs your approval before I can write the code that depends on it.
+Big batch — sequenced from highest leverage to lowest. I'll ship in order, you can stop me at any point.
 
-## Step 1 — Database migration (needs your approval)
+---
 
-Single migration adding 4 tables, all RLS-enabled using `has_role()`:
+### 1. Connector CRM upgrade (`/hq/people`)
 
-- **`priorities_today`** — user_id, priority_date, slot (1-3), title, completed. Unique on (user_id, date, slot). Admin-scoped to own rows.
-- **`daily_logs_quick`** — user_id, content. Admin-scoped to own rows.
-- **`chat_sessions`** — session_token (unique), user_agent, path, started_at, last_message_at, message_count. Anon insert/update; admin select.
-- **`chat_messages`** — session_id FK, role ('user'|'assistant'), content. Anon insert; admin select. Index on (session_id, created_at).
+**DB (migration):**
+- Add `intros.context` (text — why the intro), `intros.outcome` (text). Already has `from_person_id`, `to_person_id`, `status`, `follow_up_at`, `note`.
+- Add `people.relationship_strength` (smallint 1–5) and lean on existing `tags[]` + `last_contacted_at`.
 
-After approval, types.ts auto-regenerates.
+**UI rebuild:**
+- Person detail drawer: full profile, edit-in-place, tag chips, relationship strength stars, "last touched" with quick "mark contacted today" button.
+- **Intros tab on the drawer**: list of intros where this person is `from` or `to`, status badges (proposed → sent → connected → closed).
+- **"Make intro" action**: button on a person picks a second person → creates `intros` row with context note → optional follow-up date.
+- **Stale list** on People index: contacts not touched in 30/60/90 days, sorted by relationship strength.
+- Tag filter pills above the grid.
+- AI command bar already handles "add person" — extend it to "intro X to Y about Z".
 
-## Step 2 — Subdomain routing in `App.tsx`
+---
 
-Compute `isAdminHost` from `window.location.hostname` (`admin.devinpolicastro.com`, any `admin.*`) or `?hq=1` query param. Render a separate `<Routes>` tree for admin; otherwise existing public routes untouched.
+### 2. Signal tab on Today
 
-Admin routes: `/` → redirect, `/login`, `/today`, `/inquiries`, `/inquiries/:id`, `*` → admin 404. Existing `/admin` and `/admin-login` become small redirect components using `window.location.replace` to `admin.devinpolicastro.com`.
+Replace the empty Signal tab with a chronological feed merging:
+- New inquiries (last 7 days, unread)
+- Analytics spikes — any path with >2× its 7-day avg in last 24h (via existing `analytics_top_paths` + simple ratio calc client-side)
+- Pending intros needing follow-up (today or overdue)
+- Stale top relationships (strength ≥ 4, not contacted in 30d)
+- Content scheduled for today
 
-## Step 3 — Admin shell
+Each item: icon, one-line headline, timestamp, click-through to the right page. No new tables.
 
-- `src/components/admin/AdminGuard.tsx` — checks session + admin role, subscribes to `onAuthStateChange`, minimal pulsing-dot loader, signs out non-admins.
-- `src/components/admin/AdminShell.tsx` — shadcn Sidebar (collapsible), top bar with page title + search placeholder + date + logout, content `max-w-7xl`. Sidebar items: Today (active), Inquiries (active, new-count badge), then disabled "Soon" items (Projects, Ventures, Content, Daily Log, KPIs, Notes, Analytics, Chat Logs), Settings at bottom. Header "DevHQ" with terracotta italic accent. Footer shows email + logout.
-- `src/hooks/useIsAdmin.ts` — reusable.
+---
 
-## Step 4 — Pages
+### 3. Analytics page (`/hq/analytics`)
 
-- `src/pages/admin/Login.tsx` — move existing AdminLogin content here verbatim, post-login route → `/today`.
-- `src/pages/admin/Today.tsx` — greeting block, 3 priority slots (inline editable, persist to `priorities_today` scoped by date), 7-day inquiry bar chart (recharts), 5 recent inquiries (clickable → detail), quick-log textarea (saves to `daily_logs_quick`), compact 24h analytics ticker (hidden if no data). Framer Motion fade-up.
-- `src/pages/admin/Inquiries.tsx` — port existing `Admin.tsx` filter/status logic into the shell. Add name/email search bar + Total/New/This Week metric pills. Cards clickable → `/inquiries/:id`.
-- `src/pages/admin/InquiryDetail.tsx` — 2-column layout. Left: badge, name, status dropdown, contact links, timestamp, form_data definition list. Right: notes textarea (save on blur), Mark contacted/closed buttons, disabled "Convert to Project" w/ Phase 2 tooltip, copy buttons, back link.
+Use existing RPCs (`analytics_overview`, `analytics_over_time`, `analytics_top_paths`, `analytics_top_sources`, `analytics_top_events`).
 
-## Step 5 — Chat logging
+Layout:
+- Range picker: 24h / 7d / 30d / 90d
+- 4 stat cards: page views, unique sessions, inquiries, chat engagements (with delta vs prior period)
+- Line chart: events over time, stacked by event_name
+- Two side-by-side tables: top paths (with inquiry conversion %), top referral sources
+- Top events list at bottom
 
-- `supabase/functions/chat/index.ts` — accept optional `session_token` (generate if missing), upsert `chat_sessions` (user_agent from headers, path from body, increment message_count), insert user message before streaming, insert assistant message after stream completes, return `X-Session-Token` response header.
-- `src/components/AIChatbot.tsx` — read/write `chat_session_token` in localStorage, send in request body, capture header on response. UX unchanged.
+Pure read — no schema changes.
 
-## Step 6 — Public-site DevHQ link
+---
 
-- `src/components/FloatingNav.tsx` — desktop-only small link visible when `useIsAdmin()` is true, linking to `https://admin.devinpolicastro.com/today`. MobileBottomNav untouched.
+### 4. Monday Briefing inbox (`/hq/briefings`)
+
+`briefings` table already exists. Build:
+- Sidebar list of past briefings (week_start, emailed_at status pill)
+- Main panel renders selected briefing as markdown
+- Stats strip pulled from `briefings.stats` jsonb
+- Add `/hq/briefings` to AdminShell nav under "output"
+- "Generate this week now" button → invokes existing `monday-briefing` edge function manually
+
+No schema changes.
+
+---
 
 ## Technical notes
 
-- All new RLS policies use `has_role(auth.uid(), 'admin'::app_role)` per project pattern.
-- Use existing `glass-card`, `glow-text`, `SectionHeader`, color tokens, Fraunces/Inter/JetBrains Mono. No new tokens or palette changes.
-- Recharts is needed for the inquiry pulse chart — will add if not present.
-- ESLint hover-rule from prior turn still applies — new code uses only color-change hovers, no scale/opacity/transform hovers.
+- One migration for #1 only (`intros.context`, `intros.outcome`, `people.relationship_strength`).
+- All new pages wrapped in `AdminGuard` + `AdminShell`.
+- Reuse existing `panel`, `accent-headline`, `SectionHeader`, TabBar conventions.
+- Sentence case throughout (per memory).
+- No new dependencies.
 
-## Out of scope (Phase 2/3)
+## Order of execution
 
-Projects, Ventures, Content Calendar, KPIs, Notes, full Daily Log, full Analytics. DNS/Lovable domain config is a deploy step, not code.
+1. Migration for #1 → wait for approval
+2. Build Connector CRM
+3. Build Briefings inbox (smallest, fast)
+4. Build Analytics page
+5. Build Signal tab last (depends on having intros + analytics calcs ready)
 
-## Acceptance verification
-
-After ship: public site unchanged; `?hq=1` → admin login or Today; priorities persist; inquiries dashboard works inside shell with all filters; detail page notes save on blur; chatbot messages land in `chat_messages`; non-admin Google sign-in gets blocked + signed out.
+I'll ship in 4 separate code passes between checkpoints so you can react.
