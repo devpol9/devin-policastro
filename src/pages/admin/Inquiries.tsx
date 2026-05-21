@@ -42,12 +42,14 @@ const SERVICE_COLORS: Record<string, string> = {
 
 const Inquiries = () => {
   const navigate = useNavigate();
+  const { activeVentures } = useVentures();
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState(false);
+  const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
 
   useEffect(() => { fetchInquiries(); }, []);
 
