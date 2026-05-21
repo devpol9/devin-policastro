@@ -219,6 +219,21 @@ const ServiceInquiryDialog = ({
               />
             </div>
 
+            <div>
+              <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+                Related to
+              </label>
+              <select
+                value={formData.venture_slug || ""}
+                onChange={(e) => setFormData((p) => ({ ...p, venture_slug: e.target.value }))}
+                className="w-full bg-background border border-border/60 h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
+              >
+                <option value="">Pick a venture (optional)</option>
+                {VENTURE_OPTIONS.map((v) => (
+                  <option key={v.slug} value={v.slug}>{v.label}</option>
+                ))}
+              </select>
+
             {fields.map((field, i) => {
               const err = showError(field.key);
               const errCls = err ? "border-destructive" : "border-border/60";
