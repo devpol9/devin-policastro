@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useVentures } from "@/hooks/use-ventures";
 import { useCreateCapture, type CaptureKind } from "@/hooks/use-captures";
+import TriageSuggestionSheet from "@/components/admin/TriageSuggestionSheet";
 import { toast } from "sonner";
 
 const LAST_KIND = "devhq.notes.lastKind";
@@ -28,6 +29,7 @@ const NoteCaptureDialog = ({ open, onOpenChange }: Props) => {
   const [body, setBody] = useState("");
   const [kind, setKind] = useState<CaptureKind>("note");
   const [ventureId, setVentureId] = useState<string>("none");
+  const [triageFor, setTriageFor] = useState<{ id: string; body: string } | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -39,7 +41,7 @@ const NoteCaptureDialog = ({ open, onOpenChange }: Props) => {
   const submit = async () => {
     if (!body.trim()) return;
     try {
-      await create.mutateAsync({
+      const created = await create.mutateAsync({
         kind,
         body: body.trim(),
         venture_id: ventureId === "none" ? null : ventureId,
@@ -49,7 +51,9 @@ const NoteCaptureDialog = ({ open, onOpenChange }: Props) => {
         localStorage.setItem(LAST_VENTURE, ventureId);
       } catch {}
       toast.success("Captured.");
+      const savedBody = body.trim();
       onOpenChange(false);
+      setTriageFor({ id: (created as any).id, body: savedBody });
     } catch (e: any) {
       toast.error(e.message ?? "Couldn't save");
     }
