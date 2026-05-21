@@ -102,12 +102,30 @@ const Inquiries = () => {
     if (!showConverted && inq.converted_project_id) return false;
     if (filter !== "all" && inq.service_type !== filter) return false;
     if (statusFilter !== "all" && inq.status !== statusFilter) return false;
+    if (ventureFilter !== "all") {
+      const vId = inferVentureId(inq, activeVentures);
+      if (ventureFilter === "none" ? !!vId : vId !== ventureFilter) return false;
+    }
     if (search.trim()) {
       const q = search.toLowerCase();
       if (!inq.name.toLowerCase().includes(q) && !inq.email.toLowerCase().includes(q)) return false;
     }
     return true;
   });
+
+  const ventureCounts = (() => {
+    const counts: Record<string, number> = { all: 0, none: 0 };
+    activeVentures.forEach((v) => (counts[v.id] = 0));
+    inquiries.forEach((inq) => {
+      if (!showConverted && inq.converted_project_id) return;
+      counts.all++;
+      const vId = inferVentureId(inq, activeVentures);
+      if (vId) counts[vId] = (counts[vId] || 0) + 1;
+      else counts.none++;
+    });
+    return counts;
+  })();
+
 
   const serviceTypes = [...new Set(inquiries.map((i) => i.service_type))];
 
