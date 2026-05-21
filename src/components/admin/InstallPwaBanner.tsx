@@ -92,7 +92,7 @@ const InstallPwaBanner = () => {
         <Download size={16} />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="font-display font-semibold text-sm leading-tight">Install DevHQ</p>
+        <p className="font-display font-semibold text-sm leading-tight">Install Devin</p>
         {iosHint ? (
           <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
             Tap <Share size={11} className="inline -mt-0.5" /> Share, then "Add to Home Screen".
@@ -100,7 +100,7 @@ const InstallPwaBanner = () => {
         ) : (
           <>
             <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
-              One-tap access. Works offline.
+              One-tap access from your home screen.
             </p>
             <button
               onClick={install}
