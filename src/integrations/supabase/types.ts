@@ -41,6 +41,36 @@ export type Database = {
         }
         Relationships: []
       }
+      briefings: {
+        Row: {
+          content: string
+          created_at: string
+          emailed_at: string | null
+          id: string
+          stats: Json
+          user_id: string
+          week_start: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          emailed_at?: string | null
+          id?: string
+          stats?: Json
+          user_id: string
+          week_start: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          emailed_at?: string | null
+          id?: string
+          stats?: Json
+          user_id?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
       content_attachments: {
         Row: {
           content_item_id: string
@@ -309,6 +339,57 @@ export type Database = {
           },
         ]
       }
+      intros: {
+        Row: {
+          created_at: string
+          follow_up_at: string | null
+          from_person_id: string | null
+          id: string
+          note: string | null
+          status: string
+          to_person_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          follow_up_at?: string | null
+          from_person_id?: string | null
+          id?: string
+          note?: string | null
+          status?: string
+          to_person_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          follow_up_at?: string | null
+          from_person_id?: string | null
+          id?: string
+          note?: string | null
+          status?: string
+          to_person_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intros_from_person_id_fkey"
+            columns: ["from_person_id"]
+            isOneToOne: false
+            referencedRelation: "people"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "intros_to_person_id_fkey"
+            columns: ["to_person_id"]
+            isOneToOne: false
+            referencedRelation: "people"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       kpi_entries: {
         Row: {
           created_at: string
@@ -411,6 +492,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      people: {
+        Row: {
+          city: string | null
+          company: string | null
+          created_at: string
+          email: string | null
+          id: string
+          last_contacted_at: string | null
+          meta: Json
+          name: string
+          notes: string | null
+          phone: string | null
+          role: string | null
+          source: string | null
+          tags: string[]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          city?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          last_contacted_at?: string | null
+          meta?: Json
+          name: string
+          notes?: string | null
+          phone?: string | null
+          role?: string | null
+          source?: string | null
+          tags?: string[]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          city?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          last_contacted_at?: string | null
+          meta?: Json
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          role?: string | null
+          source?: string | null
+          tags?: string[]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       priorities_today: {
         Row: {
