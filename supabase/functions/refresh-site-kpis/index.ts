@@ -62,14 +62,11 @@ Deno.serve(async (req) => {
   const headOpts = { count: "exact" as const, head: true };
 
   // Local site data
-  const [pv, vis, chats, qual] = await Promise.all([
+  const [pv, vis] = await Promise.all([
     supabase.from("analytics_events").select("id", headOpts)
       .eq("event_name", "page_view").gte("created_at", since),
     supabase.from("analytics_events").select("user_agent")
       .gte("created_at", since).not("user_agent", "is", null),
-    supabase.from("chat_sessions").select("id", headOpts).gte("last_message_at", since),
-    supabase.from("chat_sessions").select("id", headOpts)
-      .in("lead_status", ["qualified", "hot"]).gte("last_message_at", since),
   ]);
 
   // Impact Zone data (anon-readable tables only)
