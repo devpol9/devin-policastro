@@ -237,7 +237,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
       <MobileAdminNav />
       <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
       <HqCommandBar open={cmdOpen} onOpenChange={setCmdOpen} />
-      <InstallPwaBanner />
+      
     </SidebarProvider>
   );
 };
