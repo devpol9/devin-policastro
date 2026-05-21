@@ -10,6 +10,7 @@ import SectionHeader from "@/components/SectionHeader";
 import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
 import ProjectDialog from "@/components/admin/ProjectDialog";
 import { useVentures } from "@/hooks/use-ventures";
+import { getVentureIcon } from "@/components/admin/ventureIcons";
 
 interface Inquiry {
   id: string;
