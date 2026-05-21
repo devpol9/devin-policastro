@@ -60,6 +60,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/today")) return "Today";
   if (pathname.startsWith("/hq/inquiries")) return "Inquiries";
   if (pathname.startsWith("/hq/ventures")) return "Ventures";
+  if (pathname.startsWith("/hq/people")) return "People";
   if (pathname.startsWith("/hq/projects")) return "Projects";
   if (pathname.startsWith("/hq/content")) return "Content";
   if (pathname.startsWith("/hq/analytics")) return "Analytics";
