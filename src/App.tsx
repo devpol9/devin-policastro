@@ -70,9 +70,11 @@ import KpisPage from "./pages/admin/Kpis";
 import DailyLogPage from "./pages/admin/DailyLog";
 import NotesIdeasPage from "./pages/admin/NotesIdeas";
 import AdminNotFound from "./pages/admin/NotFound";
+import PeoplePage from "./pages/admin/People";
 
 const queryClient = new QueryClient();
 
+// Add a settings entry for AdminShell page-title fallback already covered
 const PathRedirect = ({ to }: { to: string }) => {
   useEffect(() => { window.location.replace(to); }, [to]);
   return null;
@@ -113,6 +115,7 @@ const App = () => (
           <Route path="/hq/content" element={<ContentPage />} />
           <Route path="/hq/analytics" element={<AnalyticsPage />} />
           
+          <Route path="/hq/people" element={<PeoplePage />} />
           <Route path="/hq/kpis" element={<KpisPage />} />
           <Route path="/hq/log" element={<DailyLogPage />} />
           <Route path="/hq/notes" element={<NotesIdeasPage />} />

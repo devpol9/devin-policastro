@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Home, Mail, KanbanSquare, Building2, Calendar, BookOpen,
   TrendingUp, Lightbulb, BarChart3, MessageSquare, Settings,
-  LogOut,
+  LogOut, Users,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
 import MobileAdminNav from "@/components/admin/MobileAdminNav";
+import HqCommandBar from "@/components/admin/HqCommandBar";
 
 type NavItem = {
   label: string;
@@ -34,6 +35,7 @@ const navGroups: NavGroup[] = [
       { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
       { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
       { label: "Ventures", icon: Building2, to: "/hq/ventures" },
+      { label: "People", icon: Users, to: "/hq/people" },
     ],
   },
   {
@@ -58,6 +60,7 @@ const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/today")) return "Today";
   if (pathname.startsWith("/hq/inquiries")) return "Inquiries";
   if (pathname.startsWith("/hq/ventures")) return "Ventures";
+  if (pathname.startsWith("/hq/people")) return "People";
   if (pathname.startsWith("/hq/projects")) return "Projects";
   if (pathname.startsWith("/hq/content")) return "Content";
   if (pathname.startsWith("/hq/analytics")) return "Analytics";
@@ -75,6 +78,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
   const [email, setEmail] = useState<string>("");
   const [newCount, setNewCount] = useState<number>(0);
   const [quickOpen, setQuickOpen] = useState(false);
+  const [cmdOpen, setCmdOpen] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -82,6 +86,10 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
       if (mod && e.shiftKey && (e.key === "N" || e.key === "n")) {
         e.preventDefault();
         setQuickOpen(true);
+      }
+      if (mod && !e.shiftKey && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        setCmdOpen(true);
       }
     };
     window.addEventListener("keydown", onKey);
@@ -204,7 +212,15 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
             <h1 className="hidden md:block font-display font-semibold text-sm tracking-tight">
               {pageTitleFor(location.pathname)}
             </h1>
-            <span className="ml-auto md:ml-0 text-[10px] font-medium text-muted-foreground/70 tabular-nums px-1.5 py-0.5 rounded border border-border/40">
+            <button
+              onClick={() => setCmdOpen(true)}
+              className="ml-auto inline-flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground hover:text-foreground px-2 py-1 rounded border border-border/40 hover:border-border transition-colors"
+              title="AI command bar (⌘K)"
+            >
+              <span>Ask HQ</span>
+              <kbd className="hidden sm:inline text-[9px] opacity-60">⌘K</kbd>
+            </button>
+            <span className="text-[10px] font-medium text-muted-foreground/70 tabular-nums px-1.5 py-0.5 rounded border border-border/40">
               {format(new Date(), "EEE MMM d")}
             </span>
           </header>
@@ -218,6 +234,7 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
       </div>
       <MobileAdminNav />
       <NoteCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
+      <HqCommandBar open={cmdOpen} onOpenChange={setCmdOpen} />
     </SidebarProvider>
   );
 };
