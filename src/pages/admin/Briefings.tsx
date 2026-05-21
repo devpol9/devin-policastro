@@ -6,7 +6,7 @@ import AdminShell from "@/components/admin/AdminShell";
 import { Button } from "@/components/ui/button";
 import { format, formatDistanceToNowStrict } from "date-fns";
 import { Mail, Sparkles, Calendar } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import BriefingMarkdown from "@/components/admin/BriefingMarkdown";
 import { toast } from "sonner";
 
 interface Briefing {
@@ -141,9 +141,7 @@ const BriefingsPage = () => {
                     </div>
                   )}
 
-                  <article className="prose prose-sm max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-foreground prose-a:text-accent">
-                    <ReactMarkdown>{selected.content}</ReactMarkdown>
-                  </article>
+                  <BriefingMarkdown content={selected.content} />
                 </>
               ) : (
                 <p className="text-sm text-muted-foreground">Select a briefing.</p>

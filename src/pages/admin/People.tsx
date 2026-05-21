@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
@@ -9,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
   Plus, Search, Mail, Phone, Building2, Star, Clock, ArrowRight,
-  Sparkles, X, Check,
+  Sparkles, X, Check, Inbox,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -18,7 +19,7 @@ import {
 import {
   Sheet, SheetContent, SheetHeader, SheetTitle,
 } from "@/components/ui/sheet";
-import { formatDistanceToNowStrict } from "date-fns";
+import { format, formatDistanceToNowStrict } from "date-fns";
 import TabBar from "@/components/admin/TabBar";
 
 interface Person {
@@ -79,12 +80,18 @@ const Stars = ({ value, onChange, size = 14 }: { value: number | null; onChange?
 
 const PeoplePage = () => {
   const qc = useQueryClient();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [q, setQ] = useState("");
   const [tagFilter, setTagFilter] = useState<string | null>(null);
   const [stale, setStale] = useState<0 | 30 | 60 | 90>(0);
   const [addOpen, setAddOpen] = useState(false);
   const [form, setForm] = useState<Partial<Person>>({});
-  const [detailId, setDetailId] = useState<string | null>(null);
+  const [detailId, setDetailId] = useState<string | null>(searchParams.get("person"));
+
+  useEffect(() => {
+    const p = searchParams.get("person");
+    if (p && p !== detailId) setDetailId(p);
+  }, [searchParams, detailId]);
 
   const { data: people = [], isLoading } = useQuery({
     queryKey: ["people"],
@@ -261,7 +268,7 @@ const PeoplePage = () => {
         <PersonDrawer
           personId={detailId}
           people={people}
-          onClose={() => setDetailId(null)}
+          onClose={() => { setDetailId(null); if (searchParams.get("person")) { searchParams.delete("person"); setSearchParams(searchParams, { replace: true }); } }}
         />
       </AdminShell>
     </AdminGuard>
@@ -277,7 +284,7 @@ const PersonDrawer = ({ personId, people, onClose }: {
 }) => {
   const qc = useQueryClient();
   const person = people.find((p) => p.id === personId) ?? null;
-  const [tab, setTab] = useState<"overview" | "intros">("overview");
+  const [tab, setTab] = useState<"overview" | "intros" | "inquiries">("overview");
   const [introOpen, setIntroOpen] = useState(false);
   const [editingTags, setEditingTags] = useState(false);
   const [tagInput, setTagInput] = useState("");
@@ -293,6 +300,20 @@ const PersonDrawer = ({ personId, people, onClose }: {
         .order("created_at", { ascending: false });
       if (error) throw error;
       return (data || []) as Intro[];
+    },
+  });
+
+  const { data: linkedInquiries = [] } = useQuery({
+    queryKey: ["person-inquiries", personId, person?.email],
+    enabled: !!personId && !!person?.email,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("inquiries")
+        .select("id, name, email, service_type, status, created_at")
+        .ilike("email", person!.email!)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data ?? [];
     },
   });
 
@@ -334,12 +355,13 @@ const PersonDrawer = ({ personId, people, onClose }: {
         </SheetHeader>
 
         <div className="mt-3">
-          <TabBar<"overview" | "intros">
+          <TabBar<"overview" | "intros" | "inquiries">
             value={tab}
             onChange={setTab}
             items={[
               { value: "overview", label: "Overview" },
               { value: "intros", label: "Intros", count: intros.length },
+              { value: "inquiries", label: "Inquiries", count: linkedInquiries.length },
             ]}
           />
         </div>
@@ -484,6 +506,33 @@ const PersonDrawer = ({ personId, people, onClose }: {
             )}
           </div>
         )}
+
+        {tab === "inquiries" && (
+          <div className="mt-5 space-y-2">
+            {linkedInquiries.length === 0 ? (
+              <p className="text-xs text-muted-foreground text-center py-8">
+                No inquiries from this email. New inquiries auto-link here.
+              </p>
+            ) : (
+              linkedInquiries.map((inq: any) => (
+                <Link
+                  key={inq.id}
+                  to={`/hq/inquiries/${inq.id}`}
+                  className="block border border-border/40 rounded-md p-3 text-xs hover:border-accent/60 hover:bg-accent/5 transition-colors"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="font-medium font-display">{inq.service_type.replace(" Inquiry", "")}</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-secondary text-secondary-foreground">{inq.status}</span>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground">
+                    {format(new Date(inq.created_at), "MMM d, yyyy")} · {formatDistanceToNowStrict(new Date(inq.created_at), { addSuffix: true })}
+                  </p>
+                </Link>
+              ))
+            )}
+          </div>
+        )}
+
 
         <MakeIntroDialog
           open={introOpen}
