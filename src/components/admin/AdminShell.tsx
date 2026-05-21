@@ -115,37 +115,33 @@ const AdminShell = ({ children }: { children: ReactNode }) => {
           </SidebarHeader>
 
           <SidebarContent>
-            {navGroups.map((group) => (
-              <SidebarGroup key={group.label}>
-                <SidebarGroupLabel className="text-[10px] font-medium lowercase tracking-tight text-muted-foreground/60">
-                  {group.label}
-                </SidebarGroupLabel>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    {group.items.map((item) => {
-                      const Icon = item.icon;
-                      const active = location.pathname === item.to ||
-                        (item.to !== "/" && location.pathname.startsWith(item.to));
-                      return (
-                        <SidebarMenuItem key={item.label}>
-                          <SidebarMenuButton asChild isActive={active}>
-                            <NavLink to={item.to} className="flex items-center gap-2">
-                              <Icon className="h-4 w-4" />
-                              <span className="flex-1">{item.label}</span>
-                              {item.label === "Inquiries" && newCount > 0 && (
-                                <span className="text-[10px] font-medium rounded-md bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
-                                  {newCount}
-                                </span>
-                              )}
-                            </NavLink>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
-                      );
-                    })}
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </SidebarGroup>
-            ))}
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {navItems.map((item) => {
+                    const Icon = item.icon;
+                    const active = location.pathname === item.to ||
+                      (item.to !== "/" && location.pathname.startsWith(item.to));
+                    return (
+                      <SidebarMenuItem key={item.label}>
+                        <SidebarMenuButton asChild isActive={active}>
+                          <NavLink to={item.to} className="flex items-center gap-2">
+                            <Icon className="h-4 w-4" />
+                            <span className="flex-1">{item.label}</span>
+                            {item.label === "Inbox" && newCount > 0 && (
+                              <span className="text-[10px] font-medium rounded-md bg-accent text-accent-foreground px-1.5 py-0.5 min-w-[18px] text-center">
+                                {newCount}
+                              </span>
+                            )}
+                          </NavLink>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
 
             <SidebarGroup className="mt-auto">
               <SidebarGroupContent>
