@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { ArrowLeft, Mail, Phone, Copy, Check } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Copy, Check, User } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
@@ -230,6 +230,14 @@ const InquiryDetail = () => {
                 >
                   Convert to Project
                 </button>
+              )}
+              {inq.form_data?.person_id && (
+                <Link
+                  to={`/hq/people?person=${inq.form_data.person_id}`}
+                  className="w-full px-3 py-2 rounded-md border border-border/40 text-foreground text-xs font-display font-semibold flex items-center justify-center gap-2 hover:bg-secondary/40"
+                >
+                  <User size={12} /> View contact
+                </Link>
               )}
               <button
                 onClick={() => copy(inq.email, "email")}
