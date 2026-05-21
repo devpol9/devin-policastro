@@ -1,15 +1,14 @@
 import { ReactNode, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
-  Home, Mail, KanbanSquare, Building2, Calendar, BookOpen,
-  TrendingUp, Lightbulb, BarChart3, MessageSquare, Settings,
-  LogOut, Users, Newspaper,
+  Home, Inbox, Building2, Calendar, Lightbulb,
+  TrendingUp, Newspaper, Settings, LogOut,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import {
   Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent,
-  SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
+  SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
   SidebarProvider, SidebarTrigger,
 } from "@/components/ui/sidebar";
 import NoteCaptureDialog from "@/components/admin/NoteCaptureDialog";
@@ -23,51 +22,26 @@ type NavItem = {
   to: string;
 };
 
-type NavGroup = {
-  label: string;
-  items: NavItem[];
-};
-
-const navGroups: NavGroup[] = [
-  {
-    label: "work",
-    items: [
-      { label: "Today", icon: Home, to: "/hq/today" },
-      { label: "Inquiries", icon: Mail, to: "/hq/inquiries" },
-      { label: "Projects", icon: KanbanSquare, to: "/hq/projects" },
-      { label: "Ventures", icon: Building2, to: "/hq/ventures" },
-      { label: "People", icon: Users, to: "/hq/people" },
-    ],
-  },
-  {
-    label: "output",
-    items: [
-      { label: "Content", icon: Calendar, to: "/hq/content" },
-      { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
-      { label: "Analytics", icon: BarChart3, to: "/hq/analytics" },
-      { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
-    ],
-  },
-  {
-    label: "capture",
-    items: [
-      { label: "Daily Log", icon: BookOpen, to: "/hq/log" },
-      { label: "Notes & Ideas", icon: Lightbulb, to: "/hq/notes" },
-    ],
-  },
+const navItems: NavItem[] = [
+  { label: "Today", icon: Home, to: "/hq/today" },
+  { label: "Inbox", icon: Inbox, to: "/hq/inquiries" },
+  { label: "Ventures", icon: Building2, to: "/hq/ventures" },
+  { label: "Content", icon: Calendar, to: "/hq/content" },
+  { label: "KPIs", icon: TrendingUp, to: "/hq/kpis" },
+  { label: "Briefings", icon: Newspaper, to: "/hq/briefings" },
+  { label: "Notes", icon: Lightbulb, to: "/hq/notes" },
 ];
 
 const pageTitleFor = (pathname: string): string => {
   if (pathname.startsWith("/hq/today")) return "Today";
-  if (pathname.startsWith("/hq/inquiries")) return "Inquiries";
+  if (pathname.startsWith("/hq/inquiries")) return "Inbox";
   if (pathname.startsWith("/hq/ventures")) return "Ventures";
-  if (pathname.startsWith("/hq/people")) return "People";
-  if (pathname.startsWith("/hq/projects")) return "Projects";
+  if (pathname.startsWith("/hq/projects")) return "Ventures";
   if (pathname.startsWith("/hq/content")) return "Content";
   if (pathname.startsWith("/hq/analytics")) return "Analytics";
   if (pathname.startsWith("/hq/kpis")) return "KPIs";
-  if (pathname.startsWith("/hq/log")) return "Daily Log";
-  if (pathname.startsWith("/hq/notes")) return "Notes & Ideas";
+  if (pathname.startsWith("/hq/log")) return "Notes";
+  if (pathname.startsWith("/hq/notes")) return "Notes";
   if (pathname.startsWith("/hq/briefings")) return "Briefings";
   if (pathname.startsWith("/hq/settings/pillars")) return "Pillars";
   if (pathname.startsWith("/hq/settings")) return "Settings";
