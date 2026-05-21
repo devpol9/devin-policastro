@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Inbox, Layers, CalendarDays, StickyNote,
-  LineChart, Newspaper, Settings, LogOut, ClipboardCheck,
+  LineChart, Newspaper, Settings, LogOut, ClipboardCheck, Users,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
