@@ -94,6 +94,23 @@ const tools = [
   {
     type: "function",
     function: {
+      name: "convert_inquiry",
+      description: "Convert a recent inbound inquiry into a project. Match by person's name and/or service type.",
+      parameters: {
+        type: "object",
+        properties: {
+          match: { type: "string", description: "Name, email, or service type to fuzzy-match the inquiry." },
+          venture_slug: { type: "string" },
+          priority: { type: "string", enum: ["low","medium","high","urgent"] },
+          title: { type: "string", description: "Optional override for project title." },
+        },
+        required: ["match"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
       name: "answer",
       description: "Respond with text only — for questions or when no action fits.",
       parameters: {
@@ -143,12 +160,14 @@ Deno.serve(async (req) => {
     if (!LOVABLE_API_KEY) throw new Error('LOVABLE_API_KEY missing');
 
     // Context for fuzzy matches
-    const [{ data: kpis }, { data: ventures }] = await Promise.all([
+    const [{ data: kpis }, { data: ventures }, { data: recentInquiries }] = await Promise.all([
       supabase.from('kpis').select('id,name').eq('user_id', user.id).eq('archived', false),
-      supabase.from('ventures').select('id,slug,name').eq('user_id', user.id),
+      supabase.from('ventures').select('id,slug,name,short_name').eq('user_id', user.id),
+      supabase.from('inquiries').select('id,name,email,service_type,status,converted_project_id,created_at,form_data').is('converted_project_id', null).order('created_at', { ascending: false }).limit(25),
     ]);
 
-    const ctx = `\nAvailable KPIs: ${(kpis||[]).map(k=>k.name).join(', ') || 'none'}\nVentures: ${(ventures||[]).map(v=>`${v.slug}=${v.name}`).join(', ') || 'none'}`;
+    const inqList = (recentInquiries||[]).map(i => `${i.id} | ${i.name} | ${i.email} | ${i.service_type} | ${i.status}`).join('\n');
+    const ctx = `\nAvailable KPIs: ${(kpis||[]).map(k=>k.name).join(', ') || 'none'}\nVentures: ${(ventures||[]).map(v=>`${v.slug}=${v.name}`).join(', ') || 'none'}\nRecent open inquiries (id | name | email | service | status):\n${inqList || 'none'}`;
 
     const aiRes = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
@@ -224,6 +243,42 @@ Deno.serve(async (req) => {
         venture_id: ventureBySlug(args.venture_slug), priority: args.priority ?? 'medium',
       });
       if (error) result.error = error.message; else result.message = `Project "${args.title}" created.`;
+    } else if (name === 'convert_inquiry') {
+      const m = String(args.match || '').toLowerCase();
+      const inq = (recentInquiries||[]).find(i =>
+        i.name?.toLowerCase().includes(m) ||
+        i.email?.toLowerCase().includes(m) ||
+        i.service_type?.toLowerCase().includes(m)
+      );
+      if (!inq) { result.error = `No open inquiry matching "${args.match}"`; }
+      else {
+        let ventureId = ventureBySlug(args.venture_slug);
+        if (!ventureId) {
+          const st = (inq.service_type || '').toLowerCase();
+          const match = (ventures||[]).find(v => st.includes(v.name.toLowerCase()) || (v.short_name && st.includes(v.short_name.toLowerCase())));
+          ventureId = match?.id ?? null;
+        }
+        const descMarkdown = Object.entries(inq.form_data || {})
+          .filter(([, v]) => v).map(([k, v]) => `- **${k}**: ${String(v)}`).join('\n');
+        const { data: project, error } = await supabase.from('projects').insert({
+          user_id: user.id,
+          title: args.title || `${inq.name} — ${inq.service_type}`,
+          description: descMarkdown || null,
+          venture_id: ventureId,
+          status: 'planning',
+          priority: args.priority || 'medium',
+          source_type: 'inquiry',
+          source_id: inq.id,
+        }).select().single();
+        if (error) { result.error = error.message; }
+        else {
+          await supabase.from('inquiries').update({
+            converted_project_id: project.id,
+            status: ['new','contacted'].includes(inq.status) ? 'in-progress' : inq.status,
+          }).eq('id', inq.id);
+          result.message = `Converted ${inq.name}'s inquiry → project.`;
+        }
+      }
     } else if (name === 'answer') {
       result.message = args.text;
     }

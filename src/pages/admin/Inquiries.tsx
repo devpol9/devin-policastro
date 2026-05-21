@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { Mail, Phone, Clock, Filter, RefreshCw, Search } from "lucide-react";
+import { Mail, Phone, Clock, Filter, RefreshCw, Search, FolderPlus } from "lucide-react";
 import { format, subDays } from "date-fns";
 import { toast } from "sonner";
 import AdminShell from "@/components/admin/AdminShell";
 import SectionHeader from "@/components/SectionHeader";
 import CrossVentureInbox from "@/components/admin/CrossVentureInbox";
+import ProjectDialog from "@/components/admin/ProjectDialog";
+import { useVentures } from "@/hooks/use-ventures";
 
 interface Inquiry {
   id: string;
@@ -40,12 +42,14 @@ const SERVICE_COLORS: Record<string, string> = {
 
 const Inquiries = () => {
   const navigate = useNavigate();
+  const { activeVentures } = useVentures();
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState(false);
+  const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
 
   useEffect(() => { fetchInquiries(); }, []);
 
@@ -212,8 +216,16 @@ const Inquiries = () => {
                 <span className="hidden md:inline text-[11px] text-muted-foreground shrink-0">
                   {inq.service_type.replace(" Inquiry", "")}
                 </span>
-                {inq.converted_project_id && (
+                {inq.converted_project_id ? (
                   <span className="hidden md:inline text-[10px] text-accent shrink-0">→ project</span>
+                ) : (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setConvertTarget(inq); }}
+                    title="Convert to project"
+                    className="hidden md:inline-flex items-center justify-center h-6 w-6 rounded-md border border-border/40 text-muted-foreground hover:text-accent hover:border-accent/40 shrink-0"
+                  >
+                    <FolderPlus size={12} />
+                  </button>
                 )}
                 <select
                   value={inq.status}
@@ -235,6 +247,55 @@ const Inquiries = () => {
           })}
         </div>
       )}
+
+      {convertTarget && (() => {
+        const inq = convertTarget;
+        const st = (inq.service_type || "").toLowerCase();
+        const matches = activeVentures.filter(
+          (v) =>
+            st.includes(v.name.toLowerCase()) ||
+            (v.short_name && st.includes(v.short_name.toLowerCase()))
+        );
+        const matchVentureId = matches.length === 1 ? matches[0].id : undefined;
+        const descMarkdown = Object.entries(inq.form_data || {})
+          .filter(([, v]) => v)
+          .map(([k, v]) => `- **${k}**: ${String(v)}`)
+          .join("\n");
+        return (
+          <ProjectDialog
+            open={!!convertTarget}
+            onOpenChange={(o) => !o && setConvertTarget(null)}
+            stayOnCreate
+            onCreated={async (project) => {
+              await supabase
+                .from("inquiries")
+                .update({
+                  converted_project_id: project.id,
+                  status: ["new", "contacted"].includes(inq.status) ? "in-progress" : inq.status,
+                })
+                .eq("id", inq.id);
+              setInquiries((prev) =>
+                prev.map((i) =>
+                  i.id === inq.id
+                    ? { ...i, converted_project_id: project.id, status: ["new", "contacted"].includes(i.status) ? "in-progress" : i.status }
+                    : i
+                )
+              );
+              setConvertTarget(null);
+              toast.success("Inquiry converted to project");
+            }}
+            defaults={{
+              title: `${inq.name} — ${inq.service_type}`,
+              description: descMarkdown,
+              venture_id: matchVentureId,
+              status: "planning",
+              priority: "medium",
+              source_type: "inquiry",
+              source_id: inq.id,
+            }}
+          />
+        );
+      })()}
     </AdminShell>
   );
 };

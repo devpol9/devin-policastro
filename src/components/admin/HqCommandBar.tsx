@@ -10,6 +10,7 @@ interface Props { open: boolean; onOpenChange: (o: boolean) => void; }
 const examples = [
   "log 12 to weekly leads",
   "add priority: call Joe about valence demo",
+  "convert Sarah's manufacturing inquiry to a project",
   "remember: try gemini-pro-image for the 2thirty hero",
   "add person Sarah Chen, founder at Acme, met at WeFest",
   "new project: ship Q3 referral landing — high priority, valence",
