@@ -237,13 +237,13 @@ const HqCommandBar = ({ open, onOpenChange }: Props) => {
           )}
 
           {showExamples && (
-            <div className="space-y-1.5 py-1">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground/50 px-2">try</div>
+            <div className="space-y-0.5 py-1">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground/50 px-2 pb-1">try</div>
               {examples.map((ex) => (
                 <button
                   key={ex}
                   onClick={() => { setPrompt(ex); inputRef.current?.focus(); }}
-                  className="block w-full text-left px-2 py-1.5 rounded hover:bg-muted/40 transition-colors"
+                  className="block w-full text-left px-2 py-1.5 rounded text-[11px] text-muted-foreground hover:bg-muted/40 hover:text-foreground transition-colors"
                 >
                   {ex}
                 </button>
