@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
 import ProjectDialog from "@/components/admin/ProjectDialog";
+import LinkedPersonCard from "@/components/admin/LinkedPersonCard";
 import { useVentures } from "@/hooks/use-ventures";
 
 const SERVICE_COLORS: Record<string, string> = {
@@ -190,6 +191,7 @@ const InquiryDetail = () => {
           </div>
 
           <div className="space-y-5">
+            <LinkedPersonCard email={inq.email} personIdHint={inq.form_data?.person_id} />
             <div className="panel p-5">
               <h2 className="font-display font-bold text-base mb-3">Notes</h2>
               <textarea
