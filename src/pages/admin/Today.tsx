@@ -26,6 +26,7 @@ import { PLATFORM_ICON, type Platform } from "@/lib/content-constants";
 import { MessageCircle, Pin, BookOpen, Zap, ArrowUpRight } from "lucide-react";
 import TabBar from "@/components/admin/TabBar";
 import VoiceCaptureButton from "@/components/admin/VoiceCaptureButton";
+import VoicePostCaptureSheet, { type VoiceCaptured } from "@/components/admin/VoicePostCaptureSheet";
 
 interface Priority {
   id?: string;
