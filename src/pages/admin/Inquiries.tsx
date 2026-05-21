@@ -40,6 +40,19 @@ const SERVICE_COLORS: Record<string, string> = {
   "Networking Inquiry": "160 60% 45%",
 };
 
+const inferVentureId = (
+  inq: Pick<Inquiry, "service_type">,
+  ventures: { id: string; name: string; short_name: string | null }[]
+): string | null => {
+  const st = (inq.service_type || "").toLowerCase();
+  const match = ventures.find(
+    (v) =>
+      st.includes(v.name.toLowerCase()) ||
+      (v.short_name && st.includes(v.short_name.toLowerCase()))
+  );
+  return match?.id ?? null;
+};
+
 const Inquiries = () => {
   const navigate = useNavigate();
   const { activeVentures } = useVentures();
@@ -47,9 +60,11 @@ const Inquiries = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [ventureFilter, setVentureFilter] = useState<string>("all");
   const [search, setSearch] = useState("");
   const [showConverted, setShowConverted] = useState(false);
   const [convertTarget, setConvertTarget] = useState<Inquiry | null>(null);
+
 
   useEffect(() => { fetchInquiries(); }, []);
 
