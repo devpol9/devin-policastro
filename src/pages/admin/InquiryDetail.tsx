@@ -300,6 +300,13 @@ const InquiryDetail = () => {
             <div className="panel p-5 space-y-2">
               <h2 className="font-display font-bold text-base mb-2">Quick actions</h2>
               <button
+                onClick={openDraft}
+                className="w-full px-3 py-2 rounded-md bg-accent text-accent-foreground text-xs font-display font-semibold hover:opacity-90 flex items-center justify-center gap-2"
+              >
+                <PenLine size={12} /> Draft reply with AI
+              </button>
+              <button
+
                 onClick={() => updateField({ status: "contacted" }).then((ok) => ok && toast.success("Marked contacted"))}
                 className="w-full px-3 py-2 rounded-md bg-secondary text-foreground text-xs font-display font-semibold hover:bg-secondary/70"
               >
