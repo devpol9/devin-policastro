@@ -226,6 +226,36 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_briefings: {
+        Row: {
+          briefing_date: string
+          content: string
+          created_at: string
+          emailed_at: string | null
+          id: string
+          stats: Json
+          user_id: string
+        }
+        Insert: {
+          briefing_date: string
+          content: string
+          created_at?: string
+          emailed_at?: string | null
+          id?: string
+          stats?: Json
+          user_id: string
+        }
+        Update: {
+          briefing_date?: string
+          content?: string
+          created_at?: string
+          emailed_at?: string | null
+          id?: string
+          stats?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
       daily_logs: {
         Row: {
           challenges: string | null
