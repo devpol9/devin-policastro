@@ -177,10 +177,9 @@ const Content = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + i * 0.05 }}
-                  className="p-4 rounded-lg transition-all duration-300"
+                  className="p-4 rounded-lg transition-all duration-300 bg-card"
                   style={{
-                    background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                    border: `1px solid hsl(${COLOR} / 0.1)`,
+                    border: `1px solid hsl(${COLOR} / 0.2)`,
                   }}
                 >
                   <h3 className="font-display font-bold text-xs sm:text-sm mb-1" style={{ color: `hsl(${COLOR} / 0.9)` }}>
