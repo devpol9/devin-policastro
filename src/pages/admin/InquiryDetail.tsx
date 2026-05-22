@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { ArrowLeft, Mail, Phone, Copy, Check, User, Sparkles, RefreshCw } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Copy, Check, User, Sparkles, RefreshCw, PenLine, Send } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
@@ -10,6 +10,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import ProjectDialog from "@/components/admin/ProjectDialog";
 import LinkedPersonCard from "@/components/admin/LinkedPersonCard";
 import { useVentures } from "@/hooks/use-ventures";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+
 
 const SERVICE_COLORS: Record<string, string> = {
   "Manufacturing Inquiry": "270 16% 48%",
