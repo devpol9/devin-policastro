@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { ArrowLeft, Mail, Phone, Copy, Check, User } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Copy, Check, User, Sparkles, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
