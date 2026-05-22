@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { Search, Plus, Star, Calendar, Mail, Phone, Building2, MapPin, X, UserPlus, Tag, Trash2 } from "lucide-react";
+import { Search, Plus, Star, Calendar, Mail, Phone, Building2, MapPin, X, UserPlus, Tag, Trash2, BellOff, Bell } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
 import AdminShell from "@/components/admin/AdminShell";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
+type NurtureMeta = { step?: number; last_sent_at?: string; unsubscribed?: boolean };
 type Person = {
   id: string; user_id: string;
   name: string; email: string | null; phone: string | null;
@@ -16,7 +17,9 @@ type Person = {
   tags: string[]; notes: string | null; source: string | null;
   last_contacted_at: string | null;
   relationship_strength: number | null;
+  meta: { nurture?: NurtureMeta; [k: string]: any } | null;
 };
+
 
 type Filter = "all" | "stale" | "strong" | "leads";
 
