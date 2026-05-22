@@ -61,8 +61,12 @@ const InquiryDetail = () => {
         setInq(data);
         setNotes(data.notes ?? "");
         setLoading(false);
+        if (!data.form_data?.ai_brief) generateBrief(false);
       });
   }, [id, navigate]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  void 0;
+
 
   const updateField = async (patch: Record<string, any>) => {
     if (!id) return false;
