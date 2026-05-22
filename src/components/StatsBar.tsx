@@ -40,7 +40,7 @@ const StatsBar = () => {
     .filter((s): s is Stat => s !== null);
 
   const stats: Stat[] = liveStats.length > 0 ? liveStats.slice(0, 5) : FALLBACK_STATS;
-  const gridCols = stats.length >= 5 ? "sm:grid-cols-5" : stats.length === 4 ? "sm:grid-cols-4" : "sm:grid-cols-3";
+  const gridCols = stats.length >= 5 ? "sm:grid-cols-3 lg:grid-cols-5" : stats.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
 
   return (
     <section className="px-5 sm:px-8 lg:px-10 py-20 sm:py-28 relative overflow-hidden bg-accent text-accent-foreground">
