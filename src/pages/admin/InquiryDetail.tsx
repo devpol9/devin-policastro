@@ -32,6 +32,11 @@ const InquiryDetail = () => {
   const [copied, setCopied] = useState<string>("");
   const [convertOpen, setConvertOpen] = useState(false);
   const [briefLoading, setBriefLoading] = useState(false);
+  const [draftOpen, setDraftOpen] = useState(false);
+  const [draftLoading, setDraftLoading] = useState(false);
+  const [draftTone, setDraftTone] = useState<"warm" | "balanced" | "direct">("balanced");
+  const [draftSubject, setDraftSubject] = useState("");
+  const [draftBody, setDraftBody] = useState("");
 
   const generateBrief = async (force = false) => {
     if (!id) return;
@@ -45,6 +50,39 @@ const InquiryDetail = () => {
     }));
     if (force) toast.success("Brief regenerated");
   };
+
+  const generateDraft = async (tone: "warm" | "balanced" | "direct" = draftTone) => {
+    if (!id) return;
+    setDraftLoading(true);
+    setDraftTone(tone);
+    const { data, error } = await supabase.functions.invoke("inquiry-reply-draft", {
+      body: { inquiry_id: id, tone },
+    });
+    setDraftLoading(false);
+    if (error || !data?.body) {
+      toast.error(data?.error || "Draft failed");
+      return;
+    }
+    setDraftSubject(data.subject || `Re: ${inq?.service_type ?? ""}`);
+    setDraftBody(data.body);
+  };
+
+  const openDraft = async () => {
+    setDraftOpen(true);
+    if (!draftBody) await generateDraft();
+  };
+
+  const copyDraft = async () => {
+    await navigator.clipboard.writeText(`${draftSubject}\n\n${draftBody}`);
+    toast.success("Draft copied");
+  };
+
+  const openInMail = () => {
+    if (!inq?.email) return;
+    const url = `mailto:${encodeURIComponent(inq.email)}?subject=${encodeURIComponent(draftSubject)}&body=${encodeURIComponent(draftBody)}`;
+    window.location.href = url;
+  };
+
 
 
   useEffect(() => {
