@@ -303,6 +303,37 @@ const PeoplePage = () => {
   );
 };
 
+const NurtureControl = ({ person, onUpdate }: { person: Person; onUpdate: (patch: Partial<Person>) => void }) => {
+  const nurture: NurtureMeta = person.meta?.nurture ?? {};
+  const unsubscribed = !!nurture.unsubscribed;
+  const step = nurture.step ?? 0;
+  const labels = ["not started", "email 1 sent", "email 2 sent", "complete"];
+  const toggle = () => {
+    const nextNurture: NurtureMeta = { ...nurture, unsubscribed: !unsubscribed };
+    onUpdate({ meta: { ...(person.meta ?? {}), nurture: nextNurture } });
+    toast.success(!unsubscribed ? "Nurture muted" : "Nurture resumed");
+  };
+  return (
+    <div className="flex items-center justify-between gap-3 panel p-3 bg-secondary/20">
+      <div className="min-w-0">
+        <div className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">PLAYBOOK NURTURE</div>
+        <div className="text-xs mt-0.5">
+          {unsubscribed ? <span className="text-muted-foreground">Muted · won't receive drip</span>
+            : <span>Step {step}/3 · <span className="text-muted-foreground">{labels[step] ?? labels[0]}</span></span>}
+        </div>
+      </div>
+      <button onClick={toggle}
+        className={`shrink-0 px-3 py-2 rounded-md text-[11px] font-display font-semibold flex items-center gap-1.5 border ${
+          unsubscribed ? "border-accent/40 text-accent hover:bg-accent/10" : "border-border/40 text-muted-foreground hover:text-foreground hover:bg-secondary/40"
+        }`}>
+        {unsubscribed ? <><Bell size={12} /> Resume</> : <><BellOff size={12} /> Mute</>}
+      </button>
+    </div>
+  );
+};
+
+
+
 const Field = ({ label, icon: Icon, value, onSave, type = "text" }: {
   label: string; icon: any; value: string; onSave: (v: string) => void; type?: string;
 }) => {
