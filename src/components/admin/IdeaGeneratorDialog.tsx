@@ -41,12 +41,23 @@ const IdeaGeneratorDialog = ({ open, onOpenChange }: Props) => {
 
   const saveIdea = async (i: Idea, idx: number) => {
     setSavingIdx(idx);
+    const typeMap: Record<string, string> = {
+      instagram: "reel",
+      tiktok: "short",
+      youtube: "long_video",
+      x: "thread",
+      threads: "thread",
+      linkedin: "static",
+      email: "email_blast",
+      blog: "blog_post",
+      podcast: "podcast_ep",
+    };
     const created = await createContent({
       title: i.hook,
       hook: i.hook,
       notes: i.angle,
       platform: i.platform as any,
-      content_type: "post",
+      content_type: typeMap[i.platform] || "other",
       status: "idea",
       pillar: i.pillar || null,
       tags: ["ai-generated"],
