@@ -34,6 +34,7 @@ const Index = () => {
       <ServicesSection />
       <TrainingSection />
       <ContactSection />
+      <PlaybookBanner />
       <Footer />
       <MobileBottomNav />
       
