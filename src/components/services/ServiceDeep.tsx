@@ -57,10 +57,9 @@ const ServiceDeep = ({ slug }: Props) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden rounded-lg p-5 sm:p-6"
+                className="relative overflow-hidden rounded-lg p-5 sm:p-6 bg-card"
                 style={{
-                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                  border: `1px solid hsl(${color} / 0.15)`,
+                  border: `1px solid hsl(${color} / 0.25)`,
                 }}
               >
                 <div
@@ -75,10 +74,10 @@ const ServiceDeep = ({ slug }: Props) => {
                     {cs.meta}
                   </p>
                 )}
-                <h3 className="font-display font-bold text-base sm:text-lg mb-2 tracking-[-0.01em]">
+                <h3 className="font-display font-bold text-base sm:text-lg mb-2 tracking-[-0.01em] text-foreground">
                   {cs.title}
                 </h3>
-                <p className="text-muted-foreground text-xs sm:text-sm leading-[1.65]">{cs.body}</p>
+                <p className="text-foreground/75 text-xs sm:text-sm leading-[1.65]">{cs.body}</p>
               </motion.div>
             ))}
           </div>

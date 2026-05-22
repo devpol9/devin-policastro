@@ -33,10 +33,9 @@ const RelatedServices = ({ current }: Props) => {
             >
               <Link
                 to={`/${r.slug}`}
-                className="group relative overflow-hidden rounded-lg p-5 block transition-all duration-300"
+                className="group relative overflow-hidden rounded-lg p-5 block transition-all duration-300 bg-card"
                 style={{
-                  background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
-                  border: `1px solid hsl(${r.color} / 0.15)`,
+                  border: `1px solid hsl(${r.color} / 0.25)`,
                 }}
               >
                 <div
