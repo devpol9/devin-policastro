@@ -145,16 +145,6 @@ const FloatingNav = () => {
                 </button>
               </>
             )}
-            {isAdmin && (
-              <a
-                href="/hq/today"
-                className="ml-2 inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-display font-medium tracking-wide rounded-md border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
-                title="DevHQ"
-              >
-                <Shield size={11} />
-                DevHQ
-              </a>
-            )}
           </div>
 
 
