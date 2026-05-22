@@ -8,6 +8,9 @@ import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import ServiceCard from "@/components/services/ServiceCard";
 import SectionHeader from "@/components/SectionHeader";
+import ServiceDeep from "@/components/services/ServiceDeep";
+import RelatedServices from "@/components/services/RelatedServices";
+import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 import { useState } from "react";
 
 const COLOR = "270 16% 48%";
@@ -28,7 +31,7 @@ const Manufacturing = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SEOHead {...seoPages["/manufacturing"]} canonicalPath="/manufacturing" />
+      <SEOHead {...seoPages["/manufacturing"]} canonicalPath="/manufacturing" jsonLd={[getServiceSchema("manufacturing"), getFAQSchema("manufacturing")]} />
       <FloatingNav />
 
       <section className="section-padding pt-32 sm:pt-40">
@@ -62,6 +65,9 @@ const Manufacturing = () => {
               <ServiceCard key={s.name} icon={s.icon} name={s.name} desc={s.desc} index={i} accentColor={COLOR} />
             ))}
           </div>
+
+          <ServiceDeep slug="manufacturing" />
+          <RelatedServices current="manufacturing" />
         </div>
       </section>
 

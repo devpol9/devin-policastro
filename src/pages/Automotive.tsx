@@ -9,6 +9,9 @@ import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import ServiceCard from "@/components/services/ServiceCard";
 import SectionHeader from "@/components/SectionHeader";
+import ServiceDeep from "@/components/services/ServiceDeep";
+import RelatedServices from "@/components/services/RelatedServices";
+import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 
 const COLOR = "12 45% 48%";
 
@@ -38,7 +41,7 @@ const Automotive = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SEOHead {...seoPages["/automotive"]} canonicalPath="/automotive" />
+      <SEOHead {...seoPages["/automotive"]} canonicalPath="/automotive" jsonLd={[getServiceSchema("automotive"), getFAQSchema("automotive")]} />
       <FloatingNav />
 
       <section className="section-padding pt-32 sm:pt-40">
@@ -83,6 +86,9 @@ const Automotive = () => {
               />
             ))}
           </div>
+
+          <ServiceDeep slug="automotive" />
+          <RelatedServices current="automotive" />
         </div>
       </section>
 
