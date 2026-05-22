@@ -69,7 +69,7 @@ const StatsBar = () => {
               transition={{ delay: i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="text-center"
             >
-              <div className="font-display font-black text-4xl sm:text-6xl lg:text-7xl mb-3 tracking-[-0.04em] leading-none">
+              <div className="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-3 tracking-[-0.04em] leading-none">
                 <AnimatedCounter
                   target={stat.value}
                   suffix={stat.suffix}
