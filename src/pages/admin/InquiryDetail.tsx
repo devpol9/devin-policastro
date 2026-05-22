@@ -61,7 +61,7 @@ const InquiryDetail = () => {
         setInq(data);
         setNotes(data.notes ?? "");
         setLoading(false);
-        if (!data.form_data?.ai_brief) generateBrief(false);
+        if (!(data.form_data as any)?.ai_brief) generateBrief(false);
       });
   }, [id, navigate]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
