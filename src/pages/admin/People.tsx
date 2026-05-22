@@ -264,6 +264,11 @@ const PeoplePage = () => {
                     />
                   </div>
 
+                  {(selected.tags?.includes("lead-magnet") || selected.meta?.nurture) && (
+                    <NurtureControl person={selected} onUpdate={updatePerson} />
+                  )}
+
+
                   <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-border/30">
                     <button onClick={markContacted}
                       className="px-3 py-2 rounded-md bg-accent text-accent-foreground text-xs font-display font-semibold">
