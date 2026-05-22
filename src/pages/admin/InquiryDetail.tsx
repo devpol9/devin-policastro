@@ -193,11 +193,44 @@ const InquiryDetail = () => {
               </div>
             </div>
 
+            <div className="panel p-5 relative overflow-hidden" style={{ borderColor: `hsl(${serviceColor} / 0.25)` }}>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="font-display font-bold text-lg flex items-center gap-2">
+                  <Sparkles size={16} className="text-accent" /> AI brief
+                </h2>
+                <button
+                  onClick={() => generateBrief(true)}
+                  disabled={briefLoading}
+                  className="text-[10px] font-display tracking-[0.08em] text-muted-foreground hover:text-foreground flex items-center gap-1 disabled:opacity-50"
+                >
+                  <RefreshCw size={11} className={briefLoading ? "animate-spin" : ""} /> {briefLoading ? "Generating" : "Regenerate"}
+                </button>
+              </div>
+              {(inq.form_data as any)?.ai_brief ? (
+                <>
+                  <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap">
+                    {(inq.form_data as any).ai_brief}
+                  </p>
+                  {(inq.form_data as any)?.ai_brief_generated_at && (
+                    <p className="text-[10px] text-muted-foreground/60 mt-3 font-display tracking-[0.06em]">
+                      Generated {format(new Date((inq.form_data as any).ai_brief_generated_at), "MMM d, h:mm a")}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <div className="flex items-center gap-2 text-xs text-muted-foreground py-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  {briefLoading ? "Reading inquiry, drafting brief…" : "No brief yet. Click regenerate."}
+                </div>
+              )}
+            </div>
+
             <div className="panel p-5">
               <h2 className="font-display font-bold text-lg mb-3">Details</h2>
               <dl className="space-y-2">
                 {Object.entries(inq.form_data || {}).map(([key, value]) => {
                   if (!value) return null;
+                  if (["ai_brief", "ai_brief_generated_at", "person_id"].includes(key)) return null;
                   return (
                     <div key={key} className="grid grid-cols-3 gap-3 text-sm">
                       <dt className="text-[11px] font-display tracking-[0.08em] text-muted-foreground">{key}</dt>
@@ -208,6 +241,7 @@ const InquiryDetail = () => {
               </dl>
             </div>
           </div>
+
 
           <div className="space-y-5">
             <LinkedPersonCard email={inq.email} personIdHint={inq.form_data?.person_id} />
