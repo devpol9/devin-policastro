@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { ArrowLeft, Mail, Phone, Copy, Check, User, Sparkles, RefreshCw } from "lucide-react";
+import { ArrowLeft, Mail, Phone, Copy, Check, User, Sparkles, RefreshCw, PenLine, Send } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import AdminGuard from "@/components/admin/AdminGuard";
@@ -10,6 +10,8 @@ import AdminShell from "@/components/admin/AdminShell";
 import ProjectDialog from "@/components/admin/ProjectDialog";
 import LinkedPersonCard from "@/components/admin/LinkedPersonCard";
 import { useVentures } from "@/hooks/use-ventures";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+
 
 const SERVICE_COLORS: Record<string, string> = {
   "Manufacturing Inquiry": "270 16% 48%",
@@ -30,6 +32,11 @@ const InquiryDetail = () => {
   const [copied, setCopied] = useState<string>("");
   const [convertOpen, setConvertOpen] = useState(false);
   const [briefLoading, setBriefLoading] = useState(false);
+  const [draftOpen, setDraftOpen] = useState(false);
+  const [draftLoading, setDraftLoading] = useState(false);
+  const [draftTone, setDraftTone] = useState<"warm" | "balanced" | "direct">("balanced");
+  const [draftSubject, setDraftSubject] = useState("");
+  const [draftBody, setDraftBody] = useState("");
 
   const generateBrief = async (force = false) => {
     if (!id) return;
@@ -43,6 +50,39 @@ const InquiryDetail = () => {
     }));
     if (force) toast.success("Brief regenerated");
   };
+
+  const generateDraft = async (tone: "warm" | "balanced" | "direct" = draftTone) => {
+    if (!id) return;
+    setDraftLoading(true);
+    setDraftTone(tone);
+    const { data, error } = await supabase.functions.invoke("inquiry-reply-draft", {
+      body: { inquiry_id: id, tone },
+    });
+    setDraftLoading(false);
+    if (error || !data?.body) {
+      toast.error(data?.error || "Draft failed");
+      return;
+    }
+    setDraftSubject(data.subject || `Re: ${inq?.service_type ?? ""}`);
+    setDraftBody(data.body);
+  };
+
+  const openDraft = async () => {
+    setDraftOpen(true);
+    if (!draftBody) await generateDraft();
+  };
+
+  const copyDraft = async () => {
+    await navigator.clipboard.writeText(`${draftSubject}\n\n${draftBody}`);
+    toast.success("Draft copied");
+  };
+
+  const openInMail = () => {
+    if (!inq?.email) return;
+    const url = `mailto:${encodeURIComponent(inq.email)}?subject=${encodeURIComponent(draftSubject)}&body=${encodeURIComponent(draftBody)}`;
+    window.location.href = url;
+  };
+
 
 
   useEffect(() => {
@@ -260,6 +300,13 @@ const InquiryDetail = () => {
             <div className="panel p-5 space-y-2">
               <h2 className="font-display font-bold text-base mb-2">Quick actions</h2>
               <button
+                onClick={openDraft}
+                className="w-full px-3 py-2 rounded-md bg-accent text-accent-foreground text-xs font-display font-semibold hover:opacity-90 flex items-center justify-center gap-2"
+              >
+                <PenLine size={12} /> Draft reply with AI
+              </button>
+              <button
+
                 onClick={() => updateField({ status: "contacted" }).then((ok) => ok && toast.success("Marked contacted"))}
                 className="w-full px-3 py-2 rounded-md bg-secondary text-foreground text-xs font-display font-semibold hover:bg-secondary/70"
               >
@@ -312,7 +359,97 @@ const InquiryDetail = () => {
           </div>
         </motion.div>
 
+        <Dialog open={draftOpen} onOpenChange={setDraftOpen}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-lenis-prevent>
+            <DialogHeader>
+              <DialogTitle className="font-display flex items-center gap-2">
+                <PenLine size={16} className="text-accent" /> Draft reply
+              </DialogTitle>
+              <DialogDescription className="text-xs">
+                To {inq.name} &lt;{inq.email}&gt; · written in your voice
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-3 mt-2">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">TONE</span>
+                {(["warm", "balanced", "direct"] as const).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => generateDraft(t)}
+                    disabled={draftLoading}
+                    className={`text-[11px] font-display px-2.5 py-1 rounded-md border transition-colors disabled:opacity-50 ${
+                      draftTone === t ? "bg-foreground text-background border-foreground" : "border-border/40 text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                ))}
+                <button
+                  onClick={() => generateDraft(draftTone)}
+                  disabled={draftLoading}
+                  className="ml-auto text-[10px] font-display tracking-[0.08em] text-muted-foreground hover:text-foreground flex items-center gap-1 disabled:opacity-50"
+                >
+                  <RefreshCw size={11} className={draftLoading ? "animate-spin" : ""} /> Regenerate
+                </button>
+              </div>
+
+              <div>
+                <label className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">SUBJECT</label>
+                <input
+                  value={draftSubject}
+                  onChange={(e) => setDraftSubject(e.target.value)}
+                  className="mt-1 w-full bg-secondary/40 border border-border/40 rounded-md px-2 py-1.5 text-sm outline-none focus:border-accent"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">BODY</label>
+                {draftLoading && !draftBody ? (
+                  <div className="mt-1 w-full bg-secondary/40 border border-border/40 rounded-md p-3 text-sm text-muted-foreground flex items-center gap-2 min-h-[200px]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" /> Writing in your voice…
+                  </div>
+                ) : (
+                  <textarea
+                    value={draftBody}
+                    onChange={(e) => setDraftBody(e.target.value)}
+                    rows={10}
+                    className="mt-1 w-full bg-secondary/40 border border-border/40 rounded-md p-3 text-sm outline-none focus:border-accent resize-y font-mono leading-relaxed"
+                  />
+                )}
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  onClick={openInMail}
+                  disabled={!draftBody}
+                  className="px-3 py-2 rounded-md bg-accent text-accent-foreground text-xs font-display font-semibold flex items-center gap-2 disabled:opacity-50"
+                >
+                  <Send size={12} /> Open in mail
+                </button>
+                <button
+                  onClick={copyDraft}
+                  disabled={!draftBody}
+                  className="px-3 py-2 rounded-md border border-border/40 text-foreground text-xs font-display font-semibold flex items-center gap-2 hover:bg-secondary/40 disabled:opacity-50"
+                >
+                  <Copy size={12} /> Copy
+                </button>
+                <button
+                  onClick={async () => {
+                    const ok = await updateField({ status: "contacted" });
+                    if (ok) toast.success("Marked contacted");
+                  }}
+                  className="ml-auto text-[11px] font-display text-muted-foreground hover:text-foreground"
+                >
+                  Mark contacted →
+                </button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
         <ProjectDialog
+
           open={convertOpen}
           onOpenChange={setConvertOpen}
           stayOnCreate
