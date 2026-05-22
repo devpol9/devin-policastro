@@ -150,4 +150,9 @@ export const seoPages: Record<string, { title: string; description: string }> = 
     description:
       "Personal training, lifestyle coaching, nutrition, and competition prep at Impact Zone Norwood, NJ — 51,000 sq ft, no contracts. Remote too.",
   },
+  "/playbook": {
+    title: "The NJ Entrepreneur Playbook — Free PDF | Devin Policastro",
+    description:
+      "11 lessons from building 7 NJ businesses — wraps, fitness, manufacturing, content. Free PDF. No course, no fluff. Cost real money to learn.",
+  },
 };
