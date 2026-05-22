@@ -25,6 +25,7 @@ import VenturePill from "@/components/admin/VenturePill";
 import DailyDigest from "@/components/admin/DailyDigest";
 import StaleInquiriesCard from "@/components/admin/StaleInquiriesCard";
 import SignalFeed from "@/components/admin/SignalFeed";
+import GlanceStrip from "@/components/admin/GlanceStrip";
 
 interface Priority {
   id?: string;
@@ -285,6 +286,9 @@ const Today = () => {
           {newCount} new {newCount === 1 ? "inquiry" : "inquiries"} · {weekTotal} this week
         </p>
       </motion.div>
+
+      {/* Glance — 3 numbers at a glance, mobile-first */}
+      <GlanceStrip />
 
       {/* Merged signal stream — what needs you right now */}
       <SignalFeed />
