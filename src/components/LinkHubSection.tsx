@@ -86,7 +86,18 @@ const LinkHubSection = () => {
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, delay: i * 0.03 }}
               >
-                <div className="group relative overflow-hidden rounded-lg bg-card border border-border/60">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    import("@/lib/analytics").then(({ trackEvent }) =>
+                      trackEvent("link_clicked", { label: link.title, url: link.url, source: "link_hub" })
+                    );
+                  }}
+                  className="group relative block overflow-hidden rounded-lg bg-card border border-border/60 hover:border-accent/40 transition-colors"
+                  aria-label={`Open ${link.title}`}
+                >
                   <div className="relative z-10 p-3.5 sm:p-5 flex items-center gap-3 sm:gap-4">
                     <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center shrink-0 bg-secondary border border-border/60">
                       <link.icon size={16} className="text-foreground/70" />
@@ -97,22 +108,11 @@ const LinkHubSection = () => {
                       </h3>
                       <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed line-clamp-1">{link.desc}</p>
                     </div>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => {
-                        import("@/lib/analytics").then(({ trackEvent }) =>
-                          trackEvent("link_clicked", { label: link.title, url: link.url, source: "link_hub" })
-                        );
-                      }}
-                      className="p-2 rounded-lg shrink-0 text-foreground/40 hover:text-accent hover:bg-accent/5 transition-all duration-300"
-                      aria-label={`Open ${link.title}`}
-                    >
+                    <div className="p-2 rounded-lg shrink-0 text-foreground/40 group-hover:text-accent transition-colors duration-300">
                       <ArrowUpRight size={14} />
-                    </a>
+                    </div>
                   </div>
-                </div>
+                </a>
               </motion.div>
             ))}
           </AnimatePresence>
