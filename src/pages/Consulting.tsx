@@ -9,6 +9,9 @@ import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import ServiceCard from "@/components/services/ServiceCard";
 import SectionHeader from "@/components/SectionHeader";
+import ServiceDeep from "@/components/services/ServiceDeep";
+import RelatedServices from "@/components/services/RelatedServices";
+import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 
 const COLOR = "270 16% 50%";
 
@@ -26,7 +29,7 @@ const Consulting = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SEOHead {...seoPages["/consulting"]} canonicalPath="/consulting" />
+      <SEOHead {...seoPages["/consulting"]} canonicalPath="/consulting" jsonLd={[getServiceSchema("consulting"), getFAQSchema("consulting")]} />
       <FloatingNav />
 
       <section className="section-padding pt-32 sm:pt-40">
@@ -69,6 +72,9 @@ const Consulting = () => {
               />
             ))}
           </div>
+
+          <ServiceDeep slug="consulting" />
+          <RelatedServices current="consulting" />
         </div>
       </section>
 

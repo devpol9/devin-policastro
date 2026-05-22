@@ -8,6 +8,9 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import SectionHeader from "@/components/SectionHeader";
+import ServiceDeep from "@/components/services/ServiceDeep";
+import RelatedServices from "@/components/services/RelatedServices";
+import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 import { useState } from "react";
 
 const COLOR = "350 22% 55%";
@@ -55,7 +58,7 @@ const Content = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SEOHead {...seoPages["/content"]} canonicalPath="/content" />
+      <SEOHead {...seoPages["/content"]} canonicalPath="/content" jsonLd={[getServiceSchema("content"), getFAQSchema("content")]} />
       <FloatingNav />
 
       <section className="section-padding pt-32 sm:pt-40">
@@ -202,6 +205,9 @@ const Content = () => {
               <ArrowRight size={14} />
             </a>
           </div>
+
+          <ServiceDeep slug="content" />
+          <RelatedServices current="content" />
         </div>
       </section>
 
