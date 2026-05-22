@@ -116,38 +116,38 @@ export const seoPages: Record<string, { title: string; description: string }> = 
       "I build brands, connect people, and turn handshakes into revenue. Impact Zone, 2THIRTY, Creative Vision, Valence — all out of Norwood, NJ.",
   },
   "/consulting": {
-    title: "Consulting — Brand Strategy & Growth | Devin Policastro",
+    title: "NJ Brand & Revenue Consulting | Devin Policastro",
     description:
-      "Real-world brand strategy and growth advisory from someone who's actually built it. Fitness, CPG, services — no agency markup.",
+      "Brand, revenue, and content consulting from a NJ founder who's actually built it — 2THIRTY, Impact Zone, Creative Vision. Bergen County & remote.",
   },
   "/manufacturing": {
-    title: "Manufacturing — Concept to Shelf | Creative Vision",
+    title: "NJ Product Manufacturing — Apparel, Supplements, Gym Gear | Creative Vision",
     description:
-      "Custom apparel, fitness equipment, supplements, and branded products. Idea to delivery, end to end.",
+      "Custom apparel, supplements, beverages, and fitness equipment from concept to shelf. Private label, white label, and Amazon-ready production.",
   },
   "/content": {
-    title: "Content — Short-Form Video & Storytelling | Devin Policastro",
+    title: "Content & Brand Collabs — IG, TikTok, YouTube | Devin Policastro",
     description:
-      "Short-form video, social content, and brand storytelling that actually moves the needle. Built by an operator, not an agency.",
+      "Sponsored content, UGC, and brand partnerships across Instagram, TikTok, and YouTube. NJ-based creator, real buyers, real engagement.",
   },
   "/automotive": {
-    title: "Automotive — Wraps, PPF, Tuning, Builds | Devin Policastro",
+    title: "NJ Car Wraps, PPF, Tuning & Custom Builds | Devin Policastro",
     description:
-      "Vinyl wraps, PPF, ceramic coating, tinting, tuning, and full custom builds. Premium work, NJ.",
+      "Vinyl wraps, full-body PPF, ceramic, tinting, tuning, powder coat, and custom builds. Bergen County & tri-state — vetted shops, no markup.",
   },
   "/financing": {
-    title: "Financing — Capital & Deal Structure | Devin Policastro",
+    title: "NJ Business Financing — SBA, MCA, Equipment, Credit | Devin Policastro",
     description:
-      "Business financing and capital access. Structure your next venture with the right funding, the right terms.",
+      "Get connected to vetted lenders for SBA, MCA, equipment, real estate, and startup capital. NJ founders, e-com, gyms, contractors. Free intro.",
   },
   "/networking": {
-    title: "Networking — The Right Intros, On Purpose | Devin Policastro",
+    title: "NJ Paid Introductions & Partnership Brokering | Devin Policastro",
     description:
-      "Relationship-driven growth and strategic introductions. The right room beats a thousand cold emails.",
+      "Warm intros to NJ contractors, suppliers, investors, attorneys, marketers, and operators. Bergen County to the tri-state. The right room, fast.",
   },
   "/fitness": {
-    title: "Fitness — Training & Coaching | Impact Zone NJ",
+    title: "Personal Training & Coaching | Impact Zone Fitness Norwood NJ",
     description:
-      "Personal training, group programs, and lifestyle coaching at Impact Zone Fitness in Norwood, NJ. 51,000 sq ft, no contracts.",
+      "Personal training, lifestyle coaching, nutrition, and competition prep at Impact Zone Norwood, NJ — 51,000 sq ft, no contracts. Remote too.",
   },
 };
