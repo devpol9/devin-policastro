@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   Sparkles, CornerDownLeft, Loader2, FileText, KanbanSquare,
-  Users, Mail, Search,
+  Users, Mail, Search, TrendingUp, Briefcase, Megaphone,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -13,7 +13,7 @@ interface Props { open: boolean; onOpenChange: (o: boolean) => void; }
 
 type Hit = {
   id: string;
-  kind: "capture" | "project" | "person" | "inquiry";
+  kind: "capture" | "project" | "person" | "inquiry" | "kpi" | "venture" | "content";
   title: string;
   subtitle?: string;
   to: string;
@@ -24,6 +24,9 @@ const KIND_META: Record<Hit["kind"], { icon: typeof FileText; label: string }> =
   project: { icon: KanbanSquare, label: "Project" },
   person: { icon: Users, label: "Person" },
   inquiry: { icon: Mail, label: "Inquiry" },
+  kpi: { icon: TrendingUp, label: "KPI" },
+  venture: { icon: Briefcase, label: "Venture" },
+  content: { icon: Megaphone, label: "Content" },
 };
 
 const examples = [
@@ -68,7 +71,7 @@ const HqCommandBar = ({ open, onOpenChange }: Props) => {
     setSearching(true);
     const like = `%${q}%`;
     (async () => {
-      const [caps, projs, ppl, inq] = await Promise.all([
+      const [caps, projs, ppl, inq, kpis, vents, ctnt] = await Promise.all([
         supabase.from("quick_captures")
           .select("id,title,body,kind")
           .or(`title.ilike.${like},body.ilike.${like}`)
@@ -89,6 +92,22 @@ const HqCommandBar = ({ open, onOpenChange }: Props) => {
           .select("id,name,email,service_type,status")
           .or(`name.ilike.${like},email.ilike.${like},service_type.ilike.${like}`)
           .order("created_at", { ascending: false })
+          .limit(4),
+        supabase.from("kpis")
+          .select("id,name,unit,description")
+          .or(`name.ilike.${like},description.ilike.${like}`)
+          .eq("archived", false)
+          .order("updated_at", { ascending: false })
+          .limit(4),
+        supabase.from("ventures")
+          .select("id,name,slug,short_name")
+          .or(`name.ilike.${like},short_name.ilike.${like},slug.ilike.${like}`)
+          .order("updated_at", { ascending: false })
+          .limit(4),
+        supabase.from("content_items")
+          .select("id,title,platform,status")
+          .or(`title.ilike.${like},caption.ilike.${like},hook.ilike.${like}`)
+          .order("updated_at", { ascending: false })
           .limit(4),
       ]);
       if (cancelled) return;
@@ -116,6 +135,24 @@ const HqCommandBar = ({ open, onOpenChange }: Props) => {
         title: i.name,
         subtitle: `${i.service_type} · ${i.status}`,
         to: `/hq/inquiries/${i.id}`,
+      }));
+      (kpis.data ?? []).forEach((k: any) => out.push({
+        id: k.id, kind: "kpi",
+        title: k.name,
+        subtitle: k.unit,
+        to: "/hq/kpis",
+      }));
+      (vents.data ?? []).forEach((v: any) => out.push({
+        id: v.id, kind: "venture",
+        title: v.name,
+        subtitle: v.short_name || v.slug,
+        to: `/hq/ventures/${v.slug}`,
+      }));
+      (ctnt.data ?? []).forEach((c: any) => out.push({
+        id: c.id, kind: "content",
+        title: c.title,
+        subtitle: `${c.platform} · ${c.status}`,
+        to: "/hq/content",
       }));
       setHits(out);
       setCursor(0);
