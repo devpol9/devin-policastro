@@ -14,6 +14,7 @@ import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
 import TrainingSection from "@/components/TrainingSection";
 import ContactSection from "@/components/ContactSection";
+import PlaybookBanner from "@/components/PlaybookBanner";
 import Footer from "@/components/Footer";
 
 
@@ -33,6 +34,7 @@ const Index = () => {
       <ServicesSection />
       <TrainingSection />
       <ContactSection />
+      <PlaybookBanner />
       <Footer />
       <MobileBottomNav />
       
