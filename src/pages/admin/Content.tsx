@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   Plus, Search, Calendar as CalendarIcon, KanbanSquare, List as ListIcon,
-  ChevronLeft, ChevronRight, Filter,
+  ChevronLeft, ChevronRight, Filter, Sparkles,
 } from "lucide-react";
+import IdeaGeneratorDialog from "@/components/admin/IdeaGeneratorDialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import TabBar from "@/components/admin/TabBar";
 import {
@@ -72,6 +73,7 @@ const Content = () => {
   // dialogs / drawer
   const [newOpen, setNewOpen] = useState(false);
   const [quickOpen, setQuickOpen] = useState(false);
+  const [ideasOpen, setIdeasOpen] = useState(false);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [newDefaults, setNewDefaults] = useState<any>(undefined);
 
@@ -95,6 +97,9 @@ const Content = () => {
           <div className="flex items-center gap-2 shrink-0">
             <Button variant="ghost" size="sm" asChild>
               <a href="/hq/settings/pillars">Pillars</a>
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => setIdeasOpen(true)}>
+              <Sparkles size={14} className="mr-1" /> Idea generator
             </Button>
             <Button variant="outline" size="sm" onClick={() => setQuickOpen(true)}>
               <Plus size={14} className="mr-1" /> Quick capture
@@ -228,6 +233,7 @@ const Content = () => {
           onCreated={(item) => setDetailId(item.id)}
         />
         <QuickCaptureDialog open={quickOpen} onOpenChange={setQuickOpen} />
+        <IdeaGeneratorDialog open={ideasOpen} onOpenChange={setIdeasOpen} />
         <ContentDetail itemId={detailId} onOpenChange={(o) => !o && setDetailId(null)} />
       </AdminShell>
     </AdminGuard>
