@@ -29,6 +29,21 @@ const InquiryDetail = () => {
   const [notes, setNotes] = useState("");
   const [copied, setCopied] = useState<string>("");
   const [convertOpen, setConvertOpen] = useState(false);
+  const [briefLoading, setBriefLoading] = useState(false);
+
+  const generateBrief = async (force = false) => {
+    if (!id) return;
+    setBriefLoading(true);
+    const { data, error } = await supabase.functions.invoke("inquiry-brief", { body: { inquiry_id: id } });
+    setBriefLoading(false);
+    if (error || !data?.brief) { if (force) toast.error("Brief failed"); return; }
+    setInq((prev: any) => ({
+      ...prev,
+      form_data: { ...(prev.form_data || {}), ai_brief: data.brief, ai_brief_generated_at: data.generated_at },
+    }));
+    if (force) toast.success("Brief regenerated");
+  };
+
 
   useEffect(() => {
     if (!id) return;
