@@ -195,7 +195,7 @@ const HqCommandBar = ({ open, onOpenChange }: Props) => {
   };
 
   const grouped = useMemo(() => {
-    const m: Record<Hit["kind"], Hit[]> = { capture: [], project: [], person: [], inquiry: [] };
+    const m: Record<Hit["kind"], Hit[]> = { capture: [], project: [], person: [], inquiry: [], kpi: [], venture: [], content: [] };
     hits.forEach((h) => m[h.kind].push(h));
     return m;
   }, [hits]);
