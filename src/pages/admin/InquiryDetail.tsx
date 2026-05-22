@@ -359,7 +359,97 @@ const InquiryDetail = () => {
           </div>
         </motion.div>
 
+        <Dialog open={draftOpen} onOpenChange={setDraftOpen}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-lenis-prevent>
+            <DialogHeader>
+              <DialogTitle className="font-display flex items-center gap-2">
+                <PenLine size={16} className="text-accent" /> Draft reply
+              </DialogTitle>
+              <DialogDescription className="text-xs">
+                To {inq.name} &lt;{inq.email}&gt; · written in your voice
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-3 mt-2">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">TONE</span>
+                {(["warm", "balanced", "direct"] as const).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => generateDraft(t)}
+                    disabled={draftLoading}
+                    className={`text-[11px] font-display px-2.5 py-1 rounded-md border transition-colors disabled:opacity-50 ${
+                      draftTone === t ? "bg-foreground text-background border-foreground" : "border-border/40 text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                ))}
+                <button
+                  onClick={() => generateDraft(draftTone)}
+                  disabled={draftLoading}
+                  className="ml-auto text-[10px] font-display tracking-[0.08em] text-muted-foreground hover:text-foreground flex items-center gap-1 disabled:opacity-50"
+                >
+                  <RefreshCw size={11} className={draftLoading ? "animate-spin" : ""} /> Regenerate
+                </button>
+              </div>
+
+              <div>
+                <label className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">SUBJECT</label>
+                <input
+                  value={draftSubject}
+                  onChange={(e) => setDraftSubject(e.target.value)}
+                  className="mt-1 w-full bg-secondary/40 border border-border/40 rounded-md px-2 py-1.5 text-sm outline-none focus:border-accent"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] font-display tracking-[0.1em] text-muted-foreground">BODY</label>
+                {draftLoading && !draftBody ? (
+                  <div className="mt-1 w-full bg-secondary/40 border border-border/40 rounded-md p-3 text-sm text-muted-foreground flex items-center gap-2 min-h-[200px]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" /> Writing in your voice…
+                  </div>
+                ) : (
+                  <textarea
+                    value={draftBody}
+                    onChange={(e) => setDraftBody(e.target.value)}
+                    rows={10}
+                    className="mt-1 w-full bg-secondary/40 border border-border/40 rounded-md p-3 text-sm outline-none focus:border-accent resize-y font-mono leading-relaxed"
+                  />
+                )}
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  onClick={openInMail}
+                  disabled={!draftBody}
+                  className="px-3 py-2 rounded-md bg-accent text-accent-foreground text-xs font-display font-semibold flex items-center gap-2 disabled:opacity-50"
+                >
+                  <Send size={12} /> Open in mail
+                </button>
+                <button
+                  onClick={copyDraft}
+                  disabled={!draftBody}
+                  className="px-3 py-2 rounded-md border border-border/40 text-foreground text-xs font-display font-semibold flex items-center gap-2 hover:bg-secondary/40 disabled:opacity-50"
+                >
+                  <Copy size={12} /> Copy
+                </button>
+                <button
+                  onClick={async () => {
+                    const ok = await updateField({ status: "contacted" });
+                    if (ok) toast.success("Marked contacted");
+                  }}
+                  className="ml-auto text-[11px] font-display text-muted-foreground hover:text-foreground"
+                >
+                  Mark contacted →
+                </button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
         <ProjectDialog
+
           open={convertOpen}
           onOpenChange={setConvertOpen}
           stayOnCreate
