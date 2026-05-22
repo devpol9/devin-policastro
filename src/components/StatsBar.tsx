@@ -59,7 +59,7 @@ const StatsBar = () => {
         >
           — Receipts, not promises
         </motion.p>
-        <div className={`grid grid-cols-2 ${gridCols} gap-y-12 gap-x-6 sm:gap-x-10`}>
+        <div className={`grid grid-cols-2 ${gridCols} gap-y-14 gap-x-8 sm:gap-x-12 lg:gap-x-6`}>
           {stats.map((stat, i) => (
             <motion.div
               key={`${stat.label}-${i}`}
@@ -67,9 +67,9 @@ const StatsBar = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center"
+              className="text-center min-w-0 px-2"
             >
-              <div className="font-display font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-3 tracking-[-0.04em] leading-none">
+              <div className="font-display font-black mb-3 tracking-[-0.03em] leading-none whitespace-nowrap text-[clamp(2.25rem,5vw,4.5rem)]">
                 <AnimatedCounter
                   target={stat.value}
                   suffix={stat.suffix}
