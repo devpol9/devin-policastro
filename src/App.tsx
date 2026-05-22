@@ -52,6 +52,7 @@ import Consulting from "./pages/Consulting";
 import Financing from "./pages/Financing";
 import Networking from "./pages/Networking";
 import Fitness from "./pages/Fitness";
+import Playbook from "./pages/Playbook";
 
 // DevHQ admin
 import AdminLoginPage from "./pages/admin/Login";
@@ -101,6 +102,7 @@ const App = () => (
           <Route path="/financing" element={<Financing />} />
           <Route path="/networking" element={<Networking />} />
           <Route path="/fitness" element={<Fitness />} />
+          <Route path="/playbook" element={<Playbook />} />
           <Route path="/admin-login" element={<PathRedirect to="/hq/login" />} />
           <Route path="/admin" element={<PathRedirect to="/hq/today" />} />
 
