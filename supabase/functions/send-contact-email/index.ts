@@ -85,6 +85,52 @@ serve(async (req) => {
       } catch (emailErr) {
         console.error("Email send error:", emailErr);
       }
+
+      // Auto-reply to the inquirer
+      const firstName = name.split(/\s+/)[0] || name;
+      const autoReplyHtml = `
+        <div style="font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 560px; margin: 0 auto; padding: 32px 24px; color: #1a1a1a; line-height: 1.55;">
+          <p style="font-size: 16px; margin: 0 0 16px;">Hey ${firstName},</p>
+          <p style="font-size: 16px; margin: 0 0 16px;">
+            Got your <strong>${subject}</strong> — it's in front of me, not buried in a queue. I read every inquiry myself and usually reply within 24 hours (often same day).
+          </p>
+          <p style="font-size: 16px; margin: 0 0 16px;">
+            While you wait, grab the free <a href="https://devinpolicastro.com/playbook" style="color: #b78a5e; font-weight: 600;">NJ Entrepreneur Playbook</a> — 11 lessons from building 7 businesses here in Bergen County.
+          </p>
+          <p style="font-size: 16px; margin: 0 0 24px;">
+            Talk soon,<br/>
+            <strong>Devin Policastro</strong><br/>
+            <span style="color: #666; font-size: 14px;">Norwood, NJ</span>
+          </p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+          <p style="font-size: 12px; color: #888; margin: 0;">
+            You're getting this because you submitted an inquiry at devinpolicastro.com. Reply directly to this email and it'll come to me.
+          </p>
+        </div>
+      `;
+
+      try {
+        const autoRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${RESEND_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "Devin Policastro <inquiries@updates.devinpolicastro.com>",
+            to: [email],
+            subject: `Got it, ${firstName} — talk soon`,
+            html: autoReplyHtml,
+            reply_to: "devinpolicastro@gmail.com",
+          }),
+        });
+        if (!autoRes.ok) {
+          const errText = await autoRes.text();
+          console.error("Auto-reply error:", errText);
+        }
+      } catch (autoErr) {
+        console.error("Auto-reply send error:", autoErr);
+      }
     } else {
       console.log("No RESEND_API_KEY configured. Inquiry saved to DB only:", { name, email, subject });
     }
