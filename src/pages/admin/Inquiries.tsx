@@ -204,7 +204,7 @@ const Inquiries = () => {
           </div>
         ))}
         <button
-          onClick={fetchInquiries}
+          onClick={() => fetchInquiries()}
           className="ml-auto p-2 rounded-md hover:bg-secondary transition-colors"
           title="Refresh"
         >
