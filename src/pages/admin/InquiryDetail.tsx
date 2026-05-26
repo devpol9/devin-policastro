@@ -178,9 +178,8 @@ const InquiryDetail = () => {
         >
           <div className="lg:col-span-2 space-y-5">
             <div
-              className="rounded-lg p-6"
+              className="rounded-lg p-6 bg-card"
               style={{
-                background: `linear-gradient(145deg, hsl(36 30% 99% / 0.95) 0%, hsl(33 20% 95% / 0.8) 100%)`,
                 border: `1px solid hsl(${serviceColor} / 0.25)`,
               }}
             >
