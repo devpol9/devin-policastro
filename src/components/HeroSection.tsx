@@ -75,7 +75,7 @@ const HeroSection = () => {
                 alt="Devin Policastro, Norwood NJ entrepreneur and founder"
                 width={480}
                 height={640}
-                fetchPriority="high"
+                {...({ fetchpriority: "high" } as any)}
                 decoding="async"
                 className="w-full h-full object-cover grayscale-[0.15]"
               />
