@@ -113,14 +113,18 @@ const Inquiries = () => {
 
   useEffect(() => { fetchInquiries(); }, []);
 
-  const fetchInquiries = async () => {
-    setLoading(true);
+  const fetchInquiries = async (attempt = 0) => {
+    if (attempt === 0) setLoading(true);
     const { data, error } = await supabase
       .from("inquiries")
       .select("*")
       .order("created_at", { ascending: false });
     if (error) {
-      console.error(error);
+      console.error("[inquiries] fetch failed", error);
+      if (attempt < 2) {
+        setTimeout(() => fetchInquiries(attempt + 1), 800 * (attempt + 1));
+        return;
+      }
       toast.error("Failed to load inquiries");
     } else {
       setInquiries((data as any[]) || []);
@@ -200,7 +204,7 @@ const Inquiries = () => {
           </div>
         ))}
         <button
-          onClick={fetchInquiries}
+          onClick={() => fetchInquiries()}
           className="ml-auto p-2 rounded-md hover:bg-secondary transition-colors"
           title="Refresh"
         >
