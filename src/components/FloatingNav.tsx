@@ -95,28 +95,32 @@ const FloatingNav = () => {
           )}
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden md:flex items-center gap-1">
             {isHome ? (
-              homeNavItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleClick(item.href)}
-                  className={`relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg ${
-                    activeSection === item.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                  {activeSection === item.href.slice(1) && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute bottom-0.5 left-3 right-3 h-px bg-primary/60"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </button>
-              ))
+              homeNavItems.map((item) => {
+                const active = activeSection === item.href.slice(1);
+                return (
+                  <button
+                    key={item.href}
+                    onClick={() => handleClick(item.href)}
+                    className={`group relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg flex items-center gap-1.5 ${
+                      active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <span className={`font-mono text-[10px] tabular-nums transition-colors ${active ? "text-accent" : "text-muted-foreground/50 group-hover:text-accent"}`}>
+                      {item.num}
+                    </span>
+                    <span>{item.label}</span>
+                    {active && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute -bottom-0.5 left-3 right-3 h-px bg-accent"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                );
+              })
             ) : (
               <>
                 <button
