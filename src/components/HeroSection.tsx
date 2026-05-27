@@ -110,7 +110,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-4 order-1 md:order-2"
           >
-            <div className="relative w-40 h-52 sm:w-48 sm:h-60 md:w-full md:h-[26rem] rounded-2xl overflow-hidden border border-foreground/10">
+            <div className="relative w-full max-w-[260px] md:max-w-none aspect-[4/5] md:aspect-auto md:h-[26rem] rounded-2xl overflow-hidden border border-foreground/10">
               <img
                 src="/images/devin-profile.jpg"
                 alt="Devin Policastro, Norwood NJ entrepreneur and founder"
@@ -120,13 +120,13 @@ const HeroSection = () => {
                 decoding="async"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background/40 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/85 via-background/40 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background/40 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
               <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-[9px] sm:text-[10px] font-mono tracking-[0.18em] text-foreground/80">
                 <span className="px-2 py-1 rounded-full bg-background/50 border border-foreground/15 backdrop-blur-sm">— Founder</span>
               </div>
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="font-display font-semibold text-foreground text-base sm:text-lg leading-tight mb-1">
+                <p className="font-display font-semibold text-foreground text-sm sm:text-base md:text-lg leading-tight mb-1">
                   Founder · Operator · Connector
                 </p>
                 <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-foreground/55">
