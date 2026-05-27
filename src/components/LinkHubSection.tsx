@@ -58,16 +58,16 @@ const LinkHubSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap gap-1.5 sm:gap-2 mb-8 sm:mb-12"
+          className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12"
         >
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 rounded-md text-[10px] sm:text-xs font-display font-semibold tracking-[0.1em]  transition-all duration-500 ${
+              className={`relative px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-mono transition-all duration-500 ${
                 activeCategory === cat.key
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card border border-border/20"
+                  ? "bg-foreground text-background"
+                  : "bg-card border border-foreground/10 text-muted-foreground hover:text-foreground hover:border-accent/60"
               }`}
             >
               {cat.label}
@@ -75,18 +75,22 @@ const LinkHubSection = () => {
           ))}
         </motion.div>
 
-        <div className="grid gap-2.5 sm:gap-3 max-w-3xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 max-w-5xl">
           <AnimatePresence mode="popLayout">
-            {filtered.map((link, i) => (
-              <motion.div
-                key={link.title}
-                layout
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.4, delay: i * 0.03 }}
-              >
-                <a
+            {filtered.map((link, i) => {
+              const mod = i % 5;
+              const span =
+                mod === 0 ? "md:col-span-12"
+                : mod === 1 ? "md:col-span-7"
+                : mod === 2 ? "md:col-span-5"
+                : "md:col-span-6";
+              const isFeatured = mod === 0;
+              const isTall = mod === 1 || mod === 2;
+              const indexLabel = String(i + 1).padStart(2, "0");
+
+              return (
+                <motion.a
+                  key={link.title}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -95,26 +99,84 @@ const LinkHubSection = () => {
                       trackEvent("link_clicked", { label: link.title, url: link.url, source: "link_hub" })
                     );
                   }}
-                  className="group relative block overflow-hidden rounded-lg bg-card border border-border/60 hover:border-accent/40 transition-colors"
+                  layout
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.45, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
                   aria-label={`Open ${link.title}`}
+                  className={`group relative ${span} bg-card border border-foreground/5 rounded-2xl sm:rounded-3xl p-6 sm:p-8 transition-all duration-500 hover:border-accent/40 hover:bg-card/80 ${
+                    isFeatured
+                      ? "flex items-center justify-between gap-6"
+                      : isTall
+                      ? "flex flex-col justify-between min-h-[200px] sm:min-h-[220px]"
+                      : "flex flex-col gap-5 sm:gap-6"
+                  }`}
                 >
-                  <div className="relative z-10 p-3.5 sm:p-5 flex items-center gap-3 sm:gap-4">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg flex items-center justify-center shrink-0 bg-secondary border border-border/60">
-                      <link.icon size={16} className="text-foreground/70" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display font-semibold text-sm sm:text-base leading-tight tracking-[-0.01em] text-foreground mb-0.5">
-                        {link.title}
-                      </h3>
-                      <p className="text-muted-foreground text-[10px] sm:text-xs leading-relaxed line-clamp-1">{link.desc}</p>
-                    </div>
-                    <div className="p-2 rounded-lg shrink-0 text-foreground/40 group-hover:text-accent transition-colors duration-300">
-                      <ArrowUpRight size={14} />
-                    </div>
-                  </div>
-                </a>
-              </motion.div>
-            ))}
+                  {isFeatured ? (
+                    <>
+                      <div className="flex items-center gap-5 sm:gap-6 min-w-0">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-2xl bg-background border border-foreground/5 flex items-center justify-center text-accent group-hover:scale-105 transition-transform duration-500">
+                          <link.icon size={28} strokeWidth={1.5} />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="block text-[10px] sm:text-xs text-muted-foreground mb-1 font-mono">
+                            {indexLabel} / Featured
+                          </span>
+                          <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground tracking-tight truncate">
+                            {link.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground mt-1 line-clamp-1">{link.desc}</p>
+                        </div>
+                      </div>
+                      <ArrowUpRight
+                        size={24}
+                        className="shrink-0 text-muted-foreground group-hover:text-accent transition-colors"
+                      />
+                    </>
+                  ) : isTall ? (
+                    <>
+                      <div className="flex justify-between items-start">
+                        <div className="w-12 h-12 rounded-xl bg-background border border-foreground/5 flex items-center justify-center text-muted-foreground group-hover:text-accent transition-colors">
+                          <link.icon size={22} strokeWidth={1.5} />
+                        </div>
+                        <ArrowUpRight
+                          size={18}
+                          className="text-muted-foreground group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+                        />
+                      </div>
+                      <div className="mt-6">
+                        <span className="block text-[10px] sm:text-xs text-muted-foreground mb-1 font-mono">
+                          {indexLabel}
+                        </span>
+                        <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground tracking-tight">
+                          {link.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">{link.desc}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-4 min-w-0">
+                          <div className="w-10 h-10 rounded-lg bg-background border border-foreground/5 flex items-center justify-center text-muted-foreground group-hover:text-accent transition-colors shrink-0">
+                            <link.icon size={18} strokeWidth={1.5} />
+                          </div>
+                          <h3 className="font-display text-base sm:text-lg font-medium text-foreground tracking-tight truncate">
+                            {link.title}
+                          </h3>
+                        </div>
+                        <ArrowUpRight
+                          size={16}
+                          className="shrink-0 text-muted-foreground group-hover:text-accent transition-colors"
+                        />
+                      </div>
+                      <p className="text-sm text-muted-foreground">{link.desc}</p>
+                    </>
+                  )}
+                </motion.a>
+              );
+            })}
           </AnimatePresence>
         </div>
       </div>
