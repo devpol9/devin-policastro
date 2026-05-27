@@ -23,10 +23,14 @@ const kpiToStat = (k: PublicKpi): Stat | null => {
   if (!prefix && k.unit === "currency") prefix = "$";
   let suffix = k.suffix ?? "";
   if (!suffix && k.unit === "percent") suffix = "%";
+  // Keep "Packs Sold" consistent with the hero marquee — 7,000+
+  const isPacksSold = /packs?\s*sold/i.test(k.label);
+  const value = isPacksSold ? 7000 : Number(k.latest_value);
+  const finalSuffix = isPacksSold && !suffix ? "+" : suffix;
   return {
-    value: Number(k.latest_value),
+    value,
     prefix,
-    suffix,
+    suffix: finalSuffix,
     label: k.label,
   };
 };

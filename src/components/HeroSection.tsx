@@ -25,14 +25,14 @@ const HeroSection = () => {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-screen flex flex-col overflow-hidden bg-background"
+      className="relative min-h-screen flex flex-col overflow-x-hidden bg-background"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--accent)/0.08)_0%,transparent_60%)]" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-background to-transparent pointer-events-none" />
 
       <motion.div
         style={{ opacity, y }}
-        className="relative z-10 flex-1 flex flex-col justify-center px-5 sm:px-10 max-w-7xl w-full mx-auto pt-28 pb-12"
+        className="relative z-10 flex-1 flex flex-col justify-center px-5 sm:px-10 lg:px-14 xl:px-16 max-w-7xl w-full mx-auto pt-28 pb-12"
       >
         {/* Editorial header strip */}
         <motion.div
@@ -49,7 +49,7 @@ const HeroSection = () => {
         {/* Asymmetric split: name left (8) / portrait+meta right (4) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
           <div className="md:col-span-8 order-2 md:order-1">
-            <h1 className="font-display font-bold leading-[0.78] tracking-[-0.06em] mb-8 sm:mb-10 text-[clamp(3.5rem,13vw,10rem)]">
+            <h1 className="font-display font-bold leading-[0.78] tracking-[-0.055em] sm:tracking-[-0.06em] mb-8 sm:mb-10 text-[clamp(2.85rem,11.5vw,10rem)]">
               <motion.span
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
