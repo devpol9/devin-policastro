@@ -7,12 +7,12 @@ import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 
 const homeNavItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Links", href: "#links" },
-  { label: "Shop", href: "#shop" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { num: "01", label: "Home", href: "#home" },
+  { num: "02", label: "About", href: "#about" },
+  { num: "03", label: "Links", href: "#links" },
+  { num: "04", label: "Shop", href: "#shop" },
+  { num: "05", label: "Services", href: "#services" },
+  { num: "06", label: "Contact", href: "#contact" },
 ];
 
 const FloatingNav = () => {
@@ -95,28 +95,32 @@ const FloatingNav = () => {
           )}
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden md:flex items-center gap-1">
             {isHome ? (
-              homeNavItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleClick(item.href)}
-                  className={`relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg ${
-                    activeSection === item.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {item.label}
-                  {activeSection === item.href.slice(1) && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute bottom-0.5 left-3 right-3 h-px bg-primary/60"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </button>
-              ))
+              homeNavItems.map((item) => {
+                const active = activeSection === item.href.slice(1);
+                return (
+                  <button
+                    key={item.href}
+                    onClick={() => handleClick(item.href)}
+                    className={`group relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg flex items-center gap-1.5 ${
+                      active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <span className={`font-mono text-[10px] tabular-nums transition-colors ${active ? "text-accent" : "text-muted-foreground/50 group-hover:text-accent"}`}>
+                      {item.num}
+                    </span>
+                    <span>{item.label}</span>
+                    {active && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute -bottom-0.5 left-3 right-3 h-px bg-accent"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                );
+              })
             ) : (
               <>
                 <button
@@ -182,24 +186,30 @@ const FloatingNav = () => {
                 </motion.button>
               )}
               {(isHome ? homeNavItems : [
-                { label: "Services", href: "#services" },
-                { label: "Shop", href: "#shop" },
-                { label: "Contact", href: "#contact" },
-              ]).map((item, i) => (
-                <motion.button
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: i * 0.04 }}
-                  onClick={() => handleClick(item.href)}
-                  className={`text-2xl font-display font-bold py-3 tracking-tight transition-colors duration-300 ${
-                    isHome && activeSection === item.href.slice(1) ? "text-primary" : "text-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
+                { num: "01", label: "Services", href: "#services" },
+                { num: "02", label: "Shop", href: "#shop" },
+                { num: "03", label: "Contact", href: "#contact" },
+              ]).map((item, i) => {
+                const active = isHome && activeSection === item.href.slice(1);
+                return (
+                  <motion.button
+                    key={item.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ delay: i * 0.04 }}
+                    onClick={() => handleClick(item.href)}
+                    className={`text-3xl font-display font-bold py-3 tracking-tight transition-colors duration-300 flex items-baseline gap-3 ${
+                      active ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+                    }`}
+                  >
+                    <span className={`font-mono text-xs tabular-nums ${active ? "text-accent" : "text-muted-foreground/60"}`}>
+                      {item.num}
+                    </span>
+                    {item.label}
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
         )}
