@@ -89,50 +89,73 @@ const AboutSection = () => {
         description="Entrepreneur from Norwood, New Jersey. Leading Impact Zone, building 2THIRTY, manufacturing through Creative Vision, and developing Valence."
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        {verticals.map((v, i) => (
-          <motion.div
-            key={v.title}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: i * 0.08 }}
-          >
-            <div
-              onClick={() => handleCardClick(v)}
-              className={`h-full block group relative overflow-hidden rounded-lg bg-card border border-border ${v.link || v.route ? "cursor-pointer" : "cursor-default"}`}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
+        {verticals.map((v, i) => {
+          const spans = ["md:col-span-12", "md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7", "md:col-span-12"];
+          const span = spans[i] ?? "md:col-span-6";
+          const isFeatured = i === 0 || i === 5;
+          const isClickable = !!(v.link || v.route);
+
+          return (
+            <motion.div
+              key={v.title}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className={span}
             >
-              {/* Top accent bar (always visible) */}
               <div
-                className="absolute top-0 left-0 right-0 h-[2px] opacity-80"
-                style={{ background: `hsl(${v.color})` }}
-              />
-
-              <div className="relative z-10 p-5 sm:p-7 lg:p-8 flex flex-col h-full">
-                <div className="flex items-start justify-between mb-5 sm:mb-7">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-secondary border border-border">
-                    <v.icon size={20} className="text-foreground" />
+                onClick={() => handleCardClick(v)}
+                className={`group relative h-full overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 transition-all duration-500 hover:border-accent/40 hover:bg-card/80 ${
+                  isClickable ? "cursor-pointer" : "cursor-default"
+                } ${isFeatured ? "p-7 sm:p-10" : "p-6 sm:p-8"}`}
+              >
+                <div className={`relative z-10 flex h-full ${isFeatured ? "flex-col md:flex-row md:items-center gap-6 md:gap-10" : "flex-col"}`}>
+                  {/* Icon + label header */}
+                  <div className={`flex items-start justify-between ${isFeatured ? "md:flex-col md:items-start md:justify-start md:gap-6 md:shrink-0" : "mb-6 sm:mb-8"}`}>
+                    <div
+                      className={`rounded-xl flex items-center justify-center bg-background border border-foreground/5 transition-all duration-500 ${
+                        isFeatured ? "w-14 h-14 sm:w-16 sm:h-16 text-accent group-hover:scale-105" : "w-12 h-12 text-muted-foreground group-hover:text-accent"
+                      }`}
+                    >
+                      <v.icon size={isFeatured ? 26 : 22} strokeWidth={1.5} />
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-mono px-3 py-1.5 rounded-full text-muted-foreground bg-background/60 border border-foreground/5">
+                      {v.label}
+                    </span>
                   </div>
-                  <span className="text-[8px] sm:text-[9px] font-display font-semibold tracking-[0.12em] px-2.5 py-1 rounded-md text-foreground/60 bg-secondary border border-border">
-                    {v.label}
-                  </span>
+
+                  {/* Content */}
+                  <div className={`flex flex-col flex-1 ${isFeatured ? "min-w-0" : ""}`}>
+                    {isFeatured && (
+                      <span className="block text-[10px] sm:text-xs text-muted-foreground mb-2 font-mono">
+                        {String(i + 1).padStart(2, "0")} / Anchor venture
+                      </span>
+                    )}
+                    <h3
+                      className={`font-display font-semibold tracking-tight text-foreground leading-[1.05] mb-3 ${
+                        isFeatured ? "text-3xl sm:text-4xl md:text-5xl" : "text-xl sm:text-2xl"
+                      }`}
+                    >
+                      {v.title}
+                    </h3>
+                    <p className={`text-muted-foreground leading-relaxed flex-1 ${isFeatured ? "text-sm sm:text-base max-w-2xl" : "text-xs sm:text-sm"}`}>
+                      {v.desc}
+                    </p>
+
+                    {isClickable && (
+                      <div className="mt-6 flex items-center gap-2 text-xs sm:text-sm font-mono text-accent group-hover:gap-3 transition-all">
+                        <span>Explore</span>
+                        <span>→</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-
-                <h3 className="font-display font-extrabold text-sm sm:text-base tracking-[0.1em] mb-2 sm:mb-3 text-foreground">
-                  {v.title}
-                </h3>
-                <p className="text-muted-foreground text-xs sm:text-sm leading-[1.7] flex-1">{v.desc}</p>
-
-                {(v.link || v.route) && (
-                  <div className="mt-5 sm:mt-7 flex items-center gap-2 text-xs font-display font-semibold tracking-[0.1em] text-accent">
-                    <span>Explore</span>
-                    <span className="text-sm">→</span>
-                  </div>
-                )}
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   </section>
