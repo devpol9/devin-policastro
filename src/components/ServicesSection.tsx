@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+
 import {
   Briefcase, Camera, Handshake, Dumbbell,
   ArrowUpRight, Factory, Car, CreditCard,
@@ -28,7 +28,7 @@ const tabs: ServiceTab[] = [
 ];
 
 const ServicesSection = () => {
-  const navigate = useNavigate();
+
 
   return (
     <section id="services" className="section-padding relative">
