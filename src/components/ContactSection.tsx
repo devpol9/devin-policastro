@@ -177,7 +177,7 @@ const ContactSection = () => {
 
   const contactLinks = [
     { href: "https://instagram.com/devinpolicastro", icon: Instagram, label: "Instagram DM", sub: "@devinpolicastro", external: true },
-    { href: "mailto:devinpolicastro@gmail.com", icon: Mail, label: "Email", sub: "devinpolicastro@gmail.com", external: false },
+    { href: "mailto:dev@devinpolicastro.com", icon: Mail, label: "Email", sub: "dev@devinpolicastro.com", external: false },
     { href: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9", icon: Calendar, label: "Book a Meeting", sub: "Schedule a tour or consultation", external: true },
   ];
 
