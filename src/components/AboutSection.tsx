@@ -47,7 +47,7 @@ const verticals = [
     link: null,
     route: "/automotive",
     color: "18 38% 50%",
-    label: "Automotive",
+    label: "Concierge / Network",
   },
   {
     icon: Video,
@@ -149,6 +149,17 @@ const AboutSection = () => {
                         <span>Explore</span>
                         <span>→</span>
                       </div>
+                    )}
+
+                    {v.title === "Valence" && (
+                      <a
+                        href="mailto:dev@devinpolicastro.com?subject=Valence%20Waitlist"
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-6 inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-accent hover:gap-3 transition-all w-fit"
+                      >
+                        <span>Join the waitlist</span>
+                        <span>→</span>
+                      </a>
                     )}
                   </div>
                 </div>

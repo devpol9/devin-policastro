@@ -55,7 +55,10 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.05, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => navigate(tab.route)}
+                onClick={() => {
+                  navigate(tab.route);
+                  window.location.href = `mailto:dev@devinpolicastro.com?subject=${encodeURIComponent(tab.label + " Inquiry")}`;
+                }}
                 className={`group relative overflow-hidden text-left rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 hover:border-accent/40 hover:bg-card/80 transition-all duration-500 ${span} ${
                   isFeatured ? "p-7 sm:p-10 min-h-[200px]" : "p-6 sm:p-8 min-h-[180px] sm:min-h-[220px]"
                 }`}
