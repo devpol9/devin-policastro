@@ -186,24 +186,30 @@ const FloatingNav = () => {
                 </motion.button>
               )}
               {(isHome ? homeNavItems : [
-                { label: "Services", href: "#services" },
-                { label: "Shop", href: "#shop" },
-                { label: "Contact", href: "#contact" },
-              ]).map((item, i) => (
-                <motion.button
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: i * 0.04 }}
-                  onClick={() => handleClick(item.href)}
-                  className={`text-2xl font-display font-bold py-3 tracking-tight transition-colors duration-300 ${
-                    isHome && activeSection === item.href.slice(1) ? "text-primary" : "text-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
+                { num: "01", label: "Services", href: "#services" },
+                { num: "02", label: "Shop", href: "#shop" },
+                { num: "03", label: "Contact", href: "#contact" },
+              ]).map((item, i) => {
+                const active = isHome && activeSection === item.href.slice(1);
+                return (
+                  <motion.button
+                    key={item.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ delay: i * 0.04 }}
+                    onClick={() => handleClick(item.href)}
+                    className={`text-3xl font-display font-bold py-3 tracking-tight transition-colors duration-300 flex items-baseline gap-3 ${
+                      active ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+                    }`}
+                  >
+                    <span className={`font-mono text-xs tabular-nums ${active ? "text-accent" : "text-muted-foreground/60"}`}>
+                      {item.num}
+                    </span>
+                    {item.label}
+                  </motion.button>
+                );
+              })}
             </div>
           </motion.div>
         )}
