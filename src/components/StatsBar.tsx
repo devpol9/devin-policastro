@@ -9,7 +9,6 @@ interface Stat {
   label: string;
 }
 
-// Fallback used until KPIs are flagged public in /hq/kpis
 const FALLBACK_STATS: Stat[] = [
   { value: 51000, suffix: "", label: "Sq Ft Gym", prefix: "" },
   { value: 3500, suffix: "+", label: "5-Star Reviews", prefix: "" },
@@ -40,43 +39,61 @@ const StatsBar = () => {
     .filter((s): s is Stat => s !== null);
 
   const stats: Stat[] = liveStats.length > 0 ? liveStats.slice(0, 5) : FALLBACK_STATS;
-  const gridCols = stats.length >= 5 ? "sm:grid-cols-3 lg:grid-cols-5" : stats.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3";
+  const [featured, ...rest] = stats;
 
   return (
-    <section className="px-5 sm:px-8 lg:px-10 py-20 sm:py-28 relative overflow-hidden bg-accent text-accent-foreground">
-      <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--accent-foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent-foreground)) 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
-        }}
-      />
+    <section className="px-5 sm:px-8 lg:px-10 py-24 sm:py-32 relative overflow-hidden bg-background text-foreground border-y border-foreground/10">
       <div className="container-tight relative z-10">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-accent-foreground/70 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em] mb-10 sm:mb-14 text-center"
-        >
-          — Receipts, not promises
-        </motion.p>
-        <div className={`grid grid-cols-2 ${gridCols} gap-y-14 gap-x-8 sm:gap-x-12 lg:gap-x-6`}>
-          {stats.map((stat, i) => (
+        <div className="flex items-center justify-between mb-12 sm:mb-16">
+          <span className="text-accent text-[10px] sm:text-xs font-mono tracking-[0.22em]">
+            [ 04 / Receipts ]
+          </span>
+          <span className="text-foreground/40 text-[10px] sm:text-xs font-mono tracking-[0.22em] hidden sm:block">
+            Not promises
+          </span>
+        </div>
+
+        {/* Featured stat */}
+        {featured && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-10 sm:pb-14 border-b border-foreground/10"
+          >
+            <div className="font-display font-black tracking-[-0.04em] leading-[0.85] text-[clamp(4rem,14vw,11rem)] text-foreground">
+              <AnimatedCounter target={featured.value} suffix={featured.suffix} prefix={featured.prefix} />
+            </div>
+            <div className="md:text-right md:max-w-xs">
+              <p className="text-accent text-[10px] sm:text-xs font-mono tracking-[0.22em] mb-2">
+                — {featured.label}
+              </p>
+              <p className="text-foreground/50 text-sm font-display">
+                The Impact Zone HQ — built brick by brick in Eatontown, NJ.
+              </p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Row of remaining stats with hairline dividers */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/10 mt-px">
+          {rest.map((stat, i) => (
             <motion.div
               key={`${stat.label}-${i}`}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center min-w-0 px-2"
+              transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-background px-5 sm:px-8 py-10 sm:py-14 flex flex-col gap-3 group hover:bg-card transition-colors duration-500"
             >
-              <div className="font-display font-black mb-3 tracking-[-0.03em] leading-none whitespace-nowrap text-[clamp(2.25rem,5vw,4.5rem)]">
-                <AnimatedCounter
-                  target={stat.value}
-                  suffix={stat.suffix}
-                  prefix={stat.prefix}
-                />
+              <span className="text-accent/60 text-[10px] font-mono tracking-[0.22em]">
+                0{i + 1}
+              </span>
+              <div className="font-display font-black tracking-[-0.03em] leading-none text-[clamp(2rem,5vw,3.5rem)] text-foreground">
+                <AnimatedCounter target={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
               </div>
-              <p className="text-accent-foreground/70 text-[10px] sm:text-xs font-display font-medium tracking-[0.18em]">
+              <p className="text-foreground/50 text-[11px] sm:text-xs font-mono tracking-[0.18em] mt-auto">
                 {stat.label}
               </p>
             </motion.div>
