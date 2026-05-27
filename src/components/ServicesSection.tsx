@@ -56,7 +56,6 @@ const ServicesSection = () => {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.05, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => {
-                  navigate(tab.route);
                   window.location.href = `mailto:dev@devinpolicastro.com?subject=${encodeURIComponent(tab.label + " Inquiry")}`;
                 }}
                 className={`group relative overflow-hidden text-left rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 hover:border-accent/40 hover:bg-card/80 transition-all duration-500 ${span} ${

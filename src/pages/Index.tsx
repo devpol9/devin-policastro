@@ -29,11 +29,15 @@ const Index = () => {
       <StatsBar />
       <GallerySection />
       <LinkHubSection />
-      <ShopSection />
-      
-      <ServicesSection />
-      <TrainingSection />
-      <ContactSection />
+        <ShopSection />
+        
+        <div className="-mt-12 sm:-mt-20">
+          <ServicesSection />
+        </div>
+        <TrainingSection />
+        <div className="-mt-12 sm:-mt-20">
+          <ContactSection />
+        </div>
       <PlaybookBanner />
       <Footer />
       <MobileBottomNav />
