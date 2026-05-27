@@ -1,4 +1,4 @@
-import { Instagram, Youtube, Mail, MapPin } from "lucide-react";
+import { Instagram, Youtube, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const socialLinks = [
@@ -13,102 +13,110 @@ const socialLinks = [
 ];
 
 const ventures = [
-  { label: "Impact Zone", href: "https://impactzonenj.com" },
-  { label: "2THIRTY", href: "https://drink2thirty.com" },
-  { label: "Creative Vision", href: null },
-  { label: "Valence", href: null },
+  { label: "Impact Zone", href: "https://impactzonenj.com", meta: "Norwood NJ" },
+  { label: "2THIRTY", href: "https://drink2thirty.com", meta: "Hydration+" },
+  { label: "Creative Vision", href: null, meta: "Manufacturing" },
+  { label: "Valence", href: null, meta: "Gym OS · soon" },
 ];
 
 const Footer = () => (
-  <footer className="relative border-t border-border mb-24 md:mb-0 overflow-hidden bg-background">
+  <footer className="relative border-t border-foreground/10 mb-24 md:mb-0 overflow-hidden bg-background">
     <div className="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
-      {/* Massive wordmark */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="pt-16 sm:pt-24 pb-10 sm:pb-14"
-      >
-        <div className="flex items-center gap-3 mb-6 sm:mb-10">
-          <span className="h-px w-8 bg-accent" />
-          <span className="text-foreground/60 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em]">
-            — End of feed
-          </span>
-        </div>
-        <h2 className="font-display font-black leading-[0.82] tracking-[-0.05em] text-[clamp(3rem,12vw,9rem)] text-foreground">
-          Devin
-          <br />
-          <span className="accent-headline">Policastro.</span>
-        </h2>
-      </motion.div>
+      {/* Header rail */}
+      <div className="pt-16 sm:pt-20 pb-10 sm:pb-14 flex items-center justify-between text-[10px] sm:text-xs font-mono tracking-[0.22em]">
+        <span className="text-accent">[ 07 / End of feed ]</span>
+        <span className="text-foreground/40 hidden sm:inline">© {new Date().getFullYear()}</span>
+      </div>
 
-      {/* Columns */}
-      <div className="pb-12 sm:pb-16 grid grid-cols-2 sm:grid-cols-4 gap-8 border-t border-border pt-10 sm:pt-14">
-        <div className="col-span-2 sm:col-span-1">
-          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— Tagline</p>
-          <p className="text-foreground/80 text-sm font-display leading-relaxed max-w-[260px]">
-            Entrepreneur. Builder. Norwood, NJ.
+      {/* Asymmetric columns */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12">
+        {/* Wordmark */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="md:col-span-7"
+        >
+          <h2 className="font-display font-bold leading-[0.82] tracking-[-0.05em] text-[clamp(3rem,11vw,8rem)] text-foreground">
+            Devin
+            <br />
+            <span className="accent-headline">Policastro.</span>
+          </h2>
+          <p className="mt-6 sm:mt-8 text-foreground/60 text-sm sm:text-base font-display max-w-md leading-relaxed">
+            Entrepreneur. Builder. Connector. From Norwood, NJ — building everywhere.
           </p>
-        </div>
+        </motion.div>
 
-        <div>
-          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— Ventures</p>
-          <ul className="space-y-2.5">
-            {ventures.map((v) => (
-              <li key={v.label}>
-                {v.href ? (
-                  <a
-                    href={v.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground/70 hover:text-accent text-sm font-display transition-colors"
-                  >
-                    {v.label}
-                  </a>
-                ) : (
-                  <span className="text-foreground/30 text-sm font-display">{v.label}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— HQ</p>
-          <div className="flex items-start gap-2 text-foreground/70 text-sm font-display leading-relaxed">
-            <MapPin size={14} className="mt-1 shrink-0 text-accent" />
-            <span>335 Chestnut St<br />Norwood, NJ 07648</span>
+        {/* Right rail */}
+        <div className="md:col-span-5 grid grid-cols-2 gap-8 md:gap-6 md:pt-4">
+          <div>
+            <p className="text-[10px] font-mono tracking-[0.22em] text-accent/70 mb-5">— Ventures</p>
+            <ul className="space-y-3.5">
+              {ventures.map((v) => (
+                <li key={v.label}>
+                  {v.href ? (
+                    <a
+                      href={v.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-baseline justify-between gap-3 text-foreground/80 hover:text-accent transition-colors"
+                    >
+                      <span className="font-display text-sm sm:text-base">{v.label}</span>
+                      <span className="text-[10px] font-mono tracking-[0.14em] text-foreground/30 group-hover:text-accent/60 transition-colors">
+                        {v.meta}
+                      </span>
+                    </a>
+                  ) : (
+                    <div className="flex items-baseline justify-between gap-3 text-foreground/40">
+                      <span className="font-display text-sm sm:text-base">{v.label}</span>
+                      <span className="text-[10px] font-mono tracking-[0.14em] text-foreground/30">{v.meta}</span>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
 
-        <div>
-          <p className="text-foreground/40 text-[10px] font-display font-semibold tracking-[0.18em] mb-4">— Follow</p>
-          <div className="flex items-center gap-2 flex-wrap">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-foreground/60 hover:text-accent-foreground hover:bg-accent hover:border-accent transition-all duration-300"
-              >
-                <link.icon size={15} />
-              </a>
-            ))}
+          <div>
+            <p className="text-[10px] font-mono tracking-[0.22em] text-accent/70 mb-5">— HQ</p>
+            <div className="flex items-start gap-2 text-foreground/70 text-sm font-display leading-relaxed mb-6">
+              <MapPin size={13} className="mt-1 shrink-0 text-accent" strokeWidth={1.5} />
+              <span>335 Chestnut St<br />Norwood, NJ 07648</span>
+            </div>
+            <a
+              href="mailto:devinpolicastro@gmail.com"
+              className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-sm font-display transition-colors"
+            >
+              devinpolicastro@gmail.com
+              <ArrowUpRight size={12} />
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-border py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <p className="text-foreground/40 text-[11px] font-display tracking-wide">
-          © {new Date().getFullYear()} Devin Policastro. All rights reserved.
-        </p>
-        <p className="text-foreground/40 text-[11px] font-display tracking-[0.18em]">
-          Made in Norwood, NJ.
-        </p>
+      {/* Social + bottom bar */}
+      <div className="border-t border-foreground/10 pt-8 pb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="flex items-center gap-2">
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground/60 hover:text-accent-foreground hover:bg-accent hover:border-accent transition-all duration-300"
+            >
+              <link.icon size={15} />
+            </a>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-6 text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-foreground/40">
+          <span>© {new Date().getFullYear()} Devin Policastro</span>
+          <span className="hidden sm:inline">·</span>
+          <span>Made in Norwood, NJ</span>
+        </div>
       </div>
     </div>
   </footer>

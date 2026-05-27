@@ -1,38 +1,38 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Dumbbell, Users, ArrowRight, Zap, ExternalLink } from "lucide-react";
+import { Dumbbell, Users, ArrowUpRight, Zap, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const tabs = [
   {
     id: "personal",
-    label: "Train With Devin",
+    label: "Train with Devin",
     icon: Dumbbell,
-    title: "1-on-1 With Devin",
+    index: "01",
+    title: "1-on-1 with Devin",
     desc: "Train with me directly. I'll build a program around your goals, your schedule, and what actually works — not some generic template.",
-    cta: "Book a Session",
+    cta: "Book a session",
     ctaAction: "calendar" as const,
-    color: "24 32% 52%",
   },
   {
     id: "coaching",
-    label: "Get a Coach",
+    label: "Get a coach",
     icon: Users,
-    title: "Get Matched With a Coach",
+    index: "02",
+    title: "Get matched with a coach",
     desc: "Tell me your goals and I'll pair you with the best coach on my team — strength, weight loss, sports performance, rehab, you name it.",
-    cta: "Find My Coach",
+    cta: "Find my coach",
     ctaAction: "fitness" as const,
-    color: "200 22% 50%",
   },
   {
     id: "programs",
     label: "Programs",
     icon: Zap,
-    title: "Group Programs & Classes",
+    index: "03",
+    title: "Group programs & classes",
     desc: "Structured group sessions — HIIT, strength circuits, and sport-specific programming. Show up, put in the work, get better.",
-    cta: "View Programs",
+    cta: "View programs",
     ctaAction: "external" as const,
-    color: "140 18% 42%",
   },
 ];
 
@@ -52,117 +52,108 @@ const TrainingSection = () => {
   };
 
   return (
-    <section id="training" className="relative overflow-hidden">
-      {/* Hero image */}
-      <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden">
-        <img
-          src="/images/iz-training.jpg"
-          alt="Training at Impact Zone"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container-tight w-full px-5 sm:px-8 pb-10 sm:pb-16">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-accent" />
-              <span className="text-foreground/70 text-[10px] sm:text-xs font-display font-medium tracking-[0.22em]">
-                06 — Training
-              </span>
-            </div>
-            <h2 className="font-display font-black text-[clamp(2.6rem,9vw,6rem)] leading-[0.86] tracking-[-0.045em] text-foreground">
-              Move <span className="accent-headline">smarter.</span>
-            </h2>
+    <section id="training" className="section-padding relative overflow-hidden">
+      <div className="container-tight relative z-10">
+        {/* Header strip */}
+        <div className="flex items-center justify-between mb-10 sm:mb-14 text-[10px] sm:text-xs font-mono tracking-[0.22em]">
+          <span className="text-accent">[ 06 / Training ]</span>
+          <span className="text-foreground/40 hidden sm:inline">Impact Zone · Norwood NJ</span>
+        </div>
+
+        <h2 className="font-display font-bold text-[clamp(2.6rem,9vw,6rem)] leading-[0.86] tracking-[-0.045em] text-foreground mb-12 sm:mb-16 max-w-4xl">
+          Move <span className="accent-headline">smarter.</span> Not harder.
+        </h2>
+
+        {/* Split layout: sticky tab rail left / content card right */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
+          {/* Tab rail */}
+          <div className="md:col-span-4 flex flex-col gap-2">
+            {tabs.map((tab) => {
+              const isActive = tab.id === active;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActive(tab.id)}
+                  className={`group relative text-left p-5 sm:p-6 rounded-2xl border transition-all duration-500 ${
+                    isActive
+                      ? "bg-card border-accent/40"
+                      : "bg-card/40 border-foreground/5 hover:bg-card hover:border-foreground/10"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <tab.icon size={18} strokeWidth={1.5} className={isActive ? "text-accent" : "text-muted-foreground"} />
+                    <span className={`text-[10px] font-mono tracking-[0.22em] ${isActive ? "text-accent" : "text-foreground/40"}`}>
+                      {tab.index}
+                    </span>
+                  </div>
+                  <p className={`font-display font-semibold text-base sm:text-lg tracking-tight ${isActive ? "text-foreground" : "text-foreground/70"}`}>
+                    {tab.label}
+                  </p>
+                  {isActive && (
+                    <motion.span
+                      layoutId="training-active-indicator"
+                      className="absolute left-0 top-5 bottom-5 w-px bg-accent"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Content card */}
+          <div className="md:col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative h-full min-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5"
+              >
+                <div className="absolute inset-0 opacity-30">
+                  <img
+                    src="/images/iz-training.jpg"
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-background via-background/85 to-background/60" />
+
+                <div className="relative h-full p-7 sm:p-12 flex flex-col">
+                  <div className="flex items-center justify-between mb-8">
+                    <span className="text-[10px] sm:text-xs font-mono tracking-[0.22em] text-accent">
+                      {current.index} / {current.label}
+                    </span>
+                    <current.icon size={22} strokeWidth={1.5} className="text-accent" />
+                  </div>
+
+                  <h3 className="font-display font-semibold text-3xl sm:text-5xl tracking-tight leading-[1.02] text-foreground mb-5 max-w-xl">
+                    {current.title}
+                  </h3>
+
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-lg mb-auto">
+                    {current.desc}
+                  </p>
+
+                  <div className="mt-8 sm:mt-12">
+                    <button
+                      onClick={handleCta}
+                      className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-accent text-accent-foreground font-display font-semibold text-sm tracking-wide hover:gap-4 transition-all"
+                    >
+                      {current.cta}
+                      {current.ctaAction === "external" || current.ctaAction === "calendar" ? (
+                        <ArrowUpRight size={16} />
+                      ) : (
+                        <ArrowRight size={16} />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
-      </div>
-
-      {/* Tabs + Content */}
-      <div className="container-tight relative z-10 py-10 sm:py-16">
-        {/* Tab pills */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
-          {tabs.map((tab) => {
-            const isActive = tab.id === active;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActive(tab.id)}
-                className="relative flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-md font-display text-[10px] sm:text-xs font-bold tracking-[0.15em]  whitespace-nowrap transition-all duration-300"
-                style={{
-                  color: isActive ? `hsl(${tab.color})` : "hsl(var(--muted-foreground))",
-                  background: isActive ? `hsl(${tab.color} / 0.12)` : "hsl(var(--card))",
-                  border: `1px solid ${isActive ? `hsl(${tab.color} / 0.35)` : "hsl(var(--border))"}`,
-                  boxShadow: isActive ? `0 0 20px hsl(${tab.color} / 0.15)` : "none",
-                }}
-              >
-                <tab.icon size={14} />
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Content card */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.35 }}
-            className="relative rounded-lg overflow-hidden"
-            style={{
-              background: `linear-gradient(145deg, hsl(${current.color} / 0.08) 0%, hsl(var(--card)) 100%)`,
-              border: `1px solid hsl(${current.color} / 0.2)`,
-            }}
-          >
-            {/* Top accent */}
-            <div
-              className="absolute top-0 left-0 right-0 h-[2px]"
-              style={{ background: `linear-gradient(90deg, transparent, hsl(${current.color}), transparent)` }}
-            />
-
-            <div className="p-6 sm:p-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center"
-                  style={{
-                    background: `hsl(${current.color} / 0.15)`,
-                    border: `1px solid hsl(${current.color} / 0.3)`,
-                  }}
-                >
-                  <current.icon size={20} style={{ color: `hsl(${current.color})` }} />
-                </div>
-                <h3
-                  className="font-display font-bold text-lg sm:text-2xl"
-                  style={{ color: `hsl(${current.color})` }}
-                >
-                  {current.title}
-                </h3>
-              </div>
-
-              <p className="text-muted-foreground text-sm sm:text-base leading-[1.8] max-w-xl mb-6 sm:mb-8">
-                {current.desc}
-              </p>
-
-              <button
-                className="flex items-center gap-2 text-xs sm:text-sm font-display font-bold tracking-[0.06em]  transition-all duration-300 group px-4 py-2.5 rounded-lg"
-                style={{
-                  color: `hsl(${current.color})`,
-                  background: `hsl(${current.color} / 0.12)`,
-                  border: `1px solid hsl(${current.color} / 0.3)`,
-                }}
-                onClick={handleCta}
-              >
-                <span>{current.cta}</span>
-                {current.ctaAction === "external" || current.ctaAction === "calendar" ? (
-                  <ExternalLink size={14} />
-                ) : (
-                  <ArrowRight size={16} />
-                )}
-              </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );

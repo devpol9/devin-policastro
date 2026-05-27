@@ -10,7 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import MagneticButton from "@/components/effects/MagneticButton";
-import SectionHeader from "@/components/SectionHeader";
+
 import { supabase } from "@/integrations/supabase/client";
 import { trackEvent } from "@/lib/analytics";
 
@@ -183,25 +183,31 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="section-padding pb-32 md:pb-24 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(24_32%_52%/0.03)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(24_32%_52%/0.05)_0%,transparent_60%)]" />
 
       <div className="container-tight relative z-10">
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* Left column — contact info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2"
-          >
-            <SectionHeader
-              numeral="06"
-              eyebrow="Contact"
-              title={<>Let's talk <span className="accent-headline">business.</span></>}
-              description="Whether it's a collab, wholesale inquiry for 2THIRTY, Impact Zone membership, or you just want to connect — I respond to everything."
-            />
+        {/* Header rail */}
+        <div className="flex items-center justify-between mb-10 sm:mb-14 text-[10px] sm:text-xs font-mono tracking-[0.22em]">
+          <span className="text-accent">[ 06 / Contact ]</span>
+          <span className="text-foreground/40 hidden sm:inline">Reply guaranteed</span>
+        </div>
 
-            <div className="flex flex-col gap-2">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 max-w-6xl mx-auto">
+          {/* Left column — editorial intro */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start"
+          >
+            <h2 className="font-display font-bold text-[clamp(2.6rem,7vw,5rem)] leading-[0.88] tracking-[-0.045em] text-foreground mb-6">
+              Let's <span className="accent-headline">talk.</span>
+            </h2>
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-10 max-w-md">
+              Collab, wholesale, membership, or just to connect — I respond to everything.
+            </p>
+
+            <div className="flex flex-col gap-px bg-foreground/10 rounded-2xl overflow-hidden border border-foreground/10">
               {contactLinks.map((link) => (
                 <a
                   key={link.label}
@@ -209,25 +215,21 @@ const ContactSection = () => {
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
                   onClick={() => trackEvent("link_clicked", { label: link.label, url: link.href, source: "contact_section" })}
-                  className="panel p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group"
+                  className="bg-card p-4 sm:p-5 flex items-center gap-4 group hover:bg-card/70 transition-colors"
                 >
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
-                    <link.icon size={14} className="text-primary/70" />
-                  </div>
+                  <link.icon size={16} className="text-accent shrink-0" strokeWidth={1.5} />
                   <div className="flex-1 min-w-0">
-                    <span className="font-display font-semibold text-xs sm:text-sm block">{link.label}</span>
-                    <p className="text-muted-foreground text-[10px] sm:text-xs truncate">{link.sub}</p>
+                    <span className="font-display font-semibold text-sm block text-foreground">{link.label}</span>
+                    <p className="text-muted-foreground text-[11px] sm:text-xs truncate font-mono tracking-[0.06em]">{link.sub}</p>
                   </div>
-                  <ArrowUpRight size={14} className="text-muted-foreground/50 shrink-0" />
+                  <ArrowUpRight size={14} className="text-foreground/30 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
                 </a>
               ))}
-              <div className="panel p-3 sm:p-4 flex items-center gap-3 sm:gap-4">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/8 flex items-center justify-center shrink-0">
-                  <MapPin size={14} className="text-primary/70" />
-                </div>
+              <div className="bg-card p-4 sm:p-5 flex items-center gap-4">
+                <MapPin size={16} className="text-accent shrink-0" strokeWidth={1.5} />
                 <div className="flex-1 min-w-0">
-                  <span className="font-display font-semibold text-xs sm:text-sm block">The Hub</span>
-                  <p className="text-muted-foreground text-[10px] sm:text-xs">335 Chestnut St, Norwood, NJ 07648</p>
+                  <span className="font-display font-semibold text-sm block text-foreground">The hub</span>
+                  <p className="text-muted-foreground text-[11px] sm:text-xs font-mono tracking-[0.06em]">335 Chestnut St, Norwood NJ</p>
                 </div>
               </div>
             </div>
@@ -236,10 +238,10 @@ const ContactSection = () => {
           {/* Right column — form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="panel p-5 sm:p-8 space-y-4 sm:space-y-5 lg:col-span-3"
+            className="rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 p-6 sm:p-9 space-y-5 sm:space-y-6 lg:col-span-7"
           >
             {/* Name / Email row */}
             <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">

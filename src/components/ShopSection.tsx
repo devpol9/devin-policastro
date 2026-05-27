@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Copy, Check } from "lucide-react";
-import { useState, useRef } from "react";
+import { ArrowUpRight, Copy, Check, Star } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
-import TiltCard from "@/components/effects/TiltCard";
 import SectionHeader from "@/components/SectionHeader";
 import { trackEvent } from "@/lib/analytics";
 
@@ -18,8 +17,7 @@ interface Product {
   link: string;
   image: string;
   tourLink?: string;
-  color: string;
-  glowColor: string;
+  featured?: boolean;
 }
 
 const products: Product[] = [
@@ -34,12 +32,11 @@ const products: Product[] = [
     reviews: "847",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=strawberry-lemonade&quantity=6-pack",
     image: "/images/2thirty-strawberry.png",
-    color: "38 35% 52%",
-    glowColor: "38 35% 52%",
+    featured: true,
   },
   {
     name: "Limeade",
-    note: "Clean, crisp, and my go-to for daytime focus. NAC + L-Glutathione for liver support.",
+    note: "Clean, crisp daytime focus. NAC + L-Glutathione for liver support.",
     category: "2THIRTY",
     code: "DEV",
     price: "$11.67",
@@ -48,12 +45,10 @@ const products: Product[] = [
     reviews: "519",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=limeade&quantity=6-pack",
     image: "/images/2thirty-limeade.png",
-    color: "140 18% 42%",
-    glowColor: "140 18% 42%",
   },
   {
     name: "Red Raspberry",
-    note: "Night mode flavor — pre-covery support with adaptogens like Milk Thistle and Ginseng Root.",
+    note: "Night mode flavor — pre-covery support with Milk Thistle and Ginseng Root.",
     category: "2THIRTY",
     code: "DEV",
     price: "$11.67",
@@ -62,8 +57,6 @@ const products: Product[] = [
     reviews: "632",
     link: "https://drink2thirty.com/product/drink-mixer-pre-covery?flavor=red-raspberry&quantity=6-pack",
     image: "/images/2thirty-raspberry.png",
-    color: "350 22% 50%",
-    glowColor: "350 22% 50%",
   },
   {
     name: "Impact Zone Membership",
@@ -72,24 +65,28 @@ const products: Product[] = [
     link: "https://onlinejoin.abcfitness.com/signup/plan?club=30591",
     image: "/images/iz-machines-red.jpg",
     tourLink: "https://calendar.app.google/2MSzLtJVX7GZ93Zs9",
-    color: "24 32% 52%",
-    glowColor: "24 32% 52%",
   },
   {
     name: "Fitrition",
-    note: "Clean, macro-friendly meals delivered. Real food, real results. Fuel your training the right way.",
+    note: "Clean, macro-friendly meals delivered. Real food, real results.",
     category: "Nutrition",
     code: "DEVIN10",
     link: "https://fitritionmeals.com/collections/all",
     image: "/images/fitrition-plate.png",
-    color: "140 18% 45%",
-    glowColor: "140 18% 45%",
   },
+];
+
+// Bento spans: featured row + 2 small + wide membership + nutrition
+const spans = [
+  "md:col-span-7", // featured strawberry
+  "md:col-span-5", // limeade
+  "md:col-span-5", // raspberry
+  "md:col-span-7", // membership
+  "md:col-span-12", // fitrition wide
 ];
 
 const ShopSection = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const copyCode = (code: string) => {
     navigator.clipboard.writeText(code);
@@ -101,140 +98,121 @@ const ShopSection = () => {
 
   return (
     <section id="shop" className="section-padding relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[200px]" />
-
-      <div className="container-tight relative z-10" ref={containerRef}>
+      <div className="container-tight relative z-10">
         <SectionHeader
           numeral="04"
           eyebrow="Shop & Codes"
-          title="Things I actually use"
+          title={<>Things I <span className="accent-headline">actually use</span></>}
           description="2THIRTY is my brand — 5-in-1 hydration+ mixer with zero sugar, zero calories. 4.9 stars. 7,000+ packs sold. Made in the USA."
         />
 
-        {/* Product cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {products.map((product, i) => (
-            <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.7 }}
-            >
-              <TiltCard className="h-full">
-                <div className="overflow-hidden group h-full transition-all duration-500 rounded-lg relative bg-card border border-border/60 hover:border-accent/40 hover:shadow-[0_8px_30px_-12px_hsl(30_20%_30%/0.18)]">
-                  {/* Subtle top accent (brand color) */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[2px] opacity-60"
-                    style={{ background: `hsl(${product.color})` }}
-                  />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
+          {products.map((product, i) => {
+            const span = spans[i] ?? "md:col-span-6";
+            const isFeatured = product.featured;
+            const isWide = i === 4;
 
-                  <div className="relative z-10">
-                    <div className="aspect-[4/3] overflow-hidden relative bg-secondary/40">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className={`w-full h-full ${product.category === "Fitness" || product.category === "Nutrition" ? "object-cover" : "object-contain p-4"}`}
-                        loading="lazy"
-                      />
-                      <div className="absolute top-3 left-3 flex items-center gap-1.5">
-                        <span
-                          className="px-2.5 py-1 rounded-md text-[9px] font-display font-semibold tracking-[0.12em] backdrop-blur-md"
-                          style={{
-                            color: `hsl(${product.color})`,
-                            background: `hsl(${product.color} / 0.12)`,
-                            border: `1px solid hsl(${product.color} / 0.3)`,
-                          }}
-                        >
-                          {product.category}
-                        </span>
-                        {product.price && (
-                          <span className="px-2 py-1 rounded-md text-[9px] font-semibold bg-foreground text-background">
-                            10% off
-                          </span>
-                        )}
-                      </div>
-                      {product.rating && (
-                        <div className="absolute top-3 right-3 px-2 py-1 rounded-md text-[9px] font-medium bg-background/80 backdrop-blur-xl text-foreground/80 border border-border/40">
-                          ⭐ {product.rating} ({product.reviews})
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="p-4 sm:p-5">
-                      <h3 className="font-display font-bold text-lg sm:text-xl leading-tight tracking-[-0.015em] mb-1.5 text-foreground">
-                        {product.name}
-                      </h3>
-                      <p className="text-muted-foreground text-xs sm:text-sm mb-4 leading-relaxed line-clamp-2">{product.note}</p>
-
+            return (
+              <motion.div
+                key={product.name}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.55, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className={span}
+              >
+                <div className={`group relative h-full overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 transition-all duration-500 hover:border-accent/40 ${isWide ? "flex flex-col md:flex-row" : ""}`}>
+                  {/* Image */}
+                  <div className={`relative overflow-hidden bg-background/40 ${
+                    isFeatured ? "aspect-[16/10]" : isWide ? "md:w-1/2 aspect-[16/10] md:aspect-auto" : "aspect-[4/3]"
+                  }`}>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className={`w-full h-full transition-transform duration-700 group-hover:scale-[1.04] ${
+                        product.category === "Fitness" || product.category === "Nutrition" ? "object-cover" : "object-contain p-6"
+                      }`}
+                      loading="lazy"
+                    />
+                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                      <span className="text-[10px] font-mono tracking-[0.22em] px-2.5 py-1 rounded-full bg-background/70 backdrop-blur-md text-foreground/80 border border-foreground/10">
+                        {product.category}
+                      </span>
                       {product.price && (
-                        <div className="mb-4 sm:mb-5 space-y-1">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-muted-foreground text-xs line-through">MSRP $19.99</span>
-                            <span className="text-foreground/70 text-xs">→</span>
-                            <span className="text-foreground text-sm font-semibold">{product.originalPrice}</span>
-                            <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-[0.06em]">Free shipping</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-display font-bold text-base sm:text-lg" style={{ color: `hsl(${product.color})` }}>{product.price}</span>
-                            <span className="text-[9px] font-display font-bold tracking-[0.06em]  px-1.5 py-0.5 rounded" style={{ color: `hsl(${product.color})`, background: `hsl(${product.color} / 0.15)` }}>with code</span>
-                          </div>
-                        </div>
-                      )}
-
-                      <div className="flex items-center gap-2">
-                        {product.code && (
-                          <button
-                            onClick={() => copyCode(product.code!)}
-                            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-[10px] sm:text-xs font-mono font-bold transition-all group/code"
-                            style={{
-                              background: `hsl(${product.color} / 0.12)`,
-                              border: `1px solid hsl(${product.color} / 0.3)`,
-                              color: `hsl(${product.color})`,
-                            }}
-                          >
-                            {copiedCode === product.code ? (
-                              <><Check size={12} /><span>Copied!</span></>
-                            ) : (
-                              <><Copy size={12} />Code: {product.code}</>
-                            )}
-                          </button>
-                        )}
-                        <a
-                          href={product.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => trackEvent("shop_clicked", { product: product.name, url: product.link })}
-                          className="ml-auto flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-wide transition-all duration-500"
-                          style={{ background: `hsl(${product.color})`, color: `hsl(36 30% 98%)` }}
-                        >
-                          <ExternalLink size={12} />
-                          Shop
-                        </a>
-                      </div>
-
-                      {product.tourLink && (
-                        <a
-                          href={product.tourLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 mt-3 sm:mt-4 py-2 rounded-lg text-[10px] sm:text-xs font-display font-semibold tracking-[0.06em]  transition-all duration-500"
-                          style={{
-                            border: `1px solid hsl(${product.color} / 0.3)`,
-                            color: `hsl(${product.color} / 0.8)`,
-                          }}
-                          onMouseEnter={(e) => { e.currentTarget.style.background = `hsl(${product.color} / 0.15)`; e.currentTarget.style.color = `hsl(${product.color})`; }}
-                          onMouseLeave={(e) => { e.currentTarget.style.background = `transparent`; e.currentTarget.style.color = `hsl(${product.color} / 0.8)`; }}
-                        >
-                          📍 Book a Gym Tour
-                        </a>
+                        <span className="text-[10px] font-mono tracking-[0.18em] px-2 py-1 rounded-full bg-accent text-accent-foreground">
+                          10% off
+                        </span>
                       )}
                     </div>
+                    {product.rating && (
+                      <div className="absolute top-4 right-4 flex items-center gap-1 text-[10px] font-mono px-2 py-1 rounded-full bg-background/70 backdrop-blur-md text-foreground/80 border border-foreground/10">
+                        <Star size={9} className="text-accent fill-accent" />
+                        {product.rating} · {product.reviews}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Body */}
+                  <div className={`flex flex-col flex-1 ${isFeatured ? "p-7 sm:p-9" : "p-5 sm:p-7"} ${isWide ? "md:w-1/2 md:p-9 justify-center" : ""}`}>
+                    <span className="text-[10px] font-mono tracking-[0.22em] text-accent/70 mb-2">
+                      {String(i + 1).padStart(2, "0")} / {product.category}
+                    </span>
+                    <h3 className={`font-display font-semibold tracking-tight text-foreground leading-tight mb-2 ${
+                      isFeatured ? "text-2xl sm:text-3xl" : isWide ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
+                    }`}>
+                      {product.name}
+                    </h3>
+                    <p className={`text-muted-foreground leading-relaxed ${isFeatured || isWide ? "text-sm sm:text-base mb-5" : "text-xs sm:text-sm mb-4"} ${!isFeatured && !isWide ? "line-clamp-2" : ""}`}>
+                      {product.note}
+                    </p>
+
+                    {product.price && (
+                      <div className="mb-4 flex items-baseline gap-2 flex-wrap">
+                        <span className="font-display font-bold text-xl sm:text-2xl text-foreground">
+                          {product.price}
+                        </span>
+                        <span className="text-muted-foreground text-xs line-through">{product.originalPrice}</span>
+                        <span className="text-[10px] font-mono tracking-[0.18em] text-accent">with code</span>
+                      </div>
+                    )}
+
+                    <div className="mt-auto flex items-center gap-2 flex-wrap">
+                      {product.code && (
+                        <button
+                          onClick={() => copyCode(product.code!)}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-mono tracking-[0.1em] bg-background border border-foreground/10 text-foreground/80 hover:border-accent/40 hover:text-accent transition-all"
+                        >
+                          {copiedCode === product.code ? <Check size={12} className="text-accent" /> : <Copy size={12} />}
+                          {copiedCode === product.code ? "Copied" : product.code}
+                        </button>
+                      )}
+                      <a
+                        href={product.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackEvent("shop_clicked", { product: product.name, url: product.link })}
+                        className="ml-auto flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-display font-semibold tracking-wide bg-accent text-accent-foreground hover:gap-2.5 transition-all"
+                      >
+                        Shop
+                        <ArrowUpRight size={12} />
+                      </a>
+                    </div>
+
+                    {product.tourLink && (
+                      <a
+                        href={product.tourLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center justify-center gap-2 py-2 rounded-full text-[11px] font-mono tracking-[0.12em] border border-foreground/10 text-foreground/60 hover:border-accent/40 hover:text-accent transition-all"
+                      >
+                        Book a gym tour →
+                      </a>
+                    )}
                   </div>
                 </div>
-              </TiltCard>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
