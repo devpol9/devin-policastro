@@ -7,12 +7,12 @@ import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 
 const homeNavItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Links", href: "#links" },
-  { label: "Shop", href: "#shop" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { num: "01", label: "Home", href: "#home" },
+  { num: "02", label: "About", href: "#about" },
+  { num: "03", label: "Links", href: "#links" },
+  { num: "04", label: "Shop", href: "#shop" },
+  { num: "05", label: "Services", href: "#services" },
+  { num: "06", label: "Contact", href: "#contact" },
 ];
 
 const FloatingNav = () => {
