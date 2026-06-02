@@ -74,7 +74,7 @@ import BriefingsPage from "./pages/admin/Briefings";
 import ReviewPage from "./pages/admin/Review";
 import PeoplePage from "./pages/admin/People";
 import SharePage from "./pages/admin/Share";
-import InstallPwaBanner from "./components/admin/InstallPwaBanner";
+
 
 const queryClient = new QueryClient();
 
