@@ -130,7 +130,7 @@ const HeroSection = () => {
                   Founder · Operator · Connector
                 </p>
                 <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-foreground/55">
-                  Norwood · Eatontown · NYC
+                  Norwood, NJ
                 </p>
               </div>
             </div>

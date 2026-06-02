@@ -6,7 +6,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const HQ_INBOX = "devinpolicastro@gmail.com";
+const HQ_INBOX = "dev@devinpolicastro.com";
 const SLA_HOURS = 24;
 
 serve(async (req) => {

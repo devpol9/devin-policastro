@@ -3,7 +3,7 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
-const DEVIN_EMAIL = 'devinpolicastro@gmail.com';
+const DEVIN_EMAIL = 'dev@devinpolicastro.com';
 
 function weekStart(d = new Date()) {
   const x = new Date(d);

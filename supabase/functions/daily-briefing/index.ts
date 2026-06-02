@@ -4,7 +4,7 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
-const DEVIN_EMAIL = 'devinpolicastro@gmail.com';
+const DEVIN_EMAIL = 'dev@devinpolicastro.com';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
