@@ -86,8 +86,8 @@ serve(async (req) => {
         body: JSON.stringify({
           from: "Devin Policastro <inquiries@updates.devinpolicastro.com>",
           to: [email],
-          bcc: ["devinpolicastro@gmail.com"],
-          reply_to: "devinpolicastro@gmail.com",
+          bcc: ["dev@devinpolicastro.com", "devinpolicastro@gmail.com"],
+          reply_to: "dev@devinpolicastro.com",
           subject: "The NJ Entrepreneur Playbook — your copy inside",
           html,
         }),

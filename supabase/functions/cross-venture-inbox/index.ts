@@ -1,7 +1,7 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 
 const IZ_ENDPOINT = 'https://qgfgemknktfupcvqdqtr.supabase.co/functions/v1/external-inbox';
-const DEVIN_EMAIL = 'devinpolicastro@gmail.com';
+const DEVIN_EMAIL = 'dev@devinpolicastro.com';
 const KEYWORD = 'devin';
 
 Deno.serve(async (req) => {

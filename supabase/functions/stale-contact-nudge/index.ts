@@ -82,7 +82,7 @@ Deno.serve(async (req) => {
       headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: "HQ <inquiries@updates.devinpolicastro.com>",
-        to: ["devinpolicastro@gmail.com"],
+        to: ["dev@devinpolicastro.com", "devinpolicastro@gmail.com"],
         subject: `${stale.length} stale contact${stale.length === 1 ? "" : "s"} — Sunday nudge`,
         html,
       }),

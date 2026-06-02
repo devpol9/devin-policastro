@@ -74,7 +74,7 @@ const StatsBar = () => {
                 — {featured.label}
               </p>
               <p className="text-foreground/50 text-sm font-display">
-                The Impact Zone HQ — built brick by brick in Eatontown, NJ.
+                The Impact Zone HQ — built brick by brick in Norwood, NJ.
               </p>
             </div>
           </motion.div>

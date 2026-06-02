@@ -71,7 +71,7 @@ serve(async (req) => {
           },
           body: JSON.stringify({
             from: "Policastro HQ <inquiries@updates.devinpolicastro.com>",
-            to: ["devinpolicastro@gmail.com"],
+            to: ["dev@devinpolicastro.com", "devinpolicastro@gmail.com"],
             subject: `New ${subject} from ${name}`,
             html: emailHtml,
             reply_to: email,
@@ -121,7 +121,7 @@ serve(async (req) => {
             to: [email],
             subject: `Got it, ${firstName} — talk soon`,
             html: autoReplyHtml,
-            reply_to: "devinpolicastro@gmail.com",
+            reply_to: "dev@devinpolicastro.com",
           }),
         });
         if (!autoRes.ok) {

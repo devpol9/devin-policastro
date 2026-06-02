@@ -152,7 +152,7 @@ serve(async (req) => {
           to: [p.email],
           subject: nextStep.subject(firstName),
           html: nextStep.html(firstName),
-          reply_to: "devinpolicastro@gmail.com",
+          reply_to: "dev@devinpolicastro.com",
         }),
       });
 
