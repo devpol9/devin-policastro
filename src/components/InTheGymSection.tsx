@@ -7,11 +7,11 @@ import img4 from "@/assets/devin/devin-4.jpg.asset.json";
 import img5 from "@/assets/devin/devin-5.jpg.asset.json";
 
 const shots = [
-  { src: img5.url, alt: "Devin training — dumbbell curls" },
-  { src: img2.url, alt: "Devin training — hammer curls" },
-  { src: img3.url, alt: "Devin walking through Impact Zone" },
-  { src: img4.url, alt: "Devin training — cable pulldown" },
-  { src: img1.url, alt: "Devin in 2THIRTY tee on the gym floor" },
+  { src: img5.url, alt: "Devin training — dumbbell curls", pos: "object-top" },
+  { src: img2.url, alt: "Devin training — hammer curls", pos: "object-top" },
+  { src: img3.url, alt: "Devin walking through Impact Zone", pos: "object-center" },
+  { src: img4.url, alt: "Devin training — cable pulldown", pos: "object-top" },
+  { src: img1.url, alt: "Devin in 2THIRTY tee on the gym floor", pos: "object-top" },
 ];
 
 const InTheGymSection = () => {
