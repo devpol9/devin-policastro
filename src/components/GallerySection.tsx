@@ -137,7 +137,7 @@ const GallerySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: 0.05 + i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="md:col-span-3 relative aspect-square rounded-2xl overflow-hidden bg-card border border-foreground/5 group"
+              className="col-span-3 md:col-span-3 relative aspect-square rounded-2xl overflow-hidden bg-card border border-foreground/5 group"
             >
               <img src={img.src} alt={img.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
