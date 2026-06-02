@@ -66,7 +66,7 @@ const GallerySection = () => {
               </span>
             </div>
             <div className="absolute bottom-5 sm:bottom-7 left-5 sm:left-7 right-5 sm:right-7">
-              <h3 className="font-display font-semibold tracking-tight text-foreground text-3xl sm:text-5xl leading-[0.95] mb-3 max-w-md">
+              <h3 className="font-display font-semibold tracking-tight text-foreground text-2xl sm:text-5xl leading-[0.95] mb-2 sm:mb-3 max-w-md">
                 The floor.
               </h3>
               <p className="text-muted-foreground text-sm sm:text-base max-w-md">
