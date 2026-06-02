@@ -69,7 +69,7 @@ const GallerySection = () => {
               <h3 className="font-display font-semibold tracking-tight text-foreground text-2xl sm:text-5xl leading-[0.95] mb-2 sm:mb-3 max-w-md">
                 The floor.
               </h3>
-              <p className="text-muted-foreground text-sm sm:text-base max-w-md">
+              <p className="hidden sm:block text-muted-foreground text-sm sm:text-base max-w-md">
                 Bergen County's largest training environment. Built for the people who actually show up.
               </p>
             </div>
