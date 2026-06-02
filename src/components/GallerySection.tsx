@@ -46,7 +46,7 @@ const GallerySection = () => {
 
       {/* Asymmetric bento gallery */}
       <div className="max-w-6xl mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
+        <div className="grid grid-cols-6 md:grid-cols-12 gap-2 sm:gap-4">
           {/* Featured */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
