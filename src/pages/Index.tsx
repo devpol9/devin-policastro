@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import AboutSection from "@/components/AboutSection";
 import GallerySection from "@/components/GallerySection";
+import InTheGymSection from "@/components/InTheGymSection";
 import LinkHubSection from "@/components/LinkHubSection";
 import ShopSection from "@/components/ShopSection";
 import StatsBar from "@/components/StatsBar";
@@ -28,6 +29,7 @@ const Index = () => {
       <AboutSection />
       <StatsBar />
       <GallerySection />
+      <InTheGymSection />
       <LinkHubSection />
         <ShopSection />
         
