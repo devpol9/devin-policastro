@@ -97,7 +97,7 @@ const GallerySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-4 relative aspect-[4/5] md:aspect-auto md:min-h-[210px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
+            className="col-span-3 md:col-span-4 relative aspect-square md:aspect-auto md:min-h-[210px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
           >
             <div className="absolute inset-0">
               <iframe
