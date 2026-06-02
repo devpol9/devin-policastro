@@ -7,11 +7,11 @@ import img4 from "@/assets/devin/devin-4.jpg.asset.json";
 import img5 from "@/assets/devin/devin-5.jpg.asset.json";
 
 const shots = [
-  { src: img5.url, alt: "Devin training — dumbbell curls" },
-  { src: img2.url, alt: "Devin training — hammer curls" },
-  { src: img3.url, alt: "Devin walking through Impact Zone" },
-  { src: img4.url, alt: "Devin training — cable pulldown" },
-  { src: img1.url, alt: "Devin in 2THIRTY tee on the gym floor" },
+  { src: img5.url, alt: "Devin training — dumbbell curls", pos: "object-top" },
+  { src: img2.url, alt: "Devin training — hammer curls", pos: "object-top" },
+  { src: img3.url, alt: "Devin walking through Impact Zone", pos: "object-center" },
+  { src: img4.url, alt: "Devin training — cable pulldown", pos: "object-top" },
+  { src: img1.url, alt: "Devin in 2THIRTY tee on the gym floor", pos: "object-top" },
 ];
 
 const InTheGymSection = () => {
@@ -34,35 +34,35 @@ const InTheGymSection = () => {
             viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.55 }}
             className="col-span-4 aspect-[3/4] rounded-2xl overflow-hidden bg-card border border-foreground/5"
           >
-            <img src={shots[0].src} alt={shots[0].alt} className="w-full h-full object-cover" />
+            <img src={shots[0].src} alt={shots[0].alt} className={`w-full h-full object-cover ${shots[0].pos}`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.55, delay: 0.05 }}
             className="col-span-2 aspect-[3/4] rounded-2xl overflow-hidden bg-card border border-foreground/5 mt-8"
           >
-            <img src={shots[1].src} alt={shots[1].alt} className="w-full h-full object-cover" />
+            <img src={shots[1].src} alt={shots[1].alt} className={`w-full h-full object-cover ${shots[1].pos}`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.55, delay: 0.1 }}
             className="col-span-3 aspect-square rounded-2xl overflow-hidden bg-card border border-foreground/5 -mt-4"
           >
-            <img src={shots[2].src} alt={shots[2].alt} className="w-full h-full object-cover" />
+            <img src={shots[2].src} alt={shots[2].alt} className={`w-full h-full object-cover ${shots[2].pos}`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.55, delay: 0.15 }}
             className="col-span-3 aspect-square rounded-2xl overflow-hidden bg-card border border-foreground/5 mt-6"
           >
-            <img src={shots[3].src} alt={shots[3].alt} className="w-full h-full object-cover" />
+            <img src={shots[3].src} alt={shots[3].alt} className={`w-full h-full object-cover ${shots[3].pos}`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.55, delay: 0.2 }}
             className="col-span-6 aspect-[16/10] rounded-2xl overflow-hidden bg-card border border-foreground/5"
           >
-            <img src={shots[4].src} alt={shots[4].alt} className="w-full h-full object-cover" />
+            <img src={shots[4].src} alt={shots[4].alt} className={`w-full h-full object-cover ${shots[4].pos}`} />
           </motion.div>
         </div>
       </div>
@@ -75,35 +75,35 @@ const InTheGymSection = () => {
             viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6 }}
             className="col-span-5 row-span-6 rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
           >
-            <img src={shots[0].src} alt={shots[0].alt} className="w-full h-full object-cover md:group-hover:scale-[1.03] transition-transform duration-700" />
+            <img src={shots[0].src} alt={shots[0].alt} className={`w-full h-full object-cover ${shots[0].pos} md:group-hover:scale-[1.03] transition-transform duration-700`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.55, delay: 0.05 }}
             className="col-span-4 row-span-3 rounded-2xl overflow-hidden bg-card border border-foreground/5 group mt-6"
           >
-            <img src={shots[1].src} alt={shots[1].alt} loading="lazy" className="w-full h-full object-cover md:group-hover:scale-[1.05] transition-transform duration-700" />
+            <img src={shots[1].src} alt={shots[1].alt} loading="lazy" className={`w-full h-full object-cover ${shots[1].pos} md:group-hover:scale-[1.05] transition-transform duration-700`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.55, delay: 0.1 }}
             className="col-span-3 row-span-4 rounded-2xl overflow-hidden bg-card border border-foreground/5 group"
           >
-            <img src={shots[2].src} alt={shots[2].alt} loading="lazy" className="w-full h-full object-cover md:group-hover:scale-[1.05] transition-transform duration-700" />
+            <img src={shots[2].src} alt={shots[2].alt} loading="lazy" className={`w-full h-full object-cover ${shots[2].pos} md:group-hover:scale-[1.05] transition-transform duration-700`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.55, delay: 0.15 }}
             className="col-span-4 row-span-3 rounded-2xl overflow-hidden bg-card border border-foreground/5 group"
           >
-            <img src={shots[3].src} alt={shots[3].alt} loading="lazy" className="w-full h-full object-cover md:group-hover:scale-[1.05] transition-transform duration-700" />
+            <img src={shots[3].src} alt={shots[3].alt} loading="lazy" className={`w-full h-full object-cover ${shots[3].pos} md:group-hover:scale-[1.05] transition-transform duration-700`} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.55, delay: 0.2 }}
             className="col-span-3 row-span-2 rounded-2xl overflow-hidden bg-card border border-foreground/5 group mt-4"
           >
-            <img src={shots[4].src} alt={shots[4].alt} loading="lazy" className="w-full h-full object-cover md:group-hover:scale-[1.05] transition-transform duration-700" />
+            <img src={shots[4].src} alt={shots[4].alt} loading="lazy" className={`w-full h-full object-cover ${shots[4].pos} md:group-hover:scale-[1.05] transition-transform duration-700`} />
           </motion.div>
         </div>
       </div>

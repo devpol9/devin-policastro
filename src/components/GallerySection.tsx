@@ -46,14 +46,14 @@ const GallerySection = () => {
 
       {/* Asymmetric bento gallery */}
       <div className="max-w-6xl mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4">
+        <div className="grid grid-cols-6 md:grid-cols-12 gap-2 sm:gap-4">
           {/* Featured */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-8 md:row-span-2 relative aspect-[16/10] md:aspect-auto md:min-h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
+            className="col-span-6 md:col-span-8 md:row-span-2 relative aspect-[5/4] md:aspect-auto md:min-h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
           >
             <img src={featured.src} alt={featured.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
@@ -66,10 +66,10 @@ const GallerySection = () => {
               </span>
             </div>
             <div className="absolute bottom-5 sm:bottom-7 left-5 sm:left-7 right-5 sm:right-7">
-              <h3 className="font-display font-semibold tracking-tight text-foreground text-3xl sm:text-5xl leading-[0.95] mb-3 max-w-md">
+              <h3 className="font-display font-semibold tracking-tight text-foreground text-2xl sm:text-5xl leading-[0.95] mb-2 sm:mb-3 max-w-md">
                 The floor.
               </h3>
-              <p className="text-muted-foreground text-sm sm:text-base max-w-md">
+              <p className="hidden sm:block text-muted-foreground text-sm sm:text-base max-w-md">
                 Bergen County's largest training environment. Built for the people who actually show up.
               </p>
             </div>
@@ -81,7 +81,7 @@ const GallerySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-4 relative aspect-[4/5] md:aspect-auto md:min-h-[210px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
+            className="col-span-3 md:col-span-4 relative aspect-square md:aspect-auto md:min-h-[210px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
           >
             <img src={secondary.src} alt={secondary.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent" />
@@ -97,7 +97,7 @@ const GallerySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-4 relative aspect-[4/5] md:aspect-auto md:min-h-[210px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
+            className="col-span-3 md:col-span-4 relative aspect-square md:aspect-auto md:min-h-[210px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
           >
             <div className="absolute inset-0">
               <iframe
@@ -137,7 +137,7 @@ const GallerySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: 0.05 + i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="md:col-span-3 relative aspect-square rounded-2xl overflow-hidden bg-card border border-foreground/5 group"
+              className="col-span-3 md:col-span-3 relative aspect-square rounded-2xl overflow-hidden bg-card border border-foreground/5 group"
             >
               <img src={img.src} alt={img.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" loading="lazy" />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
