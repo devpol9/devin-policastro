@@ -125,6 +125,9 @@
 }
 
 @layer utilities {
+  .tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -151,6 +154,13 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     font-style: normal;
+  }
+}
+
+/* Kill iOS tap highlight + sticky hover on touch devices */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
