@@ -157,6 +157,13 @@
   }
 }
 
+/* Kill iOS tap highlight + sticky hover on touch devices */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 @media (max-width: 767px) {
   html,
   body,
