@@ -53,7 +53,7 @@ const GallerySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-8 md:row-span-2 relative aspect-[16/10] md:aspect-auto md:min-h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
+            className="col-span-6 md:col-span-8 md:row-span-2 relative aspect-[5/4] md:aspect-auto md:min-h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden bg-card border border-foreground/5 group"
           >
             <img src={featured.src} alt={featured.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
