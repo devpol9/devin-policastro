@@ -19,14 +19,15 @@ interface ServiceTab {
 }
 
 
+const ACCENT = "24 38% 56%";
 const tabs: ServiceTab[] = [
-  { key: "consulting",    num: "01", label: "Consulting",    tagline: "Brand strategy & growth advisory.",   icon: Briefcase,  color: "270 16% 50%", to: "/consulting" },
-  { key: "manufacturing", num: "02", label: "Manufacturing", tagline: "Concept to shelf, end to end.",        icon: Factory,    color: "270 16% 48%", to: "/manufacturing" },
-  { key: "content",       num: "03", label: "Content",       tagline: "Short-form video & storytelling.",    icon: Camera,     color: "350 22% 55%", to: "/content" },
-  { key: "automotive",    num: "04", label: "Automotive",    tagline: "Wraps, PPF, tuning, builds.",         icon: Car,        color: "12 45% 48%",  to: "/automotive" },
-  { key: "financing",     num: "05", label: "Financing",     tagline: "Capital access & deal structure.",    icon: CreditCard, color: "210 22% 50%", to: "/financing" },
-  { key: "networking",    num: "06", label: "Networking",    tagline: "The right intros, on purpose.",       icon: Handshake,  color: "140 18% 42%", to: "/networking" },
-  { key: "fitness",       num: "07", label: "Fitness",       tagline: "Training & lifestyle coaching.",      icon: Dumbbell,   color: "24 32% 52%",  to: "/fitness" },
+  { key: "consulting",    num: "01", label: "Consulting",    tagline: "Brand strategy & growth advisory.",   icon: Briefcase,  color: ACCENT, to: "/consulting" },
+  { key: "manufacturing", num: "02", label: "Manufacturing", tagline: "Concept to shelf, end to end.",        icon: Factory,    color: ACCENT, to: "/manufacturing" },
+  { key: "content",       num: "03", label: "Content",       tagline: "Short-form video & storytelling.",    icon: Camera,     color: ACCENT, to: "/content" },
+  { key: "automotive",    num: "04", label: "Automotive",    tagline: "Wraps, PPF, tuning, builds.",         icon: Car,        color: ACCENT, to: "/automotive" },
+  { key: "financing",     num: "05", label: "Financing",     tagline: "Capital access & deal structure.",    icon: CreditCard, color: ACCENT, to: "/financing" },
+  { key: "networking",    num: "06", label: "Networking",    tagline: "The right intros, on purpose.",       icon: Handshake,  color: ACCENT, to: "/networking" },
+  { key: "fitness",       num: "07", label: "Fitness",       tagline: "Training & lifestyle coaching.",      icon: Dumbbell,   color: ACCENT, to: "/fitness" },
 ];
 
 const ServicesSection = () => {
@@ -59,18 +60,18 @@ const ServicesSection = () => {
               >
                 <Link
                   to={tab.to}
-                  className={`group relative overflow-hidden flex text-left rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 md:hover:border-accent/40 md:hover:bg-card/80 transition-all duration-500 tap-highlight-transparent w-full h-full ${
-                    isFeatured ? "p-7 sm:p-10 min-h-[200px]" : "p-6 sm:p-8 min-h-[180px] sm:min-h-[220px]"
+                  className={`group relative overflow-hidden flex text-left rounded-2xl bg-card border border-foreground/5 md:hover:border-accent/40 md:hover:bg-card/80 transition-all duration-500 tap-highlight-transparent w-full h-full ${
+                    isFeatured ? "p-5 sm:p-8 min-h-[150px] sm:min-h-[200px]" : "p-4 sm:p-7 min-h-[140px] sm:min-h-[200px]"
                   }`}
                 >
-                  <div className={`relative z-10 flex flex-col h-full w-full ${isFeatured ? "gap-8 sm:gap-12" : "gap-6 sm:gap-8"}`}>
+                  <div className={`relative z-10 flex flex-col h-full w-full ${isFeatured ? "gap-5 sm:gap-10" : "gap-4 sm:gap-7"}`}>
                     <div className="flex items-start justify-between">
                       <div
                         className={`rounded-xl flex items-center justify-center bg-background border border-foreground/5 transition-all duration-500 ${
-                          isFeatured ? "w-14 h-14 sm:w-16 sm:h-16 text-accent group-hover:scale-105" : "w-12 h-12 text-muted-foreground group-hover:text-accent"
+                          isFeatured ? "w-11 h-11 sm:w-16 sm:h-16 text-accent group-hover:scale-105" : "w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground group-hover:text-accent"
                         }`}
                       >
-                        <Icon size={isFeatured ? 26 : 22} strokeWidth={1.5} />
+                        <Icon size={isFeatured ? 22 : 18} strokeWidth={1.5} />
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-[10px] sm:text-xs text-muted-foreground tabular-nums">{tab.num}</span>
@@ -88,8 +89,8 @@ const ServicesSection = () => {
                         </span>
                       )}
                       <h3
-                        className={`font-display font-semibold tracking-tight leading-[1] text-foreground mb-2 ${
-                          isFeatured ? "text-3xl sm:text-5xl" : "text-2xl sm:text-3xl"
+                        className={`font-display font-semibold tracking-tight leading-[1] text-foreground mb-1.5 ${
+                          isFeatured ? "text-2xl sm:text-5xl" : "text-xl sm:text-3xl"
                         }`}
                       >
                         {tab.label}
@@ -97,10 +98,7 @@ const ServicesSection = () => {
                       <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                         {tab.tagline}
                       </p>
-                      <span
-                        className="inline-flex items-center gap-1.5 mt-4 text-[11px] sm:text-xs font-mono tracking-tight"
-                        style={{ color: `hsl(${tab.color})` }}
-                      >
+                      <span className="inline-flex items-center gap-1.5 mt-3 text-[11px] sm:text-xs font-mono tracking-tight text-accent">
                         Explore →
                       </span>
                     </div>

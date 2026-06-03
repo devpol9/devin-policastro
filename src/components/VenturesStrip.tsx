@@ -51,7 +51,7 @@ const VenturesStrip = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {ventures.map((v, i) => {
             const Inner = (
-              <div className="group h-full p-5 sm:p-6 rounded-2xl bg-card border border-foreground/5 md:hover:border-accent/30 md:hover:bg-card/80 transition-all duration-500 flex flex-col gap-6 min-h-[160px]">
+              <div className="group h-full p-4 sm:p-6 rounded-2xl bg-card border border-foreground/5 md:hover:border-accent/30 md:hover:bg-card/80 transition-all duration-500 flex flex-col gap-3 sm:gap-6 min-h-[110px] sm:min-h-[160px]">
                 <div className="flex items-start justify-between">
                   <span className="font-mono text-[10px] text-foreground/40 tabular-nums">
                     0{i + 1}
