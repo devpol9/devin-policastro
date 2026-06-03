@@ -15,7 +15,7 @@ const Index = () => {
         {...seoPages["/"]}
         canonicalPath="/"
         jsonLd={[personJsonLd, localBusinessJsonLd]}
-        ogImage="/images/og-image.png"
+        ogImage="https://devinpolicastro.com/images/og-image.png"
       />
       <FloatingNav />
       <HeroSection />
