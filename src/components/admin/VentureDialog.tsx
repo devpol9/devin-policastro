@@ -55,7 +55,7 @@ const VentureDialog = ({ open, onOpenChange, venture }: Props) => {
       slug: venture?.slug ?? "",
       short_name: venture?.short_name ?? "",
       description: venture?.description ?? "",
-      accent_color: venture?.accent_color ?? "hsl(24 32% 52%)",
+      accent_color: venture?.accent_color ?? "hsl(38 55% 58%)",
       icon: venture?.icon ?? "Sparkles",
       website_url: venture?.website_url ?? "",
       status: (venture?.status as FormValues["status"]) ?? "active",
@@ -69,7 +69,7 @@ const VentureDialog = ({ open, onOpenChange, venture }: Props) => {
         slug: venture?.slug ?? "",
         short_name: venture?.short_name ?? "",
         description: venture?.description ?? "",
-        accent_color: venture?.accent_color ?? "hsl(24 32% 52%)",
+        accent_color: venture?.accent_color ?? "hsl(38 55% 58%)",
         icon: venture?.icon ?? "Sparkles",
         website_url: venture?.website_url ?? "",
         status: (venture?.status as FormValues["status"]) ?? "active",
@@ -206,7 +206,7 @@ const VentureDialog = ({ open, onOpenChange, venture }: Props) => {
           <div>
             <Label>Accent color (HSL)</Label>
             <div className="flex items-center gap-2">
-              <Input {...form.register("accent_color")} placeholder="hsl(24 32% 52%)" />
+              <Input {...form.register("accent_color")} placeholder="hsl(38 55% 58%)" />
               <div
                 className="w-9 h-9 rounded-md border border-border/60 shrink-0"
                 style={{ background: accent }}

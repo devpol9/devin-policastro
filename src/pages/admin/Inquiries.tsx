@@ -26,7 +26,7 @@ interface Inquiry {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  new: "24 32% 52%",
+  new: "38 55% 58%",
   contacted: "210 22% 50%",
   "in-progress": "270 16% 48%",
   closed: "140 60% 45%",
@@ -37,7 +37,7 @@ const SERVICE_COLORS: Record<string, string> = {
   "Content / Collab Inquiry": "350 22% 55%",
   "Automotive Inquiry": "0 75% 55%",
   "Financing Inquiry": "210 22% 50%",
-  "Consulting Inquiry": "24 32% 52%",
+  "Consulting Inquiry": "38 55% 58%",
   "Networking Inquiry": "160 60% 45%",
 };
 
@@ -360,8 +360,8 @@ const Inquiries = () => {
 
           <div className="panel divide-y divide-border/60 overflow-hidden">
             {filtered.map((inq) => {
-              const serviceColor = SERVICE_COLORS[inq.service_type] || "24 32% 52%";
-              const statusColor = STATUS_COLORS[inq.status] || "24 32% 52%";
+              const serviceColor = SERVICE_COLORS[inq.service_type] || "38 55% 58%";
+              const statusColor = STATUS_COLORS[inq.status] || "38 55% 58%";
               const isSelected = selected.has(inq.id);
               return (
                 <div

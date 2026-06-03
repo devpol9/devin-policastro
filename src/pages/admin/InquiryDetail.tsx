@@ -18,7 +18,7 @@ const SERVICE_COLORS: Record<string, string> = {
   "Content / Collab Inquiry": "350 22% 55%",
   "Automotive Inquiry": "0 75% 55%",
   "Financing Inquiry": "210 22% 50%",
-  "Consulting Inquiry": "24 32% 52%",
+  "Consulting Inquiry": "38 55% 58%",
   "Networking Inquiry": "160 60% 45%",
 };
 
@@ -139,7 +139,7 @@ const InquiryDetail = () => {
     );
   }
 
-  const serviceColor = SERVICE_COLORS[inq.service_type] || "24 32% 52%";
+  const serviceColor = SERVICE_COLORS[inq.service_type] || "38 55% 58%";
 
   // Best-effort venture match
   const matchVentureId = (() => {

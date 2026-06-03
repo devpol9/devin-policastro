@@ -4,9 +4,9 @@ import { useCrossVentureInbox } from "@/hooks/use-cross-venture-inbox";
 import { IZ_ADMIN_URL } from "@/integrations/impact-zone/client";
 
 const VENTURE_META: Record<string, { label: string; color: string }> = {
-  "impact-zone": { label: "IZ", color: "0 65% 50%" },
-  "2thirty": { label: "230", color: "340 70% 60%" },
-  valence: { label: "VLC", color: "210 75% 55%" },
+  "impact-zone": { label: "IZ", color: "38 55% 58%" },
+  "2thirty": { label: "230", color: "38 55% 58%" },
+  valence: { label: "VLC", color: "38 55% 58%" },
 };
 
 export default function CrossVentureInbox({ compact = false }: { compact?: boolean }) {
@@ -71,7 +71,7 @@ export default function CrossVentureInbox({ compact = false }: { compact?: boole
                   style={{
                     color:
                       i.reason === "assigned"
-                        ? "hsl(24 32% 52%)"
+                        ? "hsl(38 55% 58%)"
                         : "hsl(var(--muted-foreground))",
                   }}
                   title={i.reason === "assigned" ? "Assigned to you" : "Mentions Devin"}

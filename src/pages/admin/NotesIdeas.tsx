@@ -32,7 +32,7 @@ const VIEW_KEY = "devhq.notes.view";
 const CaptureCard = ({ capture, onClick }: { capture: Capture; onClick: () => void }) => {
   const { ventures } = useVentures();
   const venture = capture.venture_id ? ventures.find((v) => v.id === capture.venture_id) : undefined;
-  const accent = venture?.accent_color ?? "hsl(24 32% 52%)";
+  const accent = venture?.accent_color ?? "hsl(38 55% 58%)";
   const title = capture.title || capture.body.split("\n")[0].slice(0, 80);
   const body = capture.title ? capture.body : capture.body.split("\n").slice(1).join("\n");
   const meta = (capture.meta ?? {}) as any;

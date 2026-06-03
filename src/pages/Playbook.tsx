@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { trackEvent } from "@/lib/analytics";
 
-const COLOR = "24 38% 56%";
+const COLOR = "38 55% 58%";
 
 const PLAYBOOK_URL =
   "https://vprroffyczhnalpwwltf.supabase.co/storage/v1/object/public/lead-magnets/nj-entrepreneur-playbook.pdf";
