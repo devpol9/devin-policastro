@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+
 import { trackEvent } from "@/lib/analytics";
 
 const CONSULT_URL = "https://calendar.app.google/xXzaDYrcPvFHRCQ28";
