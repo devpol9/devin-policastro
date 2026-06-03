@@ -9,7 +9,7 @@ const socialLinks = [
     </svg>
   ), label: "TikTok" },
   { href: "https://youtube.com/@devinpolicastro", icon: Youtube, label: "YouTube" },
-  { href: "mailto:dev@devinpolicastro.com", icon: Mail, label: "Email" },
+  { href: "mailto:devinpolicastro@gmail.com", icon: Mail, label: "Email" },
 ];
 
 const ventures = [
@@ -85,10 +85,10 @@ const Footer = () => (
               <span>335 Chestnut St<br />Norwood, NJ 07648</span>
             </div>
             <a
-              href="mailto:dev@devinpolicastro.com"
+              href="mailto:devinpolicastro@gmail.com"
               className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-xs sm:text-sm font-display transition-colors break-all"
             >
-              dev@devinpolicastro.com
+              devinpolicastro@gmail.com
               <ArrowUpRight size={12} className="shrink-0" />
             </a>
             <a
