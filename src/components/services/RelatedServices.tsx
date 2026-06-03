@@ -30,10 +30,11 @@ const RelatedServices = ({ current }: Props) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: i * 0.06, duration: 0.5 }}
+              className="h-full"
             >
               <Link
                 to={`/${r.slug}`}
-                className="group relative overflow-hidden rounded-lg p-5 block transition-all duration-300 bg-card"
+                className="group relative overflow-hidden rounded-lg p-5 flex flex-col h-full transition-all duration-300 bg-card"
                 style={{
                   border: `1px solid hsl(${r.color} / 0.25)`,
                 }}
