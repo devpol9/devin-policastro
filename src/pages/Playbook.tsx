@@ -76,7 +76,7 @@ const Playbook = () => {
         <div className="container-tight">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-display mb-8"
+            className="inline-flex items-center gap-2 text-muted-foreground md:hover:text-foreground transition-colors text-sm font-display mb-8"
           >
             <ArrowLeft size={16} />
             Back to home
@@ -183,7 +183,7 @@ const Playbook = () => {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-60"
+                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background md:hover:bg-foreground/90 transition-all disabled:opacity-60"
                       >
                         {loading ? "Sending…" : "Send me the playbook"}
                         {!loading && <ArrowRight size={14} />}
@@ -210,7 +210,7 @@ const Playbook = () => {
                       target="_blank"
                       rel="noopener"
                       onClick={() => trackEvent("lead_magnet_download_direct", { magnet: "nj-entrepreneur-playbook" })}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background md:hover:bg-foreground/90 transition-all"
                     >
                       <Download size={14} />
                       Download the PDF

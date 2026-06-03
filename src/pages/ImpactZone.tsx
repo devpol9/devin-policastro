@@ -77,7 +77,7 @@ const ImpactZone = () => {
         <div className="container-tight">
           <Link
             to="/#services"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-display mb-8"
+            className="inline-flex items-center gap-2 text-muted-foreground md:hover:text-foreground transition-colors text-sm font-display mb-8"
           >
             <ArrowLeft size={16} />
             Back to home
@@ -191,7 +191,7 @@ const ImpactZone = () => {
                 </p>
                 <button
                   onClick={() => openInquiry("Not sure yet")}
-                  className="text-[11px] font-display text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                  className="text-[11px] font-display text-muted-foreground md:hover:text-foreground transition-colors underline-offset-4 md:hover:underline"
                 >
                   Not sure? Just talk to me →
                 </button>
@@ -241,7 +241,7 @@ const ImpactZone = () => {
             </div>
             <Link
               to="/fitness"
-              className="inline-flex shrink-0 items-center gap-2 px-5 py-2.5 rounded-md text-sm font-display font-semibold border border-border hover:border-foreground/60 text-foreground transition-all"
+              className="inline-flex shrink-0 items-center gap-2 px-5 py-2.5 rounded-md text-sm font-display font-semibold border border-border md:hover:border-foreground/60 text-foreground transition-all"
             >
               See coaching options
               <ArrowRight size={14} />
