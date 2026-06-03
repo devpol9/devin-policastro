@@ -121,7 +121,7 @@ export const seoPages: Record<string, { title: string; description: string }> = 
       "Brand, revenue, and content consulting from a NJ founder who's actually built it — 2THIRTY, Impact Zone, Creative Vision. Bergen County & remote.",
   },
   "/manufacturing": {
-    title: "NJ Product Manufacturing — Apparel, Supplements, Gym Gear | Creative Vision",
+    title: "NJ Manufacturing — Apparel, Supplements, Gym Gear",
     description:
       "Custom apparel, supplements, beverages, and fitness equipment from concept to shelf. Private label, white label, and Amazon-ready production.",
   },
@@ -131,7 +131,7 @@ export const seoPages: Record<string, { title: string; description: string }> = 
       "Sponsored content, UGC, and brand partnerships across Instagram, TikTok, and YouTube. NJ-based creator, real buyers, real engagement.",
   },
   "/automotive": {
-    title: "NJ Car Wraps, PPF, Tuning & Custom Builds | Devin Policastro",
+    title: "NJ Car Wraps, PPF, Tuning & Custom Builds",
     description:
       "Vinyl wraps, full-body PPF, ceramic, tinting, tuning, powder coat, and custom builds. Bergen County & tri-state — vetted shops, no markup.",
   },
@@ -141,12 +141,12 @@ export const seoPages: Record<string, { title: string; description: string }> = 
       "Get connected to vetted lenders for SBA, MCA, equipment, real estate, and startup capital. NJ founders, e-com, gyms, contractors. Free intro.",
   },
   "/networking": {
-    title: "NJ Paid Introductions & Partnership Brokering | Devin Policastro",
+    title: "NJ Paid Intros & Partnership Brokering",
     description:
       "Warm intros to NJ contractors, suppliers, investors, attorneys, marketers, and operators. Bergen County to the tri-state. The right room, fast.",
   },
   "/fitness": {
-    title: "Personal Training & Coaching | Impact Zone Fitness Norwood NJ",
+    title: "Personal Training & Coaching | Impact Zone NJ",
     description:
       "Personal training, lifestyle coaching, nutrition, and competition prep at Impact Zone Norwood, NJ — 51,000 sq ft, no contracts. Remote too.",
   },
