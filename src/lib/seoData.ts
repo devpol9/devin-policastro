@@ -78,7 +78,6 @@ export const localBusinessJsonLd = {
   name: "Impact Zone Fitness",
   image: `${SITE_URL}/images/iz-hero.jpg`,
   url: "https://impactzonenj.com",
-  telephone: "",
   address: {
     "@type": "PostalAddress",
     streetAddress: "335 Chestnut St",
