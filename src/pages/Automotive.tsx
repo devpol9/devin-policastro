@@ -63,7 +63,7 @@ const Automotive = () => {
         <div className="container-tight">
           <Link
             to="/#services"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-display mb-8"
+            className="inline-flex items-center gap-2 text-muted-foreground md:hover:text-foreground transition-colors text-sm font-display mb-8"
           >
             <ArrowLeft size={16} />
             Back to home
@@ -133,7 +133,7 @@ const Automotive = () => {
                 </p>
                 <button
                   onClick={() => openInquiry("Not sure yet")}
-                  className="text-[11px] font-display text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                  className="text-[11px] font-display text-muted-foreground md:hover:text-foreground transition-colors underline-offset-4 md:hover:underline"
                 >
                   Not sure? Just talk to me →
                 </button>

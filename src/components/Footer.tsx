@@ -60,10 +60,10 @@ const Footer = () => (
                       href={v.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex flex-col gap-0.5 text-foreground/80 hover:text-accent transition-colors"
+                      className="group flex flex-col gap-0.5 text-foreground/80 md:hover:text-accent transition-colors"
                     >
                       <span className="font-display text-sm sm:text-base">{v.label}</span>
-                      <span className="text-[10px] font-mono tracking-[0.14em] text-foreground/30 group-hover:text-accent/60 transition-colors">
+                      <span className="text-[10px] font-mono tracking-[0.14em] text-foreground/30 md:group-hover:text-accent/60 transition-colors">
                         {v.meta}
                       </span>
                     </a>
@@ -86,7 +86,7 @@ const Footer = () => (
             </div>
             <a
               href="mailto:devinpolicastro@gmail.com"
-              className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-xs sm:text-sm font-display transition-colors break-all"
+              className="inline-flex items-center gap-1.5 text-foreground/70 md:hover:text-accent text-xs sm:text-sm font-display transition-colors break-all"
             >
               devinpolicastro@gmail.com
               <ArrowUpRight size={12} className="shrink-0" />
@@ -95,7 +95,7 @@ const Footer = () => (
               href="https://calendar.app.google/xXzaDYrcPvFHRCQ28"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-sm font-display transition-colors"
+              className="mt-3 inline-flex items-center gap-1.5 text-foreground/70 md:hover:text-accent text-sm font-display transition-colors"
             >
               Book a virtual call
               <ArrowUpRight size={12} className="shrink-0" />
@@ -114,7 +114,7 @@ const Footer = () => (
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground/60 hover:text-accent-foreground hover:bg-accent hover:border-accent transition-all duration-300"
+              className="w-10 h-10 rounded-full border border-foreground/10 flex items-center justify-center text-foreground/60 md:hover:text-accent-foreground md:hover:bg-accent md:hover:border-accent transition-all duration-300"
             >
               <link.icon size={15} />
             </a>

@@ -93,11 +93,11 @@ const FloatingNav = () => {
         <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16">
           {/* Left side */}
           {isHome ? (
-            <button onClick={() => handleClick("#home")} className="font-display font-medium text-sm tracking-tight group text-muted-foreground hover:text-foreground transition-colors duration-300">
+            <button onClick={() => handleClick("#home")} className="font-display font-medium text-sm tracking-tight group text-muted-foreground md:hover:text-foreground transition-colors duration-300">
               hey, i'm <span className="text-primary font-bold">dev.</span>
             </button>
           ) : (
-            <button onClick={goHome} className="flex items-center gap-2 font-display font-medium text-sm tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300 group">
+            <button onClick={goHome} className="flex items-center gap-2 font-display font-medium text-sm tracking-tight text-muted-foreground md:hover:text-foreground transition-colors duration-300 group">
               <ArrowLeft size={16} />
               <span>hey, i'm <span className="text-primary font-bold">dev.</span></span>
             </button>
@@ -134,26 +134,26 @@ const FloatingNav = () => {
               <>
                 <button
                   onClick={goHome}
-                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground hover:text-foreground"
+                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground md:hover:text-foreground"
                 >
                   Home
                 </button>
                 <button
                   onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }), 500); }}
-                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground hover:text-foreground"
+                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground md:hover:text-foreground"
                 >
                   Services
                 </button>
                 <button
                   onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#ventures")?.scrollIntoView({ behavior: "smooth" }), 500); }}
-                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground hover:text-foreground"
+                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground md:hover:text-foreground"
                 >
                   Ventures
                 </button>
 
                 <button
                   onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }), 500); }}
-                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground hover:text-foreground"
+                  className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground md:hover:text-foreground"
                 >
                   Contact
                 </button>
@@ -211,7 +211,7 @@ const FloatingNav = () => {
                     transition={{ delay: i * 0.04 }}
                     onClick={() => handleClick(item.href)}
                     className={`text-3xl font-display font-bold py-3 tracking-tight transition-colors duration-300 flex items-baseline gap-3 ${
-                      active ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+                      active ? "text-foreground" : "text-foreground/80 md:hover:text-foreground"
                     }`}
                   >
                     <span className={`font-mono text-xs tabular-nums ${active ? "text-accent" : "text-muted-foreground/60"}`}>

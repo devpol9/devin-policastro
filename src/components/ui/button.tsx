@@ -9,15 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-primary text-primary-foreground font-display font-semibold tracking-wide hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300",
-        heroOutline: "border-2 border-primary/50 text-foreground font-display font-semibold tracking-wide hover:bg-primary/10 hover:border-primary transition-all duration-300",
-        glass: "bg-card/60 backdrop-blur-xl border border-border/30 text-foreground hover:bg-card/80 hover:border-primary/30 transition-all duration-300",
+        default: "bg-primary text-primary-foreground md:hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground md:hover:bg-destructive/90",
+        outline: "border border-input bg-background md:hover:bg-accent md:hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground md:hover:bg-secondary/80",
+        ghost: "md:hover:bg-accent md:hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 md:hover:underline",
+        hero: "bg-primary text-primary-foreground font-display font-semibold tracking-wide md:hover:bg-primary/90 shadow-lg shadow-primary/20 md:hover:shadow-primary/40 transition-all duration-300",
+        heroOutline: "border-2 border-primary/50 text-foreground font-display font-semibold tracking-wide md:hover:bg-primary/10 md:hover:border-primary transition-all duration-300",
+        glass: "bg-card/60 backdrop-blur-xl border border-border/30 text-foreground md:hover:bg-card/80 md:hover:border-primary/30 transition-all duration-300",
         glow: "bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/30",
       },
       size: {

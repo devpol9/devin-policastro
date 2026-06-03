@@ -52,7 +52,7 @@ const MobileBottomNav = () => {
             <button
               key={item.href}
               onClick={() => handleClick(item.href)}
-              className="flex flex-col items-center gap-1 text-foreground/60 hover:text-accent active:text-accent transition-colors"
+              className="flex flex-col items-center gap-1 text-foreground/60 active:text-accent transition-colors"
             >
               <item.icon size={18} strokeWidth={2.25} />
               <span className="text-[9px] font-display font-semibold tracking-[0.12em]">{item.label}</span>
@@ -61,7 +61,7 @@ const MobileBottomNav = () => {
         ) : (
           <button
             onClick={() => handleClick("#contact")}
-            className="flex flex-col items-center gap-1 text-foreground/60 hover:text-accent active:text-accent transition-colors"
+            className="flex flex-col items-center gap-1 text-foreground/60 active:text-accent transition-colors"
           >
             <Mail size={18} strokeWidth={2.25} />
             <span className="text-[9px] font-display font-semibold tracking-[0.12em]">Contact</span>
