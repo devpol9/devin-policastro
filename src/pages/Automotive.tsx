@@ -13,7 +13,7 @@ import RelatedServices from "@/components/services/RelatedServices";
 import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 import { motion } from "framer-motion";
 
-const COLOR = "12 45% 48%";
+const COLOR = "24 38% 56%";
 
 type Path = "buy" | "upgrade";
 

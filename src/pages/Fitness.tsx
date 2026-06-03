@@ -13,7 +13,7 @@ import ServiceDeep from "@/components/services/ServiceDeep";
 import RelatedServices from "@/components/services/RelatedServices";
 import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 
-const COLOR = "24 32% 52%";
+const COLOR = "24 38% 56%";
 
 interface FitnessService {
   icon: LucideIcon;

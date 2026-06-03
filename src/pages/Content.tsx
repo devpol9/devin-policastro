@@ -13,7 +13,7 @@ import RelatedServices from "@/components/services/RelatedServices";
 import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 import { useState } from "react";
 
-const COLOR = "350 22% 55%";
+const COLOR = "24 38% 56%";
 
 const INSTAGRAM_USERNAME = "devinpolicastro";
 
