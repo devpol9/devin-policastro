@@ -102,7 +102,7 @@ const REGISTRY: Record<ServiceSlug, Omit<ServiceDeepContent, "related"> & { rela
     caseStudies: [
       {
         title: "2THIRTY — full-stack CPG build",
-        body: "Formulation, FDA-compliant labeling, custom bottle, fulfillment, Amazon FBA setup. Now a 4.9-star DTC brand with wholesale across NJ.",
+        body: "Formulation, FDA-compliant labeling, custom stick packs, fulfillment, Amazon FBA setup. Now a 4.9-star DTC brand with wholesale across NJ.",
         meta: "Supplement / beverage",
       },
       {
