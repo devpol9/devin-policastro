@@ -286,7 +286,7 @@ const ContactSection = () => {
                       className={`relative p-3 rounded-lg border text-left transition-all duration-300 group ${
                         isActive
                           ? "border-primary/40 bg-primary/8 shadow-[0_0_20px_hsl(var(--primary)/0.08)]"
-                          : "border-border/15 bg-card/30 hover:border-border/30 hover:bg-card/50"
+                          : "border-border/15 bg-card/30 md:hover:border-border/30 md:hover:bg-card/50"
                       }`}
                     >
                       <Icon
