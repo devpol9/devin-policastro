@@ -60,18 +60,18 @@ const ServicesSection = () => {
               >
                 <Link
                   to={tab.to}
-                  className={`group relative overflow-hidden flex text-left rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 md:hover:border-accent/40 md:hover:bg-card/80 transition-all duration-500 tap-highlight-transparent w-full h-full ${
-                    isFeatured ? "p-7 sm:p-10 min-h-[200px]" : "p-6 sm:p-8 min-h-[180px] sm:min-h-[220px]"
+                  className={`group relative overflow-hidden flex text-left rounded-2xl bg-card border border-foreground/5 md:hover:border-accent/40 md:hover:bg-card/80 transition-all duration-500 tap-highlight-transparent w-full h-full ${
+                    isFeatured ? "p-5 sm:p-8 min-h-[150px] sm:min-h-[200px]" : "p-4 sm:p-7 min-h-[140px] sm:min-h-[200px]"
                   }`}
                 >
-                  <div className={`relative z-10 flex flex-col h-full w-full ${isFeatured ? "gap-8 sm:gap-12" : "gap-6 sm:gap-8"}`}>
+                  <div className={`relative z-10 flex flex-col h-full w-full ${isFeatured ? "gap-5 sm:gap-10" : "gap-4 sm:gap-7"}`}>
                     <div className="flex items-start justify-between">
                       <div
                         className={`rounded-xl flex items-center justify-center bg-background border border-foreground/5 transition-all duration-500 ${
-                          isFeatured ? "w-14 h-14 sm:w-16 sm:h-16 text-accent group-hover:scale-105" : "w-12 h-12 text-muted-foreground group-hover:text-accent"
+                          isFeatured ? "w-11 h-11 sm:w-16 sm:h-16 text-accent group-hover:scale-105" : "w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground group-hover:text-accent"
                         }`}
                       >
-                        <Icon size={isFeatured ? 26 : 22} strokeWidth={1.5} />
+                        <Icon size={isFeatured ? 22 : 18} strokeWidth={1.5} />
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-[10px] sm:text-xs text-muted-foreground tabular-nums">{tab.num}</span>
