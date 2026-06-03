@@ -120,7 +120,13 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.05, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => setActive(tab)}
+                onClick={() => {
+                  if (tab.key === "fitness") {
+                    document.getElementById("training")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  } else {
+                    setActive(tab);
+                  }
+                }}
                 className={`group relative overflow-hidden text-left rounded-2xl sm:rounded-3xl bg-card border border-foreground/5 md:hover:border-accent/40 md:hover:bg-card/80 transition-all duration-500 tap-highlight-transparent ${span} ${
                   isFeatured ? "p-7 sm:p-10 min-h-[200px]" : "p-6 sm:p-8 min-h-[180px] sm:min-h-[220px]"
                 }`}
@@ -163,7 +169,7 @@ const ServicesSection = () => {
                       className="inline-flex items-center gap-1.5 mt-4 text-[11px] sm:text-xs font-mono tracking-tight"
                       style={{ color: `hsl(${tab.color})` }}
                     >
-                      Start inquiry →
+                      {tab.key === "fitness" ? "See what we offer →" : "Start inquiry →"}
                     </span>
                   </div>
                 </div>
