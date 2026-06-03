@@ -19,14 +19,15 @@ interface ServiceTab {
 }
 
 
+const ACCENT = "24 38% 56%";
 const tabs: ServiceTab[] = [
-  { key: "consulting",    num: "01", label: "Consulting",    tagline: "Brand strategy & growth advisory.",   icon: Briefcase,  color: "270 16% 50%", to: "/consulting" },
-  { key: "manufacturing", num: "02", label: "Manufacturing", tagline: "Concept to shelf, end to end.",        icon: Factory,    color: "270 16% 48%", to: "/manufacturing" },
-  { key: "content",       num: "03", label: "Content",       tagline: "Short-form video & storytelling.",    icon: Camera,     color: "350 22% 55%", to: "/content" },
-  { key: "automotive",    num: "04", label: "Automotive",    tagline: "Wraps, PPF, tuning, builds.",         icon: Car,        color: "12 45% 48%",  to: "/automotive" },
-  { key: "financing",     num: "05", label: "Financing",     tagline: "Capital access & deal structure.",    icon: CreditCard, color: "210 22% 50%", to: "/financing" },
-  { key: "networking",    num: "06", label: "Networking",    tagline: "The right intros, on purpose.",       icon: Handshake,  color: "140 18% 42%", to: "/networking" },
-  { key: "fitness",       num: "07", label: "Fitness",       tagline: "Training & lifestyle coaching.",      icon: Dumbbell,   color: "24 32% 52%",  to: "/fitness" },
+  { key: "consulting",    num: "01", label: "Consulting",    tagline: "Brand strategy & growth advisory.",   icon: Briefcase,  color: ACCENT, to: "/consulting" },
+  { key: "manufacturing", num: "02", label: "Manufacturing", tagline: "Concept to shelf, end to end.",        icon: Factory,    color: ACCENT, to: "/manufacturing" },
+  { key: "content",       num: "03", label: "Content",       tagline: "Short-form video & storytelling.",    icon: Camera,     color: ACCENT, to: "/content" },
+  { key: "automotive",    num: "04", label: "Automotive",    tagline: "Wraps, PPF, tuning, builds.",         icon: Car,        color: ACCENT, to: "/automotive" },
+  { key: "financing",     num: "05", label: "Financing",     tagline: "Capital access & deal structure.",    icon: CreditCard, color: ACCENT, to: "/financing" },
+  { key: "networking",    num: "06", label: "Networking",    tagline: "The right intros, on purpose.",       icon: Handshake,  color: ACCENT, to: "/networking" },
+  { key: "fitness",       num: "07", label: "Fitness",       tagline: "Training & lifestyle coaching.",      icon: Dumbbell,   color: ACCENT, to: "/fitness" },
 ];
 
 const ServicesSection = () => {
