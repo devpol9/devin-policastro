@@ -169,7 +169,7 @@ const ServicesSection = () => {
                       className="inline-flex items-center gap-1.5 mt-4 text-[11px] sm:text-xs font-mono tracking-tight"
                       style={{ color: `hsl(${tab.color})` }}
                     >
-                      Start inquiry →
+                      {tab.key === "fitness" ? "See what we offer →" : "Start inquiry →"}
                     </span>
                   </div>
                 </div>
