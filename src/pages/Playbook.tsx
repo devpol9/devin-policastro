@@ -150,7 +150,7 @@ const Playbook = () => {
                     </p>
                     <form onSubmit={submit} className="space-y-4">
                       <div>
-                        <label className="block text-xs font-display uppercase tracking-wider text-muted-foreground mb-2">
+                        <label className="block text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-2">
                           Name
                         </label>
                         <input
@@ -160,12 +160,12 @@ const Playbook = () => {
                           required
                           maxLength={120}
                           autoComplete="name"
-                          className="w-full bg-background border border-border/60 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors"
+                          className="w-full bg-background border border-border rounded-md px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors"
                           placeholder="Your name"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-display uppercase tracking-wider text-muted-foreground mb-2">
+                        <label className="block text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-2">
                           Email
                         </label>
                         <input
@@ -175,8 +175,9 @@ const Playbook = () => {
                           required
                           maxLength={200}
                           autoComplete="email"
-                          className="w-full bg-background border border-border/60 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors"
+                          className="w-full bg-background border border-border rounded-md px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors"
                           placeholder="you@example.com"
+
                         />
                       </div>
                       <button
