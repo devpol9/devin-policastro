@@ -13,7 +13,7 @@ import ServiceDeep from "@/components/services/ServiceDeep";
 import RelatedServices from "@/components/services/RelatedServices";
 import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 
-const COLOR = "270 16% 50%";
+const COLOR = "24 38% 56%";
 
 const consultingServices = [
   { icon: Briefcase, name: "Brand Consulting", desc: "I'll break down your brand, content, and revenue strategy.", detail: "Full audit, positioning, content direction, monetization roadmap.", price: "Starting at $500" },
