@@ -8,12 +8,11 @@ import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 const homeNavItems = [
   { num: "01", label: "Home", href: "#home" },
-  { num: "02", label: "About", href: "#about" },
-  { num: "03", label: "Links", href: "#links" },
-  { num: "04", label: "Shop", href: "#shop" },
-  { num: "05", label: "Services", href: "#services" },
-  { num: "06", label: "Contact", href: "#contact" },
+  { num: "02", label: "Services", href: "#services" },
+  { num: "03", label: "Ventures", href: "#ventures" },
+  { num: "04", label: "Contact", href: "#contact" },
 ];
+
 
 const FloatingNav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -136,11 +135,12 @@ const FloatingNav = () => {
                   Services
                 </button>
                 <button
-                  onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#shop")?.scrollIntoView({ behavior: "smooth" }), 500); }}
+                  onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#ventures")?.scrollIntoView({ behavior: "smooth" }), 500); }}
                   className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground hover:text-foreground"
                 >
-                  Shop
+                  Ventures
                 </button>
+
                 <button
                   onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }), 500); }}
                   className="relative px-3 py-2 text-xs font-display font-medium tracking-wide transition-colors duration-300 rounded-lg text-muted-foreground hover:text-foreground"
@@ -187,9 +187,10 @@ const FloatingNav = () => {
               )}
               {(isHome ? homeNavItems : [
                 { num: "01", label: "Services", href: "#services" },
-                { num: "02", label: "Shop", href: "#shop" },
+                { num: "02", label: "Ventures", href: "#ventures" },
                 { num: "03", label: "Contact", href: "#contact" },
               ]).map((item, i) => {
+
                 const active = isHome && activeSection === item.href.slice(1);
                 return (
                   <motion.button
