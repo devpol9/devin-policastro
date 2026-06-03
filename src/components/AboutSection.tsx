@@ -64,6 +64,13 @@ const AboutSection = () => {
   const navigate = useNavigate();
 
   const handleCardClick = (v: typeof verticals[0]) => {
+    if (v.title === "Fitness") {
+      const el = document.getElementById("training");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
     if (v.route) {
       if (v.route.startsWith("/#")) {
         const id = v.route.slice(2);
