@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SEOHead from "@/components/SEOHead";
+import { localBusinessJsonLd } from "@/lib/seoData";
 import {
   ArrowLeft,
   ArrowRight,
