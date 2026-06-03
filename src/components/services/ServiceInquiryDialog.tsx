@@ -165,6 +165,14 @@ const ServiceInquiryDialog = ({
             <p className="text-muted-foreground text-[13px] sm:text-sm mt-2 leading-relaxed">
               {subtitle}
             </p>
+            <a
+              href="https://calendar.app.google/U1HRFUsQBNQ1vdrX9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-display text-foreground/60 hover:text-accent transition-colors underline-offset-4 hover:underline"
+            >
+              Prefer to talk? Book a 15-min virtual call →
+            </a>
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">

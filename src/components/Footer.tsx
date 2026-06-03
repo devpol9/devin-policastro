@@ -91,6 +91,15 @@ const Footer = () => (
               dev@devinpolicastro.com
               <ArrowUpRight size={12} />
             </a>
+            <a
+              href="https://calendar.app.google/U1HRFUsQBNQ1vdrX9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-sm font-display transition-colors"
+            >
+              Book a virtual call
+              <ArrowUpRight size={12} />
+            </a>
           </div>
         </div>
       </div>
