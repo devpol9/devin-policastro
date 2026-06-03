@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 import { trackEvent } from "@/lib/analytics";
+import coverPhoto from "@/assets/devin-cover.jpg.asset.json";
+
 
 const CONSULT_URL = "https://calendar.app.google/xXzaDYrcPvFHRCQ28";
 
@@ -13,7 +15,7 @@ const focusAreas = [
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen w-full bg-background text-foreground flex items-center justify-center px-5 sm:px-8 md:px-12 pt-24 pb-12">
+    <section id="home" className="relative min-h-screen w-full bg-background text-foreground flex items-center justify-center px-5 sm:px-8 md:px-12 pt-24 pb-12">
       <div className="max-w-5xl w-full mx-auto flex flex-col gap-12 md:gap-20">
         {/* Meta header */}
         <motion.div
@@ -93,11 +95,12 @@ const HeroSection = () => {
           >
             <div className="aspect-[4/5] w-full rounded-2xl overflow-hidden border border-foreground/10 relative bg-card">
               <img
-                src="/images/devin-profile.jpg"
+                src={coverPhoto.url}
                 alt="Devin Policastro — founder & operator, Norwood, NJ"
                 className="w-full h-full object-cover"
                 loading="eager"
               />
+
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
                 <span className="font-mono text-[10px] text-accent mb-1 block">[ Identity ]</span>

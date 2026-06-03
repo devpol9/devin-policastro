@@ -1,12 +1,13 @@
-import { Home, ShoppingBag, Briefcase, Mail, ArrowLeft } from "lucide-react";
+import { Home, Layers, Briefcase, Mail, ArrowLeft } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const homeItems = [
   { icon: Home, label: "Home", href: "#home" },
-  { icon: ShoppingBag, label: "Shop", href: "#shop" },
   { icon: Briefcase, label: "Services", href: "#services" },
+  { icon: Layers, label: "Ventures", href: "#ventures" },
   { icon: Mail, label: "Contact", href: "#contact" },
 ];
+
 
 const MobileBottomNav = () => {
   const location = useLocation();
@@ -14,6 +15,15 @@ const MobileBottomNav = () => {
   const isHome = location.pathname === "/";
 
   const handleClick = (href: string) => {
+    if (href === "#home") {
+      if (isHome) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+        setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 300);
+      }
+      return;
+    }
     if (isHome) {
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -21,6 +31,7 @@ const MobileBottomNav = () => {
       setTimeout(() => document.querySelector(href)?.scrollIntoView({ behavior: "smooth" }), 500);
     }
   };
+
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background/85 backdrop-blur-2xl border-t border-border/40">
