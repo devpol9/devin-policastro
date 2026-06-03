@@ -1,22 +1,12 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Briefcase, Camera, Handshake, Dumbbell,
   ArrowUpRight, Factory, Car, CreditCard,
   type LucideIcon,
 } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
-import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 
-interface InquiryField {
-  key: string;
-  label: string;
-  placeholder: string;
-  type: "input" | "textarea" | "select";
-  required?: boolean;
-  rows?: number;
-  options?: string[];
-}
 
 interface ServiceTab {
   key: string;
@@ -25,9 +15,9 @@ interface ServiceTab {
   tagline: string;
   icon: LucideIcon;
   color: string;
-  subtitle: string;
-  fields: InquiryField[];
+  to: string;
 }
+
 
 const tabs: ServiceTab[] = [
   {
