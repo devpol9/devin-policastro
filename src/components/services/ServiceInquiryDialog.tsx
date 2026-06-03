@@ -178,7 +178,7 @@ const ServiceInquiryDialog = ({
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-[11px] font-sans font-semibold tracking-[0.08em] text-foreground/90 uppercase-off mb-1.5 block">
+                <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                   Name *
                 </label>
                 <Input
@@ -195,7 +195,7 @@ const ServiceInquiryDialog = ({
                 )}
               </div>
               <div>
-                <label className="text-[11px] font-sans font-semibold tracking-[0.08em] text-foreground/90 uppercase-off mb-1.5 block">
+                <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                   Email *
                 </label>
                 <Input
@@ -215,7 +215,7 @@ const ServiceInquiryDialog = ({
             </div>
 
             <div>
-              <label className="text-[11px] font-sans font-semibold tracking-[0.08em] text-foreground/90 uppercase-off mb-1.5 block">
+              <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                 Phone
               </label>
               <Input
@@ -228,7 +228,7 @@ const ServiceInquiryDialog = ({
             </div>
 
             <div>
-              <label className="text-[11px] font-sans font-semibold tracking-[0.08em] text-foreground/90 uppercase-off mb-1.5 block">
+              <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                 Related to
               </label>
               <select
@@ -255,7 +255,7 @@ const ServiceInquiryDialog = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.04 }}
                 >
-                  <label className="text-[11px] font-sans font-semibold tracking-[0.08em] text-foreground/90 uppercase-off mb-1.5 block">
+                  <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                     {field.label}
                     {field.required ? " *" : ""}
                   </label>
