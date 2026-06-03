@@ -48,6 +48,7 @@ const HeroSection = () => {
                 Devin
                 <br />
                 <span className="text-accent">Policastro.</span>
+                <span className="sr-only"> — Founder, Operator, and Connector based in Norwood, NJ.</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl font-medium text-foreground/70 max-w-md leading-snug">
                 Founder, operator, and connector — building products, gyms, and brands out of Norwood, NJ. Tell me what you're working on, I'll point you the right way.

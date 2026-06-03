@@ -165,6 +165,8 @@ const FloatingNav = () => {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
             className="md:hidden p-2 text-foreground relative z-[60]"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}

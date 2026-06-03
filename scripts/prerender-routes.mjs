@@ -20,7 +20,7 @@ const seoPages = {
     description: "Real-world brand strategy and growth advisory from someone who's actually built it. Fitness, CPG, services — no agency markup.",
   },
   "/manufacturing": {
-    title: "Manufacturing — Concept to Shelf | Creative Vision",
+    title: "NJ Manufacturing — Apparel, Supplements, Gym Gear",
     description: "Custom apparel, fitness equipment, supplements, and branded products. Idea to delivery, end to end.",
   },
   "/content": {
@@ -28,19 +28,19 @@ const seoPages = {
     description: "Short-form video, social content, and brand storytelling that actually moves the needle. Built by an operator, not an agency.",
   },
   "/automotive": {
-    title: "Automotive — Wraps, PPF, Tuning, Builds | Devin Policastro",
-    description: "Vinyl wraps, PPF, ceramic coating, tinting, tuning, and full custom builds. Premium work, NJ.",
+    title: "NJ Car Wraps, PPF, Tuning & Custom Builds",
+    description: "Vinyl wraps, full-body PPF, ceramic, tinting, tuning, and custom builds. Premium work, NJ.",
   },
   "/financing": {
     title: "Financing — Capital & Deal Structure | Devin Policastro",
     description: "Business financing and capital access. Structure your next venture with the right funding, the right terms.",
   },
   "/networking": {
-    title: "Networking — The Right Intros, On Purpose | Devin Policastro",
+    title: "NJ Paid Intros & Partnership Brokering",
     description: "Relationship-driven growth and strategic introductions. The right room beats a thousand cold emails.",
   },
   "/fitness": {
-    title: "Fitness — Training & Coaching | Devin Policastro",
+    title: "Personal Training & Coaching | Impact Zone NJ",
     description: "Personal training, group programs, and lifestyle coaching with Devin and the Impact Zone team. Norwood, NJ.",
   },
   "/impact-zone": {
