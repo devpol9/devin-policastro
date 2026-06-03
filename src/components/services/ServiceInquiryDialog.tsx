@@ -166,7 +166,7 @@ const ServiceInquiryDialog = ({
               {subtitle}
             </p>
             <a
-              href="https://calendar.app.google/U1HRFUsQBNQ1vdrX9"
+              href="https://calendar.app.google/xXzaDYrcPvFHRCQ28"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-display text-foreground/60 hover:text-accent transition-colors underline-offset-4 hover:underline"
