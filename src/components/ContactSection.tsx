@@ -246,18 +246,18 @@ const ContactSection = () => {
             {/* Name / Email row */}
             <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-2 block">Name *</label>
+                <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-2 block">Name *</label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
                   placeholder="Your name"
                   required
                   maxLength={100}
-                  className="bg-card/50 border-border/20 focus:border-primary/30 h-11 sm:h-12 text-sm"
+                  className="bg-card/50 border-border focus:border-primary/40 h-11 sm:h-12 text-sm"
                 />
               </div>
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-2 block">Email *</label>
+                <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-2 block">Email *</label>
                 <Input
                   value={formData.email}
                   onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
@@ -265,14 +265,15 @@ const ContactSection = () => {
                   placeholder="you@email.com"
                   required
                   maxLength={255}
-                  className="bg-card/50 border-border/20 focus:border-primary/30 h-11 sm:h-12 text-sm"
+                  className="bg-card/50 border-border focus:border-primary/40 h-11 sm:h-12 text-sm"
                 />
               </div>
+
             </div>
 
             {/* Subject selector — card grid */}
             <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.12em]  text-muted-foreground/70 mb-3 block">What's this about? *</label>
+              <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-3 block">What's this about? *</label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {subjectOptions.map((opt) => {
                   const isActive = formData.subject === opt.value;
@@ -332,7 +333,7 @@ const ContactSection = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.06, duration: 0.25 }}
                       >
-                        <label className="text-[10px] font-display font-semibold tracking-[0.2em]  text-muted-foreground/60 mb-1.5 block">
+                        <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                           {field.label}{field.required ? " *" : ""}
                         </label>
                         {field.type === "textarea" ? (
@@ -348,7 +349,7 @@ const ContactSection = () => {
                             rows={field.rows || 2}
                             maxLength={500}
                             required={field.required}
-                            className="bg-card/50 border-border/20 focus:border-primary/30 resize-none text-sm"
+                            className="bg-card/50 border-border focus:border-primary/40 resize-none text-sm"
                           />
                         ) : (
                           <Input
@@ -362,9 +363,10 @@ const ContactSection = () => {
                             placeholder={field.placeholder}
                             maxLength={200}
                             required={field.required}
-                            className="bg-card/50 border-border/20 focus:border-primary/30 h-11 sm:h-12 text-sm"
+                            className="bg-card/50 border-border focus:border-primary/40 h-11 sm:h-12 text-sm"
                           />
                         )}
+
                       </motion.div>
                     ))}
                   </div>
