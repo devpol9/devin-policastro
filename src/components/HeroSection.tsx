@@ -44,7 +44,7 @@ const HeroSection = () => {
             className="lg:col-span-7 flex flex-col gap-8"
           >
             <div className="space-y-4">
-              <h1 className="font-display text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.25rem] font-black tracking-tight leading-[0.85]">
+              <h1 className="font-display text-[2.75rem] xs:text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.25rem] font-black tracking-tight leading-[0.9] sm:leading-[0.85] break-words">
                 Devin
                 <br />
                 <span className="text-accent">Policastro.</span>
