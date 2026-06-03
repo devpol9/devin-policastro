@@ -49,10 +49,10 @@ const Footer = () => (
         </motion.div>
 
         {/* Right rail */}
-        <div className="md:col-span-5 grid grid-cols-2 gap-8 md:gap-6 md:pt-4">
+        <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-6 md:pt-4">
           <div>
             <p className="text-[10px] font-mono tracking-[0.22em] text-accent/70 mb-5">— Ventures</p>
-            <ul className="space-y-3.5">
+            <ul className="space-y-3">
               {ventures.map((v) => (
                 <li key={v.label}>
                   {v.href ? (
@@ -60,7 +60,7 @@ const Footer = () => (
                       href={v.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-baseline justify-between gap-3 text-foreground/80 hover:text-accent transition-colors"
+                      className="group flex flex-col gap-0.5 text-foreground/80 hover:text-accent transition-colors"
                     >
                       <span className="font-display text-sm sm:text-base">{v.label}</span>
                       <span className="text-[10px] font-mono tracking-[0.14em] text-foreground/30 group-hover:text-accent/60 transition-colors">
@@ -68,7 +68,7 @@ const Footer = () => (
                       </span>
                     </a>
                   ) : (
-                    <div className="flex items-baseline justify-between gap-3 text-foreground/40">
+                    <div className="flex flex-col gap-0.5 text-foreground/40">
                       <span className="font-display text-sm sm:text-base">{v.label}</span>
                       <span className="text-[10px] font-mono tracking-[0.14em] text-foreground/30">{v.meta}</span>
                     </div>
@@ -78,7 +78,7 @@ const Footer = () => (
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <p className="text-[10px] font-mono tracking-[0.22em] text-accent/70 mb-5">— HQ</p>
             <div className="flex items-start gap-2 text-foreground/70 text-sm font-display leading-relaxed mb-6">
               <MapPin size={13} className="mt-1 shrink-0 text-accent" strokeWidth={1.5} />
@@ -86,10 +86,10 @@ const Footer = () => (
             </div>
             <a
               href="mailto:dev@devinpolicastro.com"
-              className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-sm font-display transition-colors"
+              className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-xs sm:text-sm font-display transition-colors break-all"
             >
               dev@devinpolicastro.com
-              <ArrowUpRight size={12} />
+              <ArrowUpRight size={12} className="shrink-0" />
             </a>
             <a
               href="https://calendar.app.google/xXzaDYrcPvFHRCQ28"
@@ -98,7 +98,7 @@ const Footer = () => (
               className="mt-3 inline-flex items-center gap-1.5 text-foreground/70 hover:text-accent text-sm font-display transition-colors"
             >
               Book a virtual call
-              <ArrowUpRight size={12} />
+              <ArrowUpRight size={12} className="shrink-0" />
             </a>
           </div>
         </div>
