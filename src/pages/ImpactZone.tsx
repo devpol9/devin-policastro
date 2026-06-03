@@ -71,7 +71,7 @@ const ImpactZone = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden noise-overlay">
-      <SEOHead {...seo} canonicalPath="/impact-zone" />
+      <SEOHead {...seo} canonicalPath="/impact-zone" jsonLd={localBusinessJsonLd} />
       <FloatingNav />
 
       <section className="section-padding pt-32 sm:pt-40">
