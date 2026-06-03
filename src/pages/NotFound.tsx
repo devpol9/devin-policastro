@@ -21,7 +21,7 @@ const NotFound = () => {
         <div className="container-tight">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-display mb-8"
+            className="inline-flex items-center gap-2 text-muted-foreground md:hover:text-foreground transition-colors text-sm font-display mb-8"
           >
             <ArrowLeft size={16} />
             Back to Home
