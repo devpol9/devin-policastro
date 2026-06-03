@@ -89,8 +89,8 @@ const ServicesSection = () => {
                         </span>
                       )}
                       <h3
-                        className={`font-display font-semibold tracking-tight leading-[1] text-foreground mb-2 ${
-                          isFeatured ? "text-3xl sm:text-5xl" : "text-2xl sm:text-3xl"
+                        className={`font-display font-semibold tracking-tight leading-[1] text-foreground mb-1.5 ${
+                          isFeatured ? "text-2xl sm:text-5xl" : "text-xl sm:text-3xl"
                         }`}
                       >
                         {tab.label}
@@ -98,10 +98,7 @@ const ServicesSection = () => {
                       <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                         {tab.tagline}
                       </p>
-                      <span
-                        className="inline-flex items-center gap-1.5 mt-4 text-[11px] sm:text-xs font-mono tracking-tight"
-                        style={{ color: `hsl(${tab.color})` }}
-                      >
+                      <span className="inline-flex items-center gap-1.5 mt-3 text-[11px] sm:text-xs font-mono tracking-tight text-accent">
                         Explore →
                       </span>
                     </div>
