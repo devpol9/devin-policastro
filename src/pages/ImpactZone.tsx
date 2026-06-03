@@ -99,6 +99,31 @@ const ImpactZone = () => {
             description="Norwood, NJ. 100+ machines, cold plunge, infrared sauna, hot yoga, red light, basketball court, sports turf. No long-term contracts."
           />
 
+          {/* Facility photo strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-10 sm:mb-12">
+            {[
+              { src: "/images/iz-hero.jpg", label: "The floor" },
+              { src: "/images/iz-machines-red.jpg", label: "100+ machines" },
+              { src: "/images/iz-cold-plunge.jpg", label: "Cold plunge" },
+              { src: "/images/iz-basketball.jpg", label: "Court & turf" },
+            ].map((img) => (
+              <div key={img.src} className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-xl overflow-hidden bg-card border border-border/30">
+                <img
+                  src={img.src}
+                  alt={`Impact Zone — ${img.label}`}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent" />
+                <span className="absolute bottom-2 left-2.5 sm:bottom-3 sm:left-3 text-[10px] sm:text-xs font-display font-semibold text-foreground/90 tracking-tight">
+                  {img.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+
+
           {/* Step 1: Path picker */}
           <div className="mb-8 sm:mb-10">
             <p className="font-mono text-[10px] text-foreground/50 mb-3 tracking-tight">
