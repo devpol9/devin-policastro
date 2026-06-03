@@ -40,10 +40,15 @@ const seoPages = {
     description: "Relationship-driven growth and strategic introductions. The right room beats a thousand cold emails.",
   },
   "/fitness": {
-    title: "Fitness — Training & Coaching | Impact Zone NJ",
-    description: "Personal training, group programs, and lifestyle coaching at Impact Zone Fitness in Norwood, NJ. 51,000 sq ft, no contracts.",
+    title: "Fitness — Training & Coaching | Devin Policastro",
+    description: "Personal training, group programs, and lifestyle coaching with Devin and the Impact Zone team. Norwood, NJ.",
+  },
+  "/impact-zone": {
+    title: "Impact Zone — 51,000 sq ft training facility | Norwood NJ",
+    description: "100+ machines, cold plunge, infrared sauna, hot yoga, red light, basketball court, sports turf. No long-term contracts.",
   },
 };
+
 
 const escapeHtml = (s) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
