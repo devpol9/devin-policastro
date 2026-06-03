@@ -56,12 +56,22 @@ const FloatingNav = () => {
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
+    if (href === "#home") {
+      if (isHome) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+        setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 300);
+      }
+      return;
+    }
     if (isHome) {
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/" + href);
     }
   };
+
 
   const goHome = () => {
     setMobileOpen(false);
