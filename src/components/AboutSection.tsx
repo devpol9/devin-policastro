@@ -65,6 +65,14 @@ const AboutSection = () => {
 
   const handleCardClick = (v: typeof verticals[0]) => {
     if (v.route) {
+      if (v.route.startsWith("/#")) {
+        const id = v.route.slice(2);
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
       navigate(v.route);
     } else if (v.link) {
       window.open(v.link, "_blank", "noopener,noreferrer");
