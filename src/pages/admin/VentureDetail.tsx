@@ -88,7 +88,7 @@ const VentureDetail = () => {
     { key: "blocked", label: "Blocked" },
   ];
 
-  const accent = venture?.accent_color ?? "hsl(24 32% 52%)";
+  const accent = venture?.accent_color ?? "hsl(38 55% 58%)";
   const Icon = getVentureIcon(venture?.icon);
 
   // Inquiry match: case-insensitive contains on service_type for name or short_name

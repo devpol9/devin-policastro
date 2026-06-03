@@ -23,7 +23,7 @@ import ServiceInquiryDialog from "@/components/services/ServiceInquiryDialog";
 import SectionHeader from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 
-const COLOR = "24 38% 56%";
+const COLOR = "38 55% 58%";
 
 type Path = "join" | "visit";
 

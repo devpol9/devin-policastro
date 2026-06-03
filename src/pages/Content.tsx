@@ -13,7 +13,7 @@ import RelatedServices from "@/components/services/RelatedServices";
 import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 import { useState } from "react";
 
-const COLOR = "24 38% 56%";
+const COLOR = "38 55% 58%";
 
 const INSTAGRAM_USERNAME = "devinpolicastro";
 
@@ -24,7 +24,7 @@ const platforms = [
     url: "https://instagram.com/devinpolicastro",
     icon: Instagram,
     desc: "The daily grind — gym, business, builds, and real talk. No filter.",
-    color: "24 38% 56%",
+    color: "38 55% 58%",
   },
   {
     name: "TikTok",
@@ -32,7 +32,7 @@ const platforms = [
     url: "https://tiktok.com/@devinpolicastro",
     icon: Video,
     desc: "Short-form content. Business tips, fitness clips, and behind the scenes.",
-    color: "24 38% 56%",
+    color: "38 55% 58%",
   },
   {
     name: "YouTube",
@@ -40,7 +40,7 @@ const platforms = [
     url: "https://youtube.com/@devinpolicastro",
     icon: Youtube,
     desc: "Long-form builds, vlogs, business breakdowns, and full gym tours.",
-    color: "24 38% 56%",
+    color: "38 55% 58%",
   },
 ];
 

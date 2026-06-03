@@ -22,7 +22,7 @@ interface Props {
 const KpiCard = ({ kpi, rangeKey = "90d", compact = false, hero = false, onClick }: Props) => {
   const { ventures } = useVentures();
   const venture = kpi.venture_id ? ventures.find((v) => v.id === kpi.venture_id) : undefined;
-  const accent = venture?.accent_color ?? "hsl(24 32% 52%)";
+  const accent = venture?.accent_color ?? "hsl(38 55% 58%)";
 
   const rangeDays = RANGE_DAYS[rangeKey];
   const { data: summary } = useKpiSummary(kpi.id, rangeDays);

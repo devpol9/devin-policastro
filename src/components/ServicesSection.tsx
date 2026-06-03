@@ -19,7 +19,7 @@ interface ServiceTab {
 }
 
 
-const ACCENT = "24 38% 56%";
+const ACCENT = "38 55% 58%";
 const tabs: ServiceTab[] = [
   { key: "consulting",    num: "01", label: "Consulting",    tagline: "Brand strategy & growth advisory.",   icon: Briefcase,  color: ACCENT, to: "/consulting" },
   { key: "manufacturing", num: "02", label: "Manufacturing", tagline: "Concept to shelf, end to end.",        icon: Factory,    color: ACCENT, to: "/manufacturing" },

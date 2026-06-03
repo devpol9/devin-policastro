@@ -14,20 +14,20 @@ const HeroOrb = () => {
         }}
         className="w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] rounded-full relative"
         style={{
-          background: `radial-gradient(circle at 35% 35%, hsl(24 32% 52% / 0.15), hsl(20 28% 42% / 0.08) 50%, transparent 70%)`,
+          background: `radial-gradient(circle at 35% 35%, hsl(38 55% 58% / 0.15), hsl(32 50% 48% / 0.08) 50%, transparent 70%)`,
           boxShadow: `
-            0 0 80px 40px hsl(24 32% 52% / 0.06),
-            inset 0 0 60px 20px hsl(24 32% 52% / 0.04)
+            0 0 80px 40px hsl(38 55% 58% / 0.06),
+            inset 0 0 60px 20px hsl(38 55% 58% / 0.04)
           `,
-          border: `1px solid hsl(24 32% 52% / 0.08)`,
+          border: `1px solid hsl(38 55% 58% / 0.08)`,
         }}
       >
         {/* Inner glow ring */}
         <div
           className="absolute inset-4 rounded-full"
           style={{
-            background: `radial-gradient(circle at 40% 40%, hsl(24 32% 52% / 0.1), transparent 60%)`,
-            border: `1px solid hsl(24 32% 52% / 0.05)`,
+            background: `radial-gradient(circle at 40% 40%, hsl(38 55% 58% / 0.1), transparent 60%)`,
+            border: `1px solid hsl(38 55% 58% / 0.05)`,
           }}
         />
       </motion.div>

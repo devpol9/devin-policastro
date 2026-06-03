@@ -71,7 +71,7 @@ export default function CrossVentureInbox({ compact = false }: { compact?: boole
                   style={{
                     color:
                       i.reason === "assigned"
-                        ? "hsl(24 32% 52%)"
+                        ? "hsl(38 55% 58%)"
                         : "hsl(var(--muted-foreground))",
                   }}
                   title={i.reason === "assigned" ? "Assigned to you" : "Mentions Devin"}

@@ -46,7 +46,7 @@ const KpiDetail = ({ kpiId, onOpenChange }: Props) => {
   const { data: kpi } = useKpi(kpiId);
   const { ventures } = useVentures();
   const venture = kpi?.venture_id ? ventures.find((v) => v.id === kpi.venture_id) : undefined;
-  const accent = venture?.accent_color ?? "hsl(24 32% 52%)";
+  const accent = venture?.accent_color ?? "hsl(38 55% 58%)";
 
   const [rangeKey, setRangeKey] = useState<RangeKey>("90d");
   const rangeDays = RANGE_DAYS[rangeKey];

@@ -13,7 +13,7 @@ import ServiceDeep from "@/components/services/ServiceDeep";
 import RelatedServices from "@/components/services/RelatedServices";
 import { getFAQSchema, getServiceSchema } from "@/lib/serviceContent";
 
-const COLOR = "24 38% 56%";
+const COLOR = "38 55% 58%";
 
 const networkingServices = [
   { icon: Handshake, name: "Paid Introductions", desc: "I know people across Bergen County and beyond.", detail: "Contractors, suppliers, investors, partners — connected directly.", price: "$100–$500" },
