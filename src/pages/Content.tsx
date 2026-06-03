@@ -24,7 +24,7 @@ const platforms = [
     url: "https://instagram.com/devinpolicastro",
     icon: Instagram,
     desc: "The daily grind — gym, business, builds, and real talk. No filter.",
-    color: "350 22% 55%",
+    color: "24 38% 56%",
   },
   {
     name: "TikTok",
@@ -32,7 +32,7 @@ const platforms = [
     url: "https://tiktok.com/@devinpolicastro",
     icon: Video,
     desc: "Short-form content. Business tips, fitness clips, and behind the scenes.",
-    color: "270 18% 55%",
+    color: "24 38% 56%",
   },
   {
     name: "YouTube",
@@ -40,7 +40,7 @@ const platforms = [
     url: "https://youtube.com/@devinpolicastro",
     icon: Youtube,
     desc: "Long-form builds, vlogs, business breakdowns, and full gym tours.",
-    color: "12 45% 48%",
+    color: "24 38% 56%",
   },
 ];
 
