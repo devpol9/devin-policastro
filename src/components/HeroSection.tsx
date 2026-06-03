@@ -72,14 +72,14 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("outbound_click", { url: CONSULT_URL, location: "hero-consult" })}
-                className="group flex items-center justify-between bg-foreground text-background px-6 py-4 rounded-sm font-bold transition-all hover:bg-accent hover:text-foreground"
+                className="group flex items-center justify-between bg-foreground text-background px-6 py-4 rounded-sm font-bold transition-all md:hover:bg-accent md:hover:text-foreground"
               >
                 Book a 15-min consult
-                <ArrowRight size={18} className="ml-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={18} className="ml-4 md:group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#services"
-                className="flex items-center justify-center border border-foreground/20 px-6 py-4 rounded-sm font-medium hover:bg-foreground/5 transition-colors"
+                className="flex items-center justify-center border border-foreground/20 px-6 py-4 rounded-sm font-medium md:hover:bg-foreground/5 transition-colors"
               >
                 What I can help with
               </a>
@@ -124,7 +124,7 @@ const HeroSection = () => {
           className="flex flex-wrap items-center justify-between gap-3 text-[10px] font-mono text-foreground/30 tracking-widest border-t border-foreground/10 pt-4"
         >
           <span>[ Devin Policastro · 2026 ]</span>
-          <a href="#ventures" className="hover:text-foreground/70 transition-colors">
+          <a href="#ventures" className="md:hover:text-foreground/70 transition-colors">
             See what I'm building →
           </a>
 

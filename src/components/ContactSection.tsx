@@ -215,14 +215,14 @@ const ContactSection = () => {
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
                   onClick={() => trackEvent("link_clicked", { label: link.label, url: link.href, source: "contact_section" })}
-                  className="bg-card p-4 sm:p-5 flex items-center gap-4 group hover:bg-card/70 transition-colors"
+                  className="bg-card p-4 sm:p-5 flex items-center gap-4 group md:hover:bg-card/70 transition-colors"
                 >
                   <link.icon size={16} className="text-accent shrink-0" strokeWidth={1.5} />
                   <div className="flex-1 min-w-0">
                     <span className="font-display font-semibold text-sm block text-foreground">{link.label}</span>
                     <p className="text-muted-foreground text-[11px] sm:text-xs truncate font-mono tracking-[0.06em]">{link.sub}</p>
                   </div>
-                  <ArrowUpRight size={14} className="text-foreground/30 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                  <ArrowUpRight size={14} className="text-foreground/30 md:group-hover:text-accent md:group-hover:translate-x-0.5 md:group-hover:-translate-y-0.5 transition-all shrink-0" />
                 </a>
               ))}
               <div className="bg-card p-4 sm:p-5 flex items-center gap-4">
