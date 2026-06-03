@@ -169,7 +169,7 @@ const ServiceInquiryDialog = ({
               href="https://calendar.app.google/xXzaDYrcPvFHRCQ28"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-display text-foreground/60 hover:text-accent transition-colors underline-offset-4 hover:underline"
+              className="mt-3 inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-display text-foreground/60 md:hover:text-accent transition-colors underline-offset-4 md:hover:underline"
             >
               Prefer to talk? Book a 15-min virtual call →
             </a>
@@ -308,7 +308,7 @@ const ServiceInquiryDialog = ({
             <Button
               type="submit"
               disabled={sending || !isValid}
-              className="w-full h-12 font-display font-semibold tracking-wide text-sm mt-3 rounded-full bg-foreground text-background hover:bg-foreground/90"
+              className="w-full h-12 font-display font-semibold tracking-wide text-sm mt-3 rounded-full bg-foreground text-background md:hover:bg-foreground/90"
             >
               <Send size={14} />
               {sending ? "Sending…" : "Send inquiry"}
