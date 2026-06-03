@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { trackOutboundClick } from "@/lib/analytics";
+import { trackEvent } from "@/lib/analytics";
 
 const CONSULT_URL = "https://calendar.app.google/xXzaDYrcPvFHRCQ28";
 
@@ -69,7 +69,7 @@ const HeroSection = () => {
                 href={CONSULT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackOutboundClick(CONSULT_URL, "hero-consult")}
+                onClick={() => trackEvent("outbound_click", { url: CONSULT_URL, location: "hero-consult" })}
                 className="group flex items-center justify-between bg-foreground text-background px-6 py-4 rounded-sm font-bold transition-all hover:bg-accent hover:text-foreground"
               >
                 Book a 15-min consult
