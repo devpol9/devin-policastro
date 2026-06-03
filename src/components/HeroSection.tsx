@@ -121,9 +121,10 @@ const HeroSection = () => {
           className="flex flex-wrap items-center justify-between gap-3 text-[10px] font-mono text-foreground/30 tracking-widest border-t border-foreground/10 pt-4"
         >
           <span>[ Devin Policastro · 2026 ]</span>
-          <Link to="/about" className="hover:text-foreground/70 transition-colors">
-            More about me →
-          </Link>
+          <a href="#ventures" className="hover:text-foreground/70 transition-colors">
+            See what I'm building →
+          </a>
+
         </motion.div>
       </div>
     </section>
