@@ -138,7 +138,7 @@ const ServiceInquiryDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         data-lenis-prevent
-        className="sm:max-w-lg bg-card border border-border/60 p-0 max-h-[92vh] overflow-y-auto rounded-2xl shadow-[0_30px_80px_-30px_hsl(30_20%_20%/0.35)]"
+        className="sm:max-w-lg bg-card border border-border p-0 max-h-[92vh] overflow-y-auto rounded-2xl shadow-[0_30px_80px_-30px_hsl(30_20%_20%/0.35)]"
       >
         <style>{`
           .inquiry-${colorId} input:focus,
@@ -178,7 +178,7 @@ const ServiceInquiryDialog = ({
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+                <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                   Name *
                 </label>
                 <Input
@@ -188,14 +188,14 @@ const ServiceInquiryDialog = ({
                   placeholder="Your name"
                   aria-invalid={!!showError("name")}
                   maxLength={100}
-                  className={`bg-background h-11 text-sm rounded-lg ${showError("name") ? "border-destructive" : "border-border/60"}`}
+                  className={`bg-background h-11 text-sm rounded-lg ${showError("name") ? "border-destructive" : "border-border"}`}
                 />
                 {showError("name") && (
                   <p className="text-destructive text-[11px] font-display mt-1">{errors.name}</p>
                 )}
               </div>
               <div>
-                <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+                <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                   Email *
                 </label>
                 <Input
@@ -206,7 +206,7 @@ const ServiceInquiryDialog = ({
                   placeholder="you@email.com"
                   aria-invalid={!!showError("email")}
                   maxLength={255}
-                  className={`bg-background h-11 text-sm rounded-lg ${showError("email") ? "border-destructive" : "border-border/60"}`}
+                  className={`bg-background h-11 text-sm rounded-lg ${showError("email") ? "border-destructive" : "border-border"}`}
                 />
                 {showError("email") && (
                   <p className="text-destructive text-[11px] font-display mt-1">{errors.email}</p>
@@ -215,7 +215,7 @@ const ServiceInquiryDialog = ({
             </div>
 
             <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+              <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                 Phone
               </label>
               <Input
@@ -223,18 +223,18 @@ const ServiceInquiryDialog = ({
                 onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
                 placeholder="(201) 555-0123"
                 maxLength={20}
-                className="bg-background border-border/60 h-11 text-sm rounded-lg"
+                className="bg-background border-border h-11 text-sm rounded-lg"
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+              <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                 Related to
               </label>
               <select
                 value={formData.venture_slug || ""}
                 onChange={(e) => setFormData((p) => ({ ...p, venture_slug: e.target.value }))}
-                className="w-full bg-background border border-border/60 h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
+                className="w-full bg-background border border-border h-11 text-sm rounded-lg px-3 font-display text-foreground focus:outline-none"
               >
                 <option value="">Pick a venture (optional)</option>
                 {VENTURE_OPTIONS.map((v) => (
@@ -247,7 +247,7 @@ const ServiceInquiryDialog = ({
 
             {fields.map((field, i) => {
               const err = showError(field.key);
-              const errCls = err ? "border-destructive" : "border-border/60";
+              const errCls = err ? "border-destructive" : "border-border";
               return (
                 <motion.div
                   key={field.key}
@@ -255,7 +255,7 @@ const ServiceInquiryDialog = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.04 }}
                 >
-                  <label className="text-[10px] font-display font-semibold tracking-[0.14em] text-foreground/55 mb-1.5 block">
+                  <label className="text-[11px] font-display font-semibold tracking-[0.14em] text-foreground/85 mb-1.5 block">
                     {field.label}
                     {field.required ? " *" : ""}
                   </label>
