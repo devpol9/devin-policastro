@@ -74,8 +74,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="font-display text-foreground/80 text-xl sm:text-2xl md:text-3xl max-w-2xl mb-8 sm:mb-10 leading-[1.2] tracking-[-0.015em]"
             >
-              I build brands, connect people, and turn every handshake into a{" "}
-              <span className="accent-headline">revenue stream</span>.
+              Good energy builds the{" "}
+              <span className="accent-headline">foundation of success</span>.
             </motion.p>
 
             <motion.div
