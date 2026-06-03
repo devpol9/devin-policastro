@@ -162,6 +162,17 @@
   * {
     -webkit-tap-highlight-color: transparent;
   }
+
+  /* Disable hover color/background/border changes on touch — prevents sticky hover */
+  a:hover,
+  button:hover,
+  [class*="hover:"]:hover {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    transform: none !important;
+  }
 }
 
 @media (max-width: 767px) {
