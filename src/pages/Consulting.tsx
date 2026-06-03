@@ -34,7 +34,7 @@ const Consulting = () => {
 
       <section className="section-padding pt-32 sm:pt-40">
         <div className="container-tight">
-          <Link to="/#services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-display mb-8">
+          <Link to="/#services" className="inline-flex items-center gap-2 text-muted-foreground md:hover:text-foreground transition-colors text-sm font-display mb-8">
             <ArrowLeft size={16} />
             Back to home
           </Link>
@@ -51,7 +51,7 @@ const Consulting = () => {
           <div className="mb-10 sm:mb-12">
             <button
               onClick={() => setInquiryOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background hover:bg-foreground/90 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-display font-semibold bg-foreground text-background md:hover:bg-foreground/90 transition-all"
             >
               Start an inquiry
               <ArrowRight size={14} />
