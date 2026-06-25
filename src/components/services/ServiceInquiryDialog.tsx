@@ -59,6 +59,26 @@ const ServiceInquiryDialog = ({
   });
   const [formData, setFormData] = useState<Record<string, string>>(initial);
 
+  // Resync formData when dialog opens or field defaults change (e.g. user picked a different option)
+  useEffect(() => {
+    if (!open) return;
+    setFormData((prev) => {
+      const next: Record<string, string> = {
+        name: prev.name ?? "",
+        email: prev.email ?? "",
+        phone: prev.phone ?? "",
+        venture_slug: prev.venture_slug || defaultVenture || "",
+      };
+      fields.forEach((f) => {
+        if (f.defaultValue !== undefined) next[f.key] = f.defaultValue;
+        else if (prev[f.key] !== undefined) next[f.key] = prev[f.key];
+      });
+      return next;
+    });
+    setTouched({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, defaultVenture, JSON.stringify(fields.map((f) => [f.key, f.defaultValue]))]);
+
   const colorId = color.replace(/\s+/g, "-");
 
   useEffect(() => {
