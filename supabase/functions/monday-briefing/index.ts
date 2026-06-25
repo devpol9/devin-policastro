@@ -3,7 +3,7 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
-const DEVIN_EMAIL = 'dev@devinpolicastro.com';
+const DEVIN_EMAIL = 'devinpolicastro@gmail.com';
 
 function weekStart(d = new Date()) {
   const x = new Date(d);
@@ -99,24 +99,24 @@ Deno.serve(async (req) => {
     if (upErr) console.error('briefing upsert error', upErr);
 
     // Email via Resend
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-    if (RESEND_API_KEY) {
-      const html = `<pre style="font-family:ui-monospace,monospace;font-size:13px;white-space:pre-wrap">${md.replace(/</g,'&lt;')}</pre>`;
-      const emailRes = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${RESEND_API_KEY}` },
-        body: JSON.stringify({
-          from: 'DevHQ <inquiries@updates.devinpolicastro.com>',
-          to: [DEVIN_EMAIL],
-          subject: `Monday Briefing — ${wkIso}`,
-          html,
-        }),
-      });
-      if (emailRes.ok) {
-        await supabase.from('briefings').update({ emailed_at: new Date().toISOString() }).eq('user_id', adminId).eq('week_start', wkIso);
-      } else {
-        console.error('resend error', await emailRes.text());
-      }
+    const bodyHtml = `<pre style="font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap;background:#faf8f4;color:#0f0f0f;padding:18px;border-radius:8px;border:1px solid #e9e6df;margin:0;">${md.replace(/</g, '&lt;')}</pre>`;
+    const { error: sendErr } = await supabase.functions.invoke('send-transactional-email', {
+      body: {
+        templateName: 'notify-admin',
+        recipientEmail: DEVIN_EMAIL,
+        idempotencyKey: `monday-${wkIso}`,
+        templateData: {
+          title: `Monday Briefing — ${wkIso}`,
+          preheader: `Week of ${wkIso}`,
+          intro: '',
+          bodyHtml,
+        },
+      },
+    });
+    if (!sendErr) {
+      await supabase.from('briefings').update({ emailed_at: new Date().toISOString() }).eq('user_id', adminId).eq('week_start', wkIso);
+    } else {
+      console.error('send error', sendErr);
     }
 
     return new Response(JSON.stringify({ ok: true, week_start: wkIso, stats }), {

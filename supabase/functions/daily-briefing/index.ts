@@ -4,7 +4,7 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
-const DEVIN_EMAIL = 'dev@devinpolicastro.com';
+const DEVIN_EMAIL = 'devinpolicastro@gmail.com';
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
@@ -167,24 +167,26 @@ Deno.serve(async (req) => {
     // Skip email if nothing actionable
     const isEmpty = inqs.length === 0 && intros.length === 0 && overdueProjects.length === 0 && sched.length === 0 && kpiLines.length === 0;
 
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-    if (RESEND_API_KEY && !isEmpty) {
-      const html = `<pre style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap;background:#0a0a0a;color:#e5e5e5;padding:20px;border-radius:8px">${md.replace(/</g, '&lt;')}</pre>`;
+    if (!isEmpty) {
+      const bodyHtml = `<pre style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.55;white-space:pre-wrap;background:#faf8f4;color:#0f0f0f;padding:18px;border-radius:8px;border:1px solid #e9e6df;margin:0;">${md.replace(/</g, '&lt;')}</pre>`;
       const subject = `☀ ${now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/New_York' })} — ${stats.inquiries_24h} new · ${stats.intros_overdue + stats.projects_overdue} to do`;
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${RESEND_API_KEY}` },
-        body: JSON.stringify({
-          from: 'DevHQ <inquiries@updates.devinpolicastro.com>',
-          to: [DEVIN_EMAIL],
-          subject,
-          html,
-        }),
+      const { error: sendErr } = await supabase.functions.invoke('send-transactional-email', {
+        body: {
+          templateName: 'notify-admin',
+          recipientEmail: DEVIN_EMAIL,
+          idempotencyKey: `daily-${todayIso}`,
+          templateData: {
+            title: subject,
+            preheader: `Daily briefing for ${todayIso}`,
+            intro: '',
+            bodyHtml,
+          },
+        },
       });
-      if (res.ok) {
+      if (!sendErr) {
         await supabase.from('daily_briefings').update({ emailed_at: new Date().toISOString() }).eq('user_id', adminId).eq('briefing_date', todayIso);
       } else {
-        console.error('resend error', await res.text());
+        console.error('send error', sendErr);
       }
     }
 
