@@ -54,6 +54,7 @@ import Networking from "./pages/Networking";
 import Fitness from "./pages/Fitness";
 import ImpactZone from "./pages/ImpactZone";
 import Playbook from "./pages/Playbook";
+import Unsubscribe from "./pages/Unsubscribe";
 
 
 // DevHQ admin
@@ -107,6 +108,7 @@ const App = () => (
           <Route path="/fitness" element={<Fitness />} />
           <Route path="/impact-zone" element={<ImpactZone />} />
           <Route path="/playbook" element={<Playbook />} />
+          <Route path="/unsubscribe" element={<Unsubscribe />} />
 
           <Route path="/admin-login" element={<PathRedirect to="/hq/login" />} />
           <Route path="/admin" element={<PathRedirect to="/hq/today" />} />
