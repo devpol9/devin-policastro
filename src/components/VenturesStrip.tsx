@@ -19,7 +19,7 @@ const ventures: Venture[] = [
   {
     name: "2THIRTY",
     blurb: "Custom stick packs. 7,000+ sold.",
-    href: "https://2thirtynutrition.com",
+    href: "https://drink2thirty.com",
   },
   {
     name: "Creative Vision",
