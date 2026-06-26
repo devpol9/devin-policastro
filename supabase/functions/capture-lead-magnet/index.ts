@@ -68,6 +68,7 @@ serve(async (req) => {
         templateName: "lead-magnet-delivery",
         recipientEmail: email,
         idempotencyKey: `playbook-${email.toLowerCase()}`,
+        replyTo: "devinpolicastro@gmail.com",
         templateData: {
           name,
           downloadUrl: PLAYBOOK_URL,
@@ -81,6 +82,7 @@ serve(async (req) => {
         templateName: "notify-admin",
         recipientEmail: "devinpolicastro@gmail.com",
         idempotencyKey: `playbook-admin-${email.toLowerCase()}`,
+        replyTo: email,
         templateData: {
           title: "New playbook download",
           preheader: `${name} grabbed the NJ Entrepreneur Playbook`,
@@ -93,6 +95,7 @@ serve(async (req) => {
         },
       },
     });
+
 
     return new Response(JSON.stringify({ ok: true, downloadUrl: PLAYBOOK_URL }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
