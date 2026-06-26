@@ -62,12 +62,13 @@ serve(async (req) => {
         }</p>`
       : "";
 
-    // 1) Admin notification
+    // 1) Admin notification — replies go to the inquirer
     await supabase.functions.invoke("send-transactional-email", {
       body: {
         templateName: "notify-admin",
         recipientEmail: ADMIN_INBOX,
         idempotencyKey: `inquiry-admin-${inquiryId}`,
+        replyTo: email,
         templateData: {
           title: `New ${subject}`,
           preheader: `${name} just submitted the ${subject} form`,
@@ -78,15 +79,17 @@ serve(async (req) => {
       },
     });
 
-    // 2) Auto-reply to inquirer
+    // 2) Auto-reply to inquirer — replies route to Devin
     await supabase.functions.invoke("send-transactional-email", {
       body: {
         templateName: "contact-confirmation",
         recipientEmail: email,
         idempotencyKey: `inquiry-confirm-${inquiryId}`,
+        replyTo: ADMIN_INBOX,
         templateData: { name, subject },
       },
     });
+
 
     return new Response(JSON.stringify({
       success: true,

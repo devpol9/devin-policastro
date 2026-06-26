@@ -107,6 +107,7 @@ serve(async (req) => {
         templateName: "playbook-nurture",
         recipientEmail: p.email,
         idempotencyKey: `nurture-${p.id}-step${nextStep.step}`,
+        replyTo: "devinpolicastro@gmail.com",
         templateData: {
           name: p.name || firstName,
           subjectLine: nextStep.subject(firstName),
@@ -117,6 +118,7 @@ serve(async (req) => {
         },
       },
     });
+
 
     if (sendErr) {
       results.push({ email: p.email, step: nextStep.step, ok: false, reason: String(sendErr) });
