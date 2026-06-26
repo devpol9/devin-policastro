@@ -54,6 +54,7 @@ Deno.serve(async (req) => {
   let recipientEmail: string
   let idempotencyKey: string
   let messageId: string
+  let replyTo: string | undefined
   let templateData: Record<string, any> = {}
   try {
     const body = await req.json()
@@ -61,9 +62,14 @@ Deno.serve(async (req) => {
     recipientEmail = body.recipientEmail || body.recipient_email
     messageId = crypto.randomUUID()
     idempotencyKey = body.idempotencyKey || body.idempotency_key || messageId
+    const rawReply = body.replyTo || body.reply_to
+    if (typeof rawReply === 'string' && /^\S+@\S+\.\S+$/.test(rawReply)) {
+      replyTo = rawReply
+    }
     if (body.templateData && typeof body.templateData === 'object') {
       templateData = body.templateData
     }
+
   } catch {
     return new Response(
       JSON.stringify({ error: 'Invalid JSON in request body' }),
