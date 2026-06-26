@@ -323,7 +323,9 @@ Deno.serve(async (req) => {
       label: templateName,
       idempotency_key: idempotencyKey,
       unsubscribe_token: unsubscribeToken,
+      ...(replyTo ? { reply_to: replyTo, headers: { 'Reply-To': replyTo } } : {}),
       queued_at: new Date().toISOString(),
+
     },
   })
 
